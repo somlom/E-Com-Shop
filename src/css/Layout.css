@@ -130,6 +130,16 @@ a.link:active {
     border-radius: 18px;
     font-weight: bold;
     cursor: pointer;
+    transition: opacity 0.15s;
+    padding: 10px;
+}
+
+.login_button:hover{
+    opacity: 0.7;
+}
+
+.login_button:active{
+    opacity: 0.5;
 }
 
 .closeBtn {
@@ -138,15 +148,17 @@ a.link:active {
     border: none;
     height: fit-content;
     width: fit-content;
-    border-radius: 18px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+    transition: opacity 0.15s;
+
 }
 
 .closeBtn:hover{
     opacity: 0.7;
 }
 
-.login_button:hover{
-    opacity: 0.7; ;
+.closeBtn:active{
+    opacity: 0.5;
 }
