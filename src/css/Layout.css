@@ -144,9 +144,9 @@ a.link:active {
 }
 
 .closeBtn:hover{
-    background-color: rgb(255, 75, 75);
+    opacity: 0.7;
 }
 
 .login_button:hover{
-    background-color:rgb(60, 180, 255) ;
+    opacity: 0.7; ;
 }
