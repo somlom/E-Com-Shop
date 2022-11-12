@@ -120,3 +120,29 @@ a.link:active {
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
+
+.login_button {
+    background-color: rgb(2, 158, 255);
+    color: white;
+    border: none;
+    height: 36px;
+    width: fit-content;
+    border-radius: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeBtn {
+    background-color: rgb(255, 2, 2);
+    color: white;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeBtn:hover{
+    background-color: rgb(2, 158, 255);
+}
