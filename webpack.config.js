@@ -7,22 +7,18 @@ module.exports = {
         path: path.resolve(__dirname, "dist")
     },
     module: {
-
         rules: [
             {
-                test: /\.?js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: [
-                            '@babel/preset-env', '@babel/preset-react'
-                        ]
-                    }
-                },
+                use: ['babel-loader'],
+            },
+            {
+                test: /\.css$/i,
+                exclude: [/node_modules/],
+                use: ["style-loader", "css-loader"],
             },
         ],
-
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -30,4 +26,7 @@ module.exports = {
         }),
     ],
     mode: 'development',
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.css'],
+    }
 }
