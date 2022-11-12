@@ -8,40 +8,40 @@ export const Footer = () => {
 
       <div className='footer_data'>
 
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
-        <a href="#">
+        <a className="link" href="#">
           test ank
         </a>
 

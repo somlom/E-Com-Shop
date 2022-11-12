@@ -7,7 +7,7 @@
 .content {
     flex: 1;
     /* border: solid 1px black; */
-    margin-right: 50px;
+    margin-right: 30px;
     margin-left: 30px;
 }
 
@@ -21,7 +21,7 @@
 
 .nav * {
     /* border: solid 1px black; */
-    margin:3px;
+    margin: 3px;
     width: content-box;
     display: flex;
     flex-wrap: wrap;
@@ -34,12 +34,6 @@
     text-decoration: none;
     display: inline-block;
 }
-
-.nav a:hover,
-.nav a:active {
-    color: #36d8f4;
-}
-
 
 .nav_column * {
     /* border: solid 1px black; */
@@ -57,12 +51,13 @@
 /* ##### FOOTER */
 
 .footer {
-    /* border: solid 1px black; */
+    border-top: solid 1px black;
     display: flex;
     flex-direction: row;
     /* flex-wrap: wrap; */
-    align-content: center;
+    align-items: center;
     justify-content: center;
+    /* background-color: gray; */
 }
 
 .footer_data {
@@ -89,7 +84,39 @@
     display: inline-block;
 }
 
-.footer_data a:hover,
-.footer_data a:active {
+.footer_title {
+    margin-left: 5px;
+}
+
+a.link:hover,
+a.link:active {
     color: #36d8f4;
 }
+
+.darkBG {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .modal {
+    width: fit-content;
+    height: fit-content;
+    background: white;
+    color: black;
+    z-index: 10;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+  }
