@@ -25,8 +25,11 @@ export const Navigation = () => {
         <button onClick={() => handle_modal(true)}>login</button>
         {modal_state &&
           <Modal handle_modal={handle_modal}>
-            <h1>Login</h1>
-            <input type={"email"} />
+            <div className='title'>
+              <h1>Login</h1>
+              <input type={"email"} placeholder="Email" />
+              <input type={"password"} placeholder="Password" />
+            </div>
           </Modal>
         }
       </div>

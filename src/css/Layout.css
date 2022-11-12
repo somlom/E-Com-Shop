@@ -102,16 +102,16 @@ a.link:active {
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-  }
-  
-  .centered {
+}
+
+.centered {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-  
-  .modal {
+}
+
+.modal {
     width: fit-content;
     height: fit-content;
     background: white;
@@ -119,4 +119,4 @@ a.link:active {
     z-index: 10;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-  }
+}
