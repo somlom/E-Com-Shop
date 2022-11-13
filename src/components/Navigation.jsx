@@ -22,7 +22,7 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button onClick={() => handle_modal(true)}>login</button>
+        <button className='login_button'onClick={() => handle_modal(true)}>login</button>
         {modal_state &&
           <Modal handle_modal={handle_modal}>
             <div className='title'>

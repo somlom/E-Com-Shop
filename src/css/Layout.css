@@ -120,3 +120,45 @@ a.link:active {
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 }
+
+.login_button {
+    background-color: rgb(2, 158, 255);
+    color: white;
+    border: none;
+    height: 36px;
+    width: fit-content;
+    border-radius: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    padding: 10px;
+}
+
+.login_button:hover{
+    opacity: 0.7;
+}
+
+.login_button:active{
+    opacity: 0.5;
+}
+
+.closeBtn {
+    background-color: rgb(255, 2, 2);
+    color: white;
+    border: none;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.15s;
+
+}
+
+.closeBtn:hover{
+    opacity: 0.7;
+}
+
+.closeBtn:active{
+    opacity: 0.5;
+}
