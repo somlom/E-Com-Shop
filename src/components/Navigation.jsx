@@ -23,8 +23,7 @@ export const Navigation = () => {
 
       <div className='nav_column login'>
         <button className='login_button'onClick={() => handle_modal(true)}>login</button>
-      </div>
-      {modal_state &&
+        {modal_state &&
           <Modal handle_modal={handle_modal}>
             <div className='title'>
               <h1>Login</h1>
@@ -33,6 +32,8 @@ export const Navigation = () => {
             </div>
           </Modal>
         }
+      </div>
+
     </div>
   )
 }
