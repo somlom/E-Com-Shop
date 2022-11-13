@@ -60,7 +60,6 @@
     /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
-    /* background-color: gray; */
 }
 
 .footer_data {
@@ -96,8 +95,10 @@ a.link:active {
     color: #36d8f4;
 }
 
-.darkBG {
-    background-color: rgba(0, 0, 0, 0.2);
+/* ###### MODAL */
+
+.fade_layer {
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 100vh;
     z-index: 0;
@@ -119,16 +120,45 @@ a.link:active {
     height: fit-content;
     background: white;
     color: black;
-    z-index: 10;
+    padding: 16px;
+    z-index: 1;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+
 }
+
+.modal_title {
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-direction: row-reverse;
+    /* align-content: stretch; */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal_content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_content form input {
+    border: solid 1px grey;
+    border-radius: 3px;
+}
+
+.modal_content form input:hover {
+    border-color: rgb(2, 158, 255);
+}
+
+/* ##### BUTTONS */
 
 .login_button {
     background-color: rgb(2, 158, 255);
     color: white;
     border: none;
-    height: 36px;
+    height: fit-content;
     width: fit-content;
     border-radius: 18px;
     font-weight: bold;
@@ -137,31 +167,40 @@ a.link:active {
     padding: 10px;
 }
 
-.login_button:hover{
+.button:hover {
     opacity: 0.7;
 }
 
-.login_button:active{
+.button:active {
     opacity: 0.5;
 }
 
-.closeBtn {
-    background-color: rgb(255, 2, 2);
-    color: white;
-    border: none;
+.close_button {
+    background-color: white;
+    text-align: center;
     height: fit-content;
     width: fit-content;
-    border-radius: 10px;
+    /* color: white; */
+    border: solid 1px red;
+    border-radius: 50%;
     font-weight: bold;
     cursor: pointer;
     transition: opacity 0.15s;
     align-self: flex-start;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
+<<<<<<< HEAD
     -webkit-transition: background-color 0.15s;
+=======
+    -webkit-transition: background-color 0.5s;
+>>>>>>> 773eeb932ed598b98b97b033e1826565c720e7ba
 }
 
 .close_button:hover{
     background-color: red;
     color: white;
+<<<<<<< HEAD
     transition: background-color 0.15s;
+=======
+    transition: background-color 0.5s;
+>>>>>>> 773eeb932ed598b98b97b033e1826565c720e7ba
 }

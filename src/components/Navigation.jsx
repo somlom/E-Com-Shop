@@ -1,4 +1,5 @@
 import React from 'react'
+import { Login, Register, Reset } from './Auth';
 
 import { Modal } from './Modal'
 
@@ -22,17 +23,15 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button'onClick={() => handle_modal(true)}>login</button>
+        <button className='login_button button' onClick={() => handle_modal(true)}>login</button>
       </div>
       {modal_state &&
-          <Modal handle_modal={handle_modal}>
-            <div className='title'>
-              <h1>Login</h1>
-              <input type={"email"} placeholder="Email" />
-              <input type={"password"} placeholder="Password" />
-            </div>
-          </Modal>
-        }
+        <Modal handle_modal={handle_modal}>
+          <Login />
+          {/* <Register />
+              <Reset /> */}
+        </Modal>
+      }
     </div>
   )
 }
