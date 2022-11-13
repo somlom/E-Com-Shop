@@ -26,6 +26,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin: 7px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .nav a {
@@ -188,7 +191,7 @@ a.link:active {
     -webkit-transition: background-color 0.15s;
 }
 
-.close_button:hover{
+.close_button:hover {
     background-color: red;
     color: white;
     transition: background-color 0.15s;
