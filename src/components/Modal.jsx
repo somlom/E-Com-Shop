@@ -2,7 +2,18 @@ import React from 'react'
 
 export const Modal = ({ children, handle_modal }) => {
 
-    console.log(children)
+    React.useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.keyCode === 27) {
+                console.log('Close')
+                handle_modal(false)
+            }
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => {
+            window.removeEventListener('keydown', handleEsc);
+        };
+    }, []);
 
     return (
         <div className='fade_layer'>

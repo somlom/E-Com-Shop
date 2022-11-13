@@ -26,6 +26,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin: 7px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .nav a {
@@ -95,7 +98,7 @@ a.link:active {
 /* ###### MODAL */
 
 .fade_layer {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 100vh;
     z-index: 0;
@@ -175,21 +178,21 @@ a.link:active {
 .close_button {
     background-color: white;
     text-align: center;
-    height: min-content;
-    width: min-content;
+    height: fit-content;
+    width: fit-content;
     /* color: white; */
     border: solid 1px red;
-    border-radius: 5px;
+    border-radius: 50%;
     font-weight: bold;
     cursor: pointer;
     transition: opacity 0.15s;
     align-self: flex-start;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
-    -webkit-transition: background-color 0.5s;
+    -webkit-transition: background-color 0.15s;
 }
 
-.close_button:hover{
+.close_button:hover {
     background-color: red;
     color: white;
-    transition: background-color 0.5s;
+    transition: background-color 0.15s;
 }
