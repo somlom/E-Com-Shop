@@ -175,11 +175,11 @@ a.link:active {
 .close_button {
     background-color: white;
     text-align: center;
-    height: min-content;
-    width: min-content;
+    height: fit-content;
+    width: fit-content;
     /* color: white; */
     border: solid 1px red;
-    border-radius: 5px;
+    border-radius: 50%;
     font-weight: bold;
     cursor: pointer;
     transition: opacity 0.15s;
