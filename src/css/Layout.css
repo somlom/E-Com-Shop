@@ -1,5 +1,5 @@
 .layout {
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -20,7 +20,6 @@
 }
 
 .nav * {
-    /* border: solid 1px black; */
     margin: 3px;
     width: content-box;
     display: flex;
@@ -38,8 +37,7 @@
     display: inline-block;
 }
 
-.nav_column * {
-    /* border: solid 1px black; */
+.nav_column a {
     padding: 5px;
     text-align: center
 }
@@ -57,13 +55,11 @@
     border-top: solid 1px black;
     display: flex;
     flex-direction: row;
-    /* flex-wrap: wrap; */
     align-items: center;
     justify-content: center;
 }
 
 .footer_data {
-    /* border: solid 1px black; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -72,7 +68,6 @@
 }
 
 .footer_data * {
-    /* border: solid 1px black; */
     width: fit-content;
     height: min-content;
     margin: 5px;
@@ -98,6 +93,7 @@ a.link:active {
 /* ###### MODAL */
 
 .fade_layer {
+    margin: 0;
     background-color: rgba(0, 0, 0, 0.4);
     width: 100vw;
     height: 100vh;
@@ -105,7 +101,7 @@ a.link:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
 }
 
 .centered {
@@ -116,12 +112,12 @@ a.link:active {
 }
 
 .modal {
-    width: fit-content;
-    height: fit-content;
+    width: min-content;
+    height: min-content;
     background: white;
     color: black;
     padding: 16px;
-    z-index: 1;
+    z-index: 10;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     display: flex;
@@ -133,7 +129,6 @@ a.link:active {
     border-bottom: solid 1px black;
     display: flex;
     flex-direction: row-reverse;
-    /* align-content: stretch; */
     justify-content: space-between;
     width: 100%;
 }
@@ -155,16 +150,29 @@ a.link:active {
 /* ##### BUTTONS */
 
 .login_button {
-    background-color: rgb(2, 158, 255);
-    color: white;
-    border: none;
+    /* background-color: rgb(2, 158, 255); */
+    background-color: white;
+    border: solid 2px rgb(2, 158, 255);
     height: fit-content;
     width: fit-content;
     border-radius: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: opacity 0.15s;
-    padding: 10px;
+    padding: 5px;
+    align-items: center;
+    -webkit-transition: background-color 0.15s;
+}
+
+.login_button * {
+    padding: 1px;
+}
+
+.login_button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: rgb(2, 158, 255);
+    transition: background-color 0.15s;
 }
 
 .button:hover {
@@ -176,23 +184,21 @@ a.link:active {
 }
 
 .close_button {
-    background-color: white;
     text-align: center;
     height: fit-content;
     width: fit-content;
-    /* color: white; */
-    border: solid 1px red;
-    border-radius: 50%;
+    color: gray;
+    border: solid 1px white;
     font-weight: bold;
-    cursor: pointer;
     transition: opacity 0.15s;
-    align-self: flex-start;
+    align-self: stretch;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
     -webkit-transition: background-color 0.15s;
 }
 
 .close_button:hover {
-    background-color: red;
+    background-color: gray;
     color: white;
+    cursor: pointer;
     transition: background-color 0.15s;
 }

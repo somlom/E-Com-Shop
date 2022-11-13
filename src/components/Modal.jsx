@@ -24,7 +24,6 @@ export const Modal = ({ children, handle_modal }) => {
                         <h1>Login</h1>
                     </div>
                     {children}
-
                 </div>
             </div>
         </div>
