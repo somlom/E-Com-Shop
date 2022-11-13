@@ -185,11 +185,11 @@ a.link:active {
     transition: opacity 0.15s;
     align-self: flex-start;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
-    -webkit-transition: background-color 0.5s;
+    -webkit-transition: background-color 0.15s;
 }
 
 .close_button:hover{
     background-color: red;
     color: white;
-    transition: background-color 0.5s;
+    transition: background-color 0.15s;
 }
