@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUserCircle } from 'react-icons/fa';
 
 import "../css/Navigation.css"
-import { Login, Register, Reset } from './Auth';
+import { Login, Register, Reset } from '../pages/Auth';
 import { Modal } from './Modal'
 
 

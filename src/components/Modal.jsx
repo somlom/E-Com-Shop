@@ -26,7 +26,9 @@ export const Modal = ({ children, handle_modal }) => {
                         <p>Action required</p>
                         <button className="close_button button" onClick={() => handle_modal(false)}>x</button>
                     </div>
-                    {children}
+                    <div className='modal_content'>
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
