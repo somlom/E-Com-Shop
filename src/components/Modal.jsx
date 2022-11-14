@@ -1,5 +1,8 @@
 import React from 'react'
 
+import "../css/Modal.css"
+
+
 export const Modal = ({ children, handle_modal }) => {
 
     React.useEffect(() => {
@@ -20,8 +23,8 @@ export const Modal = ({ children, handle_modal }) => {
             <div className='centered'>
                 <div className='modal'>
                     <div className='modal_title'>
+                        <p>Action required</p>
                         <button className="close_button button" onClick={() => handle_modal(false)}>x</button>
-                        <h1>Login</h1>
                     </div>
                     {children}
                 </div>
