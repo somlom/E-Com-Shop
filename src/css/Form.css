@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input {
+    /* margin: 5px;  */
+    /* transition: 0.5s; */
+    width: 60vw;
+    padding: 12px 20px;
+    margin: 1vw 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 3px solid #ccc;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+
+.form input:focus {
+    border-bottom: 3px solid blue;
+}
+
+button.login_button[type=submit]{
+    align-self: center;
+    margin: 5px;
+}
