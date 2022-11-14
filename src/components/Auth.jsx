@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 
+import "../css/Form.css"
+
 
 export const Login = () => {
 
@@ -8,7 +10,7 @@ export const Login = () => {
 
     const add_to_state = (e) => {
         setInput((prevState) => ({
-            ...prevState, 
+            ...prevState,
             [e.target.id]: e.target.value,
         }))
     }
@@ -19,12 +21,12 @@ export const Login = () => {
 
     return (
         <div>
-            <div className='modal_content'>
+            <div className='form_content'>
                 <h2>Login</h2>
-                <form onSubmit={send_to_backend}>
+                <form onSubmit={send_to_backend} className="form">
                     <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
                     <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
-                    <button className="login_button button" id="1" type='submit'><FaUserPlus /> Register</button>
+                    <button className="login_button button" type='submit'><span><FaUserPlus /></span>Register</button>
                 </form>
             </div>
         </div>

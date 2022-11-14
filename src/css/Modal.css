@@ -44,19 +44,6 @@
     margin: 0px;
 }
 
-.modal_content form {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal_content form input {
-    border: solid 1px grey;
-    border-radius: 3px;
-}
-
-.modal_content form input:hover {
-    border-color: rgb(2, 158, 255);
-}
 
 .close_button {
     text-align: center;
