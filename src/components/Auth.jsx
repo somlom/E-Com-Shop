@@ -1,13 +1,24 @@
 import React from 'react'
+import {FaUserPlus} from "react-icons/fa"
+
 
 export const Login = () => {
+
+    const [input, setInput] = React.useState({});
+
+    const call = () => {
+        return alert("Submited!")
+    }
+
     return (
-        <div className='modal_content'>
-            <form onSubmit={()=>alert("Submited!")}>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button className="login_button button" type='submit'>Register</button>
-            </form>
+        <div>
+            <div className='modal_content'>
+                <form onSubmit={call}>
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button className="login_button button" id="1" type='submit'><FaUserPlus/> Register</button>
+                </form>
+            </div>
         </div>
     )
 }

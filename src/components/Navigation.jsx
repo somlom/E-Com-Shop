@@ -1,5 +1,7 @@
 import React from 'react'
+import { FaUserCircle } from 'react-icons/fa';
 import { Login, Register, Reset } from './Auth';
+
 
 import { Modal } from './Modal'
 
@@ -23,7 +25,7 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button button' onClick={() => handle_modal(true)}>login</button>
+        <button className='login_button button' onClick={() => handle_modal(true)}>login <FaUserCircle/></button>
       </div>
       {modal_state &&
         <Modal handle_modal={handle_modal}>
