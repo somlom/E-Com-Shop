@@ -1,22 +1,30 @@
 import React from 'react'
-import {FaUserPlus} from "react-icons/fa"
+import { FaUserPlus } from "react-icons/fa"
 
 
 export const Login = () => {
 
     const [input, setInput] = React.useState({});
 
-    const call = () => {
-        return alert("Submited!")
+    const add_to_state = (e) => {
+        setInput((prevState) => ({
+            ...prevState, 
+            [e.target.id]: e.target.value,
+        }))
+    }
+
+    const send_to_backend = () => {
+        return alert("email: " + input.email + " password: " + input.password)
     }
 
     return (
         <div>
             <div className='modal_content'>
-                <form onSubmit={call}>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button className="login_button button" id="1" type='submit'><FaUserPlus/> Register</button>
+                <h2>Login</h2>
+                <form onSubmit={send_to_backend}>
+                    <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
+                    <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
+                    <button className="login_button button" id="1" type='submit'><FaUserPlus /> Register</button>
                 </form>
             </div>
         </div>
