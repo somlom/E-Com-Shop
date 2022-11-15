@@ -9,8 +9,14 @@
     align-items: center;
 }
 
-.form_title{
+.form_title {
     margin: 5px;
+}
+
+.form_buttons {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
 }
 
 .form input {

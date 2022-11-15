@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
+import { Link } from 'react-router-dom';
 
 import "../css/Form.css"
 
@@ -15,7 +16,7 @@ export const Login = () => {
         }))
     }
 
-    const send_to_backend = (event) => {        
+    const send_to_backend = (event) => {
         if (Object.keys(input).length >= 1) {
             return alert("email: " + input.email + " password: " + input.password)
         } else {
@@ -32,7 +33,12 @@ export const Login = () => {
                 <form onSubmit={send_to_backend} className="form">
                     <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
                     <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
-                    <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Register</button>
+                    <div className='form_buttons'>
+                        <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Login</button>
+                        <Link to="register">
+                            <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Don't have an account? Register!</button>
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>

@@ -1,42 +1,37 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 module.exports = {
+
     entry: path.join(__dirname, "src", "index.js"),
-    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: 'main.bundle.js', 
+        filename: 'main.bundle.js',
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
             },
             {
-                test: /\.css$/i,
+                test: /\.css$/,
                 exclude: [/node_modules/],
                 use: ["style-loader", "css-loader"],
             },
         ],
     },
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.css'],
+    },
     plugins: [
         new HtmlWebpackPlugin({
+            title: 'App',
+            publicPath: "/",
+            // favicon: path.join(__dirname, "favicon.svg"),
             template: path.join(__dirname, "public", "index.html"),
         }),
     ],
-    mode: 'development',
-    resolve: {
-        extensions: ['', '.js', '.jsx', '.css'],
-    },
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'public'),
-        },
-        compress: true,
-        port: 3000,
-        historyApiFallback: true,
-    },
 }
