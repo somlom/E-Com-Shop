@@ -9,7 +9,9 @@
     align-items: center;
 }
 
-/* .form_content h2 */
+.form_title{
+    margin: 5px;
+}
 
 .form input {
     /* margin: 5px;  */
@@ -29,6 +31,6 @@
     border-bottom: 3px solid blue;
 }
 
-button.login_button[type=submit] {
+.login_button.opacity[type=submit] {
     margin: 5px;
 }

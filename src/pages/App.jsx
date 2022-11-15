@@ -1,7 +1,6 @@
 import React from 'react'
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import { Layout } from './Layout'
 import "../css/App.css"
 import { Main } from './Main'
 import { Login, Register, Reset } from './Auth';

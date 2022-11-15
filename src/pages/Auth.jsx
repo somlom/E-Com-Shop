@@ -8,15 +8,21 @@ export const Login = () => {
 
     const [input, setInput] = React.useState({});
 
-    const add_to_state = (e) => {
+    const add_to_state = (event) => {
         setInput((prevState) => ({
             ...prevState,
-            [e.target.id]: e.target.value,
+            [event.target.id]: event.target.value,
         }))
     }
 
-    const send_to_backend = () => {
-        return alert("email: " + input.email + " password: " + input.password)
+    const send_to_backend = (event) => {        
+        if (Object.keys(input).length >= 1) {
+            return alert("email: " + input.email + " password: " + input.password)
+        } else {
+            event.preventDefault();
+            return alert("error")
+        }
+
     }
 
     return (
@@ -26,7 +32,7 @@ export const Login = () => {
                 <form onSubmit={send_to_backend} className="form">
                     <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
                     <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
-                    <button className="login_button button" type='submit'><span><FaUserPlus /></span>Register</button>
+                    <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Register</button>
                 </form>
             </div>
         </div>
@@ -55,7 +61,7 @@ export const Register = () => {
                     <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
                     <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
                     <input type="password" placeholder="Password again" id='password2' onChange={add_to_state} />
-                    <button className="login_button button" type='submit'><span><FaUserPlus /></span>Register</button>
+                    <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Register</button>
                 </form>
             </div>
         </div>
@@ -83,7 +89,7 @@ export const Reset = () => {
                 <h3 className='form_title'>Reset your password</h3>
                 <form onSubmit={send_to_backend} className="form">
                     <input type="email" placeholder="Email please" id='email' onChange={add_to_state} />
-                    <button className="login_button button" type='submit'><span><FaUserPlus /></span>Register</button>
+                    <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Register</button>
                 </form>
             </div>
         </div>
