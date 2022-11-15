@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaUserCircle } from 'react-icons/fa';
-import { Login, Register, Reset } from './Auth';
 
-
+import "../css/Navigation.css"
+import { Login, Register, Reset } from '../pages/Auth';
 import { Modal } from './Modal'
 
 
@@ -16,7 +16,7 @@ export const Navigation = () => {
       <div className='nav_column buttons'>
         <h1 className='nav_title'>Nav</h1>
 
-        <a href='#'>test</a>
+        <a className="link" href="#">test</a>
         <a className="link" href="#">mest</a>
         <a className="link" href="#">test</a>
         <a className="link" href="#">mest</a>
@@ -25,13 +25,11 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button button' onClick={() => handle_modal(true)}>login <FaUserCircle/></button>
+        <button className='login_button button' onClick={() => handle_modal(true)}>Login <span><FaUserCircle /></span></button>
       </div>
       {modal_state &&
         <Modal handle_modal={handle_modal}>
           <Login />
-          {/* <Register />
-              <Reset /> */}
         </Modal>
       }
     </div>
