@@ -28,7 +28,6 @@
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
-
 }
 
 .modal_title {
@@ -44,13 +43,12 @@
     margin: 0px;
 }
 
-
 .close_button {
     text-align: center;
-    height: fit-content;
-    width: fit-content;
+    height: min-content;
+    width: min-content;
     color: gray;
-    border: solid 1px white;
+    border: none;
     font-weight: bold;
     justify-content: stretch;
     transition: opacity 0.15s;
@@ -64,4 +62,8 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.15s;
+}
+
+.modal_content{
+    display: initial;
 }

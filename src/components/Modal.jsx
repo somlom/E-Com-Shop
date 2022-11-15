@@ -8,9 +8,8 @@ export const Modal = ({ children, handle_modal }) => {
     React.useEffect(() => {
         const handleEsc = (event) => {
             if (event.keyCode === 27) {
-                console.log('Close')
-                handle_modal(false)
-            }
+                handle_modal(false);
+            };
         };
         window.addEventListener('keydown', handleEsc);
         return () => {
@@ -24,9 +23,11 @@ export const Modal = ({ children, handle_modal }) => {
                 <div className='modal'>
                     <div className='modal_title'>
                         <p>Action required</p>
-                        <button className="close_button button" onClick={() => handle_modal(false)}>x</button>
+                        <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
                     </div>
-                    {children}
+                    <div className='modal_content'>
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
