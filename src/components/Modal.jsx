@@ -23,7 +23,7 @@ export const Modal = ({ children, handle_modal }) => {
                 <div className='modal'>
                     <div className='modal_title'>
                         <p>Action required</p>
-                        <button className="close_button opacity" onClick={() => handle_modal(false)}>x</button>
+                        <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
                     </div>
                     <div className='modal_content'>
                         {children}

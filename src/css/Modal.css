@@ -58,7 +58,7 @@
 
 .close_button:hover {
     background-color: red;
-    border: none;
+    border: solid 1px white;
     color: white;
     cursor: pointer;
     transition: background-color 0.15s;
