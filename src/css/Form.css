@@ -34,7 +34,7 @@
 }
 
 .form input:focus {
-    border-bottom: 3px solid blue;
+    border-bottom: 3px solid  rgb(2, 158, 255);
 }
 
 .login_button.opacity[type=submit] {
