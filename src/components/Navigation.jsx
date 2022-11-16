@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUserCircle } from 'react-icons/fa';
 
 import "../css/Navigation.css"
-import { Login, Register, Reset } from '../pages/Auth';
+import { Auth, Register, Reset } from '../pages/Auth';
 import { Modal } from './Modal'
 
 
@@ -29,7 +29,7 @@ export const Navigation = () => {
       </div>
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-          <Login />
+          <Auth />
           {/* <Register /> */}
         </Modal>
       }
