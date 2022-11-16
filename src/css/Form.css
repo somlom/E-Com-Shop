@@ -37,6 +37,6 @@
     border-bottom: 3px solid  rgb(2, 158, 255);
 }
 
-.login_button.opacity[type=submit] {
+.login_button.opacity.submit {
     margin: 5px;
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { Link } from 'react-router-dom';
+import { Form } from '../components/Form';
 
 import "../css/Form.css"
 
@@ -38,6 +39,7 @@ export const Login = () => {
                         <Link to="register">
                             <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Don't have an account? Register!</button>
                         </Link>
+                        {/* <Form title_="Login!!!"/> */}
                     </div>
                 </form>
             </div>

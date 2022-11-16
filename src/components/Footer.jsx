@@ -19,33 +19,6 @@ export const Footer = () => {
           <a className="link" href="#">
             Customer rights
           </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
-          <a className="link" href="#">
-            test ank
-          </a>
 
         </div>
       </div>

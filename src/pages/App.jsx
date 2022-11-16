@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "../css/App.css"
 import { Main } from './Main'
@@ -13,6 +13,7 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/reset" element={<Reset />} />
+      {/* <Route path="/*" element={<Navigate to="/"/>} /> */}
     </Routes>
   )
 }

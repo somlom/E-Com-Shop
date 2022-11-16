@@ -30,6 +30,7 @@ export const Navigation = () => {
       {modal_state &&
         <Modal handle_modal={handle_modal}>
           <Login />
+          {/* <Register /> */}
         </Modal>
       }
     </div>
