@@ -33,7 +33,7 @@ export const Form = (props) => {
                 {response.fields != undefined ? <Fields fields={response.fields} onChange={onChange} /> : <p>no fields</p>}
                 <div className='form_buttons'>
                     <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Login</button>
-                    <button className="login_button opacity" type='button'><span><FaUserPlus /></span>Don't have an account? Register!</button>
+                    <button className="no_acc_button" type='button'><span><FaUserPlus /></span>Don't have an account? Register!</button>
                 </div>
             </form>
         </div>

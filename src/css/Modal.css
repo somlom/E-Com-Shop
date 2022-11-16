@@ -54,6 +54,8 @@
     transition: opacity 0.15s;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
     -webkit-transition: background-color 0.15s;
+    border-radius: 50%;
+    margin-bottom: 4px;
 }
 
 .close_button:hover {
