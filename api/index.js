@@ -1,12 +1,18 @@
 import express from "express"
 import bodyParser from "body-parser"
+const cors = require('cors')
 
 
 const app = express()
-app.use(bodyParser.json())
-app.get("/get_form", (req, res) => {
+
+app.use(cors());
+app.use(express.urlencoded({ extended: false }))
+app.post("/get_form", (req, res) => {
+
+    const { title } = req.body
+
     res.json({
-        title: "Login",
+        title: title,
         fields: [
             {
                 email: {
