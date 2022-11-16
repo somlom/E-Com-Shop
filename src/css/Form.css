@@ -19,6 +19,14 @@
     align-content: center;
 }
 
+.form p{
+    width: 60vw;
+    padding: 24px 40px;
+    margin: 1vw 0;
+    /* padding-bottom: 3px; */
+    text-align: center;
+}
+
 .form input {
     /* margin: 5px;  */
     /* transition: 0.5s; */

@@ -6,7 +6,7 @@ import { Form } from '../components/Form';
 import "../css/Form.css"
 
 
-export const Login = () => {
+export const Auth = () => {
 
     const [input, setInput] = React.useState({});
 
@@ -28,22 +28,7 @@ export const Login = () => {
     }
 
     return (
-        <div>
-            <div className='form_content'>
-                <h3 className='form_title'>Login</h3>
-                <form onSubmit={send_to_backend} className="form">
-                    <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
-                    <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
-                    <div className='form_buttons'>
-                        <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Login</button>
-                        <Link to="register">
-                            <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Don't have an account? Register!</button>
-                        </Link>
-                        {/* <Form title_="Login!!!"/> */}
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Form title="Login" onChange={add_to_state} onSubmit={send_to_backend} />
     )
 }
 

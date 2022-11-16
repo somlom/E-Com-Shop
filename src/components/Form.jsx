@@ -1,64 +1,50 @@
 import React from 'react'
 import axios from "axios"
+import { FaUserPlus } from "react-icons/fa"
+import { Link } from 'react-router-dom';
 
+export const usePostData = (url = "", data = "") => {
 
-export const usePostData = (url = "") => {
+    const [value, setValue] = React.useState(false)
 
-    const [value, setValue] = React.useState('')
+    React.useEffect(() => {
+        const fetchData = async () => {
 
-    const fetchData = async (data) => {
-        const response = await fetch(url, {
-            method: "post",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: (
-                data
-            )
-        })
-        setValue(await response.json())
-    }
+            const response = await axios.post(url, { title: data })
 
-    return [value, fetchData]
+            setValue(await response.data)
+        }
+        fetchData()
+    }, [url])
+
+    return value
 
 }
 
-export const Form = async (props) => {
+export const Form = (props) => {
 
-    // const { title } = props;
-    const title = "Login"
+    const { title, onChange, onSubmit } = props;
+    const response = usePostData("http://localhost:4000/get_login_form", title)
 
-    const [data, setData] = React.useState(null);
-
-    // let i = 1;
-
-    // const response = await axios.post("http://localhost:4000/get_form", { title_: title_ })
-    // setData (await axios.post("http://localhost:4000/get_form", {title_: title_}));
-
-    // React.useEffect(() => {
-    //     axios.post("http://localhost:4000/get_form", title).then((res) => {
-    //     console.log(res.data)    
-    //     setData(res.data.fields)
-    //     })
-
-    // }, [])
-
-
-    setData(usePostData("http://localhost:4000/get_form", title))
+    return (
+        <div className='form_content'>
+            <h3 className='form_title'>{response.title}</h3>
+            <form className='form' onSubmit={onSubmit}>
+                {response.fields != undefined ? <Fields fields={response.fields} onChange={onChange} /> : <p>no fields</p>}
+                <div className='form_buttons'>
+                    <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Login</button>
+                    <button className="login_button opacity" type='button'><span><FaUserPlus /></span>Don't have an account? Register!</button>
+                </div>
+            </form>
+        </div>
+    )
+}
 
 
-    if (data == '') {
-        return <></>;
-    } else {
-        setData(usePostData("http://localhost:4000/get_form", title))
-        return (
-            
-            // <div>{data.map(obj =>
-            //     <input key={1}{...obj} />
-            // )}</div>
-            console.log(data)
-        )
-    }
+const Fields = (props) => {
 
-
+    const { fields, onChange } = props;
+    return fields.map(inp => (
+        <input {...inp} key={inp.name} onChange={onChange} />
+    ))
 }

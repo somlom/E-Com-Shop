@@ -6,24 +6,27 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors());
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.post("/get_form", (req, res) => {
+app.post("/get_login_form", (req, res) => {
 
     const { title } = req.body
 
     res.json({
         title: title,
         fields: [
+
             {
-                email: {
-                    type: "email",
-                    placeholder: "E-Mail"
-                },
-                password: {
-                    type: "password",
-                    placeholder: "Password"
-                },
-            }
+                id: "email",
+                type: "email",
+                placeholder: "E-Mail"
+            },
+            {
+                id: "password",
+                type: "password",
+                placeholder: "Password"
+            },
+
 
         ],
     })
