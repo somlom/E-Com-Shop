@@ -27,6 +27,11 @@ export const Navigation = () => {
       <div className='nav_column login'>
         <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}>Login <span><FaUserCircle /></span></button>
       </div>
+
+      <div className='nav_column add to cart'>
+        <button className='add_to_cart' type="button">Add to cart <span><FaUserCircle /></span></button>
+      </div>
+
       {modal_state &&
         <Modal handle_modal={handle_modal}>
           <Auth />
