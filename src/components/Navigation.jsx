@@ -1,5 +1,7 @@
 import React from 'react'
-import { FaUserCircle } from 'react-icons/fa';
+// import { FaUserCircle } from 'react-icons/fa';
+//          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
+import { MdOutlineShoppingCart } from 'react-icons/md';
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
@@ -25,12 +27,12 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}>Login <span><FaUserCircle /></span></button>
+        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /></button>
       </div>
 
-      <div className='nav_column add to cart'>
-        <button className='add_to_cart' type="button">Add to cart <span><FaUserCircle /></span></button>
-      </div>
+      {/* <div className='nav_column add to cart'>
+        <button className='add_to_cart' type="button">Add to cart <span><MdOutlineShoppingCart /></span></button>
+      </div> */}
 
       {modal_state &&
         <Modal handle_modal={handle_modal}>
