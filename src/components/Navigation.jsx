@@ -15,15 +15,19 @@ export const Navigation = () => {
   return (
     <div className='nav'>
 
+      <div className='nav_column mobile'>
+        <button type='button' className='mobile'>- - -</button>
+      </div>
+
       <div className='nav_column buttons'>
         <h1 className='nav_title'>Nav</h1>
 
-        <a className="link" href="/">J-Key</a>
-        <a className="link" href="">S-Key</a>
-        <a className="link" href="#">M-Key</a>
-        <a className="link" href="#">mest</a>
-        <a className="link" href="#">test</a>
-        <a className="link" href="#">mest</a>
+        <a className="link column" href="/">J-Key</a>
+        <a className="link column" href="">S-Key</a>
+        <a className="link column" href="#">M-Key</a>
+        <a className="link column" href="#">mest</a>
+        <a className="link column" href="#">test</a>
+        <a className="link column" href="#">mest</a>
       </div>
 
       <div className='nav_column login'>

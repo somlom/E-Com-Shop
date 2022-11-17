@@ -35,9 +35,33 @@
     display: inline-block;
 }
 
+.mobile_button {
+    display: none;
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 2px;
+}
+
+
+.mobile {
+    display: none;
+
+}
+
 @media (max-width: 767px) {
 
+    .mobile  {
+        display: flex;
+    }
+    .mobile_button{
+        display: flex;
+    }
+
     .nav_title {
+        align-self: center;
+    }
+
+    .link.column {
         display: none;
     }
 }
