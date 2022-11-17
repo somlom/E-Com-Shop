@@ -26,3 +26,9 @@ a.link:active {
     opacity: 0.5;
 }
 
+.items_content{
+    background-color: peachpuff;
+    display: flex;
+    flex-direction: column;
+    /* height: max-content; */
+}

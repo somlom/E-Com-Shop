@@ -22,13 +22,20 @@ export const Auth = () => {
             return alert("email: " + input.email + " password: " + input.password)
         } else {
             event.preventDefault();
-            return alert("error")
+            return alert("Error!!! Empty fields")
         }
 
     }
 
     return (
-        <Form title="Login" onChange={add_to_state} onSubmit={send_to_backend} />
+        <Form title="Login" onChange={add_to_state} onSubmit={send_to_backend}>
+            <input type="email" placeholder="Email" id='email' onChange={add_to_state} />
+            <input type="password" placeholder="Password" id='password' onChange={add_to_state} />
+            <div className='form_buttons'>
+                <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>Login</button>
+                <button className="no_acc_button" type='button'><span><FaUserPlus /></span>Don't have an account? Register!</button>
+            </div>
+        </Form>
     )
 }
 
