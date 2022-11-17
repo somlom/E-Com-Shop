@@ -1,6 +1,7 @@
-import express from "express"
+import path from 'path';
+import express from "express";
 import bodyParser from "body-parser"
-const cors = require('cors')
+import cors from 'cors';
 
 
 const app = express()
@@ -8,29 +9,37 @@ const app = express()
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.get("/get_login_form", (req, res) => {
 
-    const { title } = req.body
+app.get("/get_file", (req, res) => {
 
-    res.json({
-        title: title,
-        fields: [
+    return res.sendFile(path.join(__dirname, './public', '1.exe'))
 
-            {
-                id: "email",
-                type: "email",
-                placeholder: "E-Mail"
-            },
-            {
-                id: "password",
-                type: "password",
-                placeholder: "Password"
-            },
-
-
-        ],
-    })
 })
+
+app.get("/products", (req, res) => {
+
+    return res.json({
+        keyboards: [
+            {
+                name: "J-Key",
+                price: 109,
+                text: "Perfect for home use",
+            },
+            {
+                name: "S-Key",
+                price: 159,
+                text: "smth",
+            },
+            {
+                name: "M-Key",
+                price: 209,
+                text: "God's thing",
+            }
+        ]
+    })
+
+})
+
 app.listen(4000, () => {
     console.log(`app is listening to port 4000`)
 })
