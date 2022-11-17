@@ -16,9 +16,9 @@ export const Navigation = () => {
       <div className='nav_column buttons'>
         <h1 className='nav_title'>Nav</h1>
 
-        <a className="link" href="#">test</a>
-        <a className="link" href="#">mest</a>
-        <a className="link" href="#">test</a>
+        <a className="link" href="/">J-Key</a>
+        <a className="link" href="">S-Key</a>
+        <a className="link" href="#">M-Key</a>
         <a className="link" href="#">mest</a>
         <a className="link" href="#">test</a>
         <a className="link" href="#">mest</a>

@@ -6,7 +6,6 @@ export const Footer = () => {
     <div className='footer'>
 
       <div className='footer_content'>
-        <h2 className='footer_title'>Footer</h2>
 
         <div className='footer_data'>
 
@@ -18,6 +17,9 @@ export const Footer = () => {
           </a>
           <a className="link" href="#">
             Customer rights
+          </a>
+          <a className="link" href="#">
+            Support
           </a>
 
         </div>

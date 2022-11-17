@@ -8,7 +8,7 @@ const app = express()
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.post("/get_login_form", (req, res) => {
+app.get("/get_login_form", (req, res) => {
 
     const { title } = req.body
 
