@@ -45,20 +45,22 @@
 
 .close_button {
     text-align: center;
-    height: fit-content;
-    width: fit-content;
+    height: min-content;
+    width: min-content;
     color: gray;
-    border: solid 1px white;
+    border: none;
     font-weight: bold;
     justify-content: stretch;
     transition: opacity 0.15s;
     /* https://stackoverflow.com/questions/10995165/what-is-the-opposite-of-hover-on-mouse-leave */
     -webkit-transition: background-color 0.15s;
+    border-radius: 50%;
+    margin-bottom: 4px;
 }
 
 .close_button:hover {
     background-color: red;
-    border: solid 1px white;
+    border: none;
     color: white;
     cursor: pointer;
     transition: background-color 0.15s;

@@ -1,19 +1,28 @@
 import React from 'react'
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import { Layout } from './Layout'
 import "../css/App.css"
 import { Main } from './Main'
-import { Login, Register, Reset } from './Auth';
+import { Auth, Register, Reset } from './Auth';
+import { PageNotFound } from './PageNotFound';
+import { Layout } from './Layout';
+import { Items } from './Items';
 
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/reset" element={<Reset />} />
-    </Routes>
+    <Layout>
+
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Auth />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/reset" element={<Reset />} />
+        <Route path="/products" element={<Items />} />
+
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
+
+    </Layout>
   )
 }
