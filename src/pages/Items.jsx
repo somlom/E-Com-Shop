@@ -1,12 +1,33 @@
 import React from 'react'
 import { Item } from '../components/Item';
-import { usePostData } from '../hooks/Data'
+import { useGetData } from '../hooks/Data'
 
 export const Items = () => {
 
-    const response = usePostData("http://localhost:4000/products");
+    const response = useGetData("http://localhost:4000/products");
+    console.log(response)
 
-  return (
-    response.map
-  )
+    const elements = (
+        (response !== false && response.length != 0) ?
+            response.map((obj) => {
+                // console.log(obj)
+                <Item name={obj.name} />
+            })
+            :
+            <p>spin</p>
+    )
+
+    return (
+        <div className='products'>
+            {/* {elements} */}
+            {
+                (response !== false && response.length != 0) ?
+
+                    <Item response={response} />
+
+                    :
+                    <p>spin</p>
+            }
+        </div>
+    )
 }

@@ -18,8 +18,8 @@ app.get("/get_file", (req, res) => {
 
 app.get("/products", (req, res) => {
 
-    return res.json({
-        keyboards: [
+    return res.json(
+        [
             {
                 name: "J-Key",
                 price: 109,
@@ -36,7 +36,7 @@ app.get("/products", (req, res) => {
                 text: "God's thing",
             }
         ]
-    })
+    )
 
 })
 

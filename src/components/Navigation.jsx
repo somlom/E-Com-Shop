@@ -2,6 +2,7 @@ import React from 'react'
 // import { FaUserCircle } from 'react-icons/fa';
 //          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
@@ -20,7 +21,9 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column buttons'>
-        <h1 className='nav_title'>Nav</h1>
+        <Link to="/">
+          <h1 className='nav_title'>Nav</h1>
+        </Link>
 
         <a className="link column" href="/">J-Key</a>
         <a className="link column" href="">S-Key</a>
