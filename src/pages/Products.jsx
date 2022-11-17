@@ -1,8 +1,11 @@
 import React from 'react'
-import { Item } from '../components/Item';
-import { useGetData } from '../hooks/Data'
 
-export const Items = () => {
+import { Product } from '../components/Product';
+import { useGetData } from '../hooks/Data'
+import "../css/Products.css"
+
+
+export const Products = () => {
 
     const response = useGetData("http://localhost:4000/products");
     console.log(response)
@@ -10,8 +13,7 @@ export const Items = () => {
     const elements = (
         (response !== false && response.length != 0) ?
             response.map((obj) => {
-                // console.log(obj)
-                <Item name={obj.name} />
+                <Product name={obj.name} />
             })
             :
             <p>spin</p>
@@ -19,12 +21,9 @@ export const Items = () => {
 
     return (
         <div className='products'>
-            {/* {elements} */}
             {
                 (response !== false && response.length != 0) ?
-
-                    <Item response={response} />
-
+                    <Product response={response} />
                     :
                     <p>spin</p>
             }
