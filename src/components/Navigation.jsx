@@ -26,14 +26,11 @@ export const Navigation = () => {
       <div className='nav_column buttons'>
           <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
-          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/login">{t("login")}</Link>
+          <Link className="link column" to="/register">{t("register")}</Link>
+          <Link className="link column" to="/reset">{t("reset")}</Link>
+          <Link className="link column" to="/products">{t("products")}</Link>
+          <Link className="link column" to="/redux">Redux (testing shopping cart)</Link>
       </div>
 
       <div className='nav_column login'>

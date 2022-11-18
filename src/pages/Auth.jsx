@@ -29,7 +29,7 @@ export const Auth = () => {
     }
 
     return (
-        <Form title="Login" onChange={add_to_state} onSubmit={send_to_backend}>
+        <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <div className='form_buttons'>

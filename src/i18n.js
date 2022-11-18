@@ -31,7 +31,7 @@ const resources = {
       support: "Support",
       faq: "FAQ",
       impressum: "Imprimer",
-      customer_rights: "droits des clients",
+      customer_rights: "Droits des clients",
       dont_have_an_account: "Vous n'avez pas de compte ? S'inscrire!",
       password: "Mot de passe",
       password_again: "Mot de passe à nouveau",
@@ -43,7 +43,7 @@ const resources = {
   de: {
     translation: {
       main_page: "Willkommen zum react-i18next",
-      "nav title": "Test",
+      "nav test": "Test",
       modal_title: "Aufmerksamkeit erforderlich",
       dont_have_an_account: "Sie haben kein Konto? Registrieren!",
       faq: "FAQ",
