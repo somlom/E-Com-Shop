@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react'
 
 import "../css/Modal.css"
 
 
 export const Modal = ({ children, handle_modal }) => {
+
+    const { t, i18n } = useTranslation();
 
     React.useEffect(() => {
         const handleEsc = (event) => {
@@ -22,7 +25,7 @@ export const Modal = ({ children, handle_modal }) => {
             <div className='centered'>
                 <div className='modal'>
                     <div className='modal_title'>
-                        <p>Action required</p>
+                        <p>{t("modal_title")}</p>
                         <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
                     </div>
                     <div className='modal_content'>
