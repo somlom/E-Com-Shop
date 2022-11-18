@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use("/products", products)
 
 app.get("/get_file", (req, res) => {
