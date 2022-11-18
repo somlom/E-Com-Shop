@@ -47,6 +47,9 @@
 
 .mobile {
     display: none;
+    border: none;
+    background-color: white;
+    
 
 }
 
@@ -63,7 +66,7 @@
         align-self: center;
     }
 
-    .link.column {
+    a.link.column {
         display: none;
     }
 }

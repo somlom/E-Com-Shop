@@ -3,6 +3,8 @@ import React from 'react'
 //          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import { useTranslation } from 'react-i18next';
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
@@ -12,25 +14,23 @@ import { Modal } from './Modal'
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
+  const { t, i18n } = useTranslation();
 
   return (
     <div className='nav'>
 
       <div className='nav_column mobile'>
-        <button type='button' className='mobile'>- - -</button>
+        <button type='button' className='mobile'><HiOutlineMenuAlt4 /> </button>
       </div>
 
       <div className='nav_column buttons'>
-        <Link to="/">
-          <h1 className='nav_title'>Nav</h1>
-        </Link>
+          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
-        <a className="link column" href="/">J-Key</a>
-        <a className="link column" href="">S-Key</a>
-        <a className="link column" href="#">M-Key</a>
-        <a className="link column" href="#">mest</a>
-        <a className="link column" href="#">test</a>
-        <a className="link column" href="#">mest</a>
+          <Link className="link column" to="/login">{t("login")}</Link>
+          <Link className="link column" to="/register">{t("register")}</Link>
+          <Link className="link column" to="/reset">{t("reset")}</Link>
+          <Link className="link column" to="/products">{t("products")}</Link>
+          <Link className="link column" to="/redux">Redux (testing shopping cart)</Link>
       </div>
 
       <div className='nav_column login'>
