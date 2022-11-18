@@ -26,12 +26,12 @@ export default function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/redux" element={<Counter />} />
 
-        <Route path="/*" element={<PageNotFound />} />
-
         <Route path='/faq' element={<FAQ />} />
         <Route path='/impressum' element={<Impressum />} />
         <Route path='/customer_rights' element={<Customer_Rights />} />
         <Route path='/support' element={<Support />} />
+
+        <Route path="/*" element={<PageNotFound />} />
 
       </Routes>
 
