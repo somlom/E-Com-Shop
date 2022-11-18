@@ -63,7 +63,7 @@
         align-self: center;
     }
 
-    .link.column {
+    a.link.column {
         display: none;
     }
 }

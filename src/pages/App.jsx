@@ -6,7 +6,7 @@ import { Main } from './Main'
 import { Auth, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';
 import { Layout } from './Layout';
-import { Items } from './Items';
+import { Products } from './Products';
 
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/login" element={<Auth />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reset" element={<Reset />} />
-        <Route path="/products" element={<Items />} />
+        <Route path="/products" element={<Products />} />
 
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
