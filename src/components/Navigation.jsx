@@ -2,6 +2,7 @@ import React from 'react'
 // import { FaUserCircle } from 'react-icons/fa';
 //          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
@@ -16,7 +17,7 @@ export const Navigation = () => {
     <div className='nav'>
 
       <div className='nav_column mobile'>
-        <button type='button' className='mobile'>- - -</button>
+        <button type='button' className='mobile'><HiOutlineMenuAlt4 /> </button>
       </div>
 
       <div className='nav_column buttons'>
