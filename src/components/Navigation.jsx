@@ -4,6 +4,7 @@ import React from 'react'
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import { useTranslation } from 'react-i18next';
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
@@ -13,6 +14,7 @@ import { Modal } from './Modal'
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
+  const { t, i18n } = useTranslation();
 
   return (
     <div className='nav'>
@@ -24,14 +26,14 @@ export const Navigation = () => {
       <div className='nav_column buttons'>
           <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
-          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
+          <Link className="link column" to="/">{t("nav test")}</Link>
       </div>
 
       <div className='nav_column login'>

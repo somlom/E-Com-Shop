@@ -1,8 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
+
 import "../css/Footer.css"
 
+
 export const Footer = () => {
+
+  const { t, i18n } = useTranslation();
+
   return (
     <div className='footer'>
 
@@ -10,17 +16,17 @@ export const Footer = () => {
 
         <div className='footer_data'>
 
-          <Link to="/" className="link">
-            FAQ
+          <Link to="/faq" className="link">
+            {t("faq")}
           </Link>
-          <Link to="/" className="link">
-            Impressum
+          <Link to="/impressum" className="link">
+            {t("impressum")}
           </Link>
-          <Link to="/" className="link">
-            Customer rights
+          <Link to="/customer_rights" className="link">
+            {t("customer_rights")}
           </Link>
-          <Link to="/" className="link">
-            Support
+          <Link to="/support" className="link">
+            {t("support")}
           </Link>
           {/* <Link to="/">
             <a className="link" >
