@@ -2,6 +2,7 @@ import React from 'react'
 // import { FaUserCircle } from 'react-icons/fa';
 //          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 
 import "../css/Navigation.css"
@@ -21,14 +22,16 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column buttons'>
-        <h1 className='nav_title'>Nav</h1>
+          <h1 className='nav_title'>Nav</h1>
 
-        <a className="link column" href="/">J-Key</a>
-        <a className="link column" href="">S-Key</a>
-        <a className="link column" href="#">M-Key</a>
-        <a className="link column" href="#">mest</a>
-        <a className="link column" href="#">test</a>
-        <a className="link column" href="#">mest</a>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
+          <Link className="link column" to="/">mest</Link>
       </div>
 
       <div className='nav_column login'>

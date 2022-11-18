@@ -1,0 +1,12 @@
+.product{
+    border: solid 1px black;
+    padding: 5px;
+    margin: 5px;
+}
+
+.products{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
