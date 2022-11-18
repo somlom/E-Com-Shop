@@ -7,6 +7,7 @@ import { Auth, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';
 import { Layout } from './Layout';
 import { Products } from './Products';
+import { Counter } from '../features/cart/Cart';
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/redux" element={<Counter />} />
 
         <Route path="/*" element={<PageNotFound />} />
       </Routes>

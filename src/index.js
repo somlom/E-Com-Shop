@@ -5,16 +5,16 @@ import { Provider } from 'react-redux';
 
 import './i18n';
 import App from './pages/App';
-// import store from './features/store'
+import store from './store';
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        {/* <Provider store={store}> */}
+        <Provider store={store}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        {/* </Provider> */}
+        </Provider>
     </React.StrictMode>
 );

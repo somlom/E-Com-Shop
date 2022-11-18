@@ -13,7 +13,7 @@ export const Products = () => {
         <div className='products'>
             {
                 (response !== false && response.length != 0) ?
-                    <Product response={response} />
+                    <Product response={response} key={9999999} />
                     :
                     <p>spin</p>
             }

@@ -10,12 +10,19 @@ export const Footer = () => {
 
         <div className='footer_data'>
 
-          <Link to="/">
-            <a className="link" >
-              FAQ
-            </a>
+          <Link to="/" className="link">
+            FAQ
           </Link>
-          <Link to="/">
+          <Link to="/" className="link">
+            Impressum
+          </Link>
+          <Link to="/" className="link">
+            Customer rights
+          </Link>
+          <Link to="/" className="link">
+            Support
+          </Link>
+          {/* <Link to="/">
             <a className="link" >
               Impressum
             </a>
@@ -29,7 +36,7 @@ export const Footer = () => {
             <a className="link" >
               Support
             </a>
-          </Link>
+          </Link> */}
 
         </div>
       </div>

@@ -21,7 +21,7 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column buttons'>
-          <h1 className='nav_title'>Nav</h1>
+          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
           <Link className="link column" to="/">mest</Link>
           <Link className="link column" to="/">mest</Link>
