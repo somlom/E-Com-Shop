@@ -68,6 +68,7 @@
     color: white;
     cursor: pointer;
     background-color: rgb(98, 197, 84);
+    -webkit-transition: background-color 0.15s;
     transition: background-color 0.15s;
 }
 

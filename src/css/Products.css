@@ -9,6 +9,12 @@
         padding-left 0.5s,
         padding-right 0.5s,
         box-shadow 0.5s;
+    -webkit-transition: 
+        padding-top 0.5s,
+        padding-bottom 0.5s,
+        padding-left 0.5s,
+        padding-right 0.5s,
+        box-shadow 0.5s;
     text-align: center;
 }
 

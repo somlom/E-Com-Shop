@@ -95,4 +95,5 @@
     cursor: pointer;
     background-color: rgb(2, 158, 255);
     transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
 }
