@@ -8,7 +8,7 @@ export const usePostData = (url = "", data = "") => {
     React.useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.post(url, { title: data })
+            const response = await axios.post(url, data)
 
             setValue(await response.data)
         }
