@@ -31,7 +31,7 @@ export const Product = (props) => {
                 <h3>{response.name}</h3>
                 <p>{response.text}</p>
                 <p>{response.price}</p>
-                <Link to={`/product/${response.id}`} className="go_to_product">Buy</Link>
+                <Link to={`/products/${response.id}`} className="go_to_product">Buy</Link>
             </div>
             )
     }
