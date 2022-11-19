@@ -12,6 +12,7 @@ import { Counter } from '../features/cart/Cart';
 import { Impressum } from './Impressum';
 import { Customer_Rights } from './Customer_Rights';
 import { Support } from './Support';
+import { Product } from '../components/Product';
 
 
 export default function App() {
@@ -24,14 +25,15 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<Product />} />
         <Route path="/redux" element={<Counter />} />
-
-        <Route path="/*" element={<PageNotFound />} />
 
         <Route path='/faq' element={<FAQ />} />
         <Route path='/impressum' element={<Impressum />} />
         <Route path='/customer_rights' element={<Customer_Rights />} />
         <Route path='/support' element={<Support />} />
+
+        <Route path="/*" element={<PageNotFound />} />
 
       </Routes>
 

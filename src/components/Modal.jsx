@@ -2,23 +2,14 @@ import { useTranslation } from 'react-i18next';
 import React from 'react'
 
 import "../css/Modal.css"
+import { close_on_esc } from '../hooks/close_on_esc';
 
 
 export const Modal = ({ children, handle_modal }) => {
 
     const { t, i18n } = useTranslation();
 
-    React.useEffect(() => {
-        const handleEsc = (event) => {
-            if (event.keyCode === 27) {
-                handle_modal(false);
-            };
-        };
-        window.addEventListener('keydown', handleEsc);
-        return () => {
-            window.removeEventListener('keydown', handleEsc);
-        };
-    }, []);
+    close_on_esc(handle_modal);
 
     return (
         <div className='fade_layer'>
