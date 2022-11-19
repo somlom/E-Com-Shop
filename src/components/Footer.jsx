@@ -20,7 +20,7 @@ export const Footer = () => {
             {t("faq")}
           </Link>
           <Link to="/impressum" className="link">
-            {t("impressum")}
+            {t("Impressum")}
           </Link>
           <Link to="/customer_rights" className="link">
             {t("customer_rights")}

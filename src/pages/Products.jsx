@@ -3,11 +3,14 @@ import React from 'react'
 import { Product } from '../components/Product';
 import { useGetData } from '../hooks/Data'
 import "../css/Products.css"
+import process from 'process';
 
 
 export const Products = () => {
 
-    const response = useGetData("http://localhost:4000/products");
+    console.log(process.env)
+
+    const response = useGetData(`http://${process.env.PUBLIC_URL}/products`);
 
     return (
         <div className='products'>
