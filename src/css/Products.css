@@ -42,5 +42,13 @@
 }
 
 .go_to_product{
-    
+    text-decoration: none;
+    background-color: rgb(2, 158, 255);
+    color: white;
+    border-radius: 18px;
+    padding: 3.5px;
+}
+
+.go_to_product:active {
+    opacity: 0.8;
 }
