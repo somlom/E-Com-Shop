@@ -1,15 +1,15 @@
-.product{
+.product {
     border: solid 1px black;
     padding: 5px;
     margin: 5px;
     border-radius: 10px;
-    transition: 
+    transition:
         padding-top 0.5s,
         padding-bottom 0.5s,
         padding-left 0.5s,
         padding-right 0.5s,
         box-shadow 0.5s;
-    -webkit-transition: 
+    -webkit-transition:
         padding-top 0.5s,
         padding-bottom 0.5s,
         padding-left 0.5s,
@@ -18,7 +18,7 @@
     text-align: center;
 }
 
-.product:hover{
+.product:hover {
     padding-top: 18px;
     padding-bottom: 18px;
     padding-left: 36px;
@@ -26,15 +26,17 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
 }
 
-.products{
+.products {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    /* align-items: center; */
     flex-wrap: wrap;
 }
 
-.lang_button{
-    border: none;
-    background-color: white;
-    color: rgb(2, 158, 255);
+.slider{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* width: fit-content; */
 }

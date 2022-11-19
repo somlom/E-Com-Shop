@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
+import XHR from "i18next-http-backend" // <---- add this
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -58,13 +59,22 @@ const resources = {
     }
   }
 };
+
+const options = {
+  order: ['querystring', 'navigator'],
+  lookupQuerystring: 'lng'
+}
 i18n
+  .use(XHR) // <---- add this
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
+
+    detection: options,
     resources,
     debug: true,
     fallbackLng: "en",
+    supportedLngs: ['de', 'en', 'fr'],
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
     // if you're using a language detector, do not define the lng option
 
