@@ -1,32 +1,38 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom';
 
 import "../css/Products.css"
+import { usePostData } from '../hooks/Data';
 
 
 export const Product = (props) => {
 
     const { response } = props;
+    const { id } = useParams();
 
-    // (obj) => {
-    //     // console.log(obj)
-    //     <div>
-    // <h3>{obj.name}</h3>
-    // <p>{obj.text}</p>
-    // <p>{obj.price}</p>
-    //     </div>
-    // }
-    return (
+    if (!response) {
 
-        response.map((function (obj, i) {
-            return (
-                <div className='product'>
-                    <h3 key={i + 100}>{obj.name}</h3>
-                    <p key={i + 200}>{obj.text}</p>
-                    <p key={i + 300}>{obj.price}</p>
-                </div>
+        const data = usePostData("http://" + process.env.PUBLIC_URL + "/products/", { id: id })
+
+        return (
+            <div className='product'>
+                <h3>{data.name}</h3>
+                <p>{data.text}</p>
+                <p>{data.price}</p>
+            </div>
+        )
+
+    } else {
+
+
+
+        return (
+            <div className='product'>
+                <h3>{response.name}</h3>
+                <p>{response.text}</p>
+                <p>{response.price}</p>
+                <Link to={`/products/${response.id}`} className="go_to_product">Buy</Link>
+            </div>
             )
-        }))
-
-
-    )
+    }
 }

@@ -19,6 +19,10 @@
     align-content: center;
 }
 
+.form_buttons button {
+    margin: 10px;
+}
+
 .form p{
     width: 60vw;
     padding: 24px 40px;
@@ -39,6 +43,7 @@
     -webkit-transition: 0.3s;
     transition: 0.3s;
     outline: none;
+    align-self: center;
 }
 
 .form input:focus {
@@ -61,13 +66,14 @@
     display: flex;
     align-items: center;
     -webkit-transition: background-color 0.15s;
-    margin-left: auto;
+    /* margin-left: auto; */
 }
 
 .no_acc_button:hover {
     color: white;
     cursor: pointer;
     background-color: rgb(98, 197, 84);
+    -webkit-transition: background-color 0.15s;
     transition: background-color 0.15s;
 }
 
