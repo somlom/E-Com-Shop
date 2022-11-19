@@ -9,33 +9,36 @@ import { useTranslation } from 'react-i18next';
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
 import { Modal } from './Modal'
+import { close_on_esc } from '../hooks/close_on_esc';
 
 
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className='nav'>
 
-      <div className='nav_column mobile'>
-        <button type='button' className='mobile'><HiOutlineMenuAlt4 /> </button>
+      <div className='nav_column dropdown'>
+        <button type='button' className='dropdown'><HiOutlineMenuAlt4 /> </button>
+        <Dropdown_Content/>
       </div>
 
       <div className='nav_column buttons'>
-          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
+        <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
-          <Link className="link column" to="/login">{t("login")}</Link>
-          <Link className="link column" to="/register">{t("register")}</Link>
-          <Link className="link column" to="/reset">{t("reset")}</Link>
-          <Link className="link column" to="/products">{t("products")}</Link>
-          <Link className="link column" to="/redux">Redux (testing shopping cart)</Link>
+        <Link className="link column" to="/login">{t("login")}</Link>
+        <Link className="link column" to="/register">{t("register")}</Link>
+        <Link className="link column" to="/reset">{t("reset")}</Link>
+        <Link className="link column" to="/products">{t("products")}</Link>
+        <Link className="link column" to="/redux">Redux (testing shopping cart)</Link>
       </div>
 
       <div className='nav_column login'>
         <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /></button>
       </div>
+
 
       {/* <div className='nav_column add to cart'>
         <button className='add_to_cart' type="button">Add to cart <span><MdOutlineShoppingCart /></span></button>
@@ -46,6 +49,22 @@ export const Navigation = () => {
           <Auth />
         </Modal>
       }
+
+    </div>
+  )
+}
+
+export const Dropdown_Content = () => {
+
+  const { t } = useTranslation();
+
+  return (
+    <div className="dropdown-content">
+      <a href="/login">{t("login")}</a>
+      <a href="/register">{t("register")}</a>
+      <a href="/reset">{t("reset")}</a>
+      <a href="/products">{t("products")}</a>
+      <a href="/redux">Redux (testing shopping cart)</a>
     </div>
   )
 }
