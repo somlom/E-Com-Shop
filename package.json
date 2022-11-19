@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon --exec babel-node api/index.js",
     "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config webpack.dev.js\"",
-    "build": "webpack --config webpack.prod.js",
-    "heroku-postbuild": "webpack --config webpack.prod.js --progress"
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
