@@ -8,7 +8,7 @@ export const Impressum = () => {
 
   return (
     <div>
-          <h1 className='title'>{t("Impressum")}</h1>
+          <h1 className='imp_title'>{t("Impressum")}</h1>
           <p>{t("§5TMG")}</p>
           <p>Surname, Name</p>
           <p>Address</p>
