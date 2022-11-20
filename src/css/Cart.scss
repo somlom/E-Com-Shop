@@ -41,24 +41,24 @@
 } 
 
 .remove_item_button {
-    border-radius: 50%;
+    border-radius: 18px;
     background-color: white;
     border: none;
-    background-color: red;
-    padding-left: 4.4px;
-    padding-right: 4.4px;
-    padding-top: 0px;
-    padding-bottom: 0px;
     text-align: center;
-    color: white;
+    color: red;
     cursor: pointer;
-    transition: opacity 0.15s;
+    transition: 
+    opacity 0.15s,
+    text-decoration 0.15s;
     position: fixed;
     right: 40px;
+    padding: 4px;
 }
 
 .remove_item_button:hover {
     opacity: 0.7;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
 }
 
 .add_amount_button {

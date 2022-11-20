@@ -19,7 +19,7 @@ export function Cart() {
       <div>
         {count.map(data => (
           <div className="product_in_cart" key={count.indexOf(data)}>
-            <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>x</button>
+            <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>Remove item</button>
             {/* <p>id: {data.id}</p> */}
             <p>{data.name}</p>
             <p>price: {data.price}</p>
