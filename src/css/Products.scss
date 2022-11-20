@@ -1,3 +1,5 @@
+$base-color: rgb(2, 158, 255);
+
 .product {
     border: solid 1px black;
     padding: 5px;
@@ -43,7 +45,7 @@
 
 .go_to_product{
     text-decoration: none;
-    background-color: rgb(2, 158, 255);
+    background-color: $base-color;
     color: white;
     border-radius: 18px;
     padding: 3.5px;

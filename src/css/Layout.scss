@@ -1,3 +1,5 @@
+$base-color: rgb(2, 158, 255);
+
 .layout {
     height: 100vh;
     display: flex;
@@ -13,7 +15,7 @@
 
 a.link:hover,
 a.link:active {
-    color: rgb(2, 158, 255);
+    color: $base-color;
 }
 
 /* ##### BUTTONS */

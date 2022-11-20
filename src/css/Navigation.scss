@@ -1,3 +1,5 @@
+$base-color: rgb(2, 158, 255);
+
 .nav {
     display: flex;
     flex-direction: row;
@@ -30,7 +32,6 @@
     height: min-content;
     padding: 5px;
     text-align: center;
-    /* color: black; */
     text-decoration: none;
     display: inline-block;
 }
@@ -102,9 +103,9 @@
 }
 
 .login_button {
-    /* background-color: rgb(2, 158, 255); */
+    /* background-color: $base-color; */
     background-color: white;
-    border: solid 2px rgb(2, 158, 255);
+    border: solid 2px $base-color;
     width: fit-content;
     border-radius: 18px;
     font-weight: bold;
@@ -123,14 +124,14 @@
 .login_button:hover {
     color: white;
     cursor: pointer;
-    background-color: rgb(2, 158, 255);
+    background-color: $base-color;
     transition: background-color 0.15s;
     -webkit-transition: background-color 0.15s;
 }
 
 /* Keine Ahnung wo es hingehen soll hab es einfach hier gemacht. Ich glaube wir müssen neue .css datei für impressum erstellen */
 .imp_title {
-    background-color: rgb(2, 158, 255);
+    background-color: $base-color;
     width: fit-content;
     border-radius: 18px;
     padding: 8px;
