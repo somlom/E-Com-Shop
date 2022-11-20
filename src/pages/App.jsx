@@ -8,11 +8,11 @@ import { PageNotFound } from './PageNotFound';
 import { Layout } from './Layout';
 import { Products } from './Products';
 import { FAQ } from './FAQ';
-import { Counter } from '../features/cart/Cart';
 import { Impressum } from './Impressum';
 import { Customer_Rights } from './Customer_Rights';
 import { Support } from './Support';
 import { Product } from '../components/Product';
+import { Cart } from './Cart';
 
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
         <Route path="/reset" element={<Reset />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<Product />} />
-        <Route path="/redux" element={<Counter />} />
+        <Route path="/redux" element={<Cart />} />
 
         <Route path='/faq' element={<FAQ />} />
         <Route path='/impressum' element={<Impressum />} />

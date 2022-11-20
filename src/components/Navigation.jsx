@@ -5,17 +5,20 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import "../css/Navigation.css"
 import { Auth } from '../pages/Auth';
 import { Modal } from './Modal'
-import { close_on_esc } from '../hooks/close_on_esc';
+import { selectCount } from '../features/cart/cart_slice';
 
 
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
   const { t } = useTranslation();
+  const count = useSelector(selectCount);
 
   return (
     <div className='nav'>
@@ -36,7 +39,7 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /></button>
+        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count}</button>
       </div>
 
 
