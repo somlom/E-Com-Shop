@@ -16,18 +16,18 @@ export function Cart() {
     <div className='cart'>
 
       <div className='add_count_to_cart'>
-        <button aria-label="Increment value" onClick={() => dispatch(add_to_cart())}>
+        <button className='increment_button' aria-label="Increment value" onClick={() => dispatch(add_to_cart())}>
           +
         </button>
         <span >{count}</span>
-        <button aria-label="Decrement value" onClick={() => dispatch(remove_from_cart())}>
+        <button className='decrement_button' aria-label="Decrement value" onClick={() => dispatch(remove_from_cart())}>
           -
         </button>
       </div>
 
       <div className='add_count_to_cart'>
         <input aria-label="Set increment amount" value={incrementAmount} onChange={e => setIncrementAmount(e.target.value)} />
-        <button onClick={() => dispatch(add_many_to_cart(Number(incrementAmount) || 0))}>
+        <button className='add_amount_button' onClick={() => dispatch(add_many_to_cart(Number(incrementAmount) || 0))}>
           Add Amount
         </button>
       </div>
