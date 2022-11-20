@@ -1,7 +1,10 @@
+$base-color: rgb(2, 158, 255);
+
 .cart {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40vw;
 }
 
 .product_in_cart {
@@ -9,8 +12,7 @@
     padding: 20px;
     border: solid 1px black;
     border-radius: 20px;
-    width: 40vw;
-
+    width: 30vw;
 }
 
 /* .add_count_to_cart button { 
@@ -22,10 +24,12 @@
     border-radius: 15px;
 }*/
 
+
+
 .increment_button {
     border-radius: 50%;
     border: none;
-    background-color: rgb(2, 158, 255);
+    background-color: $base-color;
     color: white;
     padding-left: 4px;
     padding-right: 4px;
@@ -36,9 +40,9 @@
     transition: opacity 0.15s;
 }
 
-.increment_button:hover{
+.increment_button:hover {
     opacity: 0.7;
-} 
+}
 
 .remove_item_button {
     border-radius: 50%;
@@ -54,7 +58,7 @@
     cursor: pointer;
     transition: opacity 0.15s;
     position: fixed;
-    right: 40px;
+    right: 6vw;
 }
 
 .remove_item_button:hover {
@@ -63,12 +67,13 @@
 
 .add_amount_button {
     border: none;
-    background-color: rgb(2, 158, 255);
+    background-color: $base-color;
     border-radius: 18px;
     color: white;
     padding: 5px;
     cursor: pointer;
     transition: opacity 0.15s;
+    -webkit-transition: opacity 0.15s;
 }
 
 .add_amount_button:hover {
