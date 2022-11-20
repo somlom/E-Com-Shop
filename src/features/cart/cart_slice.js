@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const value = JSON.parse(localStorage.getItem('cart')) || [];
 
-console.log(JSON.parse(localStorage.getItem('cart')))
-
 export const cart_slice = createSlice({
   name: 'cart',
   initialState: {
@@ -19,18 +17,14 @@ export const cart_slice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.value))
     },
     remove_from_cart: (state, action) => {
-      state.value = state.value.splice(state.value.indexOf(action.payload, 1))
-      localStorage.setItem("cart", JSON.stringify(state.value))
-    },
-    add_many_to_cart: (state, action) => {
-      state.value += action.payload
+      state.value.splice(action.payload, 1)
       localStorage.setItem("cart", JSON.stringify(state.value))
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { add_to_cart, remove_from_cart, add_many_to_cart } = cart_slice.actions
+export const { add_to_cart, remove_from_cart } = cart_slice.actions
 export const selectCount = (state) => state.cart.value
 
 export default cart_slice.reducer

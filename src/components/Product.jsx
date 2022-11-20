@@ -23,7 +23,7 @@ export const Product = (props) => {
                 <h3>{data.name}</h3>
                 <p>{data.text}</p>
                 <p>{data.price}</p>
-                <button type='button' onClick={() => dispatch(add_to_cart({ id:data.id }))}>Add to cart</button>
+                <button type='button' onClick={() => dispatch(add_to_cart(data))}>Add to cart</button>
             </div>
         )
 
