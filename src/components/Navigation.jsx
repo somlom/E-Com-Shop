@@ -8,10 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-import "../css/Navigation.css"
+import "../css/Navigation.scss"
 import { Auth } from '../pages/Auth';
 import { Modal } from './Modal'
 import { selectCount } from '../features/cart/cart_slice';
+import { Cart } from '../pages/Cart';
 
 
 export const Navigation = () => {
@@ -39,7 +40,7 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count}</button>
+        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count.length}</button>
       </div>
 
 
@@ -49,7 +50,8 @@ export const Navigation = () => {
 
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-          <Auth />
+          {/* <Auth /> */}
+          <Cart />
         </Modal>
       }
 

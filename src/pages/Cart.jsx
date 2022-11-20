@@ -4,8 +4,9 @@ import {
   add_to_cart, remove_from_cart, add_many_to_cart,
   selectCount,
 } from '../features/cart/cart_slice';
-import "../css/Cart.css"
-// import styles from './Counter.module.css';
+import "../css/Cart.scss"
+import { Link } from 'react-router-dom';
+
 
 export function Cart() {
   const count = useSelector(selectCount);
@@ -16,13 +17,22 @@ export function Cart() {
     <div className='cart'>
 
       <div className='add_count_to_cart'>
-        <button aria-label="Increment value" onClick={() => dispatch(add_to_cart())}>
+        <button aria-label="Increment value" onClick={() => dispatch(add_to_cart({ id: '1' }))}>
           +
         </button>
-        <span >{count}</span>
+        <span >{count.length}</span>
         <button aria-label="Decrement value" onClick={() => dispatch(remove_from_cart())}>
           -
         </button>
+        <div>
+          {count.map(data => (
+            <div style={{backgroundColor: "red", color: "white"}} key={count.indexOf(data)}>
+              <p>index: {count.indexOf(data)}</p>
+              <p>id: {data.id}</p>
+              <Link to={`/products/${data.id}`}>Go to this element</Link>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className='add_count_to_cart'>

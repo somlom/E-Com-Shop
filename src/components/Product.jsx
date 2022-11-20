@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import "../css/Products.css"
+import "../css/Products.scss"
 import { usePostData } from '../hooks/Data';
 import { add_to_cart, selectCount } from '../features/cart/cart_slice';
 
@@ -23,7 +23,7 @@ export const Product = (props) => {
                 <h3>{data.name}</h3>
                 <p>{data.text}</p>
                 <p>{data.price}</p>
-                <button type='button' onClick={() => dispatch(add_to_cart(Number(count+1)))}>Add to cart</button>
+                <button type='button' onClick={() => dispatch(add_to_cart({ id:data.id }))}>Add to cart</button>
             </div>
         )
 

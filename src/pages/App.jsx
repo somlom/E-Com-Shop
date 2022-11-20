@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import "../css/App.css"
+import "../css/App.scss"
 import { Main } from './Main'
 import { Auth, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';

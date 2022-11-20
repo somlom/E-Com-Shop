@@ -1,23 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const value = JSON.parse(localStorage.getItem('cart')) || [];
+
+console.log(JSON.parse(localStorage.getItem('cart')))
+
 export const cart_slice = createSlice({
   name: 'cart',
   initialState: {
-    value: 0,
+    value: value,
   },
   reducers: {
-    add_to_cart: (state) => {
+    add_to_cart: (state, action) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.value += 1
+      state.value = [...state.value, action.payload]
+      localStorage.setItem("cart", JSON.stringify(state.value))
     },
-    remove_from_cart: (state) => {
-      state.value -= 1
+    remove_from_cart: (state, action) => {
+      state.value = state.value.splice(state.value.indexOf(action.payload, 1))
+      localStorage.setItem("cart", JSON.stringify(state.value))
     },
     add_many_to_cart: (state, action) => {
       state.value += action.payload
+      localStorage.setItem("cart", JSON.stringify(state.value))
     },
   },
 })

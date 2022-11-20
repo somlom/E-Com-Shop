@@ -3,7 +3,7 @@ import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
 import { Form } from '../components/Form';
-import "../css/Form.css"
+import "../css/Form.scss"
 
 
 export const Auth = () => {
