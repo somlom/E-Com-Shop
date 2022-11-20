@@ -54,3 +54,17 @@ $base-color: rgb(2, 158, 255);
 .go_to_product:active {
     opacity: 0.8;
 }
+
+.add_to_cart_button {
+    border: none;
+    border-radius: 18px;
+    padding: 5px;
+    background-color: rgb(2, 158, 255);
+    color: white;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.add_to_cart_button:hover {
+    opacity: 0.8;
+}

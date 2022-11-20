@@ -19,7 +19,7 @@ export function Cart() {
       <div>
         {count.length === 0 ? <h1>No items here</h1> : count.map(data => (
           <div className="product_in_cart" key={count.indexOf(data)}>
-            <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>x</button>
+            <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>Remove item</button>
             <p>{data.name}</p>
             <p>price: {data.price}</p>
             <button><Link to={`/products/${data.id}`}>Go to this element</Link></button>
