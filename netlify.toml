@@ -1,0 +1,8 @@
+[build]
+    command="npm run build"
+    publish="dist"
+    base="/"
+
+[[redirects]]
+    from="https://css--deploy-site-test.netlify.app"
+    to="https://www.css--deploy-site-test.netlify.app"
