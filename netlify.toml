@@ -4,5 +4,6 @@
     base="/"
 
 [[redirects]]
-  from = "/old-path"
-  to = "/new-path"
+    from = "/*"
+    to = "/*"
+    force = true
