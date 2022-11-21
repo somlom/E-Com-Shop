@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react'
 
-import "../css/Modal.css"
+import "../css/Modal.scss"
 import { close_on_esc } from '../hooks/close_on_esc';
 
 

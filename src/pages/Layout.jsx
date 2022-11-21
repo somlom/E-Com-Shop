@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Footer } from '../components/Footer'
 import { Navigation } from '../components/Navigation'
-import "../css/Layout.css"
+import "../css/Layout.scss"
 
 
 export const Layout = (props) => {

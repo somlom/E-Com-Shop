@@ -3,7 +3,7 @@ import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
 import { Form } from '../components/Form';
-import "../css/Form.css"
+import "../css/Form.scss"
 
 
 export const Auth = () => {
@@ -33,8 +33,12 @@ export const Auth = () => {
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <div className='form_buttons'>
-                <button className="login_button opacity" type='submit'><span><FaUserPlus /></span>{t("login")}</button>
-                <button className="no_acc_button" type='button'><span><FaUserPlus /></span>{t("dont_have_an_account")}</button>
+                <button className="login_button opacity" type='submit'>
+                    <FaUserPlus /><span>{t("login")}</span>
+                </button>
+                <button className="no_acc_button" type='button'>
+                    <FaUserPlus /><span>{t("dont_have_an_account")}</span>
+                </button>
             </div>
         </Form>
     )
