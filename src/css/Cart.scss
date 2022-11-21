@@ -1,6 +1,8 @@
 $base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
 
 .cart {
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,35 +17,6 @@ $base-color: rgb(2, 158, 255);
     width: 30vw;
 }
 
-/* .add_count_to_cart button { 
-    border: solid 1px red;
-    background-color: red;
-    color: white;
-    font-size: large;
-    font-weight: bold;
-    border-radius: 15px;
-}*/
-
-
-
-.increment_button {
-    border-radius: 50%;
-    border: none;
-    background-color: $base-color;
-    color: white;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 0.5px;
-    padding-bottom: 0.5px;
-    text-align: center;
-    cursor: pointer;
-    transition: opacity 0.15s;
-}
-
-.increment_button:hover {
-    opacity: 0.7;
-}
-
 .remove_item_button {
     border-radius: 18px;
     background-color: white;
@@ -52,8 +25,8 @@ $base-color: rgb(2, 158, 255);
     color: red;
     cursor: pointer;
     transition: 
-    opacity 0.15s,
-    text-decoration 0.15s;
+    opacity $transform-time,
+    text-decoration $transform-time;
     position: fixed;
     right: 6vw;
     padding: 4px;
@@ -63,19 +36,4 @@ $base-color: rgb(2, 158, 255);
     opacity: 0.7;
     text-decoration: underline;
     text-decoration-thickness: 0.5px;
-}
-
-.add_amount_button {
-    border: none;
-    background-color: $base-color;
-    border-radius: 18px;
-    color: white;
-    padding: 5px;
-    cursor: pointer;
-    transition: opacity 0.15s;
-    -webkit-transition: opacity 0.15s;
-}
-
-.add_amount_button:hover {
-    opacity: 0.7;
 }

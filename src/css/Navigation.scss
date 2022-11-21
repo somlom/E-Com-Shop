@@ -1,4 +1,5 @@
 $base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
 
 .nav {
     display: flex;
@@ -16,18 +17,6 @@ $base-color: rgb(2, 158, 255);
     align-items: center;
 }
 
-.nav_column .link {
-    text-align: center;
-    color: black;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.nav_title {
-    height: min-content;
-    margin: 0px;
-}
-
 .nav_column * {
     height: min-content;
     padding: 5px;
@@ -37,59 +26,30 @@ $base-color: rgb(2, 158, 255);
 }
 
 .nav_title {
-    color: black
+    height: min-content;
+    margin: 0px;
+    color: black;
 }
 
-.dropdown[type=button] {
+.mobile {
     display: none;
+}
+
+.mobile[type="button"] {
     background-color: white;
     border: solid 1px black;
     border-radius: 2px;
+    width: 35px;
+    height: 35px;
 }
 
-
-.dropdown {
-    display: none;
-    border: none;
-    background-color: white;
+.in_mobile {
+    height: 15px;
+    width: 15px;
 }
 
-.dropdown-content {
-    display: none;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    background-color: #f9f9f9;
-    height:40%;
-    width: 100vw;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    z-index: 1;
-}
-
-.dropdown-content * {
-    text-align: start;
-    align-self: center;
-    border: none;
-    border-bottom: solid 1px black;
-    width: 90vw
-}
-
-.dropdown:hover .dropdown-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-@media (max-width: 767px) {
-
-    .dropdown {
-        display: flex;
-    }
-
-    .dropdown[type=button] {
+@media screen and (max-width: 767px) {
+    .mobile {
         display: flex;
     }
 
@@ -97,36 +57,36 @@ $base-color: rgb(2, 158, 255);
         align-self: center;
     }
 
-    a.link.column {
+    .nav_column.buttons a.link.column {
         display: none;
+        text-align: center;
+        margin: 0;
     }
 }
 
 .login_button {
-    /* background-color: $base-color; */
     background-color: white;
     border: solid 2px $base-color;
     width: fit-content;
     border-radius: 18px;
     font-weight: bold;
-    cursor: pointer;
-    transition: opacity 0.15s;
+    transition: opacity $transform-time;
     padding: 5px;
     display: flex;
     align-items: center;
-    -webkit-transition: background-color 0.15s;
+    -webkit-transition: background-color $transform-time;
 }
 
 .login_button * {
-    padding: 1px;
+    padding: 2px;
 }
 
 .login_button:hover {
     color: white;
     cursor: pointer;
     background-color: $base-color;
-    transition: background-color 0.15s;
-    -webkit-transition: background-color 0.15s;
+    transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
 }
 
 /* Keine Ahnung wo es hingehen soll hab es einfach hier gemacht. Ich glaube wir müssen neue .css datei für impressum erstellen */

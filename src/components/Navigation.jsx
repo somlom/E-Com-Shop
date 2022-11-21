@@ -4,6 +4,7 @@ import React from 'react'
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,15 +19,17 @@ import { Cart } from '../pages/Cart';
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
+
+  const [menu_state, menu_is_opened] = React.useState(false);
+
   const { t } = useTranslation();
   const count = useSelector(selectCount);
 
   return (
     <div className='nav'>
 
-      <div className='nav_column dropdown'>
-        <button type='button' className='dropdown'><HiOutlineMenuAlt4 /> </button>
-        <Dropdown_Content/>
+      <div className='nav_column mobile'>
+        <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile'/> : <HiOutlineMenuAlt4 className='in_mobile'/>} </button>
       </div>
 
       <div className='nav_column buttons'>
@@ -40,36 +43,15 @@ export const Navigation = () => {
       </div>
 
       <div className='nav_column login'>
-        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count.length}</button>
+        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.length}</span></button>
       </div>
-
-
-      {/* <div className='nav_column add to cart'>
-        <button className='add_to_cart' type="button">Add to cart <span><MdOutlineShoppingCart /></span></button>
-      </div> */}
 
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-          {/* <Auth /> */}
           <Cart />
         </Modal>
       }
 
-    </div>
-  )
-}
-
-export const Dropdown_Content = () => {
-
-  const { t } = useTranslation();
-
-  return (
-    <div className="dropdown-content">
-      <a href="/login">{t("login")}</a>
-      <a href="/register">{t("register")}</a>
-      <a href="/reset">{t("reset")}</a>
-      <a href="/products">{t("products")}</a>
-      <a href="/redux">Redux (testing shopping cart)</a>
     </div>
   )
 }

@@ -8,9 +8,15 @@ $base-color: rgb(2, 158, 255);
 
 .content {
     flex: 1;
-    /* border: solid 1px black; */
     margin-right: 30px;
     margin-left: 30px;
+}
+
+a.link {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
 }
 
 a.link:hover,
