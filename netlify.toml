@@ -4,5 +4,5 @@
     base="/"
 
 [[redirects]]
-    from="*/"
-    to="/index.html"
+  from = "/old-path"
+  to = "/new-path"
