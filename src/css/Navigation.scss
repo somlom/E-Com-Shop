@@ -11,6 +11,7 @@ $transform-time: 0.15s;
 
 .nav_column {
     margin: 3px;
+    height: min-content;
     width: content-box;
     display: flex;
     flex-wrap: wrap;
@@ -68,6 +69,7 @@ $transform-time: 0.15s;
     background-color: white;
     border: solid 2px $base-color;
     width: min-content;
+    height: min-content;
     border-radius: 18px;
     font-weight: bold;
     transition: opacity $transform-time;
