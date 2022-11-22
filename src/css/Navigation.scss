@@ -82,6 +82,8 @@ $transform-time: 0.15s;
 }
 
 .login_button:hover {
+    height: min-content;
+    width: min-content;
     color: white;
     cursor: pointer;
     background-color: $base-color;
