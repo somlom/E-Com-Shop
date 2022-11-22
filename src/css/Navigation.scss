@@ -67,7 +67,7 @@ $transform-time: 0.15s;
 .login_button {
     background-color: white;
     border: solid 2px $base-color;
-    width: fit-content;
+    width: min-content;
     border-radius: 18px;
     font-weight: bold;
     transition: opacity $transform-time;
