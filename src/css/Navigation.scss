@@ -11,10 +11,10 @@ $transform-time: 0.15s;
 
 .nav_column {
     margin: 3px;
-    height: min-content;
     width: content-box;
     display: flex;
     flex-wrap: wrap;
+    height: min-content;
     align-items: center;
 }
 
@@ -69,7 +69,6 @@ $transform-time: 0.15s;
     background-color: white;
     border: solid 2px $base-color;
     width: min-content;
-    height: min-content;
     border-radius: 18px;
     font-weight: bold;
     transition: opacity $transform-time;
@@ -84,8 +83,6 @@ $transform-time: 0.15s;
 }
 
 .login_button:hover {
-    height: min-content;
-    width: min-content;
     color: white;
     cursor: pointer;
     background-color: $base-color;
