@@ -16,17 +16,20 @@ export const Product = (props) => {
 
         const data = usePostData("http://" + process.env.PUBLIC_URL + "/products/", { id: id })
         const dispatch = useDispatch();
+        // console.log(data)
 
         return (
             <div className='product'>
                 <h3>{data.name}</h3>
                 <p>{data.text}</p>
-                <p>{data.price}</p>
+                <p>Count: {data.count}</p>
+                <p>Price: {data.price}</p>
                 <button className='add_to_cart_button' type='button' onClick={() => dispatch(add_to_cart(data))}>Add to cart</button>
             </div>
         )
 
     } else {
+        // console.log(response)
 
         return (
 
@@ -35,6 +38,7 @@ export const Product = (props) => {
                 <h3>{response.name}</h3>
                 <p>{response.text}</p>
                 <p>{response.price}</p>
+                <p>{response.count}</p>
                 <Link to={`/products/${response.id}`} className="go_to_product">Buy</Link>
             </div>
 

@@ -10,6 +10,8 @@ $transform-time: 0.15s;
 }
 
 .product_in_cart {
+    display: flex;
+    flex-direction: row;
     margin: 10px;
     padding: 20px;
     border: solid 1px black;
@@ -17,31 +19,51 @@ $transform-time: 0.15s;
     width: 75vw;
 }
 
-.product_in_cart * {
-    text-align: start;
-}
+// .product_in_cart * {
+//     // text-align: start;
+// }
 
 .cart_footer{
-    display: unset;
+    display: flex;
+
+    flex-direction: row;
     position: sticky;
     left: 0;
     bottom: 0;
+    justify-content: center;
+    align-items: center;
     width: 100vw;
-    background-color: red;
+    background-color: $base-color;
     color: white;
-    text-align: center;
+}
+
+.product_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+    // pa
+}
+
+img.product_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:auto;
 }
 
 .remove_item_button {
+    align-self: flex-end;
     border-radius: 18px;
-    background-color: white;
+    background-color: red;
     border: none;
     text-align: center;
-    color: red;
+    color: white;
     cursor: pointer;
     transition: opacity $transform-time, text-decoration $transform-time;
-    // position: stic;
-    left: 12vw;
+    // position: relative;
+    // right: -12vw;
     padding: 4px;
 }
 

@@ -33,13 +33,6 @@ $transform-time: 0.15s;
     flex-wrap: wrap;
 }
 
-.slider{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    /* width: fit-content; */
-}
-
 .go_to_product{
     text-decoration: none;
     // background-color: $base-color;
@@ -51,10 +44,6 @@ $transform-time: 0.15s;
     // color: white;
     // border-radius: 18px;
     // padding: 3.5px;
-}
-
-.go_to_product:active {
-    opacity: 0.8;
 }
 
 .add_to_cart_button {
