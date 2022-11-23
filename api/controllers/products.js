@@ -7,7 +7,6 @@ products.get("/", get_products);
 products.post("/", get_product_by_id)
 
 products.get("/cart", get_cart_items)
-// products.post("/cart", add_to_cart)
 
 const arr = [
     {
@@ -31,9 +30,6 @@ const arr = [
 ];
 
 function get_cart_items(req, res) {
-    
-    // const key = req.headers.
-    
     return
 }
 
@@ -54,9 +50,7 @@ function get_product_by_id(req, res) {
 
 function get_products(req, res) {
 
-    return res.json(
-        arr
-    );
+    return res.json(arr);
 
 }
 
