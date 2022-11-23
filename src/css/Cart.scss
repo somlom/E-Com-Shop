@@ -6,7 +6,7 @@ $transform-time: 0.15s;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 40vw;
+    width: 90vw;
 }
 
 .product_in_cart {
@@ -14,7 +14,22 @@ $transform-time: 0.15s;
     padding: 20px;
     border: solid 1px black;
     border-radius: 20px;
-    width: 30vw;
+    width: 75vw;
+}
+
+.product_in_cart * {
+    text-align: start;
+}
+
+.cart_footer{
+    display: unset;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background-color: red;
+    color: white;
+    text-align: center;
 }
 
 .remove_item_button {
@@ -24,11 +39,9 @@ $transform-time: 0.15s;
     text-align: center;
     color: red;
     cursor: pointer;
-    transition: 
-    opacity $transform-time,
-    text-decoration $transform-time;
-    position: fixed;
-    right: 6vw;
+    transition: opacity $transform-time, text-decoration $transform-time;
+    // position: stic;
+    left: 12vw;
     padding: 4px;
 }
 
