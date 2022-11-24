@@ -1,27 +1,38 @@
 $base-color: rgb(2, 158, 255);
-$transform-time: 0.15s;
+$transform-time: 0.2s;
 
 .product {
     border: solid 1px black;
-    padding: 5px;
+    padding: 7px;
     margin: 5px;
     border-radius: 10px;
-    transition:
+    transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
+        margin $transform-time;
 
-        padding-left 0.5s,
-        padding-right 0.5s,
-        box-shadow 0.5s;
-    -webkit-transition:
-
-        padding-left 0.5s,
-        padding-right 0.5s,
-        box-shadow 0.5s;
+    -webkit-transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
+        margin $transform-time;
     text-align: center;
+}
+
+.product_on_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+div.product_on_page img {
+    display: flex;
+    align-self: center;
+    width: auto;
 }
 
 .product:hover {
     padding-right: 18px;
     padding-left: 18px;
+    margin: 0;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -33,7 +44,7 @@ $transform-time: 0.15s;
     flex-wrap: wrap;
 }
 
-.go_to_product{
+.go_to_product {
     text-decoration: none;
     // background-color: $base-color;
     width: 100%;

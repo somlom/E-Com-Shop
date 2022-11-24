@@ -9,19 +9,6 @@ $transform-time: 0.15s;
     width: 90vw;
 }
 
-.product_in_cart {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-    padding: 20px;
-    border: solid 1px black;
-    border-radius: 20px;
-    width: 75vw;
-}
-
-// .product_in_cart * {
-//     // text-align: start;
-// }
 
 .cart_footer{
     display: flex;
@@ -43,8 +30,18 @@ $transform-time: 0.15s;
     justify-content: flex-start;
     width: 100%;
     align-items: flex-start;
-    // pa
 }
+
+.counter{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    // justify-content: center;
+    align-self: center;
+}
+
 
 img.product_column{
     display: flex;
