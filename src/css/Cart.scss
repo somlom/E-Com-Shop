@@ -60,17 +60,52 @@ img.product_column{
 
 .remove_item_button {
     border-radius: 18px;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
     border: none;
     text-align: center;
-    color: white;
+    color: rgb(255, 0, 0);
     cursor: pointer;
     transition: opacity $transform-time, text-decoration $transform-time;
     padding: 4px;
+    position: relative;
+    top: 200px;
 }
 
 .remove_item_button:hover {
-    opacity: 0.7;
     text-decoration: underline;
     text-decoration-thickness: 0.5px;
+}
+
+.remove_item_button:active {
+    opacity: 0.7;
+}
+
+.increase_amount_button {
+    border: none;
+    background-color: rgb(6, 209, 6);
+    color: white;
+    border-radius: 50%;
+    padding-left: 4.5px;
+    padding-right: 4.5px;
+    cursor: pointer;
+    transition: opacity $transform-time;
+}
+
+.increase_amount_button:active {
+    opacity: 0.7;
+}
+
+.decrease_amount_button {
+    border: none;
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border-radius: 50%;
+    padding-left: 6px;
+    padding-right: 6px;
+    cursor: pointer;
+    transition: opacity $transform-time;
+}
+
+.decrease_amount_button:active {
+    opacity: 0.7;
 }
