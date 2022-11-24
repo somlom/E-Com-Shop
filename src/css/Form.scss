@@ -1,3 +1,6 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
 .form {
     display: flex;
     flex-direction: column;
@@ -27,13 +30,10 @@
     width: 60vw;
     padding: 24px 40px;
     margin: 1vw 0;
-    /* padding-bottom: 3px; */
     text-align: center;
 }
 
 .form input {
-    /* margin: 5px;  */
-    /* transition: 0.5s; */
     width: 60vw;
     padding: 12px 20px;
     margin: 1vw 0;
@@ -47,7 +47,7 @@
 }
 
 .form input:focus {
-    border-bottom: 3px solid  rgb(2, 158, 255);
+    border-bottom: 3px solid  $base-color;
 }
 
 .login_button.opacity.submit {
@@ -61,20 +61,19 @@
     border-radius: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: opacity 0.15s;
+    transition: opacity $transform-time;
     padding: 5px;
     display: flex;
     align-items: center;
-    -webkit-transition: background-color 0.15s;
-    /* margin-left: auto; */
+    -webkit-transition: background-color $transform-time;
 }
 
 .no_acc_button:hover {
     color: white;
     cursor: pointer;
     background-color: rgb(98, 197, 84);
-    -webkit-transition: background-color 0.15s;
-    transition: background-color 0.15s;
+    -webkit-transition: background-color $transform-time;
+    transition: background-color $transform-time;
 }
 
 .no_acc_button:active {

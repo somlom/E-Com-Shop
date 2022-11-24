@@ -1,0 +1,71 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
+.cart {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+}
+
+
+.cart_footer{
+    display: flex;
+
+    flex-direction: row;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: $base-color;
+    color: white;
+}
+
+.product_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.counter{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    // justify-content: center;
+    align-self: center;
+}
+
+
+img.product_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:auto;
+}
+
+.remove_item_button {
+    align-self: flex-end;
+    border-radius: 18px;
+    background-color: red;
+    border: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    transition: opacity $transform-time, text-decoration $transform-time;
+    // position: relative;
+    // right: -12vw;
+    padding: 4px;
+}
+
+.remove_item_button:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+}

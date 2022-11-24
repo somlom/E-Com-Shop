@@ -9,6 +9,8 @@ import XHR from "i18next-http-backend" // <---- add this
 const resources = {
   en: {
     translation: {
+      reset: "reset",
+      products: "Products",
       main_page: "Welcome to React and react-i18next",
       "nav test": "Test",
       modal_title: "Attention required",
@@ -53,6 +55,8 @@ const resources = {
   },
   fr: {
     translation: {
+      products: "Products",
+      reset: "reset",
       main_page: "Bienvenue à React et react-i18next",
       "nav test": "Testé",
       modal_title: "Attention requise",
@@ -97,6 +101,8 @@ const resources = {
   },
   de: {
     translation: {
+      products: "Produkte",
+      reset: "Wiedersetzen",
       main_page: "Willkommen zum react-i18next",
       "nav test": "Test",
       modal_title: "Aufmerksamkeit erforderlich",
@@ -155,7 +161,7 @@ i18n
     resources,
     debug: true,
     fallbackLng: "en",
-    supportedLngs: ['de', 'en', 'fr'],
+    // supportedLngs: ['de', 'en', 'fr'],
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
     // if you're using a language detector, do not define the lng option
 

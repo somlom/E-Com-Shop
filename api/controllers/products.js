@@ -6,6 +6,8 @@ const products = Router();
 products.get("/", get_products);
 products.post("/", get_product_by_id)
 
+products.get("/cart", get_cart_items)
+
 const arr = [
     {
         id: "1",
@@ -27,7 +29,13 @@ const arr = [
     }
 ];
 
+function get_cart_items(req, res) {
+    return
+}
+
 function get_product_by_id(req, res) {
+
+    // req.headers.host  <-- get header host
 
     const { id } = req.body;
 
@@ -42,9 +50,7 @@ function get_product_by_id(req, res) {
 
 function get_products(req, res) {
 
-    return res.json(
-        arr
-    );
+    return res.json(arr);
 
 }
 

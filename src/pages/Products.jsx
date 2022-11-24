@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Product } from '../components/Product';
 import { useGetData } from '../hooks/Data'
-import "../css/Products.css"
+import "../css/Products.scss"
 import process from 'process';
 
 

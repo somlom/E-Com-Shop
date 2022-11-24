@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 
-import "../css/Footer.css"
+import "../css/Footer.scss"
 
 
 export const Footer = () => {
@@ -28,22 +28,6 @@ export const Footer = () => {
           <Link to="/support" className="link">
             {t("support")}
           </Link>
-          {/* <Link to="/">
-            <a className="link" >
-              Impressum
-            </a>
-          </Link>
-          <Link to="/">
-            <a className="link" >
-              Customer rights
-            </a>
-          </Link>
-          <Link to="/">
-            <a className="link" >
-              Support
-            </a>
-          </Link> */}
-
         </div>
       </div>
 
