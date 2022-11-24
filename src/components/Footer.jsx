@@ -28,22 +28,6 @@ export const Footer = () => {
           <Link to="/support" className="link">
             {t("support")}
           </Link>
-          {/* <Link to="/">
-            <a className="link" >
-              Impressum
-            </a>
-          </Link>
-          <Link to="/">
-            <a className="link" >
-              Customer rights
-            </a>
-          </Link>
-          <Link to="/">
-            <a className="link" >
-              Support
-            </a>
-          </Link> */}
-
         </div>
       </div>
 
