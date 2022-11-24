@@ -16,11 +16,19 @@ $transform-time: 0.2s;
 
 .product_on_page {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .product_on_page{
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 div.product_on_page img {

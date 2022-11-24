@@ -5,14 +5,13 @@ $transform-time: 0.15s;
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     width: 90vw;
 }
 
 
 .cart_footer{
     display: flex;
-
     flex-direction: row;
     position: sticky;
     left: 0;
@@ -27,31 +26,39 @@ $transform-time: 0.15s;
 .product_column{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     width: 100%;
     align-items: flex-start;
+}
+
+.product_in_cart{
+    display: flex;
+    flex-direction: row;
 }
 
 .counter{
     display:flex;
     flex-direction: row;
-    justify-content: center;
     padding: 5px;
     margin: 5px;
-    // justify-content: center;
-    align-self: center;
+    align-self: flex-end;
+    border: solid 1px black;
+    width: min-content;
 }
-
 
 img.product_column{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width:auto;
+    width: auto;
+    max-width: 30vw;
+}
+
+.product_column button, .product_column span {
+    align-self: flex-end;
+    text-align: end;
 }
 
 .remove_item_button {
-    align-self: flex-end;
     border-radius: 18px;
     background-color: red;
     border: none;
@@ -59,8 +66,6 @@ img.product_column{
     color: white;
     cursor: pointer;
     transition: opacity $transform-time, text-decoration $transform-time;
-    // position: relative;
-    // right: -12vw;
     padding: 4px;
 }
 
