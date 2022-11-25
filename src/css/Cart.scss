@@ -9,8 +9,7 @@ $transform-time: 0.15s;
     width: 90vw;
 }
 
-
-.cart_footer{
+.cart_footer {
     display: flex;
     flex-direction: row;
     position: sticky;
@@ -23,39 +22,24 @@ $transform-time: 0.15s;
     color: white;
 }
 
-.product_column{
+.product_column {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
 }
 
-.product_in_cart{
+.product_in_cart {
     display: flex;
     flex-direction: row;
 }
 
-.counter{
-    display:flex;
-    flex-direction: row;
-    padding: 5px;
-    margin: 5px;
-    align-self: flex-end;
-    border: solid 1px black;
-    width: min-content;
-}
-
-img.product_column{
+img.product_column {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: auto;
     max-width: 30vw;
-}
-
-.product_column button, .product_column span {
-    align-self: flex-end;
-    text-align: end;
 }
 
 .remove_item_button {
@@ -67,8 +51,7 @@ img.product_column{
     cursor: pointer;
     transition: opacity $transform-time, text-decoration $transform-time;
     padding: 4px;
-    position: relative;
-    top: 200px;
+    align-self: flex-end;
 }
 
 .remove_item_button:hover {
@@ -80,32 +63,43 @@ img.product_column{
     opacity: 0.7;
 }
 
-.increase_amount_button {
+.counter {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin: 5px;
+    // align-items: center;
+    border: solid 1px black;
+    justify-content: center;
+    width: min-content;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+.counter {
+    width: auto;
+    height: auto;
+}
+
+.counter button {
     border: none;
+    color: white;
+    border-radius: 50%;
+    // padding: 6px;
+    // width:auto;
+    // height: auto;
+    cursor: pointer;
+    transition: opacity $transform-time;
+}
+
+.counter button.increase_amount_button {
     background-color: rgb(6, 209, 6);
-    color: white;
-    border-radius: 50%;
-    padding-left: 4.5px;
-    padding-right: 4.5px;
-    cursor: pointer;
-    transition: opacity $transform-time;
 }
 
-.increase_amount_button:active {
-    opacity: 0.7;
-}
-
-.decrease_amount_button {
-    border: none;
+.counter button.decrease_amount_button {
     background-color: rgb(255, 0, 0);
-    color: white;
-    border-radius: 50%;
-    padding-left: 6px;
-    padding-right: 6px;
-    cursor: pointer;
-    transition: opacity $transform-time;
 }
 
-.decrease_amount_button:active {
+.counter button:active {
     opacity: 0.7;
 }

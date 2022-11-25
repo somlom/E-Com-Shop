@@ -6,7 +6,7 @@ const products = Router();
 products.get("/", get_products);
 products.post("/", get_product_by_id)
 
-products.get("/cart", get_cart_items)
+products.post("/cart", get_cart_items)
 
 const arr = [
     {
@@ -30,7 +30,18 @@ const arr = [
 ];
 
 function get_cart_items(req, res) {
-    return
+    const { id } = req.body;
+    console.log(id)
+
+    const local_array = [];
+
+    const find_in_arr = id.map(one_id => {
+        return local_array[-1] = arr.find(obj => obj.id === one_id);
+    })
+
+
+    return res.json(find_in_arr);
+
 }
 
 function get_product_by_id(req, res) {
@@ -42,6 +53,7 @@ function get_product_by_id(req, res) {
     const result = arr.find(obj => {
         return obj.id === id
     })
+    console.log(id)
 
     return res.json(result)
 }

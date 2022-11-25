@@ -28,11 +28,10 @@ export function Cart() {
             <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>Remove item</button>
 
             <div className='counter'>
-              <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data))}>+</button>
-              <span>{data.count}</span>
               <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data))}>-</button>
+              <span>{data.count}</span>
+              <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data))}>+</button>
             </div>
-            <a href={`/products/${data.id}`}>Go to this element</a>
           </div>
         </div>
       ))}
