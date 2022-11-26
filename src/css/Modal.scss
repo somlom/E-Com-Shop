@@ -28,6 +28,7 @@ $transform-time: 0.15s;
     color: black;
     padding: 16px;
     z-index: 10;
+    max-height: 90vh;
     border-radius: 16px;
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
     display: flex;
@@ -45,6 +46,11 @@ $transform-time: 0.15s;
 
 .modal_title p {
     margin: 0px;
+}
+
+.modal_content{
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .close_button {
