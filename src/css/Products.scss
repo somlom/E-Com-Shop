@@ -12,6 +12,7 @@ $transform-time: 0.2s;
     -webkit-transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
         margin $transform-time;
     text-align: center;
+    width: min-content;
 }
 
 .product_on_page {

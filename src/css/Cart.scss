@@ -5,7 +5,7 @@ $transform-time: 0.15s;
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    // align-items: stretch;
     width: 90vw;
 }
 
@@ -28,10 +28,19 @@ $transform-time: 0.15s;
     width: 100%;
     align-items: flex-start;
 }
+.product_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    // align-items: baseline;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
 .product_in_cart {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 img.product_column {
@@ -51,7 +60,6 @@ img.product_column {
     cursor: pointer;
     transition: opacity $transform-time, text-decoration $transform-time;
     padding: 4px;
-    align-self: flex-end;
 }
 
 .remove_item_button:hover {
@@ -68,26 +76,16 @@ img.product_column {
     flex-direction: row;
     padding: 5px;
     margin: 5px;
-    // align-items: center;
     border: solid 1px black;
     justify-content: center;
     width: min-content;
     justify-content: center;
-    align-self: flex-end;
-}
-
-.counter {
-    width: auto;
-    height: auto;
 }
 
 .counter button {
     border: none;
     color: white;
     border-radius: 50%;
-    // padding: 6px;
-    // width:auto;
-    // height: auto;
     cursor: pointer;
     transition: opacity $transform-time;
 }

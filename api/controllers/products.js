@@ -13,27 +13,6 @@ products.post("/", get_product_by_id)
 products.post("/cart", get_cart_items)
 products.post("/add", add_product)
 
-const arr = [
-    {
-        id: "1",
-        name: "J-Key",
-        price: 109,
-        text: "Perfect for home use",
-    },
-    {
-        id: "2",
-        name: "S-Key",
-        price: 159,
-        text: "smth",
-    },
-    {
-        id: "3",
-        name: "M-Key",
-        price: 209,
-        text: "God's thing",
-    }
-];
-
 async function get_cart_items(req, res) {
     const { id } = req.body;
 
@@ -83,12 +62,11 @@ async function add_product(req, res) {
 
     try {
         const products = await Products.create({ text: text, name: name, price: price })
-        console.log(products)
+        return res.json(products)
     } catch (error) {
-        console.log(error)
+        return res.json(error)
     }
 
-    return res.json("done")
 }
 
 export default products;
