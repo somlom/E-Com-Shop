@@ -16,7 +16,7 @@ export const Products = () => {
                 (response !== false && response.length != 0) ?
                     response.map(obj => {
                         return (
-                            <Product response={obj} key={obj.id} />
+                            <Product response={obj} key={obj._id} />
                         )
                     })
                     :

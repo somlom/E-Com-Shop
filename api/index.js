@@ -1,11 +1,14 @@
 import express from "express";
 import cors from 'cors';
+import {connect} from "./db/init"
 
 import products from './controllers/products';
 import files from './controllers/files';
 
 
 const app = express()
+
+connect();
 
 app.use(cors());
 app.use(express.json())
