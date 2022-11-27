@@ -29,7 +29,7 @@ export const Navigation = () => {
     <div className='nav'>
 
       <div className='nav_column mobile'>
-        <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile'/> : <HiOutlineMenuAlt4 className='in_mobile'/>} </button>
+        <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile' /> : <HiOutlineMenuAlt4 className='in_mobile' />} </button>
       </div>
 
       <div className='nav_column buttons'>
@@ -47,7 +47,7 @@ export const Navigation = () => {
 
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-          <Cart />
+            <Cart />
         </Modal>
       }
 
