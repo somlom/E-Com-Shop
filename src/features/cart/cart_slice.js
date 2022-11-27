@@ -26,7 +26,6 @@ export const cart_slice = createSlice({
       } else {
 
         state.value = [...state.value, { ...action.payload, count: 1 }]
-        console.log(state.value)
         localStorage.setItem("cart", JSON.stringify(state.value))
 
       }

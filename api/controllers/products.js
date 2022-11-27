@@ -31,12 +31,9 @@ const arr = [
 
 function get_cart_items(req, res) {
     const { id } = req.body;
-    console.log(id)
-
-    const local_array = [];
 
     const find_in_arr = id.map(one_id => {
-        return local_array[-1] = arr.find(obj => obj.id === one_id);
+        return arr.find(obj => obj.id === one_id);
     })
 
 
@@ -53,7 +50,6 @@ function get_product_by_id(req, res) {
     const result = arr.find(obj => {
         return obj.id === id
     })
-    console.log(id)
 
     return res.json(result)
 }
