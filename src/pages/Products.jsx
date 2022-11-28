@@ -20,7 +20,11 @@ export const Products = () => {
                         )
                     })
                     :
-                    <p>spin</p>
+                    <div className="product_in_cart">
+                        <div className='product_column'>
+                            <div className=" spinner" />
+                        </div>
+                    </div>
             }
 
 

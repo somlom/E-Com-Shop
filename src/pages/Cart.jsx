@@ -29,11 +29,7 @@ export function Cart() {
 
       <span>Total {count.length} items</span>
       {in_cart.length === 0 ?
-        // <div className="product_in_cart">
-        //   <div className='product_column'>
-        //     <div className=" spinner" />
-        //   </div>
-        // </div> 
+
         <h1>No items!</h1>
         :
         in_cart.map(data => (
