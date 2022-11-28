@@ -16,11 +16,15 @@ export const Products = () => {
                 (response !== false && response.length != 0) ?
                     response.map(obj => {
                         return (
-                            <Product response={obj} key={obj.id} />
+                            <Product response={obj} key={obj._id} />
                         )
                     })
                     :
-                    <p>spin</p>
+                    <div className="product_in_cart">
+                        <div className='product_column'>
+                            <div className=" spinner" />
+                        </div>
+                    </div>
             }
 
 
