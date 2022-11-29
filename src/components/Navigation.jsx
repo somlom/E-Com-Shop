@@ -26,31 +26,32 @@ export const Navigation = () => {
   const count = useSelector(selectCount);
 
   return (
-    <div className='nav'>
+    <div>
+      <div className='nav'>
 
-      <div className='nav_column mobile'>
-        <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile' /> : <HiOutlineMenuAlt4 className='in_mobile' />} </button>
+        <div className='nav_column mobile'>
+          <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile' /> : <HiOutlineMenuAlt4 className='in_mobile' />} </button>
+        </div>
+
+        <div className='nav_column buttons'>
+          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
+
+          <Link className="link column" to="/login">{t("login")}</Link>
+          <Link className="link column" to="/register">{t("register")}</Link>
+          <Link className="link column" to="/reset">{t("reset")}</Link>
+          <Link className="link column" to="/products">{t("products")}</Link>
+        </div>
+
+        <div className='nav_column login'>
+          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.length}</span></button>
+        </div>
+
       </div>
-
-      <div className='nav_column buttons'>
-        <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
-
-        <Link className="link column" to="/login">{t("login")}</Link>
-        <Link className="link column" to="/register">{t("register")}</Link>
-        <Link className="link column" to="/reset">{t("reset")}</Link>
-        <Link className="link column" to="/products">{t("products")}</Link>
-      </div>
-
-      <div className='nav_column login'>
-        <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.length}</span></button>
-      </div>
-
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-            <Cart />
+          <Cart />
         </Modal>
       }
-
     </div>
   )
 }

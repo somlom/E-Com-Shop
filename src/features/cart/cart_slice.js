@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { usePostData } from '../../hooks/Data';
 
-
-// const send_to_backend = usePostData("http://localhost:4000/products/cart")
 
 const value = JSON.parse(localStorage.getItem('cart')) || [];
 
