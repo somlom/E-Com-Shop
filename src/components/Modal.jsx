@@ -22,6 +22,7 @@ export const Modal = ({ children, handle_modal }) => {
                     {children}
                 </div>
             </div>
+            <div className='filling' onClick={() => handle_modal(false)}></div>
         </div>
     )
 }
