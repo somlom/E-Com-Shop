@@ -17,18 +17,8 @@ async function get_cart_items(req, res) {
     const { id } = req.body;
 
     const response = await Products.find().where('_id').in(id).exec();
-    // const response = await Products.findOne({ _id: "638345632d9590bfb82325d7" })
-
 
     return res.json(response)
-
-    // const find_in_arr = id.map(one_id => {
-    //     return arr.find(obj => obj.id === one_id);
-    // })
-
-
-    // return res.json(find_in_arr);
-
 }
 
 async function get_product_by_id(req, res) {
@@ -40,21 +30,12 @@ async function get_product_by_id(req, res) {
     const response = await Products.findById(id)
 
     return res.json(response)
-
-    // const result = arr.find(obj => {
-    //     return obj.id === id
-    // })
-
-    // return res.json(result)
 }
 
 
 
 async function get_products(req, res) {
-
-    // return res.json(arr);
     return res.json(await Products.find())
-
 }
 
 async function add_product(req, res) {
