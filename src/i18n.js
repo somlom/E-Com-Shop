@@ -159,7 +159,7 @@ i18n
 
     detection: options,
     resources,
-    debug: true,
+    // debug: true,
     fallbackLng: "en",
     // supportedLngs: ['de', 'en', 'fr'],
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage

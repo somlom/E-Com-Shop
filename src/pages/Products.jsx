@@ -8,26 +8,24 @@ import process from 'process';
 
 export const Products = () => {
 
-    const response = useGetData(`http://${process.env.PUBLIC_URL}/products`);
+    const {value, Spinner} = useGetData(`http://${process.env.PUBLIC_URL}/products`);
 
     return (
-        <div className='products'>
-            {
-                (response !== false && response.length != 0) ?
-                    response.map(obj => {
-                        return (
-                            <Product response={obj} key={obj._id} />
-                        )
-                    })
-                    :
-                    <div className="product_in_cart">
-                        <div className='product_column'>
-                            <div className=" spinner" />
-                        </div>
-                    </div>
-            }
+        <React.Suspense fallback={<Spinner />}>
+            <div className='products'>
+                {
+                    (value !== false && value.length != 0) ?
+                        value.map(obj => {
+                            return (
+                                <Product response={obj} key={obj._id} />
+                            )
+                        })
+                        :
+                        <Spinner />
+                }
 
 
-        </div>
+            </div>
+        </React.Suspense>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  add_to_cart, edit_item_count, remove_from_cart, remove_one_from_cart,
+  add_to_cart, set_redux, remove_from_cart, remove_one_from_cart,
   selectCount,
 } from '../features/cart/cart_slice';
 import "../css/Cart.scss"
@@ -13,27 +13,18 @@ export function Cart() {
   const dispatch = useDispatch();
 
   const count = useSelector(selectCount);
-  const response = usePostData("http://localhost:4000/products/cart", { id: count })
-
-
-  let i = 0;
-  const in_cart = [];
-  while (response.length > i) {
-    in_cart.push({ ...response[i], ...count[i] })
-    i++;
-  }
+  const { value, Spinner } = usePostData("http://localhost:4000/products/cart", { data: count })
 
   let total = 0;
   return (
+    // <React.Suspense fallback={<Spinner />}>
     <div className='cart'>
 
       <span>Total {count.length} items</span>
-      {in_cart.length === 0 ?
-
-        <h1>No items!</h1>
+      {value.length === 0 ? (count.length === 0 ? <h1>No items!</h1> : <Spinner />)
         :
-        in_cart.map(data => (
-          total += data.price * data.count,
+        value.map(data => (
+          total += data.price * count.find(obj => obj._id === data._id).count,
           <div className="product_in_cart" key={data._id}>
 
             <div className='product_row'>
@@ -45,11 +36,11 @@ export function Cart() {
             </div>
 
             <div className='product_row'>
-              <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(count.indexOf(data)))}>Remove item</button>
+              <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(data._id))}>Remove item</button>
               <p>{data.price}</p>
               <div className='counter'>
                 <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data._id))}>-</button>
-                <span>{data.count}</span>
+                <span>{count.find(obj => obj._id === data._id).count}</span>
                 <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data._id))}>+</button>
               </div>
             </div>
@@ -62,5 +53,6 @@ export function Cart() {
       </div>
 
     </div>
+    // </React.Suspense>
   );
 }
