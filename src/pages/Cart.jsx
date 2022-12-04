@@ -6,58 +6,28 @@ import {
 } from '../features/cart/cart_slice';
 import "../css/Cart.scss"
 import { usePostData } from '../hooks/Data';
-import { useGetFromServerMutation } from '../features/service/cart_api';
+import { fetchArticleDetails, } from '../features/service/cart_api';
 
 
 export function Cart() {
-
-  console.log(JSON.parse(localStorage.getItem("persist:root")))
 
   const dispatch = useDispatch();
 
   const cart = useSelector(selectCount);
   const { value, Spinner } = usePostData("http://localhost:4000/products/cart", { data: cart.cart })
 
-  const [getFromServer, { isLoading, isSuccess }] = useGetFromServerMutation();
+  fetchArticleDetails(cart)
 
 
-
-  // console.log(content)
-
-  const show_query = async (data) => {
-
-    const result = await getFromServer(data).unwrap()
-    return await result
-
-  }
-
-  // if(show_query().status === "fulfilled"){
-
-  // }
-
-  // console.log(show_query(cart.cart))
-
-  // const res = getFromServer(cart.cart);
-  // console.log(cart, res)
-
-  const getTotal = () => {
-    let totalQuantity = 0
-    let totalPrice = 0
-    show_query(cart.cart).forEach(item => {
-      totalQuantity += item.quantity
-      totalPrice += item.price * item.quantity
-    })
-    return { totalPrice, totalQuantity }
-  }
   return (
     // <React.Suspense fallback={<Spinner />}>
     <div className='cart'>
 
       {/* {show_query(cart.cart).length !== 0 ? <p>{show_query(cart.cart).data}</p>: <p>none</p>} */}
 
-      <span>Total {getTotal().totalQuantity} items</span>
-      {/* {value.length === 0 ? (cart.length === 0 ? <h1>No items!</h1> : <Spinner />) */}
-      {value.length === 0 ? <Spinner />
+      <span>Total  items</span>
+      {value.length === 0 ? (cart.cart.length === 0 ? <h1>No items!</h1> : <Spinner />)
+      // {value.length === 0 ? <Spinner />
         :
         value.map(data_val => (
           <div className="product_in_cart" key={data_val._id}>
@@ -83,7 +53,7 @@ export function Cart() {
           </div>
         ))}
       <div className='cart_footer'>
-        <p>Total: {getTotal().totalPrice}</p>
+        <p>Total: </p>
         <button>Checkout</button>
       </div>
 

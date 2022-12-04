@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios';
-import { usePostData } from '../../hooks/Data';
 
-
-const form_local_storage = JSON.parse(localStorage.getItem('cart')) || [];
 
 export const cart_slice = createSlice({
   name: 'cart',
@@ -34,12 +30,6 @@ export const cart_slice = createSlice({
         item.quantity--;
       }
     },
-    set_data: (state, action) => {
-      return ({
-        ...state,
-        data: action.payload
-      })
-    }
   },
 })
 
