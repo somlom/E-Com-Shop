@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import "../css/Products.scss"
 import { usePostData } from '../hooks/Data';
-import { add_to_cart } from '../features/cart/cart_slice';
 import { Spinner } from './Spinner';
+import { add_to_cart } from '../features/cart/cart_slice';
 
 
 export const Product = (props) => {

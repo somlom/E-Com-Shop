@@ -14,20 +14,25 @@ products.post("/add", add_product)
 
 export async function get_cart_items(req, res) {
     const { data } = req.body;
+    console.log(req.body)
 
     const value = await Products.find().where('_id').in(data).exec()
 
+    console.log(value)
     let i = 0;
     const in_cart = [];
 
     while (value.length > i) {
 
-        in_cart.push({ ...value[i]._doc, count: data[i].count })
+        in_cart.push({ ...value[i]._doc, quantity: data[i].quantity })
         i++;
 
     }
 
+
     return res.json(in_cart)
+
+
 }
 
 export async function get_product_by_id(req, res) {

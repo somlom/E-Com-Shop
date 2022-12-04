@@ -8,66 +8,43 @@ const form_local_storage = JSON.parse(localStorage.getItem('cart')) || [];
 export const cart_slice = createSlice({
   name: 'cart',
   initialState: {
-    value: form_local_storage,
+    cart: [],
   },
   reducers: {
-    set_redux: (state, action) => {
-      state.value = action.payload
-    }
-    ,
     add_to_cart: (state, action) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      if (state.value.find(item => item._id === action.payload)) {
-
-        const res = state.value.find(item => item._id === action.payload)
-        res.count += 1;
-        state.value[state.value.indexOf(res)] = res;
-        localStorage.setItem("cart", JSON.stringify(state.value))
-
+      const itemInCart = state.cart.find((item) => item._id === action.payload)
+      if (itemInCart) {
+        itemInCart.quantity++;
       } else {
-
-        state.value.push({ _id: action.payload, count: 1 })
-        localStorage.setItem("cart", JSON.stringify(state.value))
-
+        state.cart.push({ _id: action.payload, quantity: 1 });
       }
     },
     remove_from_cart: (state, action) => {
 
-      state.value.splice(state.value.find(item => item._id === action.payload), 1)
-      localStorage.setItem("cart", JSON.stringify(state.value))
+      const removeItem = state.cart.filter((item) => item._id !== action.payload);
+      state.cart = removeItem;
 
     },
     remove_one_from_cart: (state, action) => {
 
-      const res = state.value.find(item => item._id === action.payload)
-
-      res.count -= 1;
-
-      if (res.count === 0) {
-
-        state.value.splice(state.value.indexOf(res), 1)
+      const item = state.cart.find((item) => item._id === action.payload);
+      if (item.quantity === 1) {
+        item.quantity = 1
+      } else {
+        item.quantity--;
       }
-
-      state.value[state.value.indexOf(res)] = res;
-
-      localStorage.setItem("cart", JSON.stringify(state.value))
     },
-    edit_item_count: (state, action) => {
-
-      const res = state.value.find(item => item.id === action.payload.id);
-      res.count = action.payload.count;
-
-      state.value[state.value.indexOf(res)] = res;
-      localStorage.setItem("cart", JSON.stringify(state.value))
+    set_data: (state, action) => {
+      return ({
+        ...state,
+        data: action.payload
+      })
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { set_redux, add_to_cart, remove_from_cart, remove_one_from_cart, edit_item_count } = cart_slice.actions
-export const selectCount = (state) => state.cart.value
+export const { add_to_cart, remove_from_cart, remove_one_from_cart } = cart_slice.actions
+export const selectCount = (state) => state.cart
 
 export default cart_slice.reducer
