@@ -18,23 +18,26 @@ export default function App() {
   return (
     <Layout>
 
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<Product />} />
-        {/* <Route path="/redux" element={<Cart />} /> */}
+        <Routes>
 
-        <Route path='/faq' element={<FAQ />} />
-        <Route path='/impressum' element={<Impressum />} />
-        <Route path='/customer_rights' element={<Customer_Rights />} />
-        <Route path='/support' element={<Support />} />
 
-        <Route path="/*" element={<PageNotFound />} />
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/reset" element={<Reset />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<Product />} />
+          {/* <Route path="/redux" element={<Cart />} /> */}
 
-      </Routes>
+          <Route path='/faq' element={<FAQ />} />
+          <Route path='/impressum' element={<Impressum />} />
+          <Route path='/customer_rights' element={<Customer_Rights />} />
+          <Route path='/support' element={<Support />} />
+
+          <Route path="/*" element={<PageNotFound />} />
+
+
+        </Routes>
 
     </Layout>
   )

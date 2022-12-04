@@ -12,18 +12,17 @@ export const Modal = ({ children, handle_modal }) => {
     close_on_esc(handle_modal);
 
     return (
-        <div className='fade_layer'>
-            <div className='centered'>
-                <div className='modal'>
-                    <div className='modal_title'>
-                        <p>{t("modal_title")}</p>
-                        <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
-                    </div>
-                    <div className='modal_content'>
-                        {children}
-                    </div>
+        <div className='fade'>
+            <div className='modal'>
+                <div className='modal_title'>
+                    <p>{t("modal_title")}</p>
+                    <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
+                </div>
+                <div className='modal_content'>
+                    {children}
                 </div>
             </div>
+            <div className='filling' onClick={() => handle_modal(false)}></div>
         </div>
     )
 }
