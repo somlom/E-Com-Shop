@@ -1,0 +1,104 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: solid 1px black;
+    align-content: center;
+}
+
+.nav_column {
+    margin: 3px;
+    width: content-box;
+    display: flex;
+    flex-wrap: wrap;
+    // height: min-content;
+    align-items: center;
+}
+
+.nav_column * {
+    height: min-content;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    align-self: center;
+}
+
+.nav_title {
+    height: min-content;
+    margin: 0px;
+    color: black;
+}
+
+.mobile {
+    display: none;
+}
+
+.mobile[type="button"] {
+    background-color: white;
+    border: solid 1px black;
+    border-radius: 2px;
+    width: 35px;
+    height: 35px;
+}
+
+.in_mobile {
+    height: 15px;
+    width: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .mobile {
+        display: flex;
+    }
+
+    .nav_title {
+        align-self: center;
+    }
+
+    .nav_column.buttons a.link.column {
+        display: none;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+.login_button {
+    background-color: white;
+    border: solid 2px $base-color;
+    width: min-content;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity $transform-time;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    -webkit-transition: background-color $transform-time;
+    // height: 20px;
+
+}
+
+.login_button * {
+    padding: 2px;
+    height: auto;
+}
+
+.login_button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: $base-color;
+    transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
+}
+
+/* Keine Ahnung wo es hingehen soll hab es einfach hier gemacht. Ich glaube wir müssen neue .css datei für impressum erstellen */
+.imp_title {
+    background-color: $base-color;
+    width: fit-content;
+    border-radius: 18px;
+    padding: 8px;
+    color: white;
+}

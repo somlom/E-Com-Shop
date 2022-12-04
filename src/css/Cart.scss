@@ -1,0 +1,101 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
+.cart {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    // width: 90vw;
+}
+
+.cart_footer {
+    display: flex;
+    flex-direction: row;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    // width: 100vw;
+    background-color: $base-color;
+    color: white;
+}
+
+.product_column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+.product_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.product_in_cart {
+    display: flex;
+    flex-direction: column;
+}
+
+img.product_column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: auto;
+    max-width: 30vw;
+}
+
+.remove_item_button {
+    border-radius: 18px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    text-align: center;
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    transition: opacity $transform-time, text-decoration $transform-time;
+    padding: 4px;
+}
+
+.remove_item_button:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+}
+
+.remove_item_button:active {
+    opacity: 0.7;
+}
+
+.counter {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin: 5px;
+    border: solid 1px black;
+    justify-content: center;
+    width: min-content;
+    justify-content: center;
+}
+
+.counter button {
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity $transform-time;
+}
+
+.counter button.increase_amount_button {
+    background-color: rgb(6, 209, 6);
+}
+
+.counter button.decrease_amount_button {
+    background-color: rgb(255, 0, 0);
+}
+
+.counter button:active {
+    opacity: 0.7;
+}

@@ -1,35 +1,28 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react'
 
-import "../css/Modal.css"
+import "../css/Modal.scss"
+import { close_on_esc } from '../hooks/close_on_esc';
 
 
 export const Modal = ({ children, handle_modal }) => {
 
-    React.useEffect(() => {
-        const handleEsc = (event) => {
-            if (event.keyCode === 27) {
-                handle_modal(false);
-            };
-        };
-        window.addEventListener('keydown', handleEsc);
-        return () => {
-            window.removeEventListener('keydown', handleEsc);
-        };
-    }, []);
+    const { t, i18n } = useTranslation();
+
+    close_on_esc(handle_modal);
 
     return (
-        <div className='fade_layer'>
-            <div className='centered'>
-                <div className='modal'>
-                    <div className='modal_title'>
-                        <p>Action required</p>
-                        <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
-                    </div>
-                    <div className='modal_content'>
-                        {children}
-                    </div>
+        <div className='fade'>
+            <div className='modal'>
+                <div className='modal_title'>
+                    <p>{t("modal_title")}</p>
+                    <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
+                </div>
+                <div className='modal_content'>
+                    {children}
                 </div>
             </div>
+            <div className='filling' onClick={() => handle_modal(false)}></div>
         </div>
     )
 }

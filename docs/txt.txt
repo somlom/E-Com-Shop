@@ -1,5 +1,0 @@
-        <Modal handle_modal={handle_modal}>
-          <Login toOpen={state.login}/>
-          <Register toOpen={state.register}/>
-          <Reset toOpen={state.reset}/>
-        </Modal>

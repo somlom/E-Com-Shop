@@ -1,36 +1,56 @@
 import React from 'react'
-import { FaUserCircle } from 'react-icons/fa';
+// import { FaUserCircle } from 'react-icons/fa';
+//          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
+import { MdOutlineShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { HiOutlineMenuAlt4 } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
 
-import "../css/Navigation.css"
-import { Auth, Register, Reset } from '../pages/Auth';
+
+import "../css/Navigation.scss"
+import { Auth } from '../pages/Auth';
 import { Modal } from './Modal'
+import { selectCount } from '../features/cart/cart_slice';
+import { Cart } from '../pages/Cart';
 
 
 export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
 
+  const [menu_state, menu_is_opened] = React.useState(false);
+
+  const { t } = useTranslation();
+  const count = useSelector(selectCount);
+  // console.log(count)
+
   return (
-    <div className='nav'>
+    <div>
+      <div className='nav'>
 
-      <div className='nav_column buttons'>
-        <h1 className='nav_title'>Nav</h1>
+        <div className='nav_column mobile'>
+          <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile' /> : <HiOutlineMenuAlt4 className='in_mobile' />} </button>
+        </div>
 
-        <a className="link" href="#">test</a>
-        <a className="link" href="#">mest</a>
-        <a className="link" href="#">test</a>
-        <a className="link" href="#">mest</a>
-        <a className="link" href="#">test</a>
-        <a className="link" href="#">mest</a>
-      </div>
+        <div className='nav_column buttons'>
+          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
 
-      <div className='nav_column login'>
-        <button className='login_button opacity' onClick={() => handle_modal(true)}>Login <span><FaUserCircle /></span></button>
+          <Link className="link column" to="/login">{t("login")}</Link>
+          <Link className="link column" to="/register">{t("register")}</Link>
+          <Link className="link column" to="/reset">{t("reset")}</Link>
+          <Link className="link column" to="/products">{t("products")}</Link>
+        </div>
+
+        <div className='nav_column login'>
+          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>"count.length"</span></button>
+        </div>
+
       </div>
       {modal_state &&
         <Modal handle_modal={handle_modal}>
-          <Auth />
-          {/* <Register /> */}
+          <Cart />
         </Modal>
       }
     </div>

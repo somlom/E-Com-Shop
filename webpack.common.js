@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require("webpack");
+const process = require("process")
 
 
 module.exports = {
@@ -17,9 +19,9 @@ module.exports = {
                 use: ['babel-loader'],
             },
             {
-                test: /\.css$/,
+                test: /\.(css|scss|sass)$/,
                 exclude: [/node_modules/],
-                use: ["style-loader", "css-loader"],
+                use: ["style-loader", "css-loader", "sass-loader",],
             },
         ],
     },
@@ -27,6 +29,11 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.css'],
     },
     plugins: [
+        new DefinePlugin({ 
+            'process.env': {
+                'PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL || "localhost:4000")
+            }
+        }),
         new HtmlWebpackPlugin({
             title: 'App',
             publicPath: "/",
