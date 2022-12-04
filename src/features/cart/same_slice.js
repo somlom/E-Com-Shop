@@ -9,7 +9,7 @@ export const same_slice = createSlice({
     reducers: {
         set_data: (state, action) => {
             console.log(action.payload)
-            state.data = [...state.data, action.payload]
+            state.data = action.payload
             return 
         }
     },

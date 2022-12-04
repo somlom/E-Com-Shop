@@ -16,18 +16,14 @@ export function Cart() {
   const cart = useSelector(selectCount);
   const { value, Spinner } = usePostData("http://localhost:4000/products/cart", { data: cart.cart })
 
-  fetchArticleDetails(cart)
+  fetchArticleDetails(cart.cart)
 
 
   return (
     // <React.Suspense fallback={<Spinner />}>
     <div className='cart'>
-
-      {/* {show_query(cart.cart).length !== 0 ? <p>{show_query(cart.cart).data}</p>: <p>none</p>} */}
-
-      <span>Total  items</span>
+      <span>Total {value.length} items</span>
       {value.length === 0 ? (cart.cart.length === 0 ? <h1>No items!</h1> : <Spinner />)
-      // {value.length === 0 ? <Spinner />
         :
         value.map(data_val => (
           <div className="product_in_cart" key={data_val._id}>
@@ -43,9 +39,9 @@ export function Cart() {
             <div className='product_row'>
               <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(data_val._id))}>Remove item</button>
               <p>{data_val.price}</p>
-              <div className='carter'>
+              <div className='counter'>
                 <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data_val._id))}>-</button>
-                {/* <span>{cart.length === 0 ? 0 : cart.find(obj => obj._id === data_val._id).quantity }</span> */}
+                {/* <span>{data_val.length === 0 ? 0 : cart.find(obj => obj._id === data_val._id).quantity }</span> */}
                 <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data_val._id))}>+</button>
               </div>
             </div>
