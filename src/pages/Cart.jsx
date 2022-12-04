@@ -1,49 +1,37 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import "../css/Cart.scss"
 import {
   add_to_cart, remove_from_cart, remove_one_from_cart, selectCount,
 } from '../features/cart/cart_slice';
-import "../css/Cart.scss"
 import { usePostData } from '../hooks/Data';
-import { useGetFromServerMutation } from '../features/service/cart_api';
 
 
 export function Cart() {
 
-  console.log(JSON.parse(localStorage.getItem("persist:root")))
-
   const dispatch = useDispatch();
 
   const cart = useSelector(selectCount);
-  const { value, Spinner } = usePostData("http://localhost:4000/products/cart", { data: cart.cart })
+  const { value, Spinner } = usePostData("http://localhost:4000/products/cart", { data: cart })
 
-  const [getFromServer, { isLoading, isSuccess }] = useGetFromServerMutation();
+  let i = 0;
+  const in_cart = [];
 
+  while (value.length > i) {
 
-
-  // console.log(content)
-
-  const show_query = async (data) => {
-
-    const result = await getFromServer(data).unwrap()
-    return await result
+    in_cart.push({ ...value[i], quantity: (cart[i]?.quantity || 0) })
+    i++;
 
   }
 
-  // if(show_query().status === "fulfilled"){
-
-  // }
-
-  // console.log(show_query(cart.cart))
-
-  // const res = getFromServer(cart.cart);
-  // console.log(cart, res)
-
+  if (in_cart.find(obj => obj.quantity === 0)) {
+    in_cart.splice(in_cart.indexOf(in_cart.find(obj => obj.quantity === 0)), 1)
+  }
   const getTotal = () => {
     let totalQuantity = 0
     let totalPrice = 0
-    show_query(cart.cart).forEach(item => {
+    in_cart.forEach(item => {
       totalQuantity += item.quantity
       totalPrice += item.price * item.quantity
     })
@@ -52,14 +40,10 @@ export function Cart() {
   return (
     // <React.Suspense fallback={<Spinner />}>
     <div className='cart'>
-
-      {/* {show_query(cart.cart).length !== 0 ? <p>{show_query(cart.cart).data}</p>: <p>none</p>} */}
-
       <span>Total {getTotal().totalQuantity} items</span>
-      {/* {value.length === 0 ? (cart.length === 0 ? <h1>No items!</h1> : <Spinner />) */}
-      {value.length === 0 ? <Spinner />
+      {in_cart.length === 0 ? (cart.length === 0 ? <h1>No items!</h1> : <Spinner />)
         :
-        value.map(data_val => (
+        in_cart.map(data_val => (
           <div className="product_in_cart" key={data_val._id}>
 
             <div className='product_row'>
@@ -71,12 +55,12 @@ export function Cart() {
             </div>
 
             <div className='product_row'>
-              <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(data_val._id))}>Remove item</button>
+              <button className='remove_item_button opacity' onClick={() => dispatch(remove_from_cart(data_val._id))}>Remove item</button>
               <p>{data_val.price}</p>
-              <div className='carter'>
-                <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data_val._id))}>-</button>
-                {/* <span>{cart.length === 0 ? 0 : cart.find(obj => obj._id === data_val._id).quantity }</span> */}
-                <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data_val._id))}>+</button>
+              <div className='counter'>
+                <button className='decrease_amount_button opacity' onClick={() => dispatch(remove_one_from_cart(data_val._id))}>-</button>
+                <span>{cart.length === 0 ? 0 : cart.find(obj => obj._id === data_val._id)?.quantity}</span>
+                <button className='increase_amount_button opacity' onClick={() => dispatch(add_to_cart(data_val._id))}>+</button>
               </div>
             </div>
 

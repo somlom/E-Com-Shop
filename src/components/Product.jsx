@@ -12,7 +12,6 @@ export const Product = (props) => {
 
     const { response } = props;
     const { id } = useParams();
-    const [handle_cart, set_cart] = React.useState(false);
 
     if (!response) {
 
@@ -28,7 +27,7 @@ export const Product = (props) => {
                         <h3>{data.value.name}</h3>
                         <p>{data.value.text}</p>
                         <p>Price: {data.value.price}</p>
-                        <button className='add_to_cart_button' type='button' onClick={() => { dispatch(add_to_cart(data.value._id)); set_cart(true) }}>Add to cart</button>
+                        <button className='add_to_cart_button opacity' type='button' onClick={() => { dispatch(add_to_cart(data.value._id))}}>Add to cart</button>
                     </div>
                 </div>
             </React.Suspense>

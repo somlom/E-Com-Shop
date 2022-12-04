@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios';
-import { usePostData } from '../../hooks/Data';
 
-
-const form_local_storage = JSON.parse(localStorage.getItem('cart')) || [];
 
 export const cart_slice = createSlice({
   name: 'cart',
@@ -34,17 +30,12 @@ export const cart_slice = createSlice({
         item.quantity--;
       }
     },
-    set_data: (state, action) => {
-      return ({
-        ...state,
-        data: action.payload
-      })
-    }
   },
 })
 
 // Action creators are generated for each case reducer function
 export const { add_to_cart, remove_from_cart, remove_one_from_cart } = cart_slice.actions
-export const selectCount = (state) => state.cart
+export const selectCount = (state) => state.cart.cart
+export const globalState = (state) => state
 
 export default cart_slice.reducer

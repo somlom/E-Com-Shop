@@ -24,7 +24,6 @@ export const Navigation = () => {
 
   const { t } = useTranslation();
   const count = useSelector(selectCount);
-  // console.log(count)
 
   return (
     <div>
@@ -44,7 +43,7 @@ export const Navigation = () => {
         </div>
 
         <div className='nav_column login'>
-          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>"count.length"</span></button>
+          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.length}</span></button>
         </div>
 
       </div>

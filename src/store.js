@@ -11,37 +11,23 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import { cartApi } from './features/service/cart_api';
+
 
 const persistConfig = {
   key: 'root',
   storage,
 }
 const persistedReducer = persistReducer(persistConfig, counterReducer)
-// export const store = configureStore({
-//   reducer: {
-//     persistedReducer,
-//     [cartApi.reducerPath]: cartApi.reducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }).concat(cartApi.middleware),
-// })
-// export const persistor = persistStore(store)
 
 export const store = configureStore({
   reducer: {
     cart: persistedReducer,
-    [cartApi.reducerPath]: cartApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       }
-    }).concat(cartApi.middleware),
+    })
 })
 export const persistor = persistStore(store)
