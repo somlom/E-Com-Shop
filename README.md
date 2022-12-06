@@ -2,8 +2,6 @@
 Here will be docs
 
 Test on web: https://deploy-site-test.netlify.app/
-    ^
-deprecated
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -12,7 +10,7 @@ deprecated
 - [ ] API Docs
 - [ ] React docs
 - [ ] Overwrite navbar for mobile mode
-- [x] Organize CSS 
+- [x] Organize CSS (70% done)
 - [x] Fix CSS for safari
 - [ ] Optimize webpack for more performance
 - [x] Implement local DB

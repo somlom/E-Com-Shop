@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import "../css/Products.scss"
