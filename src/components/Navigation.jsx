@@ -22,6 +22,7 @@ export const Navigation = () => {
 
   const { t } = useTranslation();
   const count = useSelector(selectCount);
+  // console.log(count)
 
   return (
     <div>

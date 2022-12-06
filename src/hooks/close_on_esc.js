@@ -1,7 +1,7 @@
-import React from 'react'
+import { useEffect } from 'react'
 
 export const close_on_esc = (handle_modal) => {
-    React.useEffect(() => {
+    useEffect(() => {
         const handleEsc = (event) => {
             if (event.keyCode === 27) {
                 handle_modal(false);
@@ -12,6 +12,5 @@ export const close_on_esc = (handle_modal) => {
             window.removeEventListener('keydown', handleEsc);
         };
     }, []);
-
 }
 

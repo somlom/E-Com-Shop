@@ -36,7 +36,7 @@ export const Auth = () => {
                 <button className="login_button opacity" type='submit'>
                     <FaUserPlus /><span>{t("login")}</span>
                 </button>
-                <button className="no_acc_button opacity" type='button'>
+                <button className="no_acc_button" type='button'>
                     <FaUserPlus /><span>{t("dont_have_an_account")}</span>
                 </button>
             </div>

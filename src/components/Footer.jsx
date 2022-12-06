@@ -13,9 +13,7 @@ export const Footer = () => {
     <div className='footer'>
 
       <div className='footer_content'>
-
         <div className='footer_data'>
-
           <Link to="/faq" className="link">
             {t("faq")}
           </Link>
