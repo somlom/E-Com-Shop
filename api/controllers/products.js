@@ -17,8 +17,14 @@ export async function get_cart_items(req, res) {
 
     const value = await Products.find().where('_id').in(data).exec()
 
-    return res.json(value)
+    const in_cart = [];
 
+    data.map((item, i) => {
+        in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+    })
+
+
+    return res.json(in_cart)
 
 }
 
