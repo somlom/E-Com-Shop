@@ -12,6 +12,7 @@ export const set_to_cart = createAsyncThunk(
   }
 )
 
+
 export const cart_slice = createSlice({
   name: 'cart',
   initialState: {
@@ -55,6 +56,7 @@ export const cart_slice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const { add_to_cart, remove_from_cart, remove_one_from_cart } = cart_slice.actions
-export const selectCount = (state) => state.cart
+export const selectCount = (state) => state.cart.cart
+export const globalState = (state) => state
 
 export default cart_slice.reducer

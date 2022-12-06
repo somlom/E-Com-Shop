@@ -65,10 +65,6 @@ img.product_column {
     text-decoration-thickness: 0.5px;
 }
 
-.remove_item_button:active {
-    opacity: 0.7;
-}
-
 .counter {
     display: flex;
     flex-direction: row;
@@ -94,8 +90,4 @@ img.product_column {
 
 .counter button.decrease_amount_button {
     background-color: rgb(255, 0, 0);
-}
-
-.counter button:active {
-    opacity: 0.7;
 }
