@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import process from "process";
-import { API } from "../../config_local";
+import { API } from "../../config";
 
 
 export const connect = async () => {
