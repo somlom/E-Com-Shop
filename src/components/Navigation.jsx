@@ -1,16 +1,14 @@
 import React from 'react'
-// import { FaUserCircle } from 'react-icons/fa';
-//          ^ hier muss Iconnamen stehen     ^ erste Buchstaben der Icon(zb FaIcon => fa)
+
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { HiOutlineMenuAlt4 } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 import "../css/Navigation.scss"
-import { Auth } from '../pages/Auth';
 import { Modal } from './Modal'
 import { selectCount } from '../features/cart/cart_slice';
 import { Cart } from '../pages/Cart';
@@ -44,7 +42,7 @@ export const Navigation = () => {
         </div>
 
         <div className='nav_column login'>
-          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>"count.length"</span></button>
+          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
         </div>
 
       </div>

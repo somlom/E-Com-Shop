@@ -1,5 +1,3 @@
-import cartReducer from './features/cart/cart_slice'
-import counterReducer from './features/cart/same_slice'
 import { configureStore } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage';
 import {
@@ -13,7 +11,9 @@ import {
   REGISTER,
 } from 'redux-persist'
 
-import thunk from "redux-thunk";
+import cartReducer from './features/cart/cart_slice'
+import { cart_api } from './features/cart/cart_api';
+
 
 const persistConfig = {
   key: 'root',
@@ -37,14 +37,14 @@ const persistedReducer = persistReducer(persistConfig, cartReducer)
 export const store = configureStore({
   reducer: {
     cart: persistedReducer,
-    data: counterReducer
+    [cart_api.reducerPath]: cart_api.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     })
-    .concat(thunk),
+      .concat(cart_api.middleware)
 })
 export const persistor = persistStore(store)

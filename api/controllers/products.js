@@ -17,25 +17,14 @@ export async function get_cart_items(req, res) {
 
     const value = await Products.find().where('_id').in(data).exec()
 
-    let i = 0;
     const in_cart = [];
 
-    while (value.length > i) {
-
-        in_cart.push({ ...value[i]._doc, quantity: data[i].quantity })
-        i++;
-
-    }
-
-    // const arr = value.concat(data);
-    const arr = [...value, ...data]
-    console.log("render")
-    console.log(arr)
-
+    data.map((item, i) => {
+        in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+    })
 
 
     return res.json(in_cart)
-
 
 }
 

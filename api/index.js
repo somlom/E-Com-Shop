@@ -10,7 +10,19 @@ import { error_handler } from "./middlewares/error_handler";
 const app = express()
 
 connect();
+const whitelist = ['http://localhost:3000', 'http://example2.com'];
+const corsOptions = {
+  credentials: true, // This is important.
+  origin: (origin, callback) => {
+    if(whitelist.includes(origin))
+      return callback(null, true)
 
+      callback(new Error('Not allowed by CORS'));
+  }
+}
+
+
+// app.use(cors(corsOptions));
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
