@@ -13,16 +13,6 @@ export function Cart() {
 
   const cart = useSelector(selectCount);
   const [sendIt, result] = usePostCartMutation();
-  // const { data } = useGetAllQuery();
-  // updatePost(cart.cart)
-  // console.log(cart)
-  // console.log(JSON.parse(JSON.stringify(data)))
-  // console.log(result)
-  const postik = async (cart) => {
-    return await sendIt(cart)
-  }
-
-  // postik(cart.cart)
 
   React.useEffect(() => {
     const postik = async (cart) => {

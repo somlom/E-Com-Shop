@@ -44,7 +44,6 @@ export const Navigation = () => {
         <div className='nav_column login'>
           <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
         </div>
-
       </div>
       {modal_state &&
         <Modal handle_modal={handle_modal}>

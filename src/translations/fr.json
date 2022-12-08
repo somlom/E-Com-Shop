@@ -1,0 +1,44 @@
+{
+    "translation": {
+      "products": "Products",
+      "reset": "reset",
+      "main_page": "Bienvenue à React et react-i18next",
+        "nav test": "Testé",
+      "modal_title": "Attention requise",
+      "support": "Support",
+      "faq": "FAQ",
+      "customer_rights": "Droits des clients",
+      "dont_have_an_account": "Vous n'avez pas de compte ? S'inscrire!",
+      "password": "Mot de passe",
+      "password_again": "Mot de passe à nouveau",
+      "register": "Enregistrer",
+      "login": "Connexion",
+      "Impressum": "Imprimer",
+        "§5TMG": "Informations selon § 5 TMG :",
+      "Contact": "Contactez:",
+      "Telefone": "Téléphoner:",
+        "E-Mail": "E-Mail:",
+      "Disclaimer": """Avis de non-responsabilité - Avis de non-responsabilité :
+
+      Responsabilité du contenu
+      
+      Tout le contenu de notre site Web a été créé avec le plus grand soin et au mieux de nos connaissances. Cependant, nous ne pouvons pas garantir que le contenu est correct, complet ou à jour. En tant que prestataire de services, nous sommes responsables de nos propres contenus sur ces pages conformément à l'article 7, paragraphe 1 de la loi allemande sur les télémédias (TMG). Conformément aux §§ 8 à 10 TMG, nous ne sommes toutefois pas tenus, en tant que prestataire de services, de surveiller les informations transmises ou stockées par des tiers ou d'enquêter sur les circonstances qui indiquent une activité illégale. Les obligations de supprimer ou de bloquer l'utilisation des informations conformément aux lois générales restent inchangées.
+      
+      Toutefois, la responsabilité à cet égard n'est possible qu'à partir du moment où la connaissance d'une violation concrète de la loi est obtenue. Dès que nous prendrons connaissance des violations de la loi susmentionnées, nous supprimerons immédiatement ce contenu.
+      
+      Limitation de responsabilité pour les liens externes
+      
+      Notre site Web contient des liens vers des sites Web tiers externes. Nous n'avons aucune influence sur le contenu de ces sites Web directement ou indirectement liés. Pour cette raison, nous ne pouvons assumer aucune responsabilité quant à l'exactitude du contenu des 'liens externes'. Les fournisseurs ou exploitants respectifs (auteurs) des pages sont responsables du contenu des liens externes.
+      
+      Les liens externes ont été vérifiés pour d'éventuelles violations de la loi au moment de la création du lien et étaient exempts de contenu illégal au moment de la création du lien. Un contrôle constant du contenu des liens externes n'est pas possible sans preuves concrètes d'une infraction. Dans le cas de liens directs ou indirects vers des sites Web tiers qui ne relèvent pas de notre domaine de responsabilité, la responsabilité n'existerait que si nous prenions connaissance du contenu et qu'il nous était techniquement possible et raisonnable d'empêcher l'utilisation en cas de contenu illégal.
+      
+      Cette clause de non-responsabilité s'applique également aux liens et références établis par les questionneurs, les articles de blog et les invités du forum de discussion sur notre propre site Web "nom de votre domaine". Le fournisseur de services de la page à laquelle il a été fait référence est seul responsable des contenus illégaux, incorrects ou incomplets et en particulier des dommages résultant de l'utilisation ou de la non-utilisation de ces informations, et non de la personne qui se contente de renvoyer à la publication respective via des liens. .
+      
+      Si nous prenons connaissance de violations légales, nous supprimerons immédiatement les liens externes.
+      
+      droits d'auteur
+      
+      Le contenu et les travaux publiés sur notre site Web sont soumis au droit d'auteur allemand (http: //www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf). La duplication, le traitement, la distribution et toute forme d'exploitation de la propriété intellectuelle du point de vue intellectuel et matériel de l'auteur en dehors des limites du droit d'auteur nécessitent le consentement écrit préalable de l'auteur respectif au sens de la loi sur le droit d'auteur (http: //www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf ). Les téléchargements et copies de ce site ne sont autorisés que pour un usage privé et non commercial. Si le contenu de notre site Web n'a pas été créé par nous, les droits d'auteur de tiers doivent être respectés. Les contenus de tiers sont signalés comme tels. Si vous avez néanmoins connaissance d'une violation du droit d'auteur, nous vous demandons de nous en informer en conséquence. Dès que nous aurons connaissance de violations légales, nous supprimerons immédiatement ce contenu.
+      jurarat.de."""
+    }
+},

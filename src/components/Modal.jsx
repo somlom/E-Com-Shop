@@ -6,6 +6,16 @@ import { close_on_esc } from '../hooks/close_on_esc';
 
 
 export const Modal = ({ children, handle_modal }) => {
+    const modal_element = document.getElementsByClassName("modal");
+    const body = document.getElementsByTagName("body");
+    console.log(body[0].offsetWidth, body)
+    if (body[0].offsetWidth <= 767) {
+        // Disable scroll
+        body[0].style.overflow = "hidden";
+
+    }else{
+        body[0].style.overflow = "auto";
+    }
 
     const { t } = useTranslation();
 
