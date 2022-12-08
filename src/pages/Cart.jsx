@@ -15,10 +15,10 @@ export function Cart() {
   const [sendIt, result] = usePostCartMutation();
 
   React.useEffect(() => {
-    const postik = async (cart) => {
+    const send_to_backend = async (cart) => {
       await sendIt(cart)
     }
-    postik(cart.cart)
+    send_to_backend(cart.cart)
 
   }, [cart])
 
