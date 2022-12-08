@@ -1,6 +1,6 @@
 import { Router } from "express";
 
 
-const router = Router();
+const auth = Router();
 
-router.get("/", )
+export default auth;

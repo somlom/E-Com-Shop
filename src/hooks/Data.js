@@ -1,11 +1,14 @@
-import React from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
+
+import { Spinner } from "../components/Spinner"
+
 
 export const usePostData = (url = "", data = "") => {
 
-    const [value, setValue] = React.useState(false)
+    const [value, setValue] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
 
             const response = await axios.post(url, data)
@@ -15,14 +18,14 @@ export const usePostData = (url = "", data = "") => {
         fetchData()
     }, [url])
 
-    return value
+    return { value, Spinner }
 }
 
 export const useGetData = (url = "") => {
 
-    const [value, setValue] = React.useState(false)
+    const [value, setValue] = useState([])
 
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
 
             const response = await axios.get(url)
@@ -32,5 +35,5 @@ export const useGetData = (url = "") => {
         fetchData()
     }, [url])
 
-    return value
+    return { value, Spinner }
 }

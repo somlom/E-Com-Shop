@@ -20,6 +20,4 @@ export const Impressum = () => {
     </div>
   )
 }
-
-
 // {t("")}

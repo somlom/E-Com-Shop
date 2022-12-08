@@ -77,8 +77,6 @@ $transform-time: 0.15s;
     display: flex;
     align-items: center;
     -webkit-transition: background-color $transform-time;
-    // height: 20px;
-
 }
 
 .login_button * {
@@ -94,7 +92,6 @@ $transform-time: 0.15s;
     -webkit-transition: background-color $transform-time;
 }
 
-/* Keine Ahnung wo es hingehen soll hab es einfach hier gemacht. Ich glaube wir müssen neue .css datei für impressum erstellen */
 .imp_title {
     background-color: $base-color;
     width: fit-content;

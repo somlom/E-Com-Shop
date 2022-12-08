@@ -4,10 +4,10 @@ import path from 'path';
 
 const files = Router();
 
-files.get("/impressum", (req, res) => {
+files.get("/impressum", get_impressum)
 
-    return res.sendFile(path.join(__dirname, '../public/files', 'impressum.pdf'))
-
-})
+export async function get_impressum(req, res) {
+    return await res.sendFile(path.join(__dirname, '../public/files', 'impressum.pdf'))
+}
 
 export default files;

@@ -9,43 +9,49 @@ const Products = mongoose.model('Products', products_schema);
 
 products.get("/", get_products);
 products.post("/", get_product_by_id)
-
 products.post("/cart", get_cart_items)
 products.post("/add", add_product)
 
-async function get_cart_items(req, res) {
-    const { id } = req.body;
+export async function get_cart_items(req, res) {
+    const { data } = req.body;
 
-    const response = await Products.find().where('_id').in(id).exec();
+    const value = await Products.find().where('_id').in(data).exec()
 
-    return res.json(response)
+    const in_cart = [];
+
+    data.map((item, i) => {
+        in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+    })
+
+
+    return res.json(in_cart)
+
 }
 
-async function get_product_by_id(req, res) {
+export async function get_product_by_id(req, res) {
 
     // req.headers.host  <-- get header host
 
     const { id } = req.body;
 
-    const response = await Products.findById(id)
-
-    return res.json(response)
+    return res.json(await Products.findById(id))
 }
 
-
-
-async function get_products(req, res) {
+export async function get_products(req, res) {
     return res.json(await Products.find())
 }
 
-async function add_product(req, res) {
+export async function add_product(req, res, next) {
     const { name, text, price } = req.body;
+
 
     try {
         const products = await Products.create({ text: text, name: name, price: price })
         return res.json(products)
     } catch (error) {
-        return res.json(error)
+        // throw new Error("Not found.")
+        res.status(401)
+        next(new Error(error))
     }
 
 }

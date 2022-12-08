@@ -1,7 +1,4 @@
 import React from 'react'
-import axios from "axios"
-import { FaUserPlus } from "react-icons/fa"
-import { Link } from 'react-router-dom';
 
 
 export const Form = (props) => {
