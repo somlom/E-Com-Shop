@@ -5,7 +5,7 @@ import "../css/Modal.scss"
 import { close_on_esc } from '../hooks/close_on_esc';
 
 
-export const Modal = ({ children, handle_modal, modal_state }) => {
+export const Modal = ({ children, handle_modal }) => {
 
     const { t } = useTranslation();
 

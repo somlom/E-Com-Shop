@@ -13,8 +13,7 @@ export const Products = () => {
     return (
         // <React.Suspense fallback={<Spinner />}>
         <div className='products'>
-            {
-                value.map(obj => { return (<Product response={obj} key={obj._id} />) })
+            {value.map(obj => { return (<Product response={obj} key={obj._id} />) })
 
             }
 
