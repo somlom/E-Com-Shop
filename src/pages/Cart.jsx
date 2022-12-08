@@ -25,7 +25,7 @@ export function Cart() {
   return (
     <React.Suspense fallback={<Spinner />}>
       <div className='cart'>
-        {result.data === undefined ? <Spinner /> : cart.length === 0 || cart === undefined ? <p>No items</p> : <Ddd data={result.data} />}
+        {result.data === undefined ? <Spinner /> : cart.length === 0 || cart === undefined ? <h1>No items</h1> : <Ddd data={result.data} />}
 
       </div>
     </React.Suspense>

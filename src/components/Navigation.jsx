@@ -46,7 +46,7 @@ export const Navigation = () => {
         </div>
       </div>
       {modal_state &&
-        <Modal handle_modal={handle_modal}>
+        <Modal handle_modal={handle_modal} modal_state={modal_state}>
           <Cart />
         </Modal>
       }
