@@ -5,6 +5,7 @@ import { connect } from "./db/init"
 import products from './controllers/products';
 import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
+import auth from "./controllers/auth";
 
 
 const app = express()
@@ -28,6 +29,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/products", products)
+app.use("/auth", auth)
 app.use("/download", files)
 
 app.use(error_handler)

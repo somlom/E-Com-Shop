@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Form } from '../components/Form';
 import "../css/Form.scss"
+import { usePostData } from '../hooks/Data';
+import axios from 'axios';
 
 
 export const Auth = () => {
@@ -47,6 +49,7 @@ export const Auth = () => {
 export const Register = () => {
     const [input, setInput] = React.useState({});
     const { t, i18n } = useTranslation();
+    // const { value } = usePostData("http://localhost:4000/auth/register", input);
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -55,18 +58,21 @@ export const Register = () => {
         }))
     }
 
-    const send_to_backend = (event) => {
+    const send_to_backend = async(event) => {
+        event.preventDefault()
         if (Object.keys(input).length >= 1) {
-            return alert("email: " + input.email + " password: " + input.password)
+            const res = await axios.post("http://localhost:4000/auth/register", input)
+            console.log(res)
+            return alert("value")
         } else {
-            event.preventDefault();
+            // event.preventDefault();
             return alert("Error!!! Empty fields")
         }
 
     }
 
     return (
-        <Form title={t("register")} onChange={add_to_state} onSubmit={send_to_backend}>
+        <Form title={t("register")} onChange={add_to_state} onSubmit={(e)=>send_to_backend(e)}>
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />
