@@ -2,22 +2,29 @@ $base-color: rgb(2, 158, 255);
 $transform-time: 0.2s;
 
 .product {
-    border: solid 1px black;
+    // border: solid 1px black;
     padding: 7px;
     margin: 5px;
     border-radius: 10px;
-    transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
-        margin $transform-time;
+    // transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
+    //     margin $transform-time;
 
-    -webkit-transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
-        margin $transform-time;
-    text-align: center;
+    // -webkit-transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
+    //     margin $transform-time;
+    // text-align: center;
     width: min-content;
 }
 
+.product img {
+    opacity: 100%;
+    transition: opacity 0.3s;
+}
+
+.product img:hover {
+    opacity: 70%;
+}
+
 .product_on_page {
-    display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     width: 100%;
@@ -33,36 +40,14 @@ $transform-time: 0.2s;
 }
 
 div.product_on_page img {
-    display: flex;
+    // display: flex;
     align-self: center;
     width: auto;
 }
 
-.product:hover {
-    padding-right: 18px;
-    padding-left: 18px;
-    margin: 0;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-}
-
 .products {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.product .price{
-    align-self: center;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: center;
-}
-
-.product .price h3{
-    color:rgb(148, 127, 9);
 }
 
 .go_to_product {
@@ -82,4 +67,8 @@ div.product_on_page img {
 
 .add_to_cart_button:hover {
     opacity: 0.8;
+}
+
+.product img {
+    align-self: center;
 }

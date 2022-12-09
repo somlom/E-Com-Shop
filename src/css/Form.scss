@@ -54,7 +54,6 @@ $transform-time: 0.15s;
     cursor: pointer;
     transition: opacity $transform-time;
     padding: 5px;
-    display: flex;
     align-items: center;
     -webkit-transition: background-color $transform-time;
 }

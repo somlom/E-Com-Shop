@@ -7,6 +7,7 @@ $transform-time: 0.15s;
     justify-content: space-evenly;
     border: solid 1px black;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav_column {
@@ -27,7 +28,7 @@ $transform-time: 0.15s;
 }
 
 input.nav_title {
-    width: 50vw;
+    width: 100%;
     height: max-content;
     text-align: start;
     padding: 12px 20px;
@@ -38,7 +39,14 @@ input.nav_title {
     -webkit-transition: 0.3s;
     transition: 0.3s;
     outline: none;
-    align-self: center;
+}
+.nav_column#pc {
+    display: flex;
+        width: 50vw;
+}
+.nav_column#mobile {
+    display: none;
+    width: 90vw;
 }
 
 input.nav_title:focus {
@@ -52,6 +60,12 @@ input.nav_title:focus {
 @media screen and (max-width: 767px) {
     .nav_column.buttons {
         display: none;
+    }
+    .nav_column#pc {
+        display: none;
+    }
+    .nav_column#mobile {
+        display: flex;
     }
 }
 

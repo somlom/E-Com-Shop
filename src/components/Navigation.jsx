@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { HiOutlineMenuAlt4 } from 'react-icons/hi';
-import { AiOutlineClose } from 'react-icons/ai';
+import { GrClose } from 'react-icons/gr';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { BsSearch } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -16,7 +17,8 @@ import { Cart } from '../pages/Cart';
 
 export const Navigation = () => {
 
-  const [modal_state, handle_modal] = React.useState(false);
+  const [modal_state, handle_modal] = useState(false);
+  const [menu_state, handle_menu] = useState(false);
 
   const { t } = useTranslation();
   const count = useSelector(selectCount);
@@ -25,12 +27,15 @@ export const Navigation = () => {
     <div>
       <div className='nav'>
 
+        <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
+          {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
+        </div>
+
         <div className='nav_column'>
-          <div className='open_menu'>
-            sss
-          </div>
           <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
-          <input className='nav_title form' type="text" placeholder='Search' />
+        </div>
+        <div className='nav_column' id="pc">
+          <input className='nav_title form' type="text" placeholder="Search" />
         </div>
 
         <div className='nav_column buttons'>
@@ -42,7 +47,14 @@ export const Navigation = () => {
         <div className='nav_column'>
           <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
         </div>
+        <div className='nav_column' id="mobile">
+          <input className='nav_title form' type="text" placeholder='Search' />
+        </div>
       </div>
+      {menu_state &&
+        <div>Menu</div>
+      }
+
       {modal_state &&
         <Modal handle_modal={handle_modal} modal_state={modal_state}>
           <Cart />

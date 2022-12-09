@@ -12,9 +12,9 @@ export const Modal = ({ children, handle_modal }) => {
     close_on_esc(handle_modal);
 
     return (
-        <div className='fade'>
-            <div className='modal'>
-                <div className='modal_title'>
+        <div className='fade column'>
+            <div className='modal column'>
+                <div className='modal_title row'>
                     <p>{t("modal_title")}</p>
                     <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
                 </div>
