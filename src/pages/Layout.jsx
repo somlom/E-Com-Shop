@@ -10,7 +10,7 @@ export const Layout = (props) => {
     const { children } = props;
     return (
         <React.Suspense fallback={<Spinner />}>
-            <div className='layout'>
+            <div className='layout column'>
                 <Navigation />
                 <div className='content'>
                     {children}

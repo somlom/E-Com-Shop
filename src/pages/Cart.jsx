@@ -25,7 +25,8 @@ export function Cart() {
   return (
     <React.Suspense fallback={<Spinner />}>
       <div className='cart'>
-        {result.data === undefined ? <Spinner /> : cart.length === 0 || cart === undefined ? <h1>No items</h1> : <Cart_Element data={result.data} />}
+        {result.data === undefined ? <Spinner /> : 
+          cart.length === 0 || cart === undefined ? <h1>No items</h1> : <Cart_Element data={result.data} />}
 
       </div>
     </React.Suspense>
@@ -55,7 +56,7 @@ const Cart_Element = ({ data }) => {
             <p>{data_val.price}</p>
             <div className='counter'>
               <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data_val._id))}>-</button>
-              <span>{data_val.length === 0 ? 0 : data_val.quantity}</span>
+              <span>{data_val.quantity}</span>
               <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data_val._id))}>+</button>
             </div>
           </div>

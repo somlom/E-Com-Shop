@@ -18,8 +18,6 @@ export const Navigation = () => {
 
   const [modal_state, handle_modal] = React.useState(false);
 
-  const [menu_state, menu_is_opened] = React.useState(false);
-
   const { t } = useTranslation();
   const count = useSelector(selectCount);
 
@@ -27,21 +25,22 @@ export const Navigation = () => {
     <div>
       <div className='nav'>
 
-        <div className='nav_column mobile'>
-          <button type='button' className='mobile' onClick={() => menu_is_opened(!menu_state)}>{menu_state === true ? <AiOutlineClose className='in_mobile' /> : <HiOutlineMenuAlt4 className='in_mobile' />} </button>
+        <div className='nav_column'>
+          <div className='open_menu'>
+            sss
+          </div>
+          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
+          <input className='nav_title form' type="text" placeholder='Search' />
         </div>
 
         <div className='nav_column buttons'>
-          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
-
           <Link className="link column" to="/login">{t("login")}</Link>
           <Link className="link column" to="/register">{t("register")}</Link>
           <Link className="link column" to="/reset">{t("reset")}</Link>
           <Link className="link column" to="/products">{t("products")}</Link>
         </div>
-
-        <div className='nav_column login'>
-          <button className='login_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
+        <div className='nav_column'>
+          <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
         </div>
       </div>
       {modal_state &&

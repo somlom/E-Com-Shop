@@ -6,9 +6,9 @@ export const Form = (props) => {
     const { title, onSubmit, children } = props;
 
     return (
-        <div className='form_content'>
+        <div className='form_content column'>
             <h3 className='form_title'>{title}</h3>
-            <form className='form' onSubmit={onSubmit}>
+            <form className='form column' onSubmit={onSubmit}>
                 {children}
             </form>
         </div>
