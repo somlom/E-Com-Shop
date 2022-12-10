@@ -14,8 +14,8 @@ export const users_schema = new Schema({
     email: {
         type: String,
         required: [true, "Please add your email"],
-        // unique: true,
-        // index: true,
+        unique: true,
+        index: true,
     },
     password: {
         type: String,

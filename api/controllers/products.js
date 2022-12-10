@@ -12,7 +12,7 @@ products.post("/", get_product_by_id)
 products.post("/cart", get_cart_items)
 products.post("/add", add_product)
 
-export async function get_cart_items(req, res) {
+async function get_cart_items(req, res) {
     const { data } = req.body;
 
     const value = await Products.find().where('_id').in(data).exec()
@@ -28,7 +28,7 @@ export async function get_cart_items(req, res) {
 
 }
 
-export async function get_product_by_id(req, res) {
+async function get_product_by_id(req, res) {
 
     // req.headers.host  <-- get header host
 
@@ -37,11 +37,11 @@ export async function get_product_by_id(req, res) {
     return res.json(await Products.findById(id))
 }
 
-export async function get_products(req, res) {
+async function get_products(req, res) {
     return res.json(await Products.find())
 }
 
-export async function add_product(req, res, next) {
+async function add_product(req, res, next) {
     const { name, text, price } = req.body;
 
 

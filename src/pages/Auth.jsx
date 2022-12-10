@@ -20,14 +20,21 @@ export const Auth = () => {
         }))
     }
 
-    const send_to_backend = (event) => {
+    const send_to_backend = async (event) => {
+        event.preventDefault()
+
         if (Object.keys(input).length >= 1) {
-            return alert("email: " + input.email + " password: " + input.password)
+            await axios.post("http://localhost:4000/auth/register", input).then(
+                function (fulfilled) {
+                    return alert(fulfilled.data.email)
+                },
+                function (error) {
+                    return alert(error.response.data.message)
+                }
+            )
         } else {
-            event.preventDefault();
             return alert("Error!!! Empty fields")
         }
-
     }
 
     return (
@@ -49,7 +56,6 @@ export const Auth = () => {
 export const Register = () => {
     const [input, setInput] = React.useState({});
     const { t, i18n } = useTranslation();
-    // const { value } = usePostData("http://localhost:4000/auth/register", input);
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -58,21 +64,26 @@ export const Register = () => {
         }))
     }
 
-    const send_to_backend = async(event) => {
+    const send_to_backend = async (event) => {
+
         event.preventDefault()
+
         if (Object.keys(input).length >= 1) {
-            const res = await axios.post("http://localhost:4000/auth/register", input)
-            console.log(res)
-            return alert("value")
+            await axios.post("http://localhost:4000/auth/register", input).then(
+                function (fulfilled) {
+                    return alert(fulfilled.data.email)
+                },
+                function (error) {
+                    return alert(error.response.data.message)
+                }
+            )
         } else {
-            // event.preventDefault();
             return alert("Error!!! Empty fields")
         }
-
     }
 
     return (
-        <Form title={t("register")} onChange={add_to_state} onSubmit={(e)=>send_to_backend(e)}>
+        <Form title={t("register")} onChange={add_to_state} onSubmit={(e) => send_to_backend(e)}>
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />

@@ -7,7 +7,8 @@ export const products_schema = new Schema({
     name: {
         type: String,
         required: [true, "Please add NAME"],
-        unique: true, dropDups: true,
+        unique: true, 
+        dropDups: true,
         index: true,
 
     }, // String is shorthand for {type: String}

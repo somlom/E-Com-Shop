@@ -52,7 +52,13 @@ export const Navigation = () => {
         </div>
       </div>
       {menu_state &&
-        <div>Menu</div>
+        <Modal handle_modal={handle_menu}>
+          <h3>1 item</h3>
+          <h3>1 item</h3>
+          <h3>1 item</h3>
+          <h3>1 item</h3>
+          <h3>1 item</h3>
+        </Modal>
       }
 
       {modal_state &&

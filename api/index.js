@@ -33,6 +33,11 @@ app.use("/auth", auth)
 app.use("/download", files)
 
 app.use(error_handler)
+app.use(logErrors);
+function logErrors(err, req, res, next) {
+  console.log(req.body);
+  next(req);
+}
 
 app.listen(4000, () => {
     console.log(`app is listening to port 4000`)
