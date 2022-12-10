@@ -18,7 +18,7 @@ async function loginUser(req, res) {
 
     const user = await Users.findOne({ email: email });
 
-    if (user.email === email) {
+    if (user) {
         const hash = await bcrypt.compare(password, user.password);
 
         if (hash === true) {
@@ -36,7 +36,7 @@ async function registerUser(req, res) {
 
     const user = await Users.findOne({ email: email })
 
-    if (user.email === email) {
+    if (user) {
         res.status(401)
         throw Error("Sorry, but this e-mail address is already registered")
     }

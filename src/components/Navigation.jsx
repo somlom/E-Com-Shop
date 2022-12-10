@@ -13,6 +13,7 @@ import "../css/Navigation.scss"
 import { Modal } from './Modal'
 import { selectCount } from '../features/cart/cart_slice';
 import { Cart } from '../pages/Cart';
+import { Hamburger } from './Hamburger';
 
 
 export const Navigation = () => {
@@ -23,8 +24,18 @@ export const Navigation = () => {
   const { t } = useTranslation();
   const count = useSelector(selectCount);
 
+      const body = document.body;
+    console.log(body)
+    if(menu_state === true){
+        body.style.overflow = "hidden"
+    }
+
+    if(menu_state === false) {
+        body.style.overflow = "auto"
+    }
+
   return (
-    <div>
+    <>
       <div className='nav'>
 
         <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
@@ -37,7 +48,6 @@ export const Navigation = () => {
         <div className='nav_column' id="pc">
           <input className='nav_title form' type="text" placeholder="Search" />
         </div>
-
         <div className='nav_column buttons'>
           <Link className="link column" to="/login">{t("login")}</Link>
           <Link className="link column" to="/register">{t("register")}</Link>
@@ -51,21 +61,30 @@ export const Navigation = () => {
           <input className='nav_title form' type="text" placeholder='Search' />
         </div>
       </div>
-      {menu_state &&
-        <Modal handle_modal={handle_menu}>
-          <h3>1 item</h3>
-          <h3>1 item</h3>
-          <h3>1 item</h3>
-          <h3>1 item</h3>
-          <h3>1 item</h3>
-        </Modal>
-      }
 
       {modal_state &&
-        <Modal handle_modal={handle_modal} modal_state={modal_state}>
+        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>Total {count.cart.length} items</span>}>
           <Cart />
         </Modal>
       }
+      {menu_state &&
+        <Hamburger handle_modal={handle_menu} state={menu_state} />
+      }
+    </>
+  )
+}
+
+export const Menu = () => {
+
+  const { t } = useTranslation();
+
+  return (
+
+    <div className='nav_column'>
+      <a className="link column" href="/login">{t("login")}</a>
+      <a className="link column" href="/register">{t("register")}</a>
+      <a className="link column" href="/reset">{t("reset")}</a>
+      <a className="link column" href="/products">{t("products")}</a>
     </div>
   )
 }

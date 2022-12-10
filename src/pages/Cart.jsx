@@ -39,7 +39,6 @@ const Cart_Element = ({ data }) => {
 
   return (
     <>
-      <span>Total {data.length} items</span>
       {data.map(data_val => (
         <div className="column" key={data_val._id}>
 

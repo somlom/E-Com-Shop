@@ -42,7 +42,7 @@ input.nav_title {
 }
 .nav_column#pc {
     display: flex;
-        width: 50vw;
+    width: 50vw;
 }
 .nav_column#mobile {
     display: none;
@@ -94,4 +94,19 @@ input.nav_title:focus {
     background-color: $base-color;
     transition: background-color $transform-time;
     -webkit-transition: background-color $transform-time;
+}
+
+.hamburger {
+    z-index: 3;
+    align-items: flex-start;
+    position: relative; 
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    // background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hamburger a {
+    padding: 10px;
 }

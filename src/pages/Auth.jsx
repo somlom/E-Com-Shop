@@ -1,11 +1,10 @@
 import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 import { Form } from '../components/Form';
 import "../css/Form.scss"
-import { usePostData } from '../hooks/Data';
-import axios from 'axios';
 
 
 export const Auth = () => {
@@ -24,7 +23,7 @@ export const Auth = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post("http://localhost:4000/auth/register", input).then(
+            await axios.post("http://localhost:4000/auth/login", input).then(
                 function (fulfilled) {
                     return alert(fulfilled.data.email)
                 },
