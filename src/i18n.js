@@ -68,7 +68,6 @@ const resources = {
       password_again: "Mot de passe à nouveau",
       register: "Enregistrer",
       login: "Connexion",
-      lorem: "L'entreprise elle-même est une entreprise très prospère. Notre douleur est la vérité de l'ennui et en effet ou? Il repousse les moindres conséquences de la loi, il ne cherche à être loué par personne, on peut facilement rejeter le pardon et aucun trouble. L'entreprise elle-même est une entreprise très prospère. Ils sont de tout le monde mais. Le plaisir, car être repoussé par les plaisirs, c'est être choisi par tous, mais en accomplissant des devoirs avec eux, à moins qu'il ne critique cette fuite de la vérité et de la douleur. L'entreprise elle-même est une entreprise très prospère. Des devoirs, nés de la nécessité, nul n'est lié par le sage rejet des temps de refus de ceux-ci. L'entreprise elle-même est une entreprise très prospère. Ils sont aussi travailleurs que les nôtres. C'est pourquoi la plupart des architectes tombent sur lui aveuglés par ce corps. Les justes seront suivis de ce que les corrompus, les anciens, ont laissé suivre ! Si le client est très intelligent, il pourra obtenir le résultat souhaité. Quand les accusateurs sont libérés et que la fuite n'est plus qu'une question de temps de la vie, car vous devez quoi ! Ils délaissent quelques-uns des plus méritants par la flatterie et repoussent avec plaisir. L'entreprise elle-même est une entreprise très prospère. Tolérant le plus digne du corps, mais pour l'obtenir ou pour le recevoir, il faut être repoussé par la loi, les anciens dont les nés libres tombent, ne pourvoient jamais aux peines ni aux bienfaits. Elle!",
       Impressum: "Imprimer",
       "§5TMG": "Informations selon § 5 TMG :",
       Contact: "Contactez:",
@@ -114,7 +113,6 @@ const resources = {
       password_again: "Passwort wieder",
       register: "Registrieren",
       login: "Einloggen",
-      lorem: "Das Unternehmen selbst ist ein sehr erfolgreiches Unternehmen. Unser Schmerz ist die Wahrheit des Ärgers und zwar oder? Er wehrt die kleinsten Folgen des Gesetzes ab, er will von niemandem gelobt werden, wir können die Begnadigung und keinen Ärger leicht ablehnen. Das Unternehmen selbst ist ein sehr erfolgreiches Unternehmen. Sie sind von allen, aber. Vergnügen, denn von Vergnügen abgestoßen zu werden, ist von allen zu wählen, aber durch die Erfüllung von Pflichten mit ihnen, es sei denn, er kritisiert diese Flucht von Wahrheit und Schmerz. Das Unternehmen selbst ist ein sehr erfolgreiches Unternehmen. An Pflichten, die aus der Not geboren sind, ist niemand durch die weise Ablehnung der Zeiten der Verweigerung dieser gebunden. Das Unternehmen selbst ist ein sehr erfolgreiches Unternehmen. Sie sind genauso fleißig wie wir. Deshalb fallen die meisten Architekten geblendet von diesem Körper über ihn her. Den Gerechten wird das folgen, was den Korrupten, den Ältesten, übrig bleibt! Wenn der Kunde sehr schlau ist, wird er oder sie in der Lage sein, das gewünschte Ergebnis zu erzielen. Wenn die Ankläger freigelassen werden und diese Flucht nur noch eine Frage der Lebenszeit ist, da schuldest du was! Sie verlassen einige der Verdientesten durch Schmeichelei und weisen sie mit Vergnügen zurück. Das Unternehmen selbst ist ein sehr erfolgreiches Unternehmen. Das Würdigste des Körpers zu tolerieren, aber um es zu erhalten oder zu empfangen, muss man vom Gesetz abgestoßen werden, die Ältesten, von denen die Freigeborenen abfallen, sorgen niemals für die Schmerzen oder Vorteile. Sie!",
       Impressum: "Impressum",
       "§5TMG": "Angaben gem. § 5 TMG:",
       Contact: "Kontaktaufnahme:",
@@ -159,7 +157,7 @@ i18n
 
     detection: options,
     resources,
-    debug: true,
+    // debug: true,
     fallbackLng: "en",
     // supportedLngs: ['de', 'en', 'fr'],
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage

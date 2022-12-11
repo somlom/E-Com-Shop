@@ -1,14 +1,7 @@
 $base-color: rgb(2, 158, 255);
 $transform-time: 0.15s;
 
-.form {
-    display: flex;
-    flex-direction: column;
-}
-
 .form_content {
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -17,8 +10,6 @@ $transform-time: 0.15s;
 }
 
 .form_buttons {
-    display: flex;
-    flex-direction: row;
     align-content: center;
 }
 
@@ -50,7 +41,7 @@ $transform-time: 0.15s;
     border-bottom: 3px solid  $base-color;
 }
 
-.login_button.opacity.submit {
+.cart_button.opacity.submit {
     margin: 5px;
 }
 
@@ -63,7 +54,6 @@ $transform-time: 0.15s;
     cursor: pointer;
     transition: opacity $transform-time;
     padding: 5px;
-    display: flex;
     align-items: center;
     -webkit-transition: background-color $transform-time;
 }

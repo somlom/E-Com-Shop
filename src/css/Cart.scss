@@ -3,30 +3,28 @@ $transform-time: 0.15s;
 
 .cart {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    width: 90vw;
 }
 
 .cart_footer {
-    display: flex;
-    flex-direction: row;
     position: sticky;
     left: 0;
     bottom: 0;
     justify-content: center;
     align-items: center;
-    width: 100vw;
     background-color: $base-color;
     color: white;
 }
 
 .product_column {
     display: flex;
-    flex-direction: column;
     width: 100%;
     align-items: flex-start;
 }
+// .spinner{
+//     width: 100%;
+//     align-items: flex-start;
+//     overflow: hidden;
+// }
 .product_row {
     display: flex;
     flex-direction: row;
@@ -34,11 +32,6 @@ $transform-time: 0.15s;
     align-items: center;
     justify-content: center;
     width: 100%;
-}
-
-.product_in_cart {
-    display: flex;
-    flex-direction: column;
 }
 
 img.product_column {

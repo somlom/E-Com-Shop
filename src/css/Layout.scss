@@ -1,23 +1,27 @@
 $base-color: rgb(2, 158, 255);
 
-.layout {
-    height: 100vh;
+.column{
     display: flex;
     flex-direction: column;
 }
 
+.layout {
+    height: 100vh;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.prepair_spinner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .spinner {
-    // position: absolute;
-    // left: 50%;
-    // top: 50%;
-    // z-index: 1;
-    // display: flex;
-    align-self: center;
-    // flex-direction: column;
-    // justify-self: center;
     width: 120px;
     height: 120px;
-    // margin: -76px 0 0 -76px;
+    overflow: hidden;
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid #3498db;
@@ -65,5 +69,13 @@ a.link:active {
     background-color: peachpuff;
     display: flex;
     flex-direction: column;
-    /* height: max-content; */
+}
+
+.open_menu {
+    display: none;
+}
+@media screen and (max-width: 767px) {
+    .open_menu {
+        display: flex;
+    }
 }

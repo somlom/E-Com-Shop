@@ -1,44 +1,26 @@
 $transform-time: 0.15s;
 
-.fade_layer {
-    margin: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
+.fade {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
     position: fixed;
-}
-
-.centered {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    left: 0;
+    top: 0;
 }
 
 .modal {
-    width: min-content;
-    height: min-content;
+    position: absolute;
+    right: 0%;
+    z-index: 3;
     background: white;
-    color: black;
     padding: 16px;
-    z-index: 10;
-    max-height: 90vh;
     border-radius: 16px;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.04);
 }
 
 .modal_title {
     border-bottom: solid 1px black;
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     align-items: center;
@@ -48,8 +30,7 @@ $transform-time: 0.15s;
     margin: 0px;
 }
 
-.modal_content{
-    overflow-x: hidden;
+.modal_content {
     overflow-y: auto;
 }
 
@@ -68,6 +49,12 @@ $transform-time: 0.15s;
     margin-bottom: 4px;
 }
 
+.filling{
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+
 .close_button:hover {
     background-color: red;
     border: none;
@@ -76,6 +63,21 @@ $transform-time: 0.15s;
     transition: background-color $transform-time;
 }
 
-.modal_content{
+.modal_content {
     display: initial;
+}
+
+@media screen and (max-width: 767px) {
+    .modal {
+        align-self: center;
+        left: 0;
+        display: flex;
+        border-radius: none;
+    }
+    body {
+        height: 100%;
+    }
+    .fade {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
 }
