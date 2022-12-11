@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import "../css/Cart.scss"
-
 import {
   add_to_cart, remove_from_cart, remove_one_from_cart, selectCount,
 } from '../features/cart/cart_slice';
@@ -26,7 +25,7 @@ export function Cart() {
     <React.Suspense fallback={<Spinner />}>
       <div className='cart column'>
         {result.data === undefined ? <Spinner /> : 
-          cart.length === 0 || cart === undefined ? <h1>No items</h1> : <Cart_Element data={result.data} />}
+          cart.cart.length === 0 ? <h1 className='column'>No items</h1> : <Cart_Element data={result.data} />}
 
       </div>
     </React.Suspense>
