@@ -6,19 +6,20 @@ import products from './controllers/products';
 import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
+import { loger } from "./middlewares/log_middleware";
 
 
 const app = express()
 
 connect();
-const whitelist = ['http://localhost:3000', 'http://example2.com'];
+const whitelist = ['http://localhost:3000'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
-    if(whitelist.includes(origin))
+    if (whitelist.includes(origin))
       return callback(null, true)
 
-      callback(new Error('Not allowed by CORS'));
+    callback(new Error('Not allowed by CORS'));
   }
 }
 
@@ -33,12 +34,8 @@ app.use("/auth", auth)
 app.use("/download", files)
 
 app.use(error_handler)
-app.use(logErrors);
-function logErrors(err, req, res, next) {
-  console.log(req.body);
-  next(req);
-}
+app.use(loger);
 
 app.listen(4000, () => {
-    console.log(`app is listening to port 4000`)
+  console.log(`app is listening to port 4000`)
 })

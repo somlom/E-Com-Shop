@@ -2,8 +2,6 @@ $base-color: rgb(2, 158, 255);
 $transform-time: 0.15s;
 
 .nav {
-    display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     border: solid 1px black;
     align-items: center;
@@ -13,7 +11,7 @@ $transform-time: 0.15s;
 .nav_column {
     margin: 3px;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     align-items: center;
     width: fit-content;
 }
@@ -42,11 +40,19 @@ input.nav_title {
 }
 .nav_column#pc {
     display: flex;
+    // width: 50vw;
+}
+
+.nav_column#pc input{
     width: 50vw;
 }
+.nav_column#mobile input {
+    width: 90vw;
+}
+
 .nav_column#mobile {
     display: none;
-    width: 90vw;
+    // width: 90vw;
 }
 
 input.nav_title:focus {

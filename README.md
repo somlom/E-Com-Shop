@@ -9,7 +9,7 @@ Test on web: https://deploy-site-test.netlify.app/
 - [ ] CSS/SCSS Docs
 - [ ] API Docs
 - [ ] React docs
-- [ ] Overwrite navbar for mobile mode
+- [x] Overwrite navbar for mobile mode
 - [x] Organize CSS (70% done)
 - [x] Fix CSS for safari
 - [ ] Optimize webpack for more performance
