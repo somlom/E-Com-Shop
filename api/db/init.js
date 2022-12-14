@@ -4,7 +4,6 @@ import process from "process";
 import {API} from "../../config"
 
 export const connect = async () => {
-    // console.log(typeof process.env.api)
     try {
         const conn = await mongoose.connect(process.env.api)
 
