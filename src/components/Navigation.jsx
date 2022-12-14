@@ -25,14 +25,7 @@ export const Navigation = () => {
   const count = useSelector(selectCount);
 
   const body = document.body;
-  console.log(body)
-  if (menu_state === true) {
-    body.style.overflow = "hidden"
-  }
-
-  if (menu_state === false) {
-    body.style.overflow = "auto"
-  }
+  menu_state === true ? body.style.overflow = "hidden" : body.style.overflow = "auto";
 
   return (
     <>
@@ -42,13 +35,13 @@ export const Navigation = () => {
           {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
         </div>
 
-        <div className='nav_column'>
+        <div className='nav_column' onClick={() => handle_menu(false)}>
           <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
         </div>
         <div className='nav_column' id='pc'>
           <input className='nav_title form' type="text" placeholder="Search" />
         </div>
-        <div className='row' style={{ flexWrap: "nowrap" }}>
+        <div className='row' style={{ flexWrap: "nowrap" }} onClick={() => handle_menu(false)}>
           <div className='nav_column' id='pc'>
             <div className='row'>
               <Link className="link column" to="/login">{t("login")}</Link>
@@ -72,7 +65,7 @@ export const Navigation = () => {
         </Modal>
       }
       {menu_state &&
-        <Hamburger handle_modal={handle_menu} state={menu_state} />
+        <Hamburger handle_menu={handle_menu} state={menu_state} />
       }
     </>
   )

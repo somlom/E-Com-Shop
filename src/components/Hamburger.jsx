@@ -1,18 +1,18 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-
+import { Link } from 'react-router-dom';
 
 export const Hamburger = ({ handle_menu, state }) => {
-    
+
 
     const { t } = useTranslation();
     return (
         <div className='fade_it'>
             <div className="column hamburger">
-                <a className="link column" href="/login">{t("login")}</a>
-                <a className="link column" href="/register">{t("register")}</a>
-                <a className="link column" href="/reset">{t("reset")}</a>
-                <a className="link column" href="/products">{t("products")}</a>
+                <Link className="link column" to="/login" onClick={() => handle_menu(false)}>{t("login")} </Link>
+                <Link className="link column" to="/register" onClick={() => handle_menu(false)}>{t("register")}</Link>
+                <Link className="link column" to="/reset" onClick={() => handle_menu(false)}>{t("reset")}</Link>
+                <Link className="link column" to="/products" onClick={() => handle_menu(false)}>{t("products")}</Link>
             </div>
         </div>
         // <ul class="menu">
