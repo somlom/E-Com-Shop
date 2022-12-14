@@ -3,7 +3,7 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
-import { users_schema } from "../db/sch1";
+import { users_schema } from "../db/user_schema";
 import { send_email } from "../mailer";
 
 
@@ -16,7 +16,6 @@ auth.post("/reset", asyncHandler(resetUser))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
-    // send_email("trashcancereal@gmail.com", "TEST SNUS BRE", "<h1>BRE TEST<h1>")
 
     const user = await Users.findOne({ email: email });
 
@@ -57,6 +56,7 @@ async function resetUser(req, res) {
     const { email } = req.body;
     const user = await Users.findOne({ email: email });
     if (user === true) {
+        send_email(user.email, "TEST SNUS BRE", "<h1>sus</h1>")
         return res.json(user)
     }
 }

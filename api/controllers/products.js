@@ -15,15 +15,12 @@ products.post("/add", asyncHandler(add_product))
 
 async function get_cart_items(req, res) {
     const { data } = req.body;
-
+    const in_cart = []
     const value = await Products.find().where('_id').in(data).exec()
 
-    const in_cart = [];
-
     data.map((item, i) => {
-        in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+        in_cart.push({...value[i]._doc, quantity: item.quantity})
     })
-
 
     return res.json(in_cart)
 
@@ -45,17 +42,20 @@ async function get_products(req, res) {
 async function add_product(req, res) {
     const { name, text, price } = req.body;
 
-
     try {
         const products = await Products.create({ text: text, name: name, price: price })
         return res.json(products)
     } catch (error) {
         // throw new Error("Not found.")
         res.status(401)
-        // throw new Error(error);
         throw new Error("Not found.")
     }
-
 }
+
+const get_user_items = async (req, res) => {
+    const { user_token } = req.authorization;
+    return 0
+}
+
 
 export default products;

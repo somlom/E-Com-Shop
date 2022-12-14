@@ -23,7 +23,7 @@ export const Auth = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post("http://localhost:4000/auth/login", input).then(
+            await axios.post(`http://${process.env.PUBLIC_URL}/auth/login`, input).then(
                 function (fulfilled) {
                     return alert(fulfilled.data.email)
                 },
@@ -68,7 +68,7 @@ export const Register = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post("http://localhost:4000/auth/register", input).then(
+            await axios.post(`http://${process.env.PUBLIC_URL}/auth/register`, input).then(
                 function (fulfilled) {
                     return alert(fulfilled.data.email)
                 },

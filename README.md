@@ -14,6 +14,8 @@ Test on web: https://deploy-site-test.netlify.app/
 - [x] Fix CSS for safari
 - [ ] Optimize webpack for more performance
 - [x] Implement local DB
+- [ ] AGB
+- [ ] Paying process
 
 ## Cart
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -21,3 +23,38 @@ Test on web: https://deploy-site-test.netlify.app/
 
 ## DB
 - [x] Implement local DB
+- [ ] Schemas
+- [ ] Photos
+
+## Design
+- [ ] Navbar
+- [ ] Cart
+- [ ] user page
+- [ ] Register page
+- [ ] login page
+- [ ] reset page
+- [ ] Order page
+- [ ] Product page
+- [ ] Footer
+- [ ] Hot deals
+- [ ] Search page
+
+## Product page
+- [ ] Reviews
+- [ ] photos
+- [ ] details
+
+## Order
+- [ ] Order box
+- [ ] Infos
+- [ ] delivery
+- [ ] payment
+
+## user profile
+- [ ] Sending data
+- [ ] Payment methods
+- [ ] Personal data
+- [ ] Merkzettel
+- [ ] Zahlungen
+- [ ] Bestellung
+- [ ] Rechnung
