@@ -24,19 +24,19 @@ export const Navigation = () => {
   const { t } = useTranslation();
   const count = useSelector(selectCount);
 
-      const body = document.body;
-    console.log(body)
-    if(menu_state === true){
-        body.style.overflow = "hidden"
-    }
+  const body = document.body;
+  console.log(body)
+  if (menu_state === true) {
+    body.style.overflow = "hidden"
+  }
 
-    if(menu_state === false) {
-        body.style.overflow = "auto"
-    }
+  if (menu_state === false) {
+    body.style.overflow = "auto"
+  }
 
   return (
     <>
-      <div className='nav'>
+      <div className='nav row'>
 
         <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
           {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
@@ -45,17 +45,21 @@ export const Navigation = () => {
         <div className='nav_column'>
           <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
         </div>
-        <div className='nav_column' id="pc">
+        <div className='nav_column' id='pc'>
           <input className='nav_title form' type="text" placeholder="Search" />
         </div>
-        <div className='nav_column buttons'>
-          <Link className="link column" to="/login">{t("login")}</Link>
-          <Link className="link column" to="/register">{t("register")}</Link>
-          <Link className="link column" to="/reset">{t("reset")}</Link>
-          <Link className="link column" to="/products">{t("products")}</Link>
-        </div>
-        <div className='nav_column'>
-          <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
+        <div className='row' style={{ flexWrap: "nowrap" }}>
+          <div className='nav_column' id='pc'>
+            <div className='row'>
+              <Link className="link column" to="/login">{t("login")}</Link>
+              <Link className="link column" to="/register">{t("register")}</Link>
+              <Link className="link column" to="/reset">{t("reset")}</Link>
+              <Link className="link column" to="/products">{t("products")}</Link>
+            </div>
+          </div>
+          <div className='nav_column'>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
+          </div>
         </div>
         <div className='nav_column' id="mobile">
           <input className='nav_title form' type="text" placeholder='Search' />

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import mongoose from "mongoose";
+import asyncHandler from "express-async-handler";
 
 import { products_schema } from "../db/schemas";
 
@@ -7,10 +8,10 @@ import { products_schema } from "../db/schemas";
 const products = Router();
 const Products = mongoose.model('Products', products_schema);
 
-products.get("/", get_products);
-products.post("/", get_product_by_id)
-products.post("/cart", get_cart_items)
-products.post("/add", add_product)
+products.get("/", asyncHandler(get_products));
+products.post("/", asyncHandler(get_product_by_id))
+products.post("/cart", asyncHandler(get_cart_items))
+products.post("/add", asyncHandler(add_product))
 
 async function get_cart_items(req, res) {
     const { data } = req.body;
@@ -41,7 +42,7 @@ async function get_products(req, res) {
     return res.json(await Products.find())
 }
 
-async function add_product(req, res, next) {
+async function add_product(req, res) {
     const { name, text, price } = req.body;
 
 
@@ -51,7 +52,8 @@ async function add_product(req, res, next) {
     } catch (error) {
         // throw new Error("Not found.")
         res.status(401)
-        next(new Error(error))
+        // throw new Error(error);
+        throw new Error("Not found.")
     }
 
 }

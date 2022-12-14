@@ -6,16 +6,7 @@ $transform-time: 0.2s;
     display: flex;
     margin: 10px;
     border-radius: 10px;
-    // border-radius: 10px;
-    // transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
-    //     margin $transform-time;
-
-    // -webkit-transition: padding-left $transform-time, padding-right $transform-time, box-shadow $transform-time,
-    //     margin $transform-time;
-    // text-align: center;
     width: 40%;
-    // min-width: 225px;
-    // padding: 10px;
     height: 15rem;
     width: 20rem;
     position: relative;
@@ -38,7 +29,7 @@ $transform-time: 0.2s;
     opacity: 70%;
 }
 
-.layer span{
+.layer span {
     color: white;
     height: min-content;
     background-color: #004990;
@@ -49,7 +40,7 @@ $transform-time: 0.2s;
     align-self: flex-end;
 }
 
-.layer .product_footer{
+.layer .product_footer {
     border-radius: 10px;
     height: min-content;
     width: min-content;
@@ -60,13 +51,13 @@ $transform-time: 0.2s;
     justify-content: space-between;
 }
 
-.layer .product_footer h3{
+.layer .product_footer h3 {
     color: white;
     padding: 5px;
     margin: 0;
 }
 
-.layer{
+.layer {
     position: fixed;
     z-index: 1;
     display: flex;
@@ -78,11 +69,35 @@ $transform-time: 0.2s;
 }
 
 .product_on_page {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 100%;
+    // flex-wrap: wrap;
     align-items: stretch;
     padding: 10px;
+}
+
+.buy_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: stretch;
+    align-self: center;
+    background-color: gray;
+    border-radius: 30px;
+    // justify-content: ;
+}
+
+.buy_row * {
+    margin: 5px;
+}
+.buy_row h3 {
+    color: white;
+    margin: 0;
+    padding: 15px;
+}
+
+.product_on_page img {
+    height: 30vw;
+    margin-right: 30px;
 }
 
 @media screen and (max-width: 767px) {
@@ -92,10 +107,15 @@ $transform-time: 0.2s;
     }
 }
 
-div.product_on_page img {
-    // display: flex;
-    align-self: center;
-    width: auto;
+.buy {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    align-self: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .products {

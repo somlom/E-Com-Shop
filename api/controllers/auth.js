@@ -16,7 +16,7 @@ auth.post("/reset", asyncHandler(resetUser))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
-    send_email("trashcancereal@gmail.com", "TEST SNUS BRE", "<h1>BRE TEST<h1>")
+    // send_email("trashcancereal@gmail.com", "TEST SNUS BRE", "<h1>BRE TEST<h1>")
 
     const user = await Users.findOne({ email: email });
 

@@ -74,8 +74,16 @@ a.link:active {
 .open_menu {
     display: none;
 }
+
+.close_menu {
+    display: flex;
+}
+
 @media screen and (max-width: 767px) {
     .open_menu {
         display: flex;
+    }
+    .close_menu{
+        display: none;
     }
 }
