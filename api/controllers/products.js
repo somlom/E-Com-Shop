@@ -3,25 +3,27 @@ import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
 import { products_schema } from "../db/schemas";
+import { upload_photo } from "../functions/photo";
 
 
 const products = Router();
 const Products = mongoose.model('Products', products_schema);
 
 products.get("/", asyncHandler(get_products));
-products.post("/", asyncHandler(get_product_by_id))
+products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
-products.post("/add", asyncHandler(add_product))
+products.post("/add", upload_photo, asyncHandler(add_product))
 
 async function get_cart_items(req, res) {
     const { data } = req.body;
     const in_cart = []
     const value = await Products.find().where('_id').in(data).exec()
 
-    data.map((item, i) => {
-        in_cart.push({...value[i]._doc, quantity: item.quantity})
-    })
-
+    if (value.length >= 1) {
+        data.map((item, i) => {
+            in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+        })
+    }
     return res.json(in_cart)
 
 }
@@ -30,7 +32,7 @@ async function get_product_by_id(req, res) {
 
     // req.headers.host  <-- get header host
 
-    const { id } = req.body;
+    const { id } = req.params;
 
     return res.json(await Products.findById(id))
 }
@@ -41,11 +43,15 @@ async function get_products(req, res) {
 
 async function add_product(req, res) {
     const { name, text, price } = req.body;
+    const image = req.file.filename;
 
     try {
-        const products = await Products.create({ text: text, name: name, price: price })
+        const products = await Products.create({ text: text, name: name, price: price, photos: [image] })
+        // products.image = image;
+        // res.sendFile()
         return res.json(products)
     } catch (error) {
+        console.log(error)
         // throw new Error("Not found.")
         res.status(401)
         throw new Error("Not found.")

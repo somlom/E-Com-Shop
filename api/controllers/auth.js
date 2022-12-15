@@ -24,7 +24,7 @@ async function loginUser(req, res) {
         const hash = await bcrypt.compare(password, user.password);
 
         if (hash === true) {
-            return res.json({name: user.name, token: get_token(user.email)});
+            return res.json({ name: user.name, token: get_token(user.email) });
         }
         res.status(401)
         throw Error("Invalid credentials")

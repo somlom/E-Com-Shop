@@ -119,6 +119,10 @@ $transform-time: 0.2s;
     justify-content: space-between;
 }
 
+.buy p {
+    width: fit-content;
+}
+
 .products {
     justify-content: center;
     flex-wrap: wrap;
@@ -137,6 +141,8 @@ $transform-time: 0.2s;
     color: white;
     cursor: pointer;
     transition: opacity $transform-time;
+    text-decoration: none;
+    width: 20vw;
 }
 
 .add_to_cart_button:hover {
