@@ -3,8 +3,9 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
-import { users_schema } from "../db/user_schema";
+import { users_schema } from "../db/schemas";
 import { send_email } from "../mailer";
+import { get_token, verify_token } from "../functions/JWT";
 
 
 const auth = Router();
@@ -23,7 +24,7 @@ async function loginUser(req, res) {
         const hash = await bcrypt.compare(password, user.password);
 
         if (hash === true) {
-            return res.json(user);
+            return res.json({name: user.name, token: get_token(user.email)});
         }
         res.status(401)
         throw Error("Invalid credentials")
@@ -49,14 +50,14 @@ async function registerUser(req, res) {
         throw Error("Invalid credentials")
     }
     const new_user = await Users.create({ email: email, password: hash });
-    return res.json(new_user);
+    return res.json(get_token(new_user.email));
 }
 
 async function resetUser(req, res) {
     const { email } = req.body;
     const user = await Users.findOne({ email: email });
     if (user === true) {
-        send_email(user.email, "TEST SNUS BRE", "<h1>sus</h1>")
+        send_email(user.email, "Password reset", "<h1>sus</h1>")
         return res.json(user)
     }
 }
