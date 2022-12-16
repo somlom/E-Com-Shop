@@ -11,7 +11,7 @@ $transform-time: 0.15s;
     bottom: 0;
     justify-content: center;
     align-items: center;
-    background-color: $base-color;
+    // background-color: $base-color;
     color: white;
 }
 
@@ -34,8 +34,9 @@ img.product_column {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: auto;
-    max-width: 100px;
+    width: 400px;
+    min-width: 100px;
+    // max-width: 100;
 }
 
 .remove_item_button {
@@ -59,14 +60,13 @@ img.product_column {
 }
 
 .counter {
-    display: flex;
-    flex-direction: row;
+    // display: flex;
+    // flex-direction: row;
     padding: 5px;
     margin: 5px;
-    border: solid 1px black;
-    justify-content: center;
+    // border: solid 1px black;
     width: min-content;
-    justify-content: center;
+    // justify-content: center;
 }
 
 .counter button {
@@ -87,4 +87,36 @@ img.product_column {
 
 .counter button:active {
     opacity: 0.7;
+}
+
+.cart_footer * {
+    padding: 5px;
+}
+
+.cart_footer button{
+    width: 100%;
+    background-color: $base-color;
+    border: none;
+    color: white;
+    font-size: medium;
+    font-weight:500;
+    border-radius: 10px;
+    padding: 5px;
+}
+.cart_footer button a{
+    width: 100%;
+    background-color: $base-color;
+    border: none;
+    color: white;
+    font-size: medium;
+    font-weight:500;
+    border-radius: 10px;
+    padding: 5px;
+        text-decoration: none;
+}
+
+.cart_footer a{
+    align-self: flex-start;
+    text-decoration: none;
+    color: black;
 }

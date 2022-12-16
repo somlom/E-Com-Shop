@@ -20,8 +20,8 @@ async function get_cart_items(req, res) {
     const value = await Products.find().where('_id').in(data).exec()
 
     if (value.length >= 1) {
-        data.map((item, i) => {
-            in_cart.push({ ...value[i]._doc, quantity: item.quantity })
+        data.map(item => {
+            in_cart.push({ ...value.find(x => x._id.toString() === item._id)._doc, quantity: item.quantity })
         })
     }
     return res.json(in_cart)

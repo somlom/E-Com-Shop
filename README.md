@@ -24,7 +24,7 @@ Test on web: https://deploy-site-test.netlify.app/
 ## DB
 - [x] Implement local DB
 - [ ] Schemas
-- [ ] Photos
+- [x] Photos
 
 ## Design
 - [ ] Navbar
@@ -41,7 +41,7 @@ Test on web: https://deploy-site-test.netlify.app/
 
 ## Product page
 - [ ] Reviews
-- [ ] photos
+- [x] photos
 - [ ] details
 
 ## Order

@@ -1,6 +1,6 @@
 $base-color: rgb(2, 158, 255);
 
-.column{
+.column {
     display: flex;
     flex-direction: column;
 }
@@ -9,14 +9,16 @@ $base-color: rgb(2, 158, 255);
     height: 100vh;
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
 }
-.prepair_spinner{
+.prepair_spinner {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 .spinner {
     width: 120px;
@@ -38,9 +40,12 @@ $base-color: rgb(2, 158, 255);
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     flex: 1;
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 a.link {
@@ -83,7 +88,7 @@ a.link:active {
     .open_menu {
         display: flex;
     }
-    .close_menu{
+    .close_menu {
         display: none;
     }
 }

@@ -70,6 +70,8 @@ $transform-time: 0.2s;
 
 .product_on_page {
     // flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
     align-items: stretch;
     padding: 10px;
 }
@@ -98,11 +100,12 @@ $transform-time: 0.2s;
 
 .product_on_page img {
     height: 30vw;
-    margin-right: 30px;
 }
 
 @media screen and (max-width: 767px) {
     .product_on_page {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
@@ -143,8 +146,16 @@ $transform-time: 0.2s;
     transition: opacity $transform-time;
     text-decoration: none;
     width: 20vw;
+    font: large;
 }
 
 .add_to_cart_button:hover {
     opacity: 0.8;
+}
+
+.product_title {
+    align-items: center;
+}
+.product_title svg {
+    margin-right: 15px;
 }
