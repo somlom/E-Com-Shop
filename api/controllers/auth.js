@@ -14,6 +14,7 @@ const Users = mongoose.model('Users', users_schema);
 auth.post("/login", asyncHandler(loginUser))
 auth.post("/register", asyncHandler(registerUser))
 auth.post("/reset", asyncHandler(resetUser))
+auth.post("/check_token", asyncHandler(check_token))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
@@ -60,6 +61,11 @@ async function resetUser(req, res) {
         send_email(user.email, "Password reset", "<h1>sus</h1>")
         return res.json(user)
     }
+}
+
+async function check_token(req, res) {
+    const { token } = req.body;
+    return res.json({ response: await verify_token(token) })
 }
 
 

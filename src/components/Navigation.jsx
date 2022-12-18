@@ -4,7 +4,9 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BsSearch } from 'react-icons/bs';
+import { BsBag, BsSearch } from 'react-icons/bs';
+import { FaUser, FaUserAlt } from 'react-icons/fa';
+import { AiOutlineHeart, AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -41,17 +43,37 @@ export const Navigation = () => {
         <div className='nav_column' id='pc'>
           <input className='nav_title form' type="text" placeholder="Search" />
         </div>
-        <div className='row' style={{ flexWrap: "nowrap" }} onClick={() => handle_menu(false)}>
-          <div className='nav_column' id='pc'>
+        <div className='row'>
+          <div className='nav_column' id='pc' onClick={() => handle_menu(false)}>
             <div className='row'>
-              <Link className="link column" to="/login">{t("login")}</Link>
-              <Link className="link column" to="/register">{t("register")}</Link>
-              <Link className="link column" to="/reset">{t("reset")}</Link>
-              <Link className="link column" to="/products">{t("products")}</Link>
+              <Link className="link column" to="/hot">
+                <div className='with_icon'>
+                  <AiOutlineFire size={20} />
+                  <span>Hot deals</span>
+                </div>
+              </Link>
+              <Link className="link column" to="/register">
+                <div className='with_icon'>
+                  <AiOutlineHeart size={20} />
+                  <span>Whishlist</span>
+                </div>
+              </Link>
+              <Link className="link column" to="/account">
+                <div className='with_icon'>
+                  <AiOutlineUser size={20} />
+                  <span>Account</span>
+                </div>
+              </Link>
+              <Link className="link column" to="/order">
+                <div className='with_icon'>
+                  <BsBag size={20} />
+                  <span>Order</span>
+                </div>
+              </Link>
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart /><span>{count.cart.length}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={15}/><span>{count.cart.length}</span></button>
           </div>
         </div>
         <div className='nav_column' id="mobile">
@@ -68,20 +90,5 @@ export const Navigation = () => {
         <Hamburger handle_menu={handle_menu} state={menu_state} />
       }
     </>
-  )
-}
-
-export const Menu = () => {
-
-  const { t } = useTranslation();
-
-  return (
-
-    <div className='nav_column'>
-      <a className="link column" href="/login">{t("login")}</a>
-      <a className="link column" href="/register">{t("register")}</a>
-      <a className="link column" href="/reset">{t("reset")}</a>
-      <a className="link column" href="/products">{t("products")}</a>
-    </div>
   )
 }

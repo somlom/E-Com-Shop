@@ -1,0 +1,42 @@
+.order_items .order_image {
+    width: 30vw;
+    max-width: 110px;
+    // padding-right: 16px;
+}
+
+.order_items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_column{
+    width: 100%;
+}
+
+.order_count {
+    height: 50vh;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 8px;
+}
+.order_item {
+    display: flex;
+    align-items: center;
+    height: min-content;
+    margin: 10px;
+    padding: 10px;
+    border: solid 1px black;
+    border-radius: 8px;
+}
+
+.order_item * {
+    margin: 10px;
+}
+
+.order_list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

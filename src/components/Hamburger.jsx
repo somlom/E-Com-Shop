@@ -1,6 +1,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { BsBag } from 'react-icons/bs';
+import { AiOutlineHeart, AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
+
 
 export const Hamburger = ({ handle_menu, state }) => {
 
@@ -9,10 +12,31 @@ export const Hamburger = ({ handle_menu, state }) => {
     return (
         <div className='fade_it'>
             <div className="column hamburger">
-                <Link className="link column" to="/login" onClick={() => handle_menu(false)}>{t("login")} </Link>
-                <Link className="link column" to="/register" onClick={() => handle_menu(false)}>{t("register")}</Link>
-                <Link className="link column" to="/reset" onClick={() => handle_menu(false)}>{t("reset")}</Link>
-                <Link className="link column" to="/products" onClick={() => handle_menu(false)}>{t("products")}</Link>
+                {/* <Link className="link column" to="/login" onClick={() => handle_menu(false)}>{t("login")} </Link> */}
+                <Link className="link column" to="/hot" onClick={() => handle_menu(false)}>
+                    <div className='row'>
+                        <AiOutlineFire size={25} />
+                        <span>Hot deals</span>
+                    </div>
+                </Link>
+                <Link className="link column" to="/register" onClick={() => handle_menu(false)}>
+                    <div className='row'>
+                        <AiOutlineHeart size={25} />
+                        <span>Whishlist</span>
+                    </div>
+                </Link>
+                <Link className="link column" to="/account" onClick={() => handle_menu(false)}>
+                    <div className='row'>
+                        <AiOutlineUser size={25} />
+                        <span>Account</span>
+                    </div>
+                </Link>
+                <Link className="link column" to="/order" onClick={() => handle_menu(false)}>
+                    <div className='row'>
+                        <BsBag size={25} />
+                        <span>Order</span>
+                    </div>
+                </Link>
             </div>
         </div>
         // <ul class="menu">

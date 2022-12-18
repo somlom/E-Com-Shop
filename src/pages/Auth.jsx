@@ -2,16 +2,18 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Form } from '../components/Form';
 import "../css/Form.scss"
 
 
-export const Auth = () => {
+export const Auth = ({next}) => {
 
+    const navigate = useNavigate()
     const [input, setInput] = React.useState({});
     const { t, i18n } = useTranslation();
-
+    console.log(useParams())
     const add_to_state = (event) => {
         setInput((prevState) => ({
             ...prevState,
@@ -23,9 +25,17 @@ export const Auth = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
+
             await axios.post(`http://${process.env.PUBLIC_URL}/auth/login`, input).then(
+
                 function (fulfilled) {
-                    return alert(fulfilled.data.email)
+
+                    localStorage.setItem("user", fulfilled.data.token)
+                    alert(fulfilled.data)
+                    console.log(next)
+
+                    // return next === undefined || next?.length === 0 ? navigate("/") : navigate(next, { replace: true })
+                    return navigate(next)
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -70,7 +80,8 @@ export const Register = () => {
         if (Object.keys(input).length >= 1) {
             await axios.post(`http://${process.env.PUBLIC_URL}/auth/register`, input).then(
                 function (fulfilled) {
-                    return alert(fulfilled.data.email)
+                    localStorage.setItem("user", fulfilled.data)
+                    return alert(fulfilled.data)
                 },
                 function (error) {
                     return alert(error.response.data.message)

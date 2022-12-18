@@ -7,9 +7,17 @@ import { users_schema } from "../db/schemas";
 const Users = mongoose.model('Users', users_schema);
 
 export const verify_token = async (token) => {
-    const decoded = jwt.verify(token, "secret")
-    const user = await Users.findOne(decoded)
-    return decoded === user.email ? true : false
+    if (token) {
+        const decoded = jwt.verify(token, "secret")
+        const user = await Users.findOne({ email: decoded.email })
+        if (decoded.email === user.email) {
+            return true
+        } else {
+            return false
+        }
+    } else {
+        return false
+    }
 }
 
 export const get_token = (email) => {

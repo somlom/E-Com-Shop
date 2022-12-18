@@ -92,3 +92,12 @@ a.link:active {
         display: none;
     }
 }
+
+.with_icon{
+    display: flex;
+    flex-direction: column;
+}
+
+.with_icon * {
+    padding: 0;
+}

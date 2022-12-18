@@ -6,9 +6,14 @@ $transform-time: 0.15s;
 }
 
 .cart_footer {
-    position: sticky;
-    left: 0;
-    bottom: 0;
+    // position: sticky;
+    // left: 0;
+    // bottom: 0;
+    margin-top: 8px;
+    padding-top: 8px;
+    // margin-bottom: 8px;
+    border: none;
+    border-top: solid 1px black;
     justify-content: center;
     align-items: center;
     // background-color: $base-color;
@@ -19,14 +24,14 @@ $transform-time: 0.15s;
     display: flex;
     width: 100%;
     align-items: flex-start;
+    width: fit-content;
 }
 
 .product_row {
     display: flex;
     flex-direction: row;
-    width: 100%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
 }
 
@@ -34,9 +39,10 @@ img.product_column {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 400px;
-    min-width: 100px;
-    // max-width: 100;
+    width: 30vw;
+    // min-width: 100px;
+    max-width: 100px;
+    padding-right: 16px;
 }
 
 .remove_item_button {
@@ -62,11 +68,15 @@ img.product_column {
 .counter {
     // display: flex;
     // flex-direction: row;
-    padding: 5px;
-    margin: 5px;
+    // padding: 5px;
+    // margin: 5px;
     // border: solid 1px black;
     width: min-content;
     // justify-content: center;
+}
+
+.product_column.column * {
+    margin: 1px;
 }
 
 .counter button {
@@ -93,29 +103,29 @@ img.product_column {
     padding: 5px;
 }
 
-.cart_footer button{
+.cart_footer button {
     width: 100%;
     background-color: $base-color;
     border: none;
     color: white;
-    font-size: medium;
-    font-weight:500;
+    // font-size: medium;s
+    font-weight: 500;
     border-radius: 10px;
     padding: 5px;
 }
-.cart_footer button a{
-    width: 100%;
-    background-color: $base-color;
-    border: none;
+.cart_footer button a {
+    // width: 100%;
+    // background-color: $base-color;
+    // border: none;
     color: white;
     font-size: medium;
-    font-weight:500;
+    font-weight: 500;
     border-radius: 10px;
     padding: 5px;
-        text-decoration: none;
+    text-decoration: none;
 }
 
-.cart_footer a{
+.cart_footer a {
     align-self: flex-start;
     text-decoration: none;
     color: black;

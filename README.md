@@ -23,12 +23,12 @@ Test on web: https://deploy-site-test.netlify.app/
 
 ## DB
 - [x] Implement local DB
-- [ ] Schemas
+- [x] Schemas
 - [x] Photos
 
 ## Design
-- [ ] Navbar
-- [ ] Cart
+- [x] Navbar
+- [x] Cart
 - [ ] user page
 - [ ] Register page
 - [ ] login page
@@ -45,7 +45,7 @@ Test on web: https://deploy-site-test.netlify.app/
 - [ ] details
 
 ## Order
-- [ ] Order box
+- [x] Order box
 - [ ] Infos
 - [ ] delivery
 - [ ] payment
