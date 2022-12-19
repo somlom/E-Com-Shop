@@ -1,9 +1,5 @@
 import React from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { redirect } from "react-router-dom";
-import { UseAuth } from './App'
-
-
 
 
 export const Account = () => {
