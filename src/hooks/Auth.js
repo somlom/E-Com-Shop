@@ -1,5 +1,5 @@
 import React from "react"
-import { useLocation } from "react-router-dom";
+import { Navigate, redirect, useLocation } from "react-router-dom";
 
 import { usePostData } from "./Data"
 import { Auth } from "../pages/Auth";
@@ -19,8 +19,9 @@ export const ProtectedRoute = ({ children }) => {
     } else if (result.value.response === false) {
 
         const location = useLocation()
+        console.log(location.pathname)
 
-        return <Auth next={location.pathname} />
+        return <Navigate to={"/login"} />
 
     } else {
 

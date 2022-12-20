@@ -8,7 +8,10 @@ import { Form } from '../components/Form';
 import "../css/Form.scss"
 
 
-export const Auth = ({next}) => {
+export const Auth = (props) => {
+
+    console.log(props)
+    const next = props.next;
 
     const navigate = useNavigate()
     const [input, setInput] = React.useState({});
@@ -35,7 +38,7 @@ export const Auth = ({next}) => {
                     console.log(next)
 
                     // return next === undefined || next?.length === 0 ? navigate("/") : navigate(next, { replace: true })
-                    return navigate(next)
+                    return navigate(-2, {replace: true})
                 },
                 function (error) {
                     return alert(error.response.data.message)

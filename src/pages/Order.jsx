@@ -1,10 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-import { Delivery } from '../components/Delivery'
-import { Order_Info } from '../components/Order_Info'
-import { Order_Items } from '../components/Order_Items'
-import { Payment } from '../components/Payment'
+import { Order_Items } from '../components/Order_Components'
 import { Spinner } from '../components/Spinner'
 import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
 import { selectCount } from '../features/cart/cart_slice';
@@ -23,12 +20,14 @@ export const Order = () => {
 
     }, [cart])
     console.log(data)
+
+    if (data.isError === true) {
+        return <h1>Sorry, try later </h1>
+    }
+
     return (
         <React.Suspense fallback={<Spinner />}>
             <Order_Items data={data} />
-            {/* <Order_Info />
-            <Delivery />
-            <Payment /> */}
         </React.Suspense>
     )
 }

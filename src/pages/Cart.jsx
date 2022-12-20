@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import "../css/Cart.scss"
 import {
@@ -7,7 +8,7 @@ import {
 } from '../features/cart/cart_slice';
 import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
 import { Spinner } from '../components/Spinner';
-import { Link } from 'react-router-dom';
+import { usePostData } from '../hooks/Data';
 
 
 export function Cart() {
@@ -36,6 +37,8 @@ export function Cart() {
 
 const Cart_Element = ({ data }) => {
 
+  const result = usePostData("http://localhost:4000/auth/check_token", { token: localStorage.getItem("user") });
+
   return (
     <>
       {data.map(data_val => (
@@ -46,13 +49,7 @@ const Cart_Element = ({ data }) => {
 
             <div className='product_column column'>
               <h3>{data_val.name}</h3>
-              {/* <button className='remove_item_button' onClick={() => dispatch(remove_from_cart(data_val._id))}>Remove item</button> */}
-              {/* <p>{data_val.price}</p> */}
-              {/* <div className='counter'> */}
-              {/* <button className='decrease_amount_button' onClick={() => dispatch(remove_one_from_cart(data_val._id))}>-</button> */}
               {data_val.quantity === 1 ? "" : <span>x{data_val.quantity}</span>}
-              {/* <button className='increase_amount_button' onClick={() => dispatch(add_to_cart(data_val._id))}>+</button> */}
-
             </div>
           </div>
 
@@ -62,8 +59,10 @@ const Cart_Element = ({ data }) => {
         </div>
       ))}
       <div className='cart_footer column'>
-        <button><Link to="/order/pay">Check Out</Link></button>
-        <Link to="/login">Login</Link>
+        <button><Link to="/order">Check Out</Link></button>
+
+        {result.value.response === true ? <Link to="/account">Account</Link> : <Link to="/login">Login</Link> }
+        
       </div> </>
   )
 }

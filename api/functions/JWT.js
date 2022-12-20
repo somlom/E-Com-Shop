@@ -8,20 +8,28 @@ const Users = mongoose.model('Users', users_schema);
 
 export const verify_token = async (token) => {
     if (token) {
-        const decoded = jwt.verify(token, "secret")
-        const user = await Users.findOne({ email: decoded.email })
-        if (decoded.email === user.email) {
-            return true
-        } else {
+        try {
+            const decoded = jwt.verify(token, "secret")
+            console.log(decoded._id)
+            const user = await Users.findById(decoded._id)
+            console.log(user)
+            if (user) {
+                return true
+            } else {
+                return false
+            }
+        } catch (error) {
             return false
         }
+
     } else {
         return false
     }
+
 }
 
-export const get_token = (email) => {
-    const coded = jwt.sign({ email: email }, "secret", { expiresIn: '1h' })
+export const get_token = (_id) => {
+    const coded = jwt.sign({ _id }, "secret", { expiresIn: '1h' })
     console.log(coded)
     return coded
 }

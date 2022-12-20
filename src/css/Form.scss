@@ -17,17 +17,20 @@ $transform-time: 0.15s;
     margin: 10px;
 }
 
-.form p{
-    width: 60vw;
-    padding: 24px 40px;
+.form p, .form input {
+    width: 80vw;
+    max-width: 900px;
     margin: 1vw 0;
+}
+
+.form p{
+    padding: 24px 40px;
     text-align: center;
 }
 
 .form input {
-    width: 60vw;
+
     padding: 12px 20px;
-    margin: 1vw 0;
     box-sizing: border-box;
     border: none;
     border-bottom: 3px solid #ccc;

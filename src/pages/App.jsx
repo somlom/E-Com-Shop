@@ -15,9 +15,10 @@ import { Product } from '../components/Product';
 import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
+import { Address } from '../components/Order_Components';
 // import { useAuth } from "../hooks/Auth"
 
-export const UseAuth = React.createContext();
+// export const UseAuth = React.createContext();
 
 export default function App() {
   // useAuth
@@ -39,9 +40,9 @@ export default function App() {
         {/* <Route path='/account' element={<Account />} /> */}
         <Route path="/order" element={<Order />} />
 
-        <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute>}>
-          
-        </Route>
+        <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute>} />
+
+        <Route path="/address" element={<Address />} />
 
         {/* </Route> */}
 
