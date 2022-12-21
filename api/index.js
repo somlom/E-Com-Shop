@@ -7,6 +7,7 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import { loger } from "./middlewares/log_middleware";
+import payment from "./controllers/payment";
 
 
 const app = express()
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use("/products", products)
 app.use("/auth", auth)
+app.use("/payment", payment)
 app.use("/download", files)
 
 app.use(error_handler)

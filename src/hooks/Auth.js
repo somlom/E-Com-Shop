@@ -1,5 +1,5 @@
 import React from "react"
-import { Navigate, redirect, useLocation } from "react-router-dom";
+import { Navigate, Outlet, redirect, useLocation } from "react-router-dom";
 
 import { usePostData } from "./Data"
 import { Auth } from "../pages/Auth";
@@ -14,7 +14,7 @@ export const ProtectedRoute = ({ children }) => {
 
     if (result.value.response === true) {
 
-        return children;
+        return <Outlet/>;
 
     } else if (result.value.response === false) {
 

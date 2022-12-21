@@ -25,7 +25,7 @@ async function loginUser(req, res) {
         const hash = await bcrypt.compare(password, user.password);
 
         if (hash === true) {
-            return res.json({ name: user.name, token: get_token(user._id) });
+            return res.json({ token: get_token(user._id) });
         }
         res.status(401)
         throw Error("Invalid credentials")
@@ -35,7 +35,7 @@ async function loginUser(req, res) {
 }
 
 async function registerUser(req, res) {
-    const { email, password, password2 } = req.body;
+    const { name, surname, email, password, password2 } = req.body;
 
     const user = await Users.findOne({ email: email })
 
@@ -50,7 +50,7 @@ async function registerUser(req, res) {
         res.status(401)
         throw Error("Invalid credentials")
     }
-    const new_user = await Users.create({ email: email, password: hash });
+    const new_user = await Users.create({ email: email, password: hash, name: name, surname: surname });
     return res.json(get_token(new_user._id));
 }
 
@@ -65,15 +65,17 @@ async function resetUser(req, res) {
 
 function check_token(req, res) {
     const { token } = req.body;
-    console.log(verify_token(token))
+    // console.log(verify_token(token))
     return verify_token(token)
         .then(
-            (fulfilled) => { 
-                console.log("f"+fulfilled)
-                return res.json({ response: fulfilled }) },
-            (rejected) => { 
-                console.log("r"+rejected)
-                return res.status(401).json({ response: rejected }) },
+            (fulfilled) => {
+                console.log("f" + fulfilled)
+                return res.json({ response: fulfilled })
+            },
+            (rejected) => {
+                console.log("r" + rejected)
+                return res.status(401).json({ response: rejected })
+            },
         )
 }
 

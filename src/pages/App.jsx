@@ -40,10 +40,10 @@ export default function App() {
         {/* <Route path='/account' element={<Account />} /> */}
         <Route path="/order" element={<Order />} />
 
-        <Route path='/account' element={<ProtectedRoute><Account /></ProtectedRoute>} />
-
-        <Route path="/address" element={<Address />} />
-
+        <Route element={<ProtectedRoute />} >
+          <Route path="/account" element={<Account />} />
+          <Route path="/address" element={<Address />} />
+        </Route>
         {/* </Route> */}
 
         <Route path='/faq' element={<FAQ />} />

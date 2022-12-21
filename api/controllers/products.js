@@ -14,14 +14,15 @@ products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photo, asyncHandler(add_product))
 
-async function get_cart_items(req, res) {
+export async function get_cart_items(req, res) {
     const { data } = req.body;
     const in_cart = []
     const value = await Products.find().where('_id').in(data).exec()
 
     if (value.length >= 1) {
         data.map(item => {
-            in_cart.push({ ...value.find(x => x._id.toString() === item._id)._doc, quantity: item.quantity })
+            in_cart.push({ ...value.find(x => x._id.toString() === item._id)._doc, quantity: parseInt(item.quantity) })
+            console.log(in_cart)
         })
     }
     return res.json(in_cart)

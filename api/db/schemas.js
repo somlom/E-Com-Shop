@@ -38,9 +38,13 @@ export const users_schema = new Schema({
         type: String,
         required: [true, "Please add your NAME"],
     },
+    surname: {
+        type: String,
+        required: [true, "Please add your SURNAME"],
+    },
     address: {
         type: String,
-        required: [true, "Please add your ADDRESS"],
+        // required: [true, "Please add your ADDRESS"],
     },
     products: {
         type: [orders_schema],
@@ -71,3 +75,19 @@ export const orders_schema = new Schema({
 }, {
     timestamps: true
 });
+
+export const payment_schema = new Schema({
+    user_id: {
+        type: String,
+        required: [true, "Please add your USER_ID"],
+        index: true
+    },
+    address: {
+        type: Object,
+    },
+    products: {
+        type: Array,
+        // ref: 'Products',
+        unique: false
+    },
+})

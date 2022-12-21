@@ -17,9 +17,13 @@ $transform-time: 0.15s;
     margin: 10px;
 }
 
-.form p, .form input {
-    width: 80vw;
+.form.column{
+    width: 80%;
     max-width: 900px;
+}
+
+.form p, .form input {
+    width: 100%;
     margin: 1vw 0;
 }
 
@@ -32,8 +36,9 @@ $transform-time: 0.15s;
 
     padding: 12px 20px;
     box-sizing: border-box;
-    border: none;
-    border-bottom: 3px solid #ccc;
+    // border: none;
+    border-radius: 20px;
+    border: 1px solid #ccc;
     -webkit-transition: 0.3s;
     transition: 0.3s;
     outline: none;
@@ -41,7 +46,7 @@ $transform-time: 0.15s;
 }
 
 .form input:focus {
-    border-bottom: 3px solid  $base-color;
+    border: 1px solid  $base-color;
 }
 
 .cart_button.opacity.submit {

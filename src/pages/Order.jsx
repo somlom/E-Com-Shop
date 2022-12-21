@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-import { Order_Items } from '../components/Order_Components'
+import { Address, Order_Items } from '../components/Order_Components'
 import { Spinner } from '../components/Spinner'
 import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
 import { selectCount } from '../features/cart/cart_slice';
@@ -28,6 +28,7 @@ export const Order = () => {
     return (
         <React.Suspense fallback={<Spinner />}>
             <Order_Items data={data} />
+            {/* <Address data={data} /> */}
         </React.Suspense>
     )
 }

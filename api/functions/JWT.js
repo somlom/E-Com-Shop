@@ -10,9 +10,7 @@ export const verify_token = async (token) => {
     if (token) {
         try {
             const decoded = jwt.verify(token, "secret")
-            console.log(decoded._id)
             const user = await Users.findById(decoded._id)
-            console.log(user)
             if (user) {
                 return true
             } else {

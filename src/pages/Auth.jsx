@@ -83,8 +83,8 @@ export const Register = () => {
         if (Object.keys(input).length >= 1) {
             await axios.post(`http://${process.env.PUBLIC_URL}/auth/register`, input).then(
                 function (fulfilled) {
-                    localStorage.setItem("user", fulfilled.data)
-                    return alert(fulfilled.data)
+                    localStorage.setItem("user", fulfilled.data.token)
+                    return alert(fulfilled.data.token)
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -97,6 +97,8 @@ export const Register = () => {
 
     return (
         <Form title={t("register")} onChange={add_to_state} onSubmit={(e) => send_to_backend(e)}>
+            <input type="text" placeholder="Name" id='name' onChange={add_to_state} />
+            <input type="text" placeholder="Surname" id='surname' onChange={add_to_state} />
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />
@@ -104,9 +106,9 @@ export const Register = () => {
                 <button className="cart_button opacity" type='submit'>
                     <FaUserPlus /><span>{t("register")}</span>
                 </button>
-                <button className="no_acc_button " type='button'>
+                {/* <button className="no_acc_button " type='button'>
                     <FaUserPlus /><span>Already have an account? Login</span>
-                </button>
+                </button> */}
             </div>
         </Form>
     )
