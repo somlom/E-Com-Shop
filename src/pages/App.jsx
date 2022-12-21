@@ -16,6 +16,7 @@ import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { Address } from '../components/Order_Components';
+import { MyOrders } from './MyOrders';
 // import { useAuth } from "../hooks/Auth"
 
 // export const UseAuth = React.createContext();
@@ -26,12 +27,12 @@ export default function App() {
     <Layout>
       <Routes>
 
-        <Route path="/" element={<Main />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<Product />} />
+        <Route index element={<Main />} />
+        <Route path="login" element={<Auth />} />
+        <Route path="register" element={<Register />} />
+        <Route path="reset" element={<Reset />} />
+        <Route path="products" element={<Products />} />
+        <Route path="products/:id" element={<Product />} />
         {/* <Route path="/account" element={<ProtectedLayout />}>
           <Route path='' element={
             <Account />
@@ -41,15 +42,18 @@ export default function App() {
         <Route path="/order" element={<Order />} />
 
         <Route element={<ProtectedRoute />} >
-          <Route path="/account" element={<Account />} />
-          <Route path="/address" element={<Address />} />
+          <Route path="account" element={<Account />}>
+            <Route path="orders" element={<MyOrders />} />
+          </Route>
+          <Route path="orders" element={<MyOrders />} />
+          <Route path="address" element={<Address />} />
         </Route>
         {/* </Route> */}
 
-        <Route path='/faq' element={<FAQ />} />
-        <Route path='/impressum' element={<Impressum />} />
-        <Route path='/customer_rights' element={<Customer_Rights />} />
-        <Route path='/support' element={<Support />} />
+        <Route path='faq' element={<FAQ />} />
+        <Route path='impressum' element={<Impressum />} />
+        <Route path='customer_rights' element={<Customer_Rights />} />
+        <Route path='support' element={<Support />} />
 
         <Route path="/*" element={<PageNotFound />} />
 

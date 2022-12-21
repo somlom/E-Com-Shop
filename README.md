@@ -46,7 +46,7 @@ Test on web: https://deploy-site-test.netlify.app/
 
 ## Order
 - [x] Order box
-- [ ] Infos
+- [x] Infos
 - [ ] delivery
 - [ ] payment
 

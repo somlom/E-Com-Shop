@@ -1,34 +1,32 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { Link } from 'react-router-dom'
+import { Form } from './Form'
 
 import { Spinner } from './Spinner'
 import "../css/Order.scss"
 import { set_to_cart } from '../features/cart/cart_slice'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Form } from './Form'
-import {
-    add_to_cart, remove_from_cart, remove_one_from_cart, selectCount,
-} from '../features/cart/cart_slice';
+import { remove_from_cart, selectCount } from '../features/cart/cart_slice';
 import { usePostData } from '../hooks/Data';
-import axios from 'axios';
 
 
 export const Order_Items = ({ data }) => {
 
     const dispatch = useDispatch();
 
-    if (data.isSuccess) {
+    if (data.isSuccess || data.length > 0) {
         return (
             <React.Suspense fallback={<Spinner />}>
                 <h1>Order</h1>
                 <div className='order_items row'>
                     <div className='order_column column'>
-                        <Data data={data.data} dispatch={dispatch} />
+                        <Data data={data.data || data} dispatch={dispatch} />
                     </div>
                     <div className='order_count'>
-                        <OrderCount data={data.data} />
+                        <OrderCount data={data.data || data} />
                     </div>
                 </div>
             </React.Suspense>
@@ -80,6 +78,8 @@ const OrderCount = ({ data }) => {
 }
 
 const Data = ({ data, dispatch }) => {
+
+    console.log(data)
 
     return data.map((obj) =>
         <div className="order_item row" key={obj._id}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, Outlet } from 'react-router-dom'
 
 
 export const Account = () => {
@@ -14,6 +14,7 @@ export const Account = () => {
                 <Link to="/account/wishlist">Wishlist</Link>
                 <Link to="/account/personal_data">Personal data</Link>
             </div>
+            <Outlet />
         </div>
     )
 }
