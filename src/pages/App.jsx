@@ -45,7 +45,7 @@ export default function App() {
           <Route path="account" element={<Account />}>
             <Route path="orders" element={<MyOrders />} />
           </Route>
-          <Route path="orders" element={<MyOrders />} />
+          {/* <Route path="orders" element={<MyOrders />} /> */}
           <Route path="address" element={<Address />} />
         </Route>
         {/* </Route> */}

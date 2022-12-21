@@ -23,10 +23,10 @@ export const Order_Items = ({ data }) => {
                 <h1>Order</h1>
                 <div className='order_items row'>
                     <div className='order_column column'>
-                        <Data data={data.data || data} dispatch={dispatch} />
+                        <Data data={data.data} dispatch={dispatch} />
                     </div>
                     <div className='order_count'>
-                        <OrderCount data={data.data || data} />
+                        <OrderCount data={data.data} />
                     </div>
                 </div>
             </React.Suspense>
