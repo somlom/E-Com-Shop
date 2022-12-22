@@ -29,13 +29,13 @@ Test on web: https://deploy-site-test.netlify.app/
 ## Design
 - [x] Navbar
 - [x] Cart
-- [ ] user page
+- [x] user page
 - [ ] Register page
 - [ ] login page
 - [ ] reset page
 - [ ] Order page
 - [ ] Product page
-- [ ] Footer
+- [x] Footer
 - [ ] Hot deals
 - [ ] Search page
 

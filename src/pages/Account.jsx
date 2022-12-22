@@ -24,10 +24,22 @@ export const Account = () => {
         <div className='column'>
             <h1>My account</h1>
             <div className='dropdown column'>
-                <Link to="/account/orders">My orders</Link>
+                <div className='width'>
+                    <Link to="/account/orders">My orders</Link>
+                </div>
+                <div className='width'>
+                    <Link to="/account/payments">Payments</Link>
+                </div>
+                <div className='width'>
+                    <Link to="/account/wishlist">Wishlist</Link>
+                </div>
+                <div className='width'>
+                    <Link to="/account/personal_data">Personal data</Link>
+                </div>
+                {/* <Link to="/account/orders">My orders</Link>
                 <Link to="/account/payments">Payments</Link>
                 <Link to="/account/wishlist">Wishlist</Link>
-                <Link to="/account/personal_data">Personal data</Link>
+                <Link to="/account/personal_data">Personal data</Link> */}
             </div>
             <Outlet />
         </div>

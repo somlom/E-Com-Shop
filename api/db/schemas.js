@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-export const products_schema = new Schema({
+const products_schema = new Schema({
     name: {
         type: String,
         required: [true, "Please add NAME"],
@@ -11,7 +11,7 @@ export const products_schema = new Schema({
         dropDups: true,
         index: true,
 
-    }, // String is shorthand for {type: String}
+    },
     photos: {
         type: [String],
         required: [true, "Please add PHOTO"]
@@ -28,12 +28,12 @@ export const products_schema = new Schema({
     price: {
         type: Number,
         required: [true, "Please add PRICE"],
-    },
+    }
 }, {
     timestamps: true
 });
 
-export const users_schema = new Schema({
+const users_schema = new Schema({
     name: {
         type: String,
         required: [true, "Please add your NAME"],
@@ -45,10 +45,6 @@ export const users_schema = new Schema({
     address: {
         type: String,
         // required: [true, "Please add your ADDRESS"],
-    },
-    products: {
-        type: [orders_schema],
-        ref: 'Orders'
     },
     email: {
         type: String,
@@ -64,30 +60,23 @@ export const users_schema = new Schema({
     timestamps: true
 });
 
-export const orders_schema = new Schema({
+const orders_schema = {
     user: {
-        type: users_schema,
-        ref: 'Users'
-    },
-    product: {
-        type: Schema.Types.ObjectId,
-    },
-}, {
-    timestamps: true
-});
-
-export const payment_schema = new Schema({
-    user_id: {
-        type: String,
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
         required: [true, "Please add your USER_ID"],
-        index: true
+
     },
     address: {
         type: Object,
     },
     products: {
         type: Array,
-        // ref: 'Products',
+        ref: 'Products',
         unique: false
     },
-})
+}
+
+export const Users = mongoose.model('Users', users_schema);
+export const Orders = mongoose.model('Orders', orders_schema);
+export const Products = mongoose.model('Products', products_schema);

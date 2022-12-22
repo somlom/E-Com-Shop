@@ -14,7 +14,7 @@ const Users = mongoose.model('Users', users_schema);
 auth.post("/login", asyncHandler(loginUser))
 auth.post("/register", asyncHandler(registerUser))
 auth.post("/reset", asyncHandler(resetUser))
-auth.post("/check_token", asyncHandler(check_token))
+auth.get("/check_token", asyncHandler(check_token))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
@@ -63,20 +63,24 @@ async function resetUser(req, res) {
     }
 }
 
-function check_token(req, res) {
-    const { token } = req.body;
-    // console.log(verify_token(token))
-    return verify_token(token)
-        .then(
-            (fulfilled) => {
-                console.log("f" + fulfilled)
-                return res.json({ response: fulfilled })
-            },
-            (rejected) => {
-                console.log("r" + rejected)
-                return res.status(401).json({ response: rejected })
-            },
-        )
+async function check_token(req, res) {
+
+    if (req.headers.authorization) {
+
+        const token = req.headers.authorization.split(' ')[1]
+        const response = await verify_token(token)
+        if (response.status === true) {
+            return res.json({ response: response.status })
+        } else {
+            res.status(401)
+            return res.json({response: response.status})
+        }
+
+    } else {
+        res.status(401)
+        throw new Error("No token")
+    }
+
 }
 
 

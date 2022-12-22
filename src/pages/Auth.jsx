@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Form } from '../components/Form';
 import "../css/Form.scss"
@@ -10,13 +10,10 @@ import "../css/Form.scss"
 
 export const Auth = (props) => {
 
-    console.log(props)
-    const next = props.next;
 
     const navigate = useNavigate()
     const [input, setInput] = React.useState({});
     const { t, i18n } = useTranslation();
-    console.log(useParams())
     const add_to_state = (event) => {
         setInput((prevState) => ({
             ...prevState,
@@ -35,9 +32,7 @@ export const Auth = (props) => {
 
                     localStorage.setItem("user", fulfilled.data.token)
                     alert(fulfilled.data)
-                    console.log(next)
 
-                    // return next === undefined || next?.length === 0 ? navigate("/") : navigate(next, { replace: true })
                     return navigate(-2, {replace: true})
                 },
                 function (error) {

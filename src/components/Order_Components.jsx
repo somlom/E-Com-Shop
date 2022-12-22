@@ -10,7 +10,7 @@ import "../css/Order.scss"
 import { set_to_cart } from '../features/cart/cart_slice'
 import { useDispatch } from 'react-redux'
 import { remove_from_cart, selectCount } from '../features/cart/cart_slice';
-import { usePostData } from '../hooks/Data';
+import { useCreateOrderMutation, useGetOrderQuery } from '../features/cart/payment_api';
 
 
 export const Order_Items = ({ data }) => {
@@ -23,10 +23,10 @@ export const Order_Items = ({ data }) => {
                 <h1>Order</h1>
                 <div className='order_items row'>
                     <div className='order_column column'>
-                        <Data data={data.data} dispatch={dispatch} />
+                        <Data data={data} dispatch={dispatch} />
                     </div>
                     <div className='order_count'>
-                        <OrderCount data={data.data} />
+                        <OrderCount data={data} />
                     </div>
                 </div>
             </React.Suspense>
@@ -43,16 +43,13 @@ const OrderCount = ({ data }) => {
 
     // const data = props.data
     const cart = useSelector(selectCount);
+    const [create_order] = useCreateOrderMutation();
 
     let i = 0
     data.map((obj) => {
-        console.log(obj)
         i += obj.price * obj.quantity
     })
 
-    const create_order = async () => {
-        return await axios.post("http://localhost:4000/payment/create_order", { token: localStorage.getItem("user"), cart: cart.cart })
-    }
 
     return (
         <div className='column'>
@@ -70,16 +67,14 @@ const OrderCount = ({ data }) => {
                     <span>{i + 7}</span>
                 </div>
                 <div className='order_list row'>
-                    <Link to="/address" className='opacity' onClick={() => create_order()}>Pay</Link>
+                    <Link to="/address" className='opacity' onClick={() => create_order(cart.cart)}>Pay</Link>
                 </div>
             </div>
         </div>
     )
 }
 
-const Data = ({ data, dispatch }) => {
-
-    console.log(data)
+export const Data = ({ data, dispatch }) => {
 
     return data.map((obj) =>
         <div className="order_item row" key={obj._id}>
@@ -158,12 +153,16 @@ export const Address = () => {
     const { t, i18n } = useTranslation();
     const [input, setInput] = React.useState({});
 
-    const { value } = usePostData(`http://${process.env.PUBLIC_URL}/payment/get_order`, { token: localStorage.getItem("user") })
+    const value = useGetOrderQuery();
 
-    const data = value || [];
+    const data = value.data || [];
+
+    let i = 0
+    data.map((obj) => {
+        i += obj.price * obj.quantity
+    })
 
     const add_to_state = (event) => {
-        console.log(input)
         setInput((prevState) => ({
             ...prevState,
             [event.target.id]: event.target.value,
@@ -172,15 +171,14 @@ export const Address = () => {
 
     const send_to_backend = async (event) => {
         event.preventDefault()
-        console.log(input)
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input, token: localStorage.getItem("user") }).then(
+            await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
 
                 function (fulfilled) {
 
-                    localStorage.setItem("user", fulfilled.data.token)
+                    // localStorage.setItem("user", fulfilled.data.token)
                     alert(fulfilled.data)
 
                     return navigate("#", { replace: true })
@@ -196,7 +194,7 @@ export const Address = () => {
 
     return (
         <Step number={2}>
-            <div className='address'>
+            <div className='address row'>
                 <div className='column'>
                     <h1>Address</h1>
                     <Form onChange={add_to_state} onSubmit={send_to_backend}>
@@ -215,9 +213,6 @@ export const Address = () => {
                             <button className="cart_button opacity" type='submit'>
                                 <span>Pay</span>
                             </button>
-                            <button className="no_acc_button " type='button'>
-                                <span>{t("dont_have_an_account")}</span>
-                            </button>
                         </div>
                     </Form>
                 </div>
@@ -225,15 +220,31 @@ export const Address = () => {
                     {data.map((obj) =>
                         <div className="order_item row" key={obj._id}>
                             <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.photos[0]}`}></img>
-                            <div className='column'>
+                            <div className='row'>
                                 <h3 id="title">{obj.name}</h3>
-                                <div className='row'>
-                                    <p>x{obj.quantity}</p>
-                                    <h3>{obj.price * obj.quantity}</h3>
-                                </div>
+                                <h3>{obj.price * obj.quantity}</h3>
                             </div>
                         </div>
                     )}
+                    <div className='order_count'>
+                        {/* <OrderCount data={data} /> */}
+                        <div className='column'>
+                            <div className='order_list row'>
+                                <span>Articles</span>
+                                <span>{i}</span>
+                            </div>
+                            <div className='order_list row'>
+                                <span>Lieferung</span>
+                                <span>7</span>
+                            </div>
+                            <div className='order_footer column'>
+                                <div className='order_list row'>
+                                    <span>Total</span>
+                                    <span>{i + 7}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

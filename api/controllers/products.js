@@ -2,12 +2,11 @@ import { Router } from "express";
 import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
-import { products_schema } from "../db/schemas";
+import { Products } from "../db/schemas";
 import { upload_photo } from "../functions/photo";
 
 
 const products = Router();
-const Products = mongoose.model('Products', products_schema);
 
 products.get("/", asyncHandler(get_products));
 products.get("/:id", asyncHandler(get_product_by_id))
@@ -22,7 +21,6 @@ export async function get_cart_items(req, res) {
     if (value.length >= 1) {
         data.map(item => {
             in_cart.push({ ...value.find(x => x._id.toString() === item._id)._doc, quantity: parseInt(item.quantity) })
-            console.log(in_cart)
         })
     }
     return res.json(in_cart)
@@ -48,12 +46,8 @@ async function add_product(req, res) {
 
     try {
         const products = await Products.create({ text: text, name: name, price: price, photos: [image] })
-        // products.image = image;
-        // res.sendFile()
         return res.json(products)
     } catch (error) {
-        console.log(error)
-        // throw new Error("Not found.")
         res.status(401)
         throw new Error("Not found.")
     }

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const payment_api = createApi({
-    reducerPath: "cart_api",
+    reducerPath: "payment_api",
     baseQuery: fetchBaseQuery({
         baseUrl: `http://${process.env.PUBLIC_URL}/payment`,
         prepareHeaders: (headers) => {
@@ -37,4 +37,4 @@ export const payment_api = createApi({
     })
 })
 
-export const { useCreateOrderMutation, useGetOrderQuery } = payment_api;
+export const { useCreateOrderMutation, useGetOrderQuery, useUpdateOrderMutation } = payment_api;

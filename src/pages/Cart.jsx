@@ -8,7 +8,7 @@ import {
 } from '../features/cart/cart_slice';
 import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
 import { Spinner } from '../components/Spinner';
-import { usePostData } from '../hooks/Data';
+import { useGetData, useGetProtectedData } from '../hooks/Data';
 
 
 export function Cart() {
@@ -37,7 +37,7 @@ export function Cart() {
 
 const Cart_Element = ({ data }) => {
 
-  const result = usePostData("http://localhost:4000/auth/check_token", { token: localStorage.getItem("user") });
+  const { value } = useGetProtectedData("http://localhost:4000/auth/check_token");
 
   return (
     <>
@@ -61,8 +61,8 @@ const Cart_Element = ({ data }) => {
       <div className='cart_footer column'>
         <button><Link to="/order">Check Out</Link></button>
 
-        {result.value.response === true ? <Link to="/account">Account</Link> : <Link to="/login">Login</Link> }
-        
+        {value?.response === true ? <Link to="/account">Account</Link> : <Link to="/login">Login</Link>}
+
       </div> </>
   )
 }

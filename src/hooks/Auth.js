@@ -1,29 +1,23 @@
 import React from "react"
-import { Navigate, Outlet, redirect, useLocation } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-import { usePostData } from "./Data"
-import { Auth } from "../pages/Auth";
 import { Spinner } from "../components/Spinner";
+import { useCheckTokenQuery } from "../features/cart/user_api";
 
 
+export const ProtectedRoute = () => {
 
-export const ProtectedRoute = ({ children }) => {
+    const value = useCheckTokenQuery();
 
+    if (value.isSuccess && value.data.response === true) {
 
-    const result = usePostData("http://localhost:4000/auth/check_token", { token: localStorage.getItem("user") });
+        return <Outlet />;
 
-    if (result.value.response === true) {
-
-        return <Outlet/>;
-
-    } else if (result.value.response === false) {
-
-        const location = useLocation()
-        console.log(location.pathname)
+    } else if (value.isError || value.response === false) {
 
         return <Navigate to={"/login"} />
 
-    } else {
+    } else if (value.isLoading || value.isUninitialized) {
 
         return <Spinner />
 

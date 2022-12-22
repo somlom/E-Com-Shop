@@ -1,23 +1,26 @@
 import React from 'react'
-import { Order_Items } from '../components/Order_Components'
-import { usePostData } from '../hooks/Data'
+
+import { Data, Order_Items } from '../components/Order_Components'
+import { Spinner } from '../components/Spinner'
+import { useGetOrderQuery } from '../features/cart/payment_api'
+import { useGetData } from '../hooks/Data'
+
 
 export const MyOrders = () => {
 
-    const { value, Spinner } = usePostData(`http://${process.env.PUBLIC_URL}/payment/get_order`, { token: localStorage.getItem("user") })
+    const value = useGetOrderQuery();
 
-    console.log(value)
-
-    if (value[0] === undefined) {
+    if (value.isError) {
         return <h1>Sorry, try later </h1>
     }
 
-    if (value.length === 0){
+    if (value.isLoading) {
         return <Spinner />
-    }else{
+    } else {
         return (
             <React.Suspense fallback={<Spinner />}>
-                <Order_Items data={value} />
+                {/* <Order_Items data={value.data} /> */}
+                <Data data={value.data} />
                 {/* <Address data={data} /> */}
             </React.Suspense>
         )
