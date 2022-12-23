@@ -28,7 +28,12 @@ const products_schema = new Schema({
     price: {
         type: Number,
         required: [true, "Please add PRICE"],
+    },
+    quantity: {
+        type: Number,
+        required: [true, "Please add QUANTITY"],
     }
+
 }, {
     timestamps: true
 });
@@ -63,7 +68,7 @@ const users_schema = new Schema({
 const orders_schema = {
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'User',
+        ref: 'Users',
         required: [true, "Please add your USER_ID"],
 
     },
@@ -71,9 +76,19 @@ const orders_schema = {
         type: Object,
     },
     products: {
-        type: Array,
-        ref: 'Products',
-        unique: false
+        type: [
+            {
+                product: {
+                    type: mongoose.Types.ObjectId,
+                    ref: 'Products',
+                    unique: false
+                },
+                quantity: {
+                    type: Number,
+
+                }
+            }
+        ]
     },
 }
 

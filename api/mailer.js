@@ -24,8 +24,6 @@ export const send_email = (to, subject, html) => {
         if (err) {
             console.log("error " + err);
         }
-
-        console.log('Message sent: ' + info.response);
     });
 
 }

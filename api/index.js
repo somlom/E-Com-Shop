@@ -6,11 +6,10 @@ import products from './controllers/products';
 import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
-import { loger } from "./middlewares/log_middleware";
 import payment from "./controllers/payment";
 
 
-const app = express()
+export const app = express()
 
 connect();
 const whitelist = ['http://localhost:3000'];
@@ -24,12 +23,9 @@ const corsOptions = {
   }
 }
 
-
-// app.use(cors(corsOptions));
 app.use(cors());
 app.use(express.json())
-// app.use(express.static('public'))
-app.use('/img',express.static('api/public/img'))
+app.use('/img', express.static('api/public/img'))
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/products", products)
@@ -38,8 +34,8 @@ app.use("/payment", payment)
 app.use("/download", files)
 
 app.use(error_handler)
-app.use(loger);
 
 app.listen(4000, () => {
   console.log(`app is listening to port 4000`)
 })
+

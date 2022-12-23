@@ -17,7 +17,7 @@ export const Footer = () => {
       <div className='company_data row'>
         <p><AiOutlinePhone/> 21321983213821</p>
         <p><AiOutlineMail/> interecom.ohg@gmail.com</p>
-        <p><IoIosLocate/>71337 Snustown</p>
+        <p><IoIosLocate/> 71337 Snustown</p>
       </div>
 
       <div className='footer_content column'>

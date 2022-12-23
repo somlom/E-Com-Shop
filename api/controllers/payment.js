@@ -15,12 +15,12 @@ payment.put("/update_order", auth_middleware, asyncHandler(update_order))
 payment.get("/get_order", auth_middleware, asyncHandler(get_order))
 
 async function get_order(req, res) {
+    // await Products.find().where('_id').in(data).exec()
 
+    const user_order = await Orders.findOne({ user: req.user }).populate("products.product")
+    req.body.data = user_order.products
 
-    const user_order = await Orders.findOne({ user: req.user })
-    req.body.data = user_order?.products || []
-
-    return get_cart_items(req, res)
+    return res.json(user_order)
 }
 
 async function create_order(req, res) {
@@ -30,7 +30,7 @@ async function create_order(req, res) {
     const user_order = await Orders.findOne({ user: req.user })
 
     if (user_order === null) {
-        const order = await Orders.create({ user: req.user, products: cart })
+        const order = await Orders.create({ user: req.user, products: cart  })
         return res.json(order)
 
     } else {

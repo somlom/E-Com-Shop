@@ -1,5 +1,4 @@
 import { Router } from "express";
-import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/schemas";
@@ -14,16 +13,28 @@ products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photo, asyncHandler(add_product))
 
 export async function get_cart_items(req, res) {
-    const { data } = req.body;
-    const in_cart = []
-    const value = await Products.find().where('_id').in(data).exec()
 
-    if (value.length >= 1) {
+    const { data } = req.body;
+
+    const value = await Products.find().where('product').in(data).exec()
+
+
+    if (value) {
+        const in_cart = []
+
         data.map(item => {
-            in_cart.push({ ...value.find(x => x._id.toString() === item._id)._doc, quantity: parseInt(item.quantity) })
+
+            const found = value.find(x => x._id.toString() === item.product.toString())
+            in_cart.push({...found._doc, quantity: parseInt(item.quantity)})
+
         })
+
+        return res.json(in_cart)
+
+    } else {
+        return res.json([])
     }
-    return res.json(in_cart)
+
 
 }
 

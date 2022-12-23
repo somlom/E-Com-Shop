@@ -5,7 +5,6 @@ import { Address, Order_Items } from '../components/Order_Components'
 import { Spinner } from '../components/Spinner'
 import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
 import { selectCount } from '../features/cart/cart_slice';
-import { useCreateOrderMutation } from '../features/cart/payment_api';
 
 
 export const Order = () => {
