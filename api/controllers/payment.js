@@ -1,9 +1,7 @@
 import { Router } from "express";
-import mongoose from "mongoose";
+import asyncHandler from "express-async-handler";
 
 import { Orders } from "../db/schemas";
-import asyncHandler from "express-async-handler";
-import { get_cart_items } from "./products";
 import { auth_middleware } from "../middlewares/auth_handler";
 
 
@@ -31,6 +29,7 @@ async function create_order(req, res) {
 
     if (user_order === null) {
         const order = await Orders.create({ user: req.user, products: cart  })
+        console.log(order)
         return res.json(order)
 
     } else {

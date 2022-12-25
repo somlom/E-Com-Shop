@@ -12,16 +12,16 @@ import payment from "./controllers/payment";
 export const app = express()
 
 connect();
-const whitelist = ['http://localhost:3000'];
-const corsOptions = {
-  credentials: true, // This is important.
-  origin: (origin, callback) => {
-    if (whitelist.includes(origin))
-      return callback(null, true)
+// const whitelist = ['http://localhost:3000'];
+// const corsOptions = {
+//   credentials: true, // This is important.
+//   origin: (origin, callback) => {
+//     if (whitelist.includes(origin))
+//       return callback(null, true)
 
-    callback(new Error('Not allowed by CORS'));
-  }
-}
+//     callback(new Error('Not allowed by CORS'));
+//   }
+// }
 
 app.use(cors());
 app.use(express.json())
