@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import asyncHandler from "express-async-handler";
 
 import { users_schema } from "../db/schemas";
-import { send_email } from "../mailer";
 import { get_token, verify_token } from "../functions/JWT";
 
 
@@ -13,7 +12,6 @@ const Users = mongoose.model('Users', users_schema);
 
 auth.post("/login", asyncHandler(loginUser))
 auth.post("/register", asyncHandler(registerUser))
-auth.post("/reset", asyncHandler(resetUser))
 auth.get("/check_token", asyncHandler(check_token))
 
 async function loginUser(req, res) {
@@ -25,7 +23,7 @@ async function loginUser(req, res) {
         const hash = await bcrypt.compare(password, user.password);
 
         if (hash === true) {
-            return res.json({ token: get_token(user._id) });
+            return res.json(get_token(user._id));
         }
         res.status(401)
         throw Error("Invalid credentials")
@@ -37,29 +35,25 @@ async function loginUser(req, res) {
 async function registerUser(req, res) {
     const { name, surname, email, password, password2 } = req.body;
 
-    const user = await Users.findOne({ email: email })
+    if (name && surname && name && email && password && password2){
+        const user = await Users.findOne({ email: email })
 
-    if (user) {
-        res.status(401)
-        throw Error("Sorry, but this e-mail address is already registered")
-    }
-    const salt = await bcrypt.genSalt(5)
-    const hash = await bcrypt.hash(password, salt);
-    const are_same = await bcrypt.compare(password2, hash);
-    if (are_same === false) {
-        res.status(401)
-        throw Error("Invalid credentials")
-    }
-    const new_user = await Users.create({ email: email, password: hash, name: name, surname: surname });
-    return res.json(get_token(new_user._id));
-}
-
-async function resetUser(req, res) {
-    const { email } = req.body;
-    const user = await Users.findOne({ email: email });
-    if (user === true) {
-        send_email(user.email, "Password reset", "<h1>sus</h1>")
-        return res.json(user)
+        if (user) {
+            res.status(401)
+            throw Error("Sorry, but this e-mail address is already registered")
+        }
+        const salt = await bcrypt.genSalt(5)
+        const hash = await bcrypt.hash(password, salt);
+        const are_same = await bcrypt.compare(password2, hash);
+        if (are_same === false) {
+            res.status(401)
+            throw Error("Invalid credentials")
+        }
+        const new_user = await Users.create({ email: email, password: hash, name: name, surname: surname });
+        return res.json(get_token(new_user._id));
+    }else{
+        res.status(400)
+        throw new Error("Please, fill all fields")
     }
 }
 
@@ -73,7 +67,7 @@ async function check_token(req, res) {
             return res.json({ response: response.status })
         } else {
             res.status(401)
-            return res.json({response: response.status})
+            return res.json({ response: response.status })
         }
 
     } else {
