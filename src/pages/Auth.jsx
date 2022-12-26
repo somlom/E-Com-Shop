@@ -2,18 +2,23 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Form } from '../components/Form';
 import "../css/Form.scss"
 
 
-export const Auth = (props) => {
+export const Auth = ({ Next }) => {
 
 
     const navigate = useNavigate()
+    const { state } = useLocation();
+    const { next } = state
+
     const [input, setInput] = React.useState({});
+
     const { t, i18n } = useTranslation();
+
     const add_to_state = (event) => {
         setInput((prevState) => ({
             ...prevState,
@@ -30,10 +35,14 @@ export const Auth = (props) => {
 
                 function (fulfilled) {
 
-                    localStorage.setItem("user", fulfilled.data.token)
+                    console.log(fulfilled.data)
+
+                    localStorage.setItem("user", fulfilled.data)
                     alert(fulfilled.data)
 
-                    return navigate(-2, {replace: true})
+                    console.log(Next)
+
+                    return navigate(next)
                 },
                 function (error) {
                     return alert(error.response.data.message)

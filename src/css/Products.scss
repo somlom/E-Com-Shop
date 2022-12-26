@@ -2,30 +2,24 @@ $base-color: rgb(2, 158, 255);
 $transform-time: 0.2s;
 
 .product {
-    // border: solid 1px black;
     display: flex;
-    margin: 10px;
+    // padding: 10px;
     border-radius: 10px;
-    // width: 40%;
     height: 15rem;
-    width: 20rem;
     position: relative;
-    // box-shadow: 1px 0px 50px 8 rgb(0 0 0 / 23%);
-    // background-color: rgb(0 0 0 / 23%);
     justify-content: center;
 }
 
 .product img {
     height: 100%;
-    width: min-content;
+    width: 100%;
     opacity: 100%;
     transition: opacity 0.3s;
     border-radius: 10px;
+    max-width: 400px;
 }
 
 .product img:hover {
-    // height: min-content;
-    // width: min-content;
     opacity: 70%;
 }
 
@@ -69,7 +63,6 @@ $transform-time: 0.2s;
 }
 
 .product_on_page {
-    // flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -85,7 +78,6 @@ $transform-time: 0.2s;
     align-self: center;
     background-color: gray;
     border-radius: 30px;
-    // justify-content: ;
 }
 
 .buy_row * {
@@ -100,8 +92,8 @@ $transform-time: 0.2s;
 
 .product_on_page img {
     padding-right: 10px;
-    min-height: 400px;
-    height: 30vw;
+    min-width: 400px;
+    width: 30vw;
 }
 
 @media screen and (max-width: 767px) {
@@ -112,15 +104,21 @@ $transform-time: 0.2s;
         align-items: center;
     }
     .product {
-        width: 80vw;
+        width: 100%;
+    }
+
+    .product_on_page img {
+        padding-right: 0;
+        width: 90vw;
+        min-width: 0px;
     }
 }
 
 .buy {
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    width: fit-content;
+    height: 100%;
     align-self: flex-start;
     align-items: center;
     flex-wrap: wrap;
@@ -139,6 +137,7 @@ $transform-time: 0.2s;
 .go_to_product {
     text-decoration: none;
     color: black;
+    margin: 10px;
 }
 
 .add_to_cart_button {
@@ -152,6 +151,7 @@ $transform-time: 0.2s;
     text-decoration: none;
     width: 20vw;
     font: large;
+    max-width: 100px;
 }
 
 .add_to_cart_button:hover {

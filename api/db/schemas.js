@@ -17,8 +17,7 @@ const products_schema = new Schema({
         required: [true, "Please add PHOTO"]
     },
     tags: {
-        type: [String],
-        index: true
+        type: Object,
     },
     text: {
         type: String,
@@ -89,6 +88,10 @@ const orders_schema = {
                 }
             }
         ]
+    },
+    tags: {
+        type: Object,
+        default: { payed: false, pending: false, rejected: false }
     },
 }
 

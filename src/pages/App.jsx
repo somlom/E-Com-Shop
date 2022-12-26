@@ -17,6 +17,7 @@ import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { Address } from '../components/Order_Components';
 import { MyOrders } from './MyOrders';
+import { Admin } from './Admin';
 // import { useAuth } from "../hooks/Auth"
 
 // export const UseAuth = React.createContext();
@@ -54,6 +55,8 @@ export default function App() {
         <Route path='impressum' element={<Impressum />} />
         <Route path='customer_rights' element={<Customer_Rights />} />
         <Route path='support' element={<Support />} />
+
+        <Route path="admin" element={<Admin />} />
 
         <Route path="/*" element={<PageNotFound />} />
 

@@ -24,8 +24,10 @@ export async function get_cart_items(req, res) {
         data.map((item) => {
 
             const found = value.find(x => x._id.toString() === (item.product || item._id))
-            found.quantity = parseInt(item.quantity)
-            in_cart.push(found)
+            if (found) {
+                found.quantity = parseInt(item.quantity)
+                in_cart.push(found)
+            }
 
         })
 
@@ -55,6 +57,7 @@ export async function get_products(req, res) {
 }
 
 export async function add_product(req, res) {
+
     const { name, text, price, quantity } = req.body;
     const { filename } = req.file;
 
@@ -63,7 +66,7 @@ export async function add_product(req, res) {
         return res.json(products)
     } catch (error) {
         res.status(400)
-        throw new Error("Not found")
+        throw new Error(error)
     }
 }
 

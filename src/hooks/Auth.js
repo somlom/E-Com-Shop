@@ -1,21 +1,23 @@
 import React from "react"
-import { Navigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import { Spinner } from "../components/Spinner";
 import { useCheckTokenQuery } from "../features/cart/user_api";
 
 
 export const ProtectedRoute = () => {
+    const location = useLocation()
+    const navigate = useNavigate();
 
     const value = useCheckTokenQuery();
 
-    if (value.isSuccess && value.data.response === true) {
+    if (value.isSuccess && value.data === true) {
 
         return <Outlet />;
 
     } else if (value.isError || value.response === false) {
 
-        return <Navigate to={"/login"} />
+        return navigate("/login", {state: {next: location.pathname} })
 
     } else if (value.isLoading || value.isUninitialized) {
 

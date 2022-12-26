@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Form } from './Form'
 
 import { Spinner } from './Spinner'
@@ -75,6 +75,8 @@ const OrderCount = ({ data }) => {
 }
 
 export const Data = ({ data, dispatch }) => {
+
+    console.log(data)
 
     return data.map((obj) =>
         <div className="order_item row" key={obj._id}>
@@ -175,9 +177,9 @@ export const Address = () => {
                 function (fulfilled) {
 
                     // localStorage.setItem("user", fulfilled.data.token)
-                    alert(fulfilled.data)
+                    alert(fulfilled)
 
-                    return navigate("#", { replace: true })
+                    return <Navigate to="/account" replace={true} />
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -193,7 +195,6 @@ export const Address = () => {
     if (value.isSuccess) {
         let i = 0
         value.data.products.map((obj) => {
-            console.log(obj.product.price, obj.quantity)
             i += obj.product.price * obj.quantity
         })
         console.log(value)
