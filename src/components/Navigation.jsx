@@ -72,7 +72,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={15} /><span>{count.cart.length}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={15} /><span>{count}</span></button>
           </div>
         </div>
         <div className='nav_column' id="mobile">
@@ -81,7 +81,7 @@ export const Navigation = () => {
       </div>
 
       {modal_state &&
-        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>Total {count.cart.length} items</span>}>
+        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>Total {count} items</span>}>
           <Cart />
         </Modal>
       }

@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Link, Navigate } from 'react-router-dom'
-import { Form } from './Form'
-
-import { Spinner } from './Spinner'
-import "../css/Order.scss"
-import { set_to_cart } from '../features/cart/cart_slice'
 import { useDispatch } from 'react-redux'
-import { remove_from_cart, selectCount } from '../features/cart/cart_slice';
+
+import "../css/Order.scss"
+import { Form } from './Form'
+import { Spinner } from './Spinner'
+import { cartArray, set_to_cart, remove_from_cart } from '../features/cart/cart_slice'
 import { useCreateOrderMutation, useGetOrderQuery } from '../features/cart/payment_api';
 
 
@@ -42,7 +41,7 @@ export const Order_Items = ({ data }) => {
 const OrderCount = ({ data }) => {
 
     // const data = props.data
-    const cart = useSelector(selectCount);
+    const cart = useSelector(cartArray);
     const [create_order] = useCreateOrderMutation();
 
     let i = 0
@@ -67,7 +66,7 @@ const OrderCount = ({ data }) => {
                     <span>{i + 7}</span>
                 </div>
                 <div className='order_list row'>
-                    <Link to="/address" className='opacity' onClick={() => create_order(cart.cart)}>Pay</Link>
+                    <Link to="/address" className='opacity' onClick={() => create_order(cart)}>Pay</Link>
                 </div>
             </div>
         </div>

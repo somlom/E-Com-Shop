@@ -3,24 +3,22 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import "../css/Cart.scss"
-import {
-  add_to_cart, remove_from_cart, remove_one_from_cart, selectCount,
-} from '../features/cart/cart_slice';
-import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
+import { cartArray } from '../features/cart/cart_slice';
+import { usePostCartMutation } from '../features/cart/cart_api';
 import { Spinner } from '../components/Spinner';
-import { useGetData, useGetProtectedData } from '../hooks/Data';
+import { useGetProtectedData } from '../hooks/Data';
 
 
 export function Cart() {
 
-  const cart = useSelector(selectCount);
+  const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
 
   React.useLayoutEffect(() => {
     const send_to_backend = async (cart) => {
       await sendIt(cart)
     }
-    send_to_backend(cart.cart)
+    send_to_backend(cart)
 
   }, [cart])
 
