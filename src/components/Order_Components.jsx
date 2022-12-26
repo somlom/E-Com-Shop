@@ -76,8 +76,6 @@ const OrderCount = ({ data }) => {
 
 export const Data = ({ data, dispatch }) => {
 
-    console.log(data)
-
     return data.map((obj) =>
         <div className="order_item row" key={obj._id}>
             <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.photos[0]}`}></img>
@@ -156,9 +154,6 @@ export const Address = () => {
     const [input, setInput] = React.useState({});
 
     const value = useGetOrderQuery();
-    // console.log(value)
-
-    const data = value.data || [];
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -190,14 +185,13 @@ export const Address = () => {
         }
     }
 
-    console.log(value)
-
     if (value.isSuccess) {
+        
         let i = 0
         value.data.products.map((obj) => {
             i += obj.product.price * obj.quantity
         })
-        console.log(value)
+
         return (
             <Step number={2}>
                 <div className='address row'>

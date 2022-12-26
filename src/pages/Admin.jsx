@@ -1,7 +1,108 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { AiOutlineArrowLeft } from "react-icons/ai"
+
+import { Spinner } from "../components/Spinner"
+import { useGetData } from "../hooks/Data";
+
 
 export const Admin = () => {
+
+    return (
+        <Admin_Add />
+    )
+}
+export const Admin_Edit = () => {
+    const { id } = useParams();
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const [value, setValue] = useState([])
+
+    const url = "http://" + process.env.PUBLIC_URL + "/products/" + id
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+
+            const response = await axios.get(url)
+
+            setValue(await response.data)
+        }
+        fetchData()
+    }, [url])
+
+    // {
+    //     name: value?.name,
+    //     text: value?.text,
+    //     price: value?.price,
+    //     quantity: value?.quantity,
+    // }
+    const add_to_state = (event) => {
+        setValue((prevState) => ({
+            ...prevState,
+            [event.target.id]: event.target.value,
+        }))
+    }
+    const send_to_backend = async (event) => {
+        event.preventDefault()
+
+        const formData = new FormData()
+        formData.append("image", value.photos[0])
+        formData.append("_id", id)
+        formData.append("name", value.name)
+        formData.append("text", value.text)
+        formData.append("price", value.price)
+        formData.append("quantity", value.quantity)
+
+        await axios.post("http://localhost:4000/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
+
+            function () {
+                console.log(value)
+                return alert("added")
+            },
+            function (error) {
+                return alert(error.response.data.message)
+            }
+        )
+
+    }
+
+    if (value.length !== 0) {
+        // setInput(value)
+        // console.log(value, input)
+        return (
+            <div className='column'>
+                <form title='Add item' onSubmit={send_to_backend}>
+
+                    <div className='product_title row'>
+                        <Link to="/"><AiOutlineArrowLeft size={35} /></Link>
+                        title
+                        <input type="text" id='name' placeholder='name' value={value.name} onChange={(e) => add_to_state(e)} />
+                    </div>
+                    <div className='product_on_page' >
+                        <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img>
+                        <div className='buy column'>
+                            {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
+                            text
+                            <textarea type="text" cols="30" rows="10" id='text' placeholder='text' value={value.text} onChange={(e) => add_to_state(e)} />
+                            <div className='buy_row'>
+                                price
+                                <input type="number" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e)} />
+                                quantity
+                                <input type="number" id='quantity' placeholder='quantity' value={value.quantity} onChange={(e) => add_to_state(e)} />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+        )
+    } else {
+        return <Spinner />
+    }
+}
+const Admin_Add = () => {
 
     const [input, setInput] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -11,7 +112,6 @@ export const Admin = () => {
             ...prevState,
             [event.target.id]: event.target.value,
         }))
-        // console.log(input)
     }
 
     const send_to_backend = async (event) => {
@@ -23,17 +123,11 @@ export const Admin = () => {
         formData.append("text", input.text)
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
-        console.log(formData, selectedFile)
 
-
-        // `http://${process.env.PUBLIC_URL}/products/add`
         await axios.post("http://localhost:4000/products/add", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
-            function (fulfilled) {
-
-                alert("added")
-
-                return
+            function () {
+                return alert("added")
             },
             function (error) {
                 return alert(error.response.data.message)
@@ -45,27 +139,30 @@ export const Admin = () => {
     return (
         <div>
             <h1>Add item</h1>
-            <form title='Add item' onSubmit={send_to_backend}>
+            <div className="row">
+                <form title='Add item' onSubmit={send_to_backend} className="column">
 
-                <input type="text" id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
+                    <input type="text" id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
 
-                <input
-                    type="file"
-                    onChange={(e) => setSelectedFile(e.target.files[0])}
-                    placeholder="filename"
-                    id="filename"
-                />
+                    <input
+                        type="file"
+                        onChange={(e) => setSelectedFile(e.target.files[0])}
+                        placeholder="filename"
+                        id="filename"
+                    />
 
-                <img alt="not fount" width={"250px"} src={selectedFile === null ? "" : URL.createObjectURL(selectedFile)} />
+                    <input type="text" id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
+                    <input type="number" id='price' placeholder='price' onChange={(e) => add_to_state(e)} />
 
-                <input type="text" id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
-
-                <input type="number" id='price' placeholder='price' onChange={(e) => add_to_state(e)} />
-
-                <input type="number" id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
-                <button type="submit">Add</button>
-            </form>
+                    <input type="number" id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
+                    <button type="submit">Add</button>
+                </form>
+                <div className="column">
+                    {selectedFile &&
+                        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedFile)} />}
+                </div>
+            </div>
         </div>
     )
 }

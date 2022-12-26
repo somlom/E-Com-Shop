@@ -27,7 +27,6 @@ async function create_order(req, res) {
 
     if (user_order === null) {
         const order = await Orders.create({ user: req.user, products: cart,  })
-        console.log(order)
         return res.json(order)
 
     } else {

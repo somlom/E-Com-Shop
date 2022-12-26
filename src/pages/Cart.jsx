@@ -39,8 +39,6 @@ const Cart_Element = ({ data }) => {
 
   const { value } = useGetProtectedData("http://localhost:4000/auth/check_token");
 
-  console.log(data)
-
   return (
     <>
       {data.map(data_val => (

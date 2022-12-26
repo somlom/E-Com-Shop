@@ -8,7 +8,7 @@ import { Form } from '../components/Form';
 import "../css/Form.scss"
 
 
-export const Auth = ({ Next }) => {
+export const Auth = () => {
 
 
     const navigate = useNavigate()
@@ -35,12 +35,8 @@ export const Auth = ({ Next }) => {
 
                 function (fulfilled) {
 
-                    console.log(fulfilled.data)
-
                     localStorage.setItem("user", fulfilled.data)
                     alert(fulfilled.data)
-
-                    console.log(Next)
 
                     return navigate(next)
                 },

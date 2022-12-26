@@ -17,7 +17,7 @@ import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { Address } from '../components/Order_Components';
 import { MyOrders } from './MyOrders';
-import { Admin } from './Admin';
+import { Admin, Admin_Edit } from './Admin';
 // import { useAuth } from "../hooks/Auth"
 
 // export const UseAuth = React.createContext();
@@ -57,6 +57,7 @@ export default function App() {
         <Route path='support' element={<Support />} />
 
         <Route path="admin" element={<Admin />} />
+        <Route path="admin/:id" element={<Admin_Edit />} />
 
         <Route path="/*" element={<PageNotFound />} />
 
