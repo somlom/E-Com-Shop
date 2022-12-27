@@ -8,7 +8,7 @@ import { Form } from '../components/Form';
 import "../css/Form.scss"
 
 
-export const Auth = () => {
+export const Login = () => {
 
 
     const navigate = useNavigate()

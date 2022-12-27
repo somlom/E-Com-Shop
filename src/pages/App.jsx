@@ -5,7 +5,7 @@ import {loadStripe} from '@stripe/stripe-js';
 
 import "../css/App.scss"
 import { Main } from './Main'
-import { Auth, Register, Reset } from './Auth';
+import { Login, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';
 import { Layout } from './Layout';
 import { Products } from './Products';
@@ -27,7 +27,6 @@ export default function App() {
   const stripePromise = loadStripe(process.env.PUBLISHABLE_API);
 
   const options = {
-    // passing the client secret obtained from the server
     clientSecret: process.env.STRIPE_API,
   };
 
@@ -36,7 +35,7 @@ export default function App() {
       <Routes>
 
         <Route index element={<Main />} />
-        <Route path="login" element={<Auth />} />
+        <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="reset" element={<Reset />} />
         <Route path="products" element={<Products />} />

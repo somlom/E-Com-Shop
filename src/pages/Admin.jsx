@@ -32,12 +32,6 @@ export const Admin_Edit = () => {
         fetchData()
     }, [url])
 
-    // {
-    //     name: value?.name,
-    //     text: value?.text,
-    //     price: value?.price,
-    //     quantity: value?.quantity,
-    // }
     const add_to_state = (event) => {
         setValue((prevState) => ({
             ...prevState,
@@ -65,12 +59,10 @@ export const Admin_Edit = () => {
                 return alert(error.response.data.message)
             }
         )
-
     }
 
     if (value.length !== 0) {
-        // setInput(value)
-        // console.log(value, input)
+
         return (
             <div className='column'>
                 <form title='Add item' onSubmit={send_to_backend}>
@@ -81,9 +73,19 @@ export const Admin_Edit = () => {
                         <input type="text" id='name' placeholder='name' value={value.name} onChange={(e) => add_to_state(e)} />
                     </div>
                     <div className='product_on_page' >
-                        <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img>
+                        <div className="row">
+
+                            <div className="carousel column">
+                                {value.photos.map(photo => {
+                                    return (
+                                        <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} />
+                                    )
+                                })}
+                            </div>
+
+                            <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img>
+                        </div>
                         <div className='buy column'>
-                            {/* <textarea name="" id="" cols="30" rows="10"></textarea> */}
                             text
                             <textarea type="text" cols="30" rows="10" id='text' placeholder='text' value={value.text} onChange={(e) => add_to_state(e)} />
                             <div className='buy_row'>
@@ -94,6 +96,12 @@ export const Admin_Edit = () => {
                             </div>
                         </div>
                     </div>
+                    <input
+                        type="file"
+                        onChange={(e) => setSelectedFile(e.target.files[0])}
+                        placeholder="filename"
+                        id="filename"
+                    />
                     <button type="submit">Edit</button>
                 </form>
             </div>

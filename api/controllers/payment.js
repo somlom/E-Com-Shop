@@ -23,17 +23,22 @@ async function create_order(req, res) {
 
     const { cart } = req.body;
 
-    const user_order = await Orders.findOne({ user: req.user })
+    if (cart) {
+        const user_order = await Orders.findOne({ user: req.user })
 
-    if (user_order === null) {
-        const order = await Orders.create({ user: req.user, products: cart, })
-        return res.json(order)
+        if (user_order === null) {
+            const order = await Orders.create({ user: req.user, products: cart, })
+            return res.json(order)
 
+        } else {
+            user_order.products = cart;
+            await user_order.save()
+
+            return res.json(user_order)
+        }
     } else {
-        user_order.products = cart;
-        await user_order.save()
-
-        return res.json(user_order)
+        res.status(301)
+        throw new Error("Empty order")
     }
 }
 
@@ -46,7 +51,7 @@ async function update_order(req, res) {
         doc.address = address;
         await doc.save();
         return res.json(doc)
-    }else{
+    } else {
         res.status(301)
         throw new Error("Please, add your address")
     }

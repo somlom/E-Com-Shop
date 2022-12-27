@@ -78,6 +78,10 @@ $transform-time: 0.2s;
     align-self: center;
     background-color: gray;
     border-radius: 30px;
+    position: sticky;
+    bottom:10px;
+    left:0px;
+    right:0px;
 }
 
 .buy_row * {
@@ -92,8 +96,23 @@ $transform-time: 0.2s;
 
 .product_on_page img {
     padding-right: 10px;
+    max-width: 700px;
     width: 30vw;
+    min-width: 300px;
     height: fit-content;
+}
+
+.product_on_page .row .carousel.column {
+    width: 70px;
+    height: fit-content;
+}
+
+.product_on_page .row .carousel.column img {
+    height: 50px;
+    width: auto;
+    padding: 0px;
+    max-width: 700px;
+    min-width: 0px;
 }
 
 @media screen and (max-width: 767px) {
@@ -109,7 +128,7 @@ $transform-time: 0.2s;
 
     .product_on_page img {
         padding-right: 0;
-        width: 90vw;
+        width: 80vw;
         min-width: 0px;
     }
 }
@@ -120,7 +139,6 @@ $transform-time: 0.2s;
     flex-direction: row;
     height: 100%;
     align-self: flex-start;
-    align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
 }
