@@ -13,9 +13,11 @@ export const auth_middleware = asyncHandler(async (req, res, next) => {
             
             next()
         } catch (error) {
+            res.status(401)
             throw new Error(error)
         }
     } else {
+        res.status(401)
         throw new Error("No token")
     }
 })

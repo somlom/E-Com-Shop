@@ -170,9 +170,6 @@ export const Address = () => {
 
                 function (fulfilled) {
 
-                    // localStorage.setItem("user", fulfilled.data.token)
-                    alert(fulfilled)
-
                     return <Navigate to="/account" replace={true} />
                 },
                 function (error) {

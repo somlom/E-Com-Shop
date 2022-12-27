@@ -1,5 +1,7 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
 
 import "../css/App.scss"
 import { Main } from './Main'
@@ -15,15 +17,20 @@ import { Product } from '../components/Product';
 import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
-import { Address } from '../components/Order_Components';
+import { Address, Payment } from '../components/Order_Components';
 import { MyOrders } from './MyOrders';
 import { Admin, Admin_Edit } from './Admin';
-// import { useAuth } from "../hooks/Auth"
 
-// export const UseAuth = React.createContext();
 
 export default function App() {
-  // useAuth
+
+  const stripePromise = loadStripe(process.env.PUBLISHABLE_API);
+
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: process.env.STRIPE_API,
+  };
+
   return (
     <Layout>
       <Routes>
@@ -34,22 +41,22 @@ export default function App() {
         <Route path="reset" element={<Reset />} />
         <Route path="products" element={<Products />} />
         <Route path="products/:id" element={<Product />} />
-        {/* <Route path="/account" element={<ProtectedLayout />}>
-          <Route path='' element={
-            <Account />
-          } />
-        </Route> */}
-        {/* <Route path='/account' element={<Account />} /> */}
-        <Route path="/order" element={<Order />} />
+        <Route path="order" element={<Order />} />
 
         <Route element={<ProtectedRoute />} >
+
           <Route path="account" element={<Account />}>
             <Route path="orders" element={<MyOrders />} />
           </Route>
-          {/* <Route path="orders" element={<MyOrders />} /> */}
-          <Route path="address" element={<Address />} />
+
+          <Route path="order/address" element={<Address />} />
+
+          <Route element={<Elements stripe={stripePromise} options={options} />}>
+            <Route path='order/payment' element={<Payment />} />
+          </Route>
+
         </Route>
-        {/* </Route> */}
+
 
         <Route path='faq' element={<FAQ />} />
         <Route path='impressum' element={<Impressum />} />

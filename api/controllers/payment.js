@@ -26,7 +26,7 @@ async function create_order(req, res) {
     const user_order = await Orders.findOne({ user: req.user })
 
     if (user_order === null) {
-        const order = await Orders.create({ user: req.user, products: cart,  })
+        const order = await Orders.create({ user: req.user, products: cart, })
         return res.json(order)
 
     } else {
@@ -41,10 +41,16 @@ async function update_order(req, res) {
 
     const { address } = req.body;
 
-    const doc = await Orders.findOne({ user: req.user })
-    doc.address = address;
-    await doc.save();
-    return res.json(doc)
+    if (address) {
+        const doc = await Orders.findOne({ user: req.user })
+        doc.address = address;
+        await doc.save();
+        return res.json(doc)
+    }else{
+        res.status(301)
+        throw new Error("Please, add your address")
+    }
+
 }
 
 export default payment;

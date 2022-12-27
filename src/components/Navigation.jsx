@@ -18,7 +18,7 @@ import { Hamburger } from './Hamburger';
 
 
 export const Navigation = () => {
-
+  
   const [modal_state, handle_modal] = useState(false);
   const [menu_state, handle_menu] = useState(false);
 
