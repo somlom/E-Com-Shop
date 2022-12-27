@@ -171,14 +171,16 @@ $transform-time: 0.15s;
 }
 
 // .address form {
-//     align-items: center;
+//     min-width: 300px;
 // }
 
-// .address {
-//     display: flex;
-//     flex-direction: row;
-//     // flex-wrap: wrap;
-// }
+.address .form_content.column{
+    min-width: 300px;
+}
+
+.address {
+    justify-content: space-around;
+}
 
 .list {
     display: flex;

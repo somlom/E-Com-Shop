@@ -6,7 +6,7 @@ import "../css/Cart.scss"
 import { cartArray } from '../features/cart/cart_slice';
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { Spinner } from '../components/Spinner';
-import { useGetProtectedData } from '../hooks/Data';
+import { useCheckTokenQuery } from '../features/cart/user_api';
 
 
 export function Cart() {
@@ -27,7 +27,6 @@ export function Cart() {
       <div className='cart column'>
         {result.data === undefined ? <Spinner /> :
           result.data.length === 0 ? <h1 className='column'>No items</h1> : <Cart_Element data={result.data} />}
-
       </div>
     </React.Suspense>
   );
@@ -35,7 +34,8 @@ export function Cart() {
 
 const Cart_Element = ({ data }) => {
 
-  const { value } = useGetProtectedData("http://localhost:4000/auth/check_token");
+  const query = useCheckTokenQuery();
+  const value = query.data
 
   return (
     <>
@@ -58,9 +58,8 @@ const Cart_Element = ({ data }) => {
       ))}
       <div className='cart_footer column'>
         <button><Link to="/order">Check Out</Link></button>
-
-        {value?.response === true ? <Link to="/account">Account</Link> : <Link to="/login">Login</Link>}
-
-      </div> </>
+        <Link to={value?.response === true ? "/account" : "/login"}>Account</Link>
+      </div>
+    </>
   )
 }

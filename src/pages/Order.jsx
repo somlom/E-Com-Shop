@@ -1,10 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 
-import { Address, Order_Items } from '../components/Order_Components'
+import "../css/Order.scss"
 import { Spinner } from '../components/Spinner'
-import { usePostCartMutation, useGetAllQuery } from '../features/cart/cart_api';
+import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
+import { OrderCount } from "../components/order/OrderCount";
+import { OrderData } from '../components/order/OrderData';
 
 
 export const Order = () => {
@@ -21,14 +23,26 @@ export const Order = () => {
     }, [cart])
 
     if (data.isError === true) {
+
         return <h1>Sorry, try later </h1>
-    } else if (data.isLoading || data.isUninitialized) {
+
+    } else if ((data.isLoading) || data.isUninitialized) {
+
         return <Spinner />
+
     } else {
 
         return (
             <React.Suspense fallback={<Spinner />}>
-                <Order_Items data={data.data} />
+                <h1>Order</h1>
+                <div className='order_items row'>
+                    <div className='order_column column'>
+                        <OrderData data={data.data} />
+                    </div>
+                    <div className='order_count'>
+                        <OrderCount data={data.data} />
+                    </div>
+                </div>
             </React.Suspense>
         )
     }

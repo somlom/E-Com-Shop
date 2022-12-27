@@ -7,7 +7,7 @@ export const payment_api = createApi({
         prepareHeaders: (headers) => {
 
             const token = localStorage.getItem("user");
-            // If we have a token set in state, let's assume that we should be passing it.
+
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)
             }
@@ -18,7 +18,9 @@ export const payment_api = createApi({
     tagTypes: ['Payment'],
     endpoints: (builder) => ({
         getOrder: builder.query({
-            query: () => "/get_order"
+            query: () => "/get_order",
+            providesTags: (result) =>
+                result ? result.map(({ id }) => ({ type: 'Payment', id })) : [],
         }),
         createOrder: builder.mutation({
             query: (data) => ({

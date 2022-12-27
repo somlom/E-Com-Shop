@@ -64,7 +64,7 @@ const users_schema = new Schema({
     timestamps: true
 });
 
-const orders_schema = {
+const orders_schema = new Schema({
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'Users',
@@ -73,6 +73,10 @@ const orders_schema = {
     },
     address: {
         type: Object,
+    },
+    tags: {
+        type: Object,
+        default: {payed: false, rejected: false, pending: false, delivered: false}
     },
     products: {
         type: [
@@ -88,8 +92,10 @@ const orders_schema = {
                 }
             }
         ]
-    },
-}
+    }
+}, {
+    timestamps: true
+})
 
 export const Users = mongoose.model('Users', users_schema);
 export const Orders = mongoose.model('Orders', orders_schema);

@@ -17,9 +17,10 @@ import { Product } from '../components/Product';
 import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
-import { Address, Payment } from '../components/Order_Components';
 import { MyOrders } from './MyOrders';
 import { Admin, Admin_Edit } from './Admin';
+import { Address } from './Address';
+import { Payment } from '../components/order/Payment';
 
 
 export default function App() {
@@ -48,7 +49,7 @@ export default function App() {
             <Route path="orders" element={<MyOrders />} />
           </Route>
 
-          <Route path="order/address" element={<Address />} />
+          <Route path="/order/address" element={<Address />} />
 
           <Route element={<Elements stripe={stripePromise} options={options} />}>
             <Route path='order/payment' element={<Payment />} />

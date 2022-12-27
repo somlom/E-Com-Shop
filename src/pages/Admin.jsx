@@ -4,13 +4,17 @@ import { useParams, Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
 import { Spinner } from "../components/Spinner"
-import { useGetData } from "../hooks/Data";
 
 
 export const Admin = () => {
-
     return (
-        <Admin_Add />
+        <div>
+            <div>
+                <h1>Stats</h1>
+                <a href="https://analytics.google.com/analytics/web/?authuser=1#/p347545906/reports/intelligenthome" target={"_blank"}>Google analytics</a>
+            </div>
+            <Admin_Add />
+        </div>
     )
 }
 export const Admin_Edit = () => {

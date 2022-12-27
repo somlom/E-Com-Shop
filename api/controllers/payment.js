@@ -7,16 +7,15 @@ import { auth_middleware } from "../middlewares/auth_handler";
 
 const payment = Router();
 
-
 payment.post("/create_order", auth_middleware, asyncHandler(create_order))
 payment.put("/update_order", auth_middleware, asyncHandler(update_order))
 payment.get("/get_order", auth_middleware, asyncHandler(get_order))
 
 async function get_order(req, res) {
 
-    const user_order = await Orders.findOne({ user: req.user }).populate("products.product")
+    const user_order = await Orders.find({ user: req.user }).populate("products.product")
 
-    return res.json(user_order)
+    return await res.json(user_order)
 }
 
 async function create_order(req, res) {
