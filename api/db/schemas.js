@@ -74,9 +74,25 @@ const orders_schema = new Schema({
     address: {
         type: Object,
     },
-    tags: {
-        type: Object,
-        default: {payed: false, rejected: false, pending: false, delivered: false}
+    payed: {
+        type: Boolean,
+        default: false
+    },
+    rejected: {
+        type: Boolean,
+        default: false
+    },
+    pending: {
+        type: Boolean,
+        default: false
+    },
+    delivered: {
+        type: Boolean,
+        default: false
+    },
+    open: {
+        type: Boolean,
+        default: true
     },
     products: {
         type: [

@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { Spinner } from '../components/Spinner'
-import { useGetOrderQuery } from '../features/cart/payment_api'
+import { useGetOrdersQuery } from '../features/cart/payment_api'
 
 
 export const MyOrders = () => {
 
-    const value = useGetOrderQuery();
+    const value = useGetOrdersQuery();
 
     if (value.isError) {
         return <h1>Sorry, try later </h1>
@@ -30,9 +30,9 @@ export const MyOrders = () => {
                                 </div>
                                 <div className='column'>
                                     <div className='row'>
-                                        <p>{obj.tags.payed === false ? "unpaid" : "paid"}</p>
-                                        <p>{obj.tags.pending === false ? "unpeding" : "pending"}</p>
-                                        <p>{obj.tags.rejected === false ? "unrejected" : "rejected"}</p>
+                                        <p>{obj.payed === false ? "unpaid" : "paid"}</p>
+                                        <p>{obj.pending === false ? "unpeding" : "pending"}</p>
+                                        <p>{obj.rejected === false ? "unrejected" : "rejected"}</p>
                                     </div>
                                 </div>
                             </div>

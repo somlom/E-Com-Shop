@@ -10,9 +10,10 @@ import "../css/Form.scss"
 
 export const Login = () => {
 
-
     const navigate = useNavigate()
+
     const { state } = useLocation();
+    
     const { next } = state
 
     const [input, setInput] = React.useState({});

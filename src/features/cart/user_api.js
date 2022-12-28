@@ -19,8 +19,8 @@ export const user_api = createApi({
     endpoints: (builder) => ({
         checkToken: builder.query({
             query: () => "/check_token",
-            providesTags: (result) =>
-                result ? result.map(({ id }) => ({ type: 'User', id })) : [],
+            // providesTags: (result) =>
+            //     result ? result.map(({ id }) => ({ type: 'User', id })) : [],
         }),
     })
 })

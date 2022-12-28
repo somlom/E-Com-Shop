@@ -40,7 +40,7 @@ export const Order = () => {
                         <OrderData data={data.data} />
                     </div>
                     <div className='order_count'>
-                        <OrderCount data={data.data} />
+                        <OrderCount data={data.data} cart={cart} />
                     </div>
                 </div>
             </React.Suspense>

@@ -20,10 +20,6 @@ export const Account = () => {
                 <div className='width'>
                     <Link to="/account/personal_data">Personal data</Link>
                 </div>
-                {/* <Link to="/account/orders">My orders</Link>
-                <Link to="/account/payments">Payments</Link>
-                <Link to="/account/wishlist">Wishlist</Link>
-                <Link to="/account/personal_data">Personal data</Link> */}
             </div>
             <Outlet />
         </div>

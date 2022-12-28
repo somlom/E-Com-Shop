@@ -1,12 +1,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 import "../css/Order.scss"
 import { Form } from '../components/Form'
-import { useGetOrderQuery } from '../features/cart/payment_api';
+import { useGetOrderByIdQuery } from '../features/cart/payment_api';
 import { Step } from '../components/order/Step';
+import { Spinner } from '../components/Spinner';
 
 
 export const Address = () => {
@@ -14,8 +15,13 @@ export const Address = () => {
     const { t, i18n } = useTranslation();
     const [input, setInput] = React.useState({});
 
-    const value = useGetOrderQuery();
+    const { state } = useLocation();
+    const { _id } = state;
+    console.log(state)
 
+    const value = useGetOrderByIdQuery(_id)
+
+    console.log(state)
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -31,9 +37,8 @@ export const Address = () => {
 
             await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
 
-                function (fulfilled) {
-
-                    return <Navigate to="/account" replace={true} />
+                function () {
+                    return <Navigate to="/account" />
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -44,7 +49,9 @@ export const Address = () => {
         }
     }
 
-    if (value.isSuccess) {
+    if (value.isSuccess && value.data !== null) {
+
+        console.log(value.data)
 
         let i = 0
         value.data.products.map((obj) => {
@@ -77,7 +84,7 @@ export const Address = () => {
                     </div>
                     <div className='column'>
                         {value.data.products.map((obj) =>
-                            <div className="order_item row" key={obj._id}>
+                            <div className="order_item row" key={obj.product}>
                                 <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.product.photos[0]}`}></img>
                                 <div className='row'>
                                     <h3 id="title">{obj.product.name}</h3>
@@ -107,5 +114,9 @@ export const Address = () => {
                 </div>
             </Step>
         )
+    } else if (value.isFetching || value.isUninitialized || _id === undefined || _id.length === 0) {
+        return <Spinner />
+    } else {
+        return <h1>Sorry, error</h1>
     }
 }

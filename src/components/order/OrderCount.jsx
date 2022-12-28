@@ -1,22 +1,23 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import "../../css/Order.scss"
 import { cartArray } from '../../features/cart/cart_slice'
 import { useCreateOrderMutation } from '../../features/cart/payment_api';
+import { Spinner } from '../Spinner';
 
 
-export const OrderCount = ({ data }) => {
+export const OrderCount = ({ data, cart }) => {
 
-    const cart = useSelector(cartArray);
     const [create_order] = useCreateOrderMutation();
+
+    const navigate = useNavigate()
 
     let i = 0
     data.map((obj) => {
         i += obj.price * obj.quantity
     })
-
 
     return (
         <div className='column'>
@@ -34,9 +35,10 @@ export const OrderCount = ({ data }) => {
                     <span>{i + 7}</span>
                 </div>
                 <div className='order_list row'>
-                    <a href="/order/address" className='opacity' onClick={() => create_order(cart)}>Pay</a>
+                    <a className='opacity' onClick={() => create_order(cart).then((fulfilled) => navigate("/order/address", { state: { _id: fulfilled.data._id }, reloadDocument: true }))}>Pay</a>
                 </div>
             </div>
-        </div>
+        </div >
     )
+
 }

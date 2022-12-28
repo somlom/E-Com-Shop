@@ -61,7 +61,7 @@ export const cart_slice = createSlice({
 
       if (item.quantity === 1) {
 
-        const removeItem = state.cart.filter((item) => item.product !== action.payload.product);
+        const removeItem = state.cart.filter((item) => item.product !== action.payload._id);
         state.cart = removeItem;
         get_count(state)
 

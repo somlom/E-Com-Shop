@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 import "../css/App.scss"
 import { Main } from './Main'
@@ -13,7 +13,7 @@ import { FAQ } from './FAQ';
 import { Impressum } from './Impressum';
 import { Customer_Rights } from './Customer_Rights';
 import { Support } from './Support';
-import { Product } from '../components/Product';
+import { Product } from './Product';
 import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
@@ -41,7 +41,6 @@ export default function App() {
         <Route path="reset" element={<Reset />} />
         <Route path="products" element={<Products />} />
         <Route path="products/:id" element={<Product />} />
-        <Route path="order" element={<Order />} />
 
         <Route element={<ProtectedRoute />} >
 
@@ -49,6 +48,7 @@ export default function App() {
             <Route path="orders" element={<MyOrders />} />
           </Route>
 
+          <Route path="order" element={<Order />} />
           <Route path="/order/address" element={<Address />} />
 
           <Route element={<Elements stripe={stripePromise} options={options} />}>

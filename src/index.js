@@ -14,11 +14,17 @@ const root = createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
+            {/*  redux provider */}
             <BrowserRouter>
+                {/* react router provider */}
                 <PersistGate loading={<Spinner />} persistor={persistor}>
+                    {/* persist local storage provider */}
                     <App />
+
                 </PersistGate>
+
             </BrowserRouter>
+
         </Provider>
     </React.StrictMode>
 );

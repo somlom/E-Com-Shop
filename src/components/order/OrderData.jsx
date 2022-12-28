@@ -7,8 +7,6 @@ import { set_to_cart, remove_from_cart } from "../../features/cart/cart_slice"
 
 export const OrderData = ({ data }) => {
 
-    console.log(data)
-
     const dispatch = useDispatch();
 
     return data.map((obj) =>

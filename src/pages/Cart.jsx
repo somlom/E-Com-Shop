@@ -22,19 +22,31 @@ export function Cart() {
 
   }, [cart])
 
-  return (
-    <React.Suspense fallback={<Spinner />}>
-      <div className='cart column'>
-        {result.data === undefined ? <Spinner /> :
-          result.data.length === 0 ? <h1 className='column'>No items</h1> : <Cart_Element data={result.data} />}
-      </div>
-    </React.Suspense>
-  );
+  if (result.isSuccess === true && result.data !== undefined) {
+    return (
+      <React.Suspense fallback={<Spinner />}>
+        <div className='cart column'>
+          {result.data.length === 0 ? <h1 className='column'>No items</h1> : <Cart_Element data={result.data} />}
+        </div>
+      </React.Suspense>
+    );
+  } else if ((result.isLoading || result.isUninitialized) === true) {
+    return (
+      <React.Suspense fallback={<Spinner />}>
+        <div className='cart column'>
+          <Spinner />
+        </div>
+      </React.Suspense>
+    );
+  }else{
+    return <h1>error</h1>
+  }
 }
 
 const Cart_Element = ({ data }) => {
 
   const query = useCheckTokenQuery();
+  console.log(query)
   const value = query.data
 
   return (

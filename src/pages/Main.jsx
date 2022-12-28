@@ -6,11 +6,11 @@ import { Products } from './Products'
 
 export const Main = () => {
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div>
-      <h1 className='title'>{t("main_page")}</h1>
+      <h1 className='title'>{t('Welcome.text')}</h1>
       <Products />
     </div>
   )

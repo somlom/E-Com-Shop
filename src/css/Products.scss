@@ -79,9 +79,9 @@ $transform-time: 0.2s;
     background-color: gray;
     border-radius: 30px;
     position: sticky;
-    bottom:10px;
-    left:0px;
-    right:0px;
+    bottom: 10px;
+    left: 0px;
+    right: 0px;
 }
 
 .buy_row * {
@@ -181,4 +181,41 @@ $transform-time: 0.2s;
 }
 .product_title svg {
     margin-right: 15px;
+}
+
+.details {
+    background-color: grey;
+    border: none;
+    border-radius: 18px;
+    padding: 18px;
+    margin: 10px;
+}
+
+.switch.row {
+    border: none;
+    border-radius: 20px;
+    background-color: grey;
+    width: fit-content;
+}
+
+.switch span {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+}
+
+.switch span.show {
+    background-color: rgb(89, 92, 92);
+    color: white;
+}
+
+.switch span.hide {
+    background-color: grey;
+}
+
+.switch span {
+    transition: background-color 500ms ease;
+    &:after {
+        transition: right 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+    }
 }
