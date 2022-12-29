@@ -40,7 +40,7 @@ export const Order = () => {
 
         return (
             <React.Suspense fallback={<Spinner />}>
-                <h1>{t("order", { ns: 'common' })}</h1>
+                <h1>{t("order")}</h1>
                 <div className='order_items row'>
                     <div className='order_column column'>
                         <OrderData data={data.data} />
