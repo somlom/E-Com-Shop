@@ -1,4 +1,26 @@
 {
-    "welcome": "Welcome to this React Internationalization App",
-    "order": "Bestellung"
-  }
+  "add": "Ajouter au panier",
+  "dont_have_an_account": "Pas de compte? S'inscrire",
+  "wishlist": "bloc-notes",
+  "payments": "Paiements",
+  "pay": "Payer",
+  "login": "connexion",
+  "Newsletter_text": "ici doit être du texte",
+  "impressum": "imprimer",
+  "customer_rights": "droits des clients",
+  "payment_methods": "méthodes de payement",
+  "password": "le mot de passe",
+  "search": "Chercher",
+  "total": "Un total de",
+  "personal_data": "Données personnelles",
+  "reviews": "Commentaires",
+  "faq": "FAQ",
+  "my_orders": "Mes commandes",
+  "details": "Spécifications techniques",
+  "hot_deals": "Bonnes affaires",
+  "items": "Étaient",
+  "support": "Soutien",
+  "welcome": "Bienvenue sur cette application d'internationalisation React",
+  "account": "Compte",
+  "order": "une commande"
+}

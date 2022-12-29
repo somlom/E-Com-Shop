@@ -1,4 +1,26 @@
 {
+    "add": "Add to cart",
+    "dont_have_an_account": "No account? register",
+    "wishlist": "notepad",
+    "payments": "payments",
+    "pay": "Pay",
+    "login": "log in",
+    "Newsletter_text": "here must be text",
+    "impressum": "imprint",
+    "customer_rights": "customer rights",
+    "payment_methods": "payment methods",
+    "password": "password",
+    "search": "Search",
+    "total": "A total of",
+    "personal_data": "Personal Data",
+    "reviews": "reviews",
+    "faq": "FAQ",
+    "my_orders": "My Orders",
+    "details": "Technical specifications",
+    "hot_deals": "Hot deals",
+    "items": "Were",
+    "support": "Support",
     "welcome": "Welcome to this React Internationalization App",
-    "order": "Bestellung"
+    "account": "Account",
+    "order": "an order"
 }
