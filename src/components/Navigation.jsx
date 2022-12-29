@@ -22,7 +22,7 @@ export const Navigation = () => {
   const [modal_state, handle_modal] = useState(false);
   const [menu_state, handle_menu] = useState(false);
 
-  const { t } = useTranslation();
+  const [t] = useTranslation();
   const count = useSelector(selectCount);
 
   const body = document.body;
@@ -37,7 +37,12 @@ export const Navigation = () => {
         </div>
 
         <div className='nav_column' onClick={() => handle_menu(false)}>
-          <Link to="/"><h1 className='nav_title'>Nav</h1></Link>
+          <Link to="/">
+            <div className='nav_title'>
+              <h1>E</h1>
+              <span>interEcom</span>
+            </div>
+          </Link>
         </div>
         <div className='nav_column' id='pc'>
           <input className='nav_title form' type="text" placeholder="Search" />
@@ -48,25 +53,25 @@ export const Navigation = () => {
               <Link className="link column" to="/hot">
                 <div className='with_icon'>
                   <AiOutlineFire size={20} />
-                  <span>Hot deals</span>
+                  <span>{t("hot_deals")}</span>
                 </div>
               </Link>
               <Link className="link column" to="/wishlist">
                 <div className='with_icon'>
                   <AiOutlineHeart size={20} />
-                  <span>Whishlist</span>
+                  <span>{t("wishlist")}</span>
                 </div>
               </Link>
               <Link className="link column" to="/account">
                 <div className='with_icon'>
                   <AiOutlineUser size={20} />
-                  <span>Account</span>
+                  <span>{t("account")}</span>
                 </div>
               </Link>
               <Link className="link column" to="/order">
                 <div className='with_icon'>
                   <BsBag size={20} />
-                  <span>Order</span>
+                  <span>{t("order")}</span>
                 </div>
               </Link>
             </div>
@@ -76,12 +81,12 @@ export const Navigation = () => {
           </div>
         </div>
         <div className='nav_column' id="mobile">
-          <input className='nav_title form' type="text" placeholder='Search' />
+          <input className='nav_title form' type="text" placeholder={t("search")} />
         </div>
       </div>
 
       {modal_state &&
-        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>Total {count} items</span>}>
+        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {count} {t("items")}</span>}>
           <Cart />
         </Modal>
       }

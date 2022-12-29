@@ -9,7 +9,7 @@ import { IoIosLocate } from 'react-icons/io';
 
 export const Footer = () => {
 
-  const { t, i18n } = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div className='footer column'>
@@ -37,9 +37,9 @@ export const Footer = () => {
             </Link>
           </div>
           <div className='column'>
-            <p>Enroll for the newsletter and get your advantages</p>
+            <p>{t("Newsletter_text")}</p>
             <input type="text" placeholder='E-Mail' />
-            <p>Payment methods dfdsfsfsdfsd</p>
+            <p>{t("payment_methods")}</p>
           </div>
         </div>
       </div>

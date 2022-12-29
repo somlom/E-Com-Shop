@@ -10,7 +10,7 @@ const payment = Router();
 payment.post("/create_order", auth_middleware, asyncHandler(create_order))
 payment.put("/update_order", auth_middleware, asyncHandler(update_order))
 payment.get("/get_orders", auth_middleware, asyncHandler(get_orders))
-payment.get("/get_order/:id", auth_middleware, asyncHandler(get_order))
+payment.get("/get_order", auth_middleware, asyncHandler(get_order))
 
 async function get_orders(req, res) {
 
@@ -21,20 +21,9 @@ async function get_orders(req, res) {
 
 async function get_order(req, res) {
 
-    const { id } = req.params;
+    const user_order = await Orders.findOne({ user: req.user, open: true }).populate("products.product")
+    return await res.json(user_order)
 
-    if (id) {
-
-        const user_order = await Orders.findOne({ user: req.user, _id: id }).populate("products.product")
-        console.log(user_order)
-        return await res.json(user_order)
-
-    } else {
-
-        res.status(301)
-        throw new Error("No order specified")
-
-    }
 }
 
 async function create_order(req, res) {

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft } from "react-icons/ai"
+import { useTranslation } from 'react-i18next';
 
 import "../css/Products.scss"
 import { useGetData } from '../hooks/Data';
@@ -13,9 +14,10 @@ import { Switch } from '../components/Switch';
 
 export const Product = () => {
 
+    const [t] = useTranslation();
+
     const { id } = useParams();
     const { value, Spinner } = useGetData("http://" + process.env.PUBLIC_URL + "/products/" + id)
-    console.log(value)
 
     const [showPhoto, setPhoto] = useState("")
 
@@ -55,13 +57,13 @@ export const Product = () => {
                             <div className='buy_row'>
                                 <h3>{value.price}</h3>
                                 <button className='add_to_cart_button' type='button'>Buy now</button>
-                                <button className='add_to_cart_button' type='button' onClick={() => { dispatch(set_to_cart({ _id: value._id })) }}>Add to cart</button>
+                                <button className='add_to_cart_button' type='button' onClick={() => { dispatch(set_to_cart({ _id: value._id })) }}>{t("add")}</button>
                             </div>
                         </div>
                     </div >
                 </div>
                 <div className='column'>
-                    <Switch first="Reviews" second="Details">
+                    <Switch first={t("reviews")} second={t("details")}>
                         <p>some data</p>
                         <Details data={value.text} />
                     </Switch>

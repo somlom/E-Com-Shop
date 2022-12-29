@@ -13,12 +13,10 @@ export const Login = () => {
     const navigate = useNavigate()
 
     const { state } = useLocation();
-    
-    const { next } = state
 
     const [input, setInput] = React.useState({});
 
-    const { t, i18n } = useTranslation();
+    const [t] = useTranslation();
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -38,7 +36,10 @@ export const Login = () => {
 
                     localStorage.setItem("user", fulfilled.data)
                     alert(fulfilled.data)
-
+                    const { next } = state
+                    if(next === null){
+                        return navigate("/")
+                    }
                     return navigate(next)
                 },
                 function (error) {
@@ -68,7 +69,7 @@ export const Login = () => {
 
 export const Register = () => {
     const [input, setInput] = React.useState({});
-    const { t, i18n } = useTranslation();
+    const [t] = useTranslation();
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -98,8 +99,8 @@ export const Register = () => {
 
     return (
         <Form title={t("register")} onChange={add_to_state} onSubmit={(e) => send_to_backend(e)}>
-            <input type="text" placeholder="Name" id='name' onChange={add_to_state} />
-            <input type="text" placeholder="Surname" id='surname' onChange={add_to_state} />
+            <input type="text" placeholder={t("name")} id='name' onChange={add_to_state} />
+            <input type="text" placeholder={t("surname")} id='surname' onChange={add_to_state} />
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />
@@ -118,7 +119,7 @@ export const Register = () => {
 
 export const Reset = () => {
     const [input, setInput] = React.useState({});
-    const { t, i18n } = useTranslation();
+    const [t] = useTranslation();
 
     const add_to_state = (event) => {
         setInput((prevState) => ({

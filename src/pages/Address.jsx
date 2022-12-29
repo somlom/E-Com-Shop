@@ -1,27 +1,23 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { Navigate, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import "../css/Order.scss"
 import { Form } from '../components/Form'
-import { useGetOrderByIdQuery } from '../features/cart/payment_api';
+import { useGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
 import { Step } from '../components/order/Step';
 import { Spinner } from '../components/Spinner';
+import { OrderCount } from '../components/order/OrderCount';
 
 
 export const Address = () => {
 
-    const { t, i18n } = useTranslation();
+    const [t] = useTranslation();
     const [input, setInput] = React.useState({});
 
-    const { state } = useLocation();
-    const { _id } = state;
-    console.log(state)
 
-    const value = useGetOrderByIdQuery(_id)
-
-    console.log(state)
+    const value = useGetLastUsersOpenOrderQuery()
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -35,15 +31,9 @@ export const Address = () => {
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
+            await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
+            return alert("response")
 
-                function () {
-                    return <Navigate to="/account" />
-                },
-                function (error) {
-                    return alert(error.response.data.message)
-                }
-            )
         } else {
             return alert("Error!!! Empty fields")
         }
@@ -51,72 +41,53 @@ export const Address = () => {
 
     if (value.isSuccess && value.data !== null) {
 
-        console.log(value.data)
-
         let i = 0
         value.data.products.map((obj) => {
             i += obj.product.price * obj.quantity
         })
 
         return (
-            <Step number={2}>
-                <div className='address row'>
-                    <div className='column'>
-                        <h1>Address</h1>
-                        <Form onChange={add_to_state} onSubmit={send_to_backend}>
-                            <input type="text" placeholder="Country" id='country' onChange={add_to_state} />
-                            <div className='row'>
-                                <input type="text" placeholder="Name" id='name' onChange={add_to_state} />
-                                <input type="text" placeholder="Surname" id='surname' onChange={add_to_state} />
-                            </div>
-                            <div className='row'>
-                                <input type="number" placeholder="ZIP-Code" id='zip' onChange={add_to_state} />
-                                <input type="text" placeholder="City" id='city' onChange={add_to_state} />
-                                <input type="text" placeholder="Street & housenumber" id='house' onChange={add_to_state} />
-                            </div>
-
-                            <div className='form_buttons row'>
-                                <button className="cart_button opacity" type='submit'>
-                                    <span>Pay</span>
-                                </button>
-                            </div>
-                        </Form>
-                    </div>
-                    <div className='column'>
-                        {value.data.products.map((obj) =>
-                            <div className="order_item row" key={obj.product}>
-                                <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.product.photos[0]}`}></img>
+            <React.Suspense fallback={<Spinner />}>
+                <Step number={2}>
+                    <div className='address row'>
+                        <div className='column'>
+                            <h1>{t("address")}</h1>
+                            <Form onChange={add_to_state} onSubmit={send_to_backend}>
+                                <input type="text" placeholder={t("country")} id='country' onChange={add_to_state} />
                                 <div className='row'>
-                                    <h3 id="title">{obj.product.name}</h3>
-                                    <h3>{obj.product.price * obj.quantity}</h3>
+                                    <input type="text" placeholder={t("name")} id='name' onChange={add_to_state} />
+                                    <input type="text" placeholder={t("Surname")} id='surname' onChange={add_to_state} />
                                 </div>
-                            </div>
-                        )}
-                        <div className='order_count'>
-                            <div className='column'>
-                                <div className='order_list row'>
-                                    <span>Articles</span>
-                                    <span>{i}</span>
+                                <div className='row'>
+                                    <input type="number" placeholder={t("zip-code")} id='zip' onChange={add_to_state} />
+                                    <input type="text" placeholder={t("city")} id='city' onChange={add_to_state} />
+                                    <input type="text" placeholder={t("house")} id='house' onChange={add_to_state} />
                                 </div>
-                                <div className='order_list row'>
-                                    <span>Lieferung</span>
-                                    <span>7</span>
-                                </div>
-                                <div className='order_footer column'>
-                                    <div className='order_list row'>
-                                        <span>Total</span>
-                                        <span>{i + 7}</span>
+                            </Form>
+                        </div>
+                        <div className='column'>
+                            {value.data.products.map((obj) =>
+                                <div className="order_item row" key={obj.product}>
+                                    <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.product.photos[0]}`}></img>
+                                    <div className='row'>
+                                        <h3 id="title">{obj.product.name}</h3>
+                                        <h3>{obj.product.price * obj.quantity}</h3>
                                     </div>
                                 </div>
+                            )}
+                            <div className='order_count'>
+                                <OrderCount data={value.data.products}>
+                                    <Link to="/order/address" className='opacity' onClick={send_to_backend}>{t("next_point")}</Link>
+                                </OrderCount>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Step>
+                </Step>
+            </React.Suspense>
         )
-    } else if (value.isFetching || value.isUninitialized || _id === undefined || _id.length === 0) {
+    } else if (value.isFetching || value.isUninitialized) {
         return <Spinner />
     } else {
-        return <h1>Sorry, error</h1>
+        return <h1>{t("loading_error")}</h1>
     }
 }

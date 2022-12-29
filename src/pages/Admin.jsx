@@ -56,7 +56,6 @@ export const Admin_Edit = () => {
         await axios.post("http://localhost:4000/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
             function () {
-                console.log(value)
                 return alert("added")
             },
             function (error) {

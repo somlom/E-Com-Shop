@@ -1,5 +1,4 @@
 {
-    "main_page": {
-        "text": "Welcome to this React Internationalization App"
-    }
+    "welcome": "Welcome to this React Internationalization App",
+    "order": "Bestellung"
 }

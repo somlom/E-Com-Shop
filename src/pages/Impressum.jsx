@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const Impressum = () => {
 
-  const { t, i18n } = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div>

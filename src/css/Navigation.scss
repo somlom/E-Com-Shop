@@ -58,7 +58,14 @@ input.nav_title {
 input.nav_title:focus {
     border-bottom: 3px solid $base-color;
 }
-.nav_title {
+
+div.nav_title{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+div.nav_title * {
     margin: 0px;
     color: black;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import "../css/Cart.scss"
 import { cartArray } from '../features/cart/cart_slice';
@@ -10,6 +11,8 @@ import { useCheckTokenQuery } from '../features/cart/user_api';
 
 
 export function Cart() {
+
+  const [t] = useTranslation();
 
   const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
@@ -26,7 +29,7 @@ export function Cart() {
     return (
       <React.Suspense fallback={<Spinner />}>
         <div className='cart column'>
-          {result.data.length === 0 ? <h1 className='column'>No items</h1> : <Cart_Element data={result.data} />}
+          {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} />}
         </div>
       </React.Suspense>
     );
@@ -38,15 +41,16 @@ export function Cart() {
         </div>
       </React.Suspense>
     );
-  }else{
+  } else {
     return <h1>error</h1>
   }
 }
 
 const Cart_Element = ({ data }) => {
 
+  const [t] = useTranslation();
+
   const query = useCheckTokenQuery();
-  console.log(query)
   const value = query.data
 
   return (
@@ -69,8 +73,8 @@ const Cart_Element = ({ data }) => {
         </div>
       ))}
       <div className='cart_footer column'>
-        <button><Link to="/order">Check Out</Link></button>
-        <Link to={value?.response === true ? "/account" : "/login"}>Account</Link>
+        <button><Link to="/order">{t("pay")}</Link></button>
+        <Link to="/account">{t("account")}</Link>
       </div>
     </>
   )

@@ -7,7 +7,7 @@ import { close_on_esc } from '../hooks/close_on_esc';
 
 export const Modal = ({ children, handle_modal, title = "" }) => {
 
-    const { t } = useTranslation();
+    const [t] = useTranslation();
 
     close_on_esc(handle_modal);
 

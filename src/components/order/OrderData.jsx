@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next';
 
 import "../../css/Order.scss"
 import { set_to_cart, remove_from_cart } from "../../features/cart/cart_slice"
@@ -7,6 +8,7 @@ import { set_to_cart, remove_from_cart } from "../../features/cart/cart_slice"
 
 export const OrderData = ({ data }) => {
 
+    const [t] = useTranslation();
     const dispatch = useDispatch();
 
     return data.map((obj) =>
@@ -28,7 +30,7 @@ export const OrderData = ({ data }) => {
                 </select>
                 <h3 className='close_menu'>{obj.price * obj.quantity}</h3>
                 <div className='row'>
-                    <button onClick={() => dispatch(remove_from_cart({ _id: obj._id }))}>Remove </button>
+                    <button onClick={() => dispatch(remove_from_cart({ _id: obj._id }))}>{t("remove")}</button>
                 </div>
             </div>
             <div className='row open_menu'>

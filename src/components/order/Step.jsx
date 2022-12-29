@@ -1,40 +1,44 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { TiTick } from "react-icons/ti"
+import { useTranslation } from 'react-i18next';
 
 import "../../css/Order.scss"
 
 
 export const Step = ({ number, children }) => {
+
+    const [t] = useTranslation();
+
     return (
         <div className='column'>
             <div className='list row'>
-                <Link to="/order">
+                <a>
                     <div className='column'>
 
-                        <p>{number > 1 ? "X" : "1"}</p>
-                        <span>Order</span>
+                        {number > 1 ? <TiTick size={43} /> : <p>1</p>}
+                        <span>{t("order", { ns: 'common' })}</span>
 
                     </div>
                     {number > 1 ? <p></p> : <p>-</p>}
-                </Link>
-                <Link to="/order">
+                </a>
+                <a>
                     <div className='column'>
-                        <p>{number > 2 ? "X" : "2"}</p>
-                        <span>Info</span>
+                        {number > 2 ? <TiTick size={20} /> : <p>2</p>}
+                        <span>{t("information")}</span>
                     </div>
-                </Link>
-                <Link to="/order">
+                </a>
+                <a>
                     <div className='column'>
-                        <p>{number > 3 ? "X" : "3"}</p>
-                        <span>Delivery</span>
+                        <p>{number > 3 ? <TiTick size={20} /> : "3"}</p>
+                        <span>{t("payment")}</span>
                     </div>
-                </Link>
-                <Link to="/order">
+                </a>
+                <a>
                     <div className='column'>
-                        <p>{number > 4 ? "X" : "4"}</p>
-                        <span>Payment</span>
+                        <p>{number > 4 ? <TiTick size={20} /> : "4"}</p>
+                        <span>{t("receipt")}</span>
                     </div>
-                </Link>
+                </a>
             </div>
             {children}
         </div>
