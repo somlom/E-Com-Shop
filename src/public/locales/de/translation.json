@@ -1,5 +1,5 @@
 {
-  "welcome": "Welcome to this React Internationalization App",
+  "welcome": "Willkommen zu dieser React Internationalization App",
   "order": "Bestellung",
   "hot_deals": "Hot deals",
   "wishlist": "Merkzettel",
@@ -23,5 +23,14 @@
   "my_orders": "Meine Bestellungen",
   "payments": "Zahlungen",
   "personal_data": "Personliche Daten",
-  "remove": "Löschen"
+  "remove": "Löschen",
+  "article": "Artikel",
+  "delivery": "Lieferung",
+  "no_items": "Keine Produkte",
+  "Impressum": "Impressum",
+  "§5TMG": "§5TMG",
+  "Contact": "Kontakt",
+  "Telefone": "Telefon",
+  "E-Mail": "E-Mail",
+  "Disclaimer": "Haftungsausschluss"
 }
