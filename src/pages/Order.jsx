@@ -36,7 +36,11 @@ export const Order = () => {
 
         return <Spinner />
 
-    } else {
+    }
+    else if(data.data.length === 0){
+        return <h1>No items</h1>
+    }
+    else {
 
         return (
             <React.Suspense fallback={<Spinner />}>

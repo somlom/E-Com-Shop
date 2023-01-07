@@ -58,7 +58,9 @@ $transform-time: 0.15s;
 }
 
 .order_item .row {
+    width: 100%;
     align-items: center;
+    justify-content: space-between;
 }
 .order_count {
     // height: 50vh;

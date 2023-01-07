@@ -9,7 +9,7 @@
   "impressum": "Impressum",
   "customer_rights": "Kundenrechte",
   "support": "Support",
-  "Newsletter_text": "here must be text",
+  "newsletter_text": "Newsletter anmelden & Vorteile sichern",
   "payment_methods": "Zahlungsmethoden",
   "add": "In Warenkorn hinzufügen",
   "reviews": "Bewertungen",
@@ -32,5 +32,16 @@
   "Contact": "Kontakt",
   "Telefone": "Telefon",
   "E-Mail": "E-Mail",
-  "Disclaimer": "Haftungsausschluss"
+  "Disclaimer": "Haftungsausschluss",
+  "information": "Information",
+  "payment": "Bezahlung",
+  "receipt": "Rechnung",
+  "country": "Land",
+  "name": "Vorname",
+  "surname": "Nachname",
+  "zip-code": "PLZ",
+  "city": "Stadt",
+  "house": "Straße und Hausnummer",
+  "next_point": "Zum nächsten Schritt",
+  "address": "Adresse"
 }

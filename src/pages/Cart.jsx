@@ -7,7 +7,6 @@ import "../css/Cart.scss"
 import { cartArray } from '../features/cart/cart_slice';
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { Spinner } from '../components/Spinner';
-import { useCheckTokenQuery } from '../features/cart/user_api';
 
 
 export function Cart() {
@@ -49,9 +48,6 @@ export function Cart() {
 const Cart_Element = ({ data }) => {
 
   const [t] = useTranslation();
-
-  const query = useCheckTokenQuery();
-  const value = query.data
 
   return (
     <>

@@ -8,16 +8,15 @@ import { IoIosLocate } from 'react-icons/io';
 
 
 export const Footer = () => {
-
   const [t] = useTranslation();
 
   return (
     <div className='footer column'>
 
       <div className='company_data row'>
-        <p><AiOutlinePhone/> 21321983213821</p>
-        <p><AiOutlineMail/> interecom.ohg@gmail.com</p>
-        <p><IoIosLocate/> 71337 Casabbb</p>
+        <div><AiOutlinePhone size={20} /> 21321983213821</div>
+        <div><AiOutlineMail size={20} /> interecom.ohg@gmail.com</div>
+        <div><IoIosLocate size={20} /> 71337 Casabbb</div>
       </div>
 
       <div className='footer_content column'>
@@ -37,8 +36,10 @@ export const Footer = () => {
             </Link>
           </div>
           <div className='column'>
-            <p>{t("Newsletter_text")}</p>
-            <input type="text" placeholder='E-Mail' />
+            <p>{t("newsletter_text")}</p>
+            <div className='form column'>
+              <input type="text" placeholder='E-Mail' />
+            </div>
             <p>{t("payment_methods")}</p>
           </div>
         </div>

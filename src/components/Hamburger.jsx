@@ -33,7 +33,7 @@ export const Hamburger = ({ handle_menu, state }) => {
                 <Link className="link column" to="/order" onClick={() => handle_menu(false)}>
                     <div className='row'>
                         <BsBag size={25} />
-                        <span>{t("order", { ns: 'common' })}</span>
+                        <span>{t("order")}</span>
                     </div>
                 </Link>
             </div>

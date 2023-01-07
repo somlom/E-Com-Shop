@@ -86,7 +86,7 @@ export const Admin_Edit = () => {
                                 })}
                             </div>
 
-                            <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img>
+                            {/* <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img> */}
                         </div>
                         <div className='buy column'>
                             text

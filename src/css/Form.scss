@@ -5,6 +5,15 @@ $transform-time: 0.15s;
     align-items: center;
 }
 
+.form.column {
+    width: 100%
+}
+
+div.responsible_form .form.column{
+    width: 80%;
+    max-width: 900px;
+}
+
 .form_title {
     margin: 5px;
 }
@@ -15,11 +24,6 @@ $transform-time: 0.15s;
 
 .form_buttons button {
     margin: 10px;
-}
-
-.form.column{
-    width: 80%;
-    max-width: 900px;
 }
 
 .form p, .form input {
@@ -49,31 +53,51 @@ $transform-time: 0.15s;
     border: 1px solid  $base-color;
 }
 
-.cart_button.opacity.submit {
+.button_opacity.opacity.submit {
     margin: 5px;
 }
 
-.no_acc_button {
+.button_opacity {
+    display: flex;
     background-color: white;
-    border: solid 2px rgb(98, 197, 84);
     width: fit-content;
+    border: none;
     border-radius: 18px;
     font-weight: bold;
-    cursor: pointer;
-    transition: opacity $transform-time;
+    transition: opacity 0.15s;
     padding: 5px;
+    margin: 5px;
     align-items: center;
-    -webkit-transition: background-color $transform-time;
+    -webkit-transition: background-color 0.15s;
 }
 
-.no_acc_button:hover {
+.button_opacity * {
+    margin: 2px;
+}
+
+.button_opacity.primary:hover {
+    background-color: $base-color;
+}
+
+.button_opacity.green:hover {
+    background-color: rgb(98, 197, 84);
+}
+
+.button_opacity:hover {
     color: white;
     cursor: pointer;
-    background-color: rgb(98, 197, 84);
-    -webkit-transition: background-color $transform-time;
     transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
 }
 
-.no_acc_button:active {
+.button_opacity.primary{
+    border: solid 2px rgb(2, 158, 255);
+}
+
+.button_opacity.green{
+    border: solid 2px rgb(98, 197, 84);
+}
+
+.button_opacity:active {
     opacity: 0.7;
 }

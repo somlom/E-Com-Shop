@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { defer, useLoaderData, Await } from "react-router-dom";
 
 import "../css/Order.scss"
 import { Form } from '../components/Form'
@@ -18,6 +19,7 @@ export const Address = () => {
 
 
     const value = useGetLastUsersOpenOrderQuery()
+    console.log(value)
 
     const add_to_state = (event) => {
         setInput((prevState) => ({
@@ -39,6 +41,7 @@ export const Address = () => {
         }
     }
 
+
     if (value.isSuccess && value.data !== null) {
 
         let i = 0
@@ -52,7 +55,7 @@ export const Address = () => {
                     <div className='address row'>
                         <div className='column'>
                             <h1>{t("address")}</h1>
-                            <Form onChange={add_to_state} onSubmit={send_to_backend}>
+                            <Form onChange={add_to_state} onSubmit={send_to_backend} >
                                 <input type="text" placeholder={t("country")} id='country' onChange={add_to_state} />
                                 <div className='row'>
                                     <input type="text" placeholder={t("name")} id='name' onChange={add_to_state} />
@@ -61,8 +64,8 @@ export const Address = () => {
                                 <div className='row'>
                                     <input type="number" placeholder={t("zip-code")} id='zip' onChange={add_to_state} />
                                     <input type="text" placeholder={t("city")} id='city' onChange={add_to_state} />
-                                    <input type="text" placeholder={t("house")} id='house' onChange={add_to_state} />
                                 </div>
+                                <input type="text" placeholder={t("house")} id='house' onChange={add_to_state} />
                             </Form>
                         </div>
                         <div className='column'>

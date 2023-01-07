@@ -17,9 +17,9 @@ export async function get_cart_items(req, res) {
 
     const { data } = req.body;
 
-    const value = await Products.find().where('product').in(data).exec()
+    const value = await Products.find({ _id: { $in: await data.map(a => a.product) } })
 
-    if (data) {
+    if (value) {
         const in_cart = []
 
         data.map((item) => {
@@ -79,14 +79,14 @@ export async function edit_product(req, res) {
     const item = await Products.findOne({ _id: req.body._id })
     if (item) {
         try {
-            console.log({...req.body})
-            const products = await Products.findByIdAndUpdate(req.body._id, {...req.body})
+            console.log({ ...req.body })
+            const products = await Products.findByIdAndUpdate(req.body._id, { ...req.body })
             return res.json(products)
         } catch (error) {
             res.status(400)
             throw new Error(error)
         }
-    }else{
+    } else {
         throw new Error("error")
     }
 

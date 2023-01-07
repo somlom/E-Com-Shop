@@ -16,7 +16,7 @@ export const Step = ({ number, children }) => {
                     <div className='column'>
 
                         {number > 1 ? <TiTick size={43} /> : <p>1</p>}
-                        <span>{t("order", { ns: 'common' })}</span>
+                        <span>{t("order")}</span>
 
                     </div>
                     {number > 1 ? <p></p> : <p>-</p>}

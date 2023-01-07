@@ -43,7 +43,7 @@ input.nav_title {
     // width: 50vw;
 }
 
-.nav_column#pc input{
+.nav_column#pc input {
     width: 50vw;
 }
 .nav_column#mobile input {
@@ -59,10 +59,9 @@ input.nav_title:focus {
     border-bottom: 3px solid $base-color;
 }
 
-div.nav_title{
+div.nav_title {
     display: flex;
     flex-direction: column;
-    
 }
 
 div.nav_title * {
@@ -112,7 +111,7 @@ div.nav_title * {
 .hamburger {
     z-index: 1;
     align-items: flex-start;
-    position: relative; 
+    position: relative;
     left: 0;
     top: 0;
     height: 100vh;

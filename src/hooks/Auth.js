@@ -17,8 +17,27 @@ export const ProtectedRoute = () => {
 
     } else if (value.isError || value.response === false) {
 
-        return navigate("/login", {state: {next: location.pathname} })
+        return navigate("/login", {state: {next: location.pathname, message: "You are have to be logged in to proceed"} })
 
+    } else if (value.isLoading || value.isUninitialized) {
+
+        return <Spinner />
+
+    }
+};
+
+export const OnlyUnsignedRoute = () => {
+    const navigate = useNavigate();
+
+    const value = useCheckTokenQuery();
+
+    if (value.isSuccess && value.data === true) {
+
+        return navigate("/account")
+
+    } else if (value.isError || value.response === false) {
+
+        return <Outlet />
     } else if (value.isLoading || value.isUninitialized) {
 
         return <Spinner />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsBag } from 'react-icons/bs';
-import { AiOutlineHeart, AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
@@ -56,12 +56,6 @@ export const Navigation = () => {
                   <span>{t("hot_deals")}</span>
                 </div>
               </Link>
-              <Link className="link column" to="/wishlist">
-                <div className='with_icon'>
-                  <AiOutlineHeart size={20} />
-                  <span>{t("wishlist")}</span>
-                </div>
-              </Link>
               <Link className="link column" to="/account">
                 <div className='with_icon'>
                   <AiOutlineUser size={20} />
@@ -77,7 +71,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={15} /><span>{count}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} /><span>{count}</span></button>
           </div>
         </div>
         <div className='nav_column' id="mobile">

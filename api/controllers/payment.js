@@ -16,13 +16,13 @@ async function get_orders(req, res) {
 
     const user_order = await Orders.find({ user: req.user }).populate("products.product")
 
-    return await res.json(user_order)
+    return res.json(user_order)
 }
 
 async function get_order(req, res) {
 
     const user_order = await Orders.findOne({ user: req.user, open: true }).populate("products.product")
-    return await res.json(user_order)
+    return res.json(user_order)
 
 }
 
