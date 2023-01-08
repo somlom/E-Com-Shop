@@ -19,9 +19,13 @@ export const payment_api = createApi({
     endpoints: (builder) => ({
         getOrders: builder.query({
             query: () => "/get_orders",
+            // providesTags: (result) =>
+            // result ? [...result.map(({ _id }) => ({ type: 'Payment', _id })), { type: 'Payment', id: 'LIST' },] : [{ type: 'Payment', id: 'LIST' }],
+            // providesTags: [{ type: 'Payment', id: 'LIST' }],
         }),
         getLastUsersOpenOrder: builder.query({
             query: () => "/get_order",
+            invalidatesTags: { type: 'Payment', id: "LIST" }
         }),
         createOrder: builder.mutation({
             query: (data) => ({
@@ -30,7 +34,7 @@ export const payment_api = createApi({
                 body: { cart: data },
                 responseType: "json",
             }),
-            invalidatesTags: [{ type: 'Payment', id: 'LIST' }]
+            invalidatesTags: [{ type: 'Payment' }]
         }),
         updateOrder: builder.mutation({
             query: () => ({
@@ -40,4 +44,4 @@ export const payment_api = createApi({
     })
 })
 
-export const { useCreateOrderMutation, useGetOrdersQuery, useUpdateOrderMutation, useGetLastUsersOpenOrderQuery } = payment_api;
+export const { useCreateOrderMutation, useGetOrdersQuery, useUpdateOrderMutation, useGetLastUsersOpenOrderQuery, useLazyGetLastUsersOpenOrderQuery } = payment_api;

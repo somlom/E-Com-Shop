@@ -2,11 +2,10 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
-import { defer, useLoaderData, Await } from "react-router-dom";
 
 import "../css/Order.scss"
 import { Form } from '../components/Form'
-import { useGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
+import { useGetLastUsersOpenOrderQuery, useLazyGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
 import { Step } from '../components/order/Step';
 import { Spinner } from '../components/Spinner';
 import { OrderCount } from '../components/order/OrderCount';
@@ -16,9 +15,18 @@ export const Address = () => {
 
     const [t] = useTranslation();
     const [input, setInput] = React.useState({});
+    const [value, setValue] = React.useState(null);
 
+    // const [trigger, value] = useLazyGetLastUsersOpenOrderQuery()
+    const { refetch } = useGetLastUsersOpenOrderQuery()
+    // const { data, isFetching, isError, isSuccess, refetch }
 
-    const value = useGetLastUsersOpenOrderQuery()
+    React.useEffect(() => {
+        refetch().then((y) => {
+            setValue(y)
+        })
+    }, [])
+
     console.log(value)
 
     const add_to_state = (event) => {
@@ -41,13 +49,9 @@ export const Address = () => {
         }
     }
 
-
-    if (value.isSuccess && value.data !== null) {
-
-        let i = 0
-        value.data.products.map((obj) => {
-            i += obj.product.price * obj.quantity
-        })
+    if (value === null || value.isFetching || value.isUninitialized) {
+        return <Spinner />
+    } else if (value.isSuccess && value.data !== null) {
 
         return (
             <React.Suspense fallback={<Spinner />}>
@@ -88,8 +92,6 @@ export const Address = () => {
                 </Step>
             </React.Suspense>
         )
-    } else if (value.isFetching || value.isUninitialized) {
-        return <Spinner />
     } else {
         return <h1>{t("loading_error")}</h1>
     }

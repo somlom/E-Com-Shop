@@ -32,9 +32,9 @@ export const LoginForm = () => {
 
             await axios.post(`http://${process.env.PUBLIC_URL}/auth/login`, input).then(
 
-                function (fulfilled) {
+                async function (fulfilled) {
 
-                    localStorage.setItem("user", fulfilled.data)
+                    await localStorage.setItem("user", fulfilled.data)
                     alert(fulfilled.data)
                     const { next } = state
                     if (next === null) {

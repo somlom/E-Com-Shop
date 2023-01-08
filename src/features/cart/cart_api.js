@@ -6,7 +6,7 @@ export const cart_api = createApi({
     tagTypes: ['Cart'],
     endpoints: (builder) => ({
         getAll: builder.query({
-            query: () => "/"
+            query: () => "/",
         }),
         postCart: builder.mutation({
             query: (data) => ({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -9,7 +9,7 @@ import { cartArray } from '../features/cart/cart_slice';
 import { OrderCount } from "../components/order/OrderCount";
 import { OrderData } from '../components/order/OrderData';
 import { useCreateOrderMutation } from '../features/cart/payment_api';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export const Order = () => {
@@ -17,16 +17,34 @@ export const Order = () => {
     const [t] = useTranslation();
 
     const cart = useSelector(cartArray);
+
     const [sendIt, data] = usePostCartMutation();
-    const [create_order] = useCreateOrderMutation(cart);
+
+    const navigate = useNavigate()
+    const [create_order, order] = useCreateOrderMutation(cart);
+
+    // React.useLayoutEffect(() => {
+    //     if (order.isSuccess) {
+    //         navigate("/order/address", { state: { data: order } })
+    //     }
+    // }, [order.isSuccess])
+
+    const send_data = async () => {
+        await create_order(cart)
+        // if (!order.isSuccess) {
+        //     return <Spinner />
+        // }
+    }
 
     React.useLayoutEffect(() => {
         const send_to_backend = async (cart) => {
             await sendIt(cart)
+            await create_order(cart)
         }
         send_to_backend(cart)
 
     }, [cart])
+
 
     if (data.isError === true) {
 
@@ -37,7 +55,7 @@ export const Order = () => {
         return <Spinner />
 
     }
-    else if(data.data.length === 0){
+    else if (data.data.length === 0) {
         return <h1>No items</h1>
     }
     else {
@@ -51,7 +69,8 @@ export const Order = () => {
                     </div>
                     <div className='order_count'>
                         <OrderCount data={data.data}>
-                            <Link to="/order/address" className='opacity' onClick={() => create_order(cart)}>{t("pay")}</Link>
+                            <Link to={"/order/address"} className='opacity' onClick={send_data}>{t("pay")}</Link>
+                            {/* <a className='opacity' onClick={send_data}>{t("pay")}</a> */}
                         </OrderCount>
                     </div>
                 </div>
