@@ -17,38 +17,30 @@ Test on web: https://deploy-site-test.netlify.app/
 - [x] AGB
 - [x] Paying process
 
-## Cart
-- [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
-- [x] Data will be saved in local storage(id) and on server(queries)
-
-## DB
-- [x] Implement local DB
-- [x] Schemas
-- [x] Photos
-
 ## Design
 - [x] Navbar
 - [x] Cart
 - [x] user page
-- [ ] Register page
-- [ ] login page
-- [ ] reset page
-- [ ] Order page
+- [x] Register page
+- [x] login page
+- [x] reset page
+- [x] Order page
 - [ ] Product page
 - [x] Footer
 - [ ] Hot deals
 - [ ] Search page
+- [ ] Admin page
 
 ## Product page
 - [ ] Reviews
 - [x] photos
-- [ ] details
+- [x] details
 
 ## Order
 - [x] Order box
 - [x] Infos
-- [ ] delivery
 - [ ] payment
+- [ ] receipt
 
 ## user profile
 - [ ] Sending data
@@ -58,3 +50,21 @@ Test on web: https://deploy-site-test.netlify.app/
 - [ ] Zahlungen
 - [ ] Bestellung
 - [ ] Rechnung
+  
+## Backend
+- [ ] Slug
+- [ ] Admin-Page security (2FA)
+
+## Frontend
+- [ ] Slug
+- [ ] Admin-Page security
+- [ ] Design
+
+## Cart
+- [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
+- [x] Data will be saved in local storage(id) and on server(queries)
+
+## DB
+- [x] Implement local DB
+- [x] Schemas
+- [x] Photos

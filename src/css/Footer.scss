@@ -1,6 +1,6 @@
 .footer_content {
     display: flex;
-    border-top: solid 1px black;
+    border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: gray;
@@ -40,7 +40,6 @@
 .company_data {
     align-self: center;
     border: none;
-    border-top: solid 1px black;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     width: 100%;

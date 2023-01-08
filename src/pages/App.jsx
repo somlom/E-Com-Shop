@@ -1,12 +1,7 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
+// import { Elements } from '@stripe/react-stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 
 import "../css/App.scss"
 import { Main } from './Main'
@@ -41,6 +36,7 @@ export default function App() {
     <Routes>
 
       <Route element={<Layout />}>
+
         <Route index element={<Main />} />
 
         <Route path="products" element={<Products />} />
@@ -78,7 +74,6 @@ export default function App() {
 
         <Route path="/*" element={<PageNotFound />} />
       </Route>
-
     </Routes>
   )
 }

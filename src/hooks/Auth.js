@@ -12,8 +12,6 @@ export const ProtectedRoute = () => {
 
     const value = useCheckTokenQuery();
 
-    console.log(value)
-
     React.useEffect(() => {
         if (value.isError || value.response === false) {
             // navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })

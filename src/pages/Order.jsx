@@ -36,7 +36,7 @@ export const Order = () => {
         // }
     }
 
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
         const send_to_backend = async (cart) => {
             await sendIt(cart)
             await create_order(cart)

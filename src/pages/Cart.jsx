@@ -16,7 +16,7 @@ export function Cart() {
   const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const send_to_backend = async (cart) => {
       await sendIt(cart)
     }
