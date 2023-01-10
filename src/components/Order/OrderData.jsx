@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next';
 
-import "../../css/Order.scss"
+import "./Order.scss"
 import { set_to_cart, remove_from_cart } from "../../features/cart/cart_slice"
 
 

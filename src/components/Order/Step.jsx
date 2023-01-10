@@ -2,7 +2,7 @@ import React from 'react'
 import { TiTick } from "react-icons/ti"
 import { useTranslation } from 'react-i18next';
 
-import "../../css/Order.scss"
+import "./Order.scss"
 
 
 export const Step = ({ number, children }) => {

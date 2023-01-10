@@ -7,7 +7,7 @@ import { Spinner } from '../other/Spinner'
 import "./Layout.scss"
 
 
-export const Layout = (props) => {
+export const Layout = () => {
 
     return (
         <React.Suspense fallback={<Spinner />}>
