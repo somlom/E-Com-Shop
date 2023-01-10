@@ -1,0 +1,124 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
+.nav {
+    justify-content: space-evenly;
+    border: solid 1px black;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav_column {
+    margin: 3px;
+    display: flex;
+    // flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+}
+
+.nav_column * {
+    height: min-content;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    align-self: center;
+}
+
+input.nav_title {
+    width: 100%;
+    height: max-content;
+    text-align: start;
+    padding: 12px 20px;
+    margin: 1vw 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 3px solid #ccc;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+.nav_column#pc {
+    display: flex;
+    // width: 50vw;
+}
+
+.nav_column#pc input {
+    width: 50vw;
+}
+.nav_column#mobile input {
+    width: 90vw;
+}
+
+.nav_column#mobile {
+    display: none;
+    // width: 90vw;
+}
+
+input.nav_title:focus {
+    border-bottom: 3px solid $base-color;
+}
+
+div.nav_title {
+    display: flex;
+    flex-direction: column;
+}
+
+div.nav_title * {
+    margin: 0px;
+    color: black;
+}
+
+@media screen and (max-width: 767px) {
+    .nav_column.buttons {
+        display: none;
+    }
+    .nav_column#pc {
+        display: none;
+    }
+    .nav_column#mobile {
+        display: flex;
+    }
+}
+
+.cart_button {
+    display: flex;
+    background-color: white;
+    border: solid 2px $base-color;
+    width: min-content;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity $transform-time;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    -webkit-transition: background-color $transform-time;
+}
+
+.cart_button * {
+    padding: 2px;
+    height: auto;
+}
+
+.cart_button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: $base-color;
+    transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
+}
+
+.hamburger {
+    z-index: 1;
+    align-items: flex-start;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    // background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hamburger a {
+    padding: 10px;
+}

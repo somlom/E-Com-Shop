@@ -1,0 +1,103 @@
+$base-color: rgb(2, 158, 255);
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout {
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.prepair_spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.spinner {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    animation: spin 1s ease-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+a.link {
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a.link:hover,
+a.link:active {
+    color: $base-color;
+}
+
+/* ##### BUTTONS */
+
+.opacity:hover {
+    opacity: 0.7;
+}
+
+.opacity:active {
+    opacity: 0.5;
+}
+
+.items_content {
+    background-color: peachpuff;
+    display: flex;
+    flex-direction: column;
+}
+
+.open_menu {
+    display: none;
+}
+
+.close_menu {
+    display: flex;
+}
+
+@media screen and (max-width: 767px) {
+    .open_menu {
+        display: flex;
+    }
+    .close_menu {
+        display: none;
+    }
+}
+
+.with_icon{
+    display: flex;
+    flex-direction: column;
+}
+
+.with_icon * {
+    padding: 0;
+}

@@ -1,0 +1,103 @@
+$base-color: rgb(2, 158, 255);
+$transform-time: 0.15s;
+
+.form_content {
+    align-items: center;
+}
+
+.form.column {
+    width: 100%
+}
+
+div.responsible_form .form.column{
+    width: 80%;
+    max-width: 900px;
+}
+
+.form_title {
+    margin: 5px;
+}
+
+.form_buttons {
+    align-content: center;
+}
+
+.form_buttons button {
+    margin: 10px;
+}
+
+.form p, .form input {
+    width: 100%;
+    margin: 1vw 0;
+}
+
+.form p{
+    padding: 24px 40px;
+    text-align: center;
+}
+
+.form input {
+
+    padding: 12px 20px;
+    box-sizing: border-box;
+    // border: none;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+    align-self: center;
+}
+
+.form input:focus {
+    border: 1px solid  $base-color;
+}
+
+.button_opacity.opacity.submit {
+    margin: 5px;
+}
+
+.button_opacity {
+    display: flex;
+    background-color: white;
+    width: fit-content;
+    border: none;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity 0.15s;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    -webkit-transition: background-color 0.15s;
+}
+
+.button_opacity * {
+    margin: 2px;
+}
+
+.button_opacity.primary:hover {
+    background-color: $base-color;
+}
+
+.button_opacity.green:hover {
+    background-color: rgb(98, 197, 84);
+}
+
+.button_opacity:hover {
+    color: white;
+    cursor: pointer;
+    transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
+}
+
+.button_opacity.primary{
+    border: solid 2px rgb(2, 158, 255);
+}
+
+.button_opacity.green{
+    border: solid 2px rgb(98, 197, 84);
+}
+
+.button_opacity:active {
+    opacity: 0.7;
+}
