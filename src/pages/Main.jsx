@@ -10,7 +10,7 @@ export const Main = () => {
 
   return (
     <div>
-      <h1 className='title'>{t("main_page")}</h1>
+      <h1 className='title'>{t('welcome')}</h1>
       <Products />
     </div>
   )

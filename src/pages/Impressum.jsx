@@ -1,10 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 
 export const Impressum = () => {
 
-  const { t, i18n } = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div>
@@ -17,6 +18,7 @@ export const Impressum = () => {
       <p>{t("Telefone")}</p>
       <p>{t("E-Mail")}</p>
       <p>{t("Disclaimer")}</p>
+      <a href={`${process.env.PUBLIC_URL}/download/agb`}>AGB</a>
     </div>
   )
 }

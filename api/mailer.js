@@ -19,13 +19,10 @@ export const send_email = (to, subject, html) => {
         subject: subject,
         html: html,
     };
-    console.log('Message sent:')
     transporter.sendMail(options, (err, info) => {
         if (err) {
             console.log("error " + err);
         }
-
-        console.log('Message sent: ' + info.response);
     });
 
 }
