@@ -39,7 +39,7 @@ Test on web: https://deploy-site-test.netlify.app/
 ## Order
 - [x] Order box
 - [x] Infos
-- [ ] payment
+- [x] payment
 - [ ] receipt
 
 ## user profile

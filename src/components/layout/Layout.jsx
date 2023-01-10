@@ -1,10 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { Footer } from '../components/Footer'
-import { Navigation } from '../components/Navigation'
-import { Spinner } from '../components/Spinner'
-import "../css/Layout.scss"
+import { Footer } from './Footer/Footer'
+import { Navigation } from './Navigation/Navigation'
+import { Spinner } from '../other/Spinner'
+import "./Layout.scss"
 
 
 export const Layout = (props) => {

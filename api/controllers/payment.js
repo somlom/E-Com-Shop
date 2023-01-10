@@ -1,3 +1,4 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
@@ -11,6 +12,7 @@ payment.post("/create_order", auth_middleware, asyncHandler(create_order))
 payment.put("/update_order", auth_middleware, asyncHandler(update_order))
 payment.get("/get_orders", auth_middleware, asyncHandler(get_orders))
 payment.get("/get_order", auth_middleware, asyncHandler(get_order))
+payment.get("/pay", auth_middleware, asyncHandler(pay_order))
 
 async function get_orders(req, res) {
 
@@ -66,7 +68,28 @@ async function update_order(req, res) {
         res.status(301)
         throw new Error("Please, add your address")
     }
+}
 
+async function pay_order(req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
+    const YOUR_DOMAIN = 'http://localhost:4000';
+
+    const session = await stripe.checkout.sessions.create({
+        line_items: [
+            {
+                // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                price: "price_1MO1XsB2CYhq6UCm5PbRIww0",
+                quantity: 1,
+            },
+        ],
+        mode: 'payment',
+        success_url: `${YOUR_DOMAIN}?success=true`,
+        cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    });
+
+    console.log(session.url)
+    // res.redirect(303, session.url);
+    return res.json(session.url);
 }
 
 export default payment;

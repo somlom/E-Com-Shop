@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
-import { Spinner } from "../components/Spinner"
+import { Spinner } from "../components/other/Spinner"
 
 
 export const Admin = () => {

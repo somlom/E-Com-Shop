@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-import { Spinner } from "../components/Spinner"
+import { Spinner } from "../components/other/Spinner"
 
 
 export const usePostData = (url = "", data = "") => {

@@ -9,7 +9,7 @@ import { useGetData } from '../hooks/Data';
 import { set_to_cart } from '../features/cart/cart_slice';
 import { useState } from 'react';
 import { Details } from '../components/Details';
-import { Switch } from '../components/Switch';
+import { Switch } from '../components/other/Switch';
 
 
 export const Product = () => {

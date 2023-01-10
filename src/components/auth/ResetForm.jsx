@@ -2,8 +2,8 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
-import { Form } from '../Form';
-import "../../css/Form.scss"
+import { Form } from '../other/Form';
+import "../other/Form.scss"
 
 
 export const ResetForm = () => {

@@ -1,13 +1,11 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
-// import { Elements } from '@stripe/react-stripe-js';
-// import { loadStripe } from '@stripe/stripe-js';
 
 import "../css/App.scss"
 import { Main } from './Main'
 import { Login, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';
-import { Layout } from './Layout';
+import { Layout } from '../components/layout/Layout';
 import { Products } from './Products';
 import { FAQ } from './FAQ';
 import { Impressum } from './Impressum';
@@ -21,16 +19,10 @@ import { MyOrders } from './MyOrders';
 import { Admin, Admin_Edit } from './Admin';
 import { Address } from './Address';
 import { Payment } from '../components/order/Payment';
-import { Spinner } from '../components/Spinner';
+import { Spinner } from '../components/other/Spinner';
 
 
 export default function App() {
-
-  // const stripePromise = loadStripe(process.env.PUBLISHABLE_API);
-
-  // const options = {
-  //   clientSecret: process.env.STRIPE_API,
-  // };
 
   return (
     <Routes>
@@ -57,9 +49,7 @@ export default function App() {
           <Route path="order" element={<Order />} />
           <Route path="/order/address" element={<Address />} />
 
-          {/* <Route element={<Elements stripe={stripePromise} options={options} />}> */}
           <Route path='order/payment' element={<Payment />} />
-          {/* </Route> */}
 
         </Route>
 

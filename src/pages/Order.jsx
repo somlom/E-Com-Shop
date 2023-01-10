@@ -1,39 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import "../css/Order.scss"
-import { Spinner } from '../components/Spinner'
+import { Spinner } from '../components/other/Spinner'
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
 import { OrderCount } from "../components/order/OrderCount";
 import { OrderData } from '../components/order/OrderData';
 import { useCreateOrderMutation } from '../features/cart/payment_api';
-import { Link, useNavigate } from 'react-router-dom';
 
 
 export const Order = () => {
 
     const [t] = useTranslation();
-
     const cart = useSelector(cartArray);
-
     const [sendIt, data] = usePostCartMutation();
+    const [create_order] = useCreateOrderMutation();
 
-    const navigate = useNavigate()
-    const [create_order, order] = useCreateOrderMutation(cart);
-
-    // React.useLayoutEffect(() => {
-    //     if (order.isSuccess) {
-    //         navigate("/order/address", { state: { data: order } })
-    //     }
-    // }, [order.isSuccess])
-
-    const send_data = async () => {
-        await create_order(cart)
-        // if (!order.isSuccess) {
-        //     return <Spinner />
-        // }
+    const send_data = async() => {
+        const resp = await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}`} })
+        return window.location.replace(resp.data);
     }
 
     React.useEffect(() => {
@@ -69,8 +57,7 @@ export const Order = () => {
                     </div>
                     <div className='order_count'>
                         <OrderCount data={data.data}>
-                            <Link to={"/order/address"} className='opacity' onClick={send_data}>{t("pay")}</Link>
-                            {/* <a className='opacity' onClick={send_data}>{t("pay")}</a> */}
+                            <a className='opacity' onClick={send_data}>{t("pay")}</a>
                         </OrderCount>
                     </div>
                 </div>

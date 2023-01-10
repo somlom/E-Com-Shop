@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react'
 
-import "../css/Modal.scss"
-import { close_on_esc } from '../hooks/close_on_esc';
+import "./Modal.scss"
+import { close_on_esc } from '../../../hooks/close_on_esc';
 
 
 export const Modal = ({ children, handle_modal, title = "" }) => {

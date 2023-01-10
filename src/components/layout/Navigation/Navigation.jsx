@@ -10,11 +10,11 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 
-import "../css/Navigation.scss"
-import { Modal } from './Modal'
-import { selectCount } from '../features/cart/cart_slice';
-import { Cart } from '../pages/Cart';
-import { Hamburger } from './Hamburger';
+import "./Navigation.scss"
+import { Modal } from '../Modal/Modal'
+import { selectCount } from '../../../features/cart/cart_slice';
+import { Cart } from '../../../pages/Cart';
+import { Hamburger } from '../Hamburger';
 
 
 export const Navigation = () => {

@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { Form } from "../Form";
-import "../../css/Form.scss"
+import { Form } from "../other/Form";
+import "../other/Form.scss"
 
 
 export const LoginForm = () => {

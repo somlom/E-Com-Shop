@@ -3,8 +3,8 @@ import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
-import { Form } from "../Form";
-"../../css/Form.scss"
+import { Form } from "../other/Form";
+import "../other/Form.scss"
 
 
 export const RegisterForm = () => {

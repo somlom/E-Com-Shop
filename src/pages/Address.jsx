@@ -4,10 +4,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 
 import "../css/Order.scss"
-import { Form } from '../components/Form'
+import { Form } from '../components/other/Form'
 import { useGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
 import { Step } from '../components/order/Step';
-import { Spinner } from '../components/Spinner';
+import { Spinner } from '../components/other/Spinner';
 import { OrderCount } from '../components/order/OrderCount';
 
 
@@ -37,8 +37,8 @@ export const Address = () => {
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.put(`http://${process.env.PUBLIC_URL}/payment/update_order`, { address: input }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
-            return alert("response")
+            await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}`} })
+            return 
 
         } else {
             return alert("Error!!! Empty fields")
