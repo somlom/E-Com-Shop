@@ -3,7 +3,7 @@
     border: none;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: gray;
+    background-color: #e8f5ff;
 }
 
 .footer_content .row {
@@ -46,6 +46,7 @@
     height: min-content;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    
 }
 
 .company_data div {
@@ -61,5 +62,5 @@
 .footer.column {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: rgb(167, 167, 167);
+    background-color: #abdbff;
 }

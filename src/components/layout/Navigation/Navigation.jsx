@@ -33,7 +33,7 @@ export const Navigation = () => {
       <div className='nav row'>
 
         <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
-          {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
+          {menu_state === true ? <GrClose size={30} color={"#e8f5ff"} /> : <GiHamburgerMenu size={30} />}
         </div>
 
         <div className='nav_column' onClick={() => handle_menu(false)}>
@@ -52,7 +52,7 @@ export const Navigation = () => {
             <div className='row'>
               <Link className="link column" to="/hot">
                 <div className='with_icon'>
-                  <AiOutlineFire size={20} />
+                  <AiOutlineFire size={20}  />
                   <span>{t("hot_deals")}</span>
                 </div>
               </Link>
@@ -71,7 +71,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} /><span>{count}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} color={"#029eff"} /><span>{count}</span></button>
           </div>
         </div>
         <div className='nav_column' id="mobile">

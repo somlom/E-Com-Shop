@@ -17,6 +17,7 @@ $transform-time: 0.2s;
     transition: opacity 0.3s;
     border-radius: 10px;
     max-width: 400px;
+    border: solid 2px #e8f5ff;
 }
 
 .product img:hover {
@@ -24,9 +25,9 @@ $transform-time: 0.2s;
 }
 
 .layer span {
-    color: white;
+    color: #3e4756;
     height: min-content;
-    background-color: #004990;
+    background-color: #e8f5ff;
     border-radius: 30px;
     margin: 3px;
     padding: 5px;
@@ -35,10 +36,10 @@ $transform-time: 0.2s;
 }
 
 .layer .product_footer {
-    border-radius: 10px;
+    border-radius: 0px 10px 10px 10px;
     height: min-content;
     width: min-content;
-    background-color: gray;
+    background-color: #e8f5ff;
     display: flex;
     align-items: flex-end;
     flex-direction: row;
@@ -46,7 +47,7 @@ $transform-time: 0.2s;
 }
 
 .layer .product_footer h3 {
-    color: white;
+    color: #3e4756;
     padding: 5px;
     margin: 0;
 }
@@ -75,7 +76,7 @@ $transform-time: 0.2s;
     width: 100%;
     justify-content: center;
     align-self: center;
-    background-color: gray;
+    background-color: #e8f5ff;
     border-radius: 30px;
     position: sticky;
     bottom: 10px;
@@ -88,7 +89,7 @@ $transform-time: 0.2s;
     align-items: center;
 }
 .buy_row h3 {
-    color: white;
+    color: #3e4756;
     margin: 0;
     padding: 15px;
 }
@@ -179,7 +180,7 @@ $transform-time: 0.2s;
 }
 
 .details {
-    background-color: grey;
+    background-color: #e8f5ff;
     border: none;
     border-radius: 18px;
     padding: 18px;
@@ -189,7 +190,7 @@ $transform-time: 0.2s;
 .switch.row {
     border: none;
     border-radius: 20px;
-    background-color: grey;
+    background-color: #e8f5ff;
     width: fit-content;
 }
 
@@ -200,12 +201,12 @@ $transform-time: 0.2s;
 }
 
 .switch span.show {
-    background-color: rgb(89, 92, 92);
+    background-color: #029eff;
     color: white;
 }
 
 .switch span.hide {
-    background-color: grey;
+    background-color: #e8f5ff;
 }
 
 .switch span {
