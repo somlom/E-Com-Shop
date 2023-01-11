@@ -19,8 +19,9 @@ export const Order = () => {
     const [sendIt, data] = usePostCartMutation();
     const [create_order] = useCreateOrderMutation();
 
-    const send_data = async() => {
-        const resp = await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}`} })
+    const send_data = async () => {
+        const resp = await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
+        console.log(resp.data)
         return window.location.replace(resp.data);
     }
 

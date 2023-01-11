@@ -14,18 +14,37 @@ products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photo, asyncHandler(add_product))
 products.post("/edit", upload_photo, asyncHandler(edit_product))
 
+// POST /products/cart
+//
+// Args: [{product: "sn34n3431n4134", quantity: 10}, {product: "s432d324134", quantity: 1}]
+// Return : [
+//     {
+//         "_id": "63be7f496b0f2e23150f3a88",
+//         "name": "Handwärmer LUX (50°)",
+//         "photos": [
+//             "1673428809125-19f9a574fcbc42d5cc5819da929acc1f.jpg"
+//         ],
+//         "tags": [],
+//         "text": "Lux",
+//         "price": 25,
+//         "quantity": 1,
+//         "createdAt": "2023-01-11T09:20:09.152Z",
+//         "updatedAt": "2023-01-11T09:20:09.152Z",
+//         "__v": 0
+//     }
+// ]
 export async function get_cart_items(req, res) {
 
     const { data } = req.body;
 
-    const value = await Products.find({ _id: { $in: await data.map(a => a.product) } })
+    const value = await Products.find({ _id: { $in: await data.map(a => a._id) } })
 
     if (value) {
         const in_cart = []
 
         data.map((item) => {
 
-            const found = value.find(x => x._id.toString() === (item.product || item._id))
+            const found = value.find(x => x.id === item._id)
             if (found) {
                 found.quantity = parseInt(item.quantity)
                 in_cart.push(found)
@@ -63,24 +82,23 @@ export async function add_product(req, res) {
     const { name, text, price, quantity } = req.body;
     const { filename } = req.file;
 
-
-
     try {
         const products = await Products.create({ text: text, name: name, price: price, photos: [filename], quantity: quantity })
-        const product = await stripe.products.create({
-            product: products._id.toString(),
-            name: products.name,
-            default_price_data: {
-                currency: "EUR",
-                unit_amount_decimal: products.price.toString(),
-            },
-            shippable: true,
-            url: "http://localhost:4000/" + products._id,
-            images: [
-                process.env.CLIENT_URI+"/img/filename"
-            ]
-        });
-        console.log(product)
+        if (products) {
+            await stripe.products.create({
+                id: products.id,
+                name: products.name,
+                default_price_data: {
+                    currency: "EUR",
+                    unit_amount_decimal: products.price.toString(),
+                },
+                shippable: true,
+                url: "http://localhost:4000/" + products.id,
+                images: [
+                    "http://localhost:4000/img/" + filename
+                ]
+            });
+        }
         return res.json(products)
     } catch (error) {
         res.status(400)
@@ -96,7 +114,6 @@ export async function edit_product(req, res) {
     const item = await Products.findOne({ _id: req.body._id })
     if (item) {
         try {
-            console.log({ ...req.body })
             const products = await Products.findByIdAndUpdate(req.body._id, { ...req.body })
             return res.json(products)
         } catch (error) {

@@ -16,7 +16,7 @@ export const OrderData = ({ data }) => {
             <img className='order_image' src={`http://${process.env.PUBLIC_URL}/img/${obj.photos[0]}`}></img>
             <h3 id="title">{obj.name}</h3>
             <div className='row'>
-                <select value={obj.quantity} onChange={(e) => dispatch(set_to_cart({ _id: obj._id, quantity: e.target.value }))}>
+                <select value={obj.quantity} onChange={(e) => dispatch(set_to_cart({ id: obj._id, quantity: e.target.value }))}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -30,7 +30,7 @@ export const OrderData = ({ data }) => {
                 </select>
                 <h3 className='close_menu'>{obj.price * obj.quantity}</h3>
                 <div className='row'>
-                    <button onClick={() => dispatch(remove_from_cart({ _id: obj._id }))}>{t("remove")}</button>
+                    <button onClick={() => dispatch(remove_from_cart({ id: obj._id }))}>{t("remove")}</button>
                 </div>
             </div>
             <div className='row open_menu'>

@@ -29,7 +29,7 @@ export const payment_api = createApi({
         }),
         createOrder: builder.mutation({
             query: (data) => ({
-                url: "/create_order",
+                url: "/set_order",
                 method: 'POST',
                 body: { cart: data },
                 responseType: "json",
