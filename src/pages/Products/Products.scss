@@ -75,7 +75,7 @@ $transform-time: 0.2s;
     width: 100%;
     justify-content: center;
     align-self: center;
-    background-color: gray;
+    background-color: #e8f5ff;
     border-radius: 30px;
     position: sticky;
     bottom: 10px;
@@ -88,7 +88,7 @@ $transform-time: 0.2s;
     align-items: center;
 }
 .buy_row h3 {
-    color: white;
+    color: #3e4756;
     margin: 0;
     padding: 15px;
 }
@@ -179,7 +179,7 @@ $transform-time: 0.2s;
 }
 
 .details {
-    background-color: grey;
+    background-color: #e8f5ff;
     border: none;
     border-radius: 18px;
     padding: 18px;
@@ -189,7 +189,7 @@ $transform-time: 0.2s;
 .switch.row {
     border: none;
     border-radius: 20px;
-    background-color: grey;
+    background-color: #e8f5ff;
     width: fit-content;
 }
 
@@ -200,12 +200,12 @@ $transform-time: 0.2s;
 }
 
 .switch span.show {
-    background-color: rgb(89, 92, 92);
+    background-color: #029eff;
     color: white;
 }
 
 .switch span.hide {
-    background-color: grey;
+    background-color: #e8f5ff;
 }
 
 .switch span {
