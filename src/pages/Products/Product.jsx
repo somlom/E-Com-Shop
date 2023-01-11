@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { useTranslation } from 'react-i18next';
 
-import "../css/Products.scss"
-import { useGetData } from '../hooks/Data';
-import { set_to_cart } from '../features/cart/cart_slice';
+import "./Products.scss"
+import { useGetData } from '../../hooks/Data';
+import { set_to_cart } from '../../features/cart/cart_slice';
 import { useState } from 'react';
-import { Details } from '../components/Details';
-import { Switch } from '../components/other/Switch';
+import { Details } from '../../components/Details';
+import { Switch } from '../../components/other/Switch';
 
 
 export const Product = () => {

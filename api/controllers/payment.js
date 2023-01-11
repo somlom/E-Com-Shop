@@ -72,13 +72,13 @@ async function update_order(req, res) {
 
 async function pay_order(req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-    const YOUR_DOMAIN = 'http://localhost:4000';
+    const YOUR_DOMAIN = 'http://localhost:3000';
 
     const session = await stripe.checkout.sessions.create({
         line_items: [
             {
                 // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-                price: "price_1MO1XsB2CYhq6UCm5PbRIww0",
+                price: "price_1MOffqB2CYhq6UCmsVN6fbN1",
                 quantity: 1,
             },
         ],
@@ -86,9 +86,7 @@ async function pay_order(req, res) {
         success_url: `${YOUR_DOMAIN}?success=true`,
         cancel_url: `${YOUR_DOMAIN}?canceled=true`,
     });
-
-    console.log(session.url)
-    // res.redirect(303, session.url);
+    
     return res.json(session.url);
 }
 

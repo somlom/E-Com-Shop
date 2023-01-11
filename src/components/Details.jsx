@@ -1,6 +1,6 @@
 import React from 'react'
 
-import "../css/Products.scss"
+import "../pages/Products/Products.scss"
 
 
 export const Details = () => {

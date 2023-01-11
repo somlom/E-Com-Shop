@@ -1,3 +1,4 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
@@ -62,8 +63,24 @@ export async function add_product(req, res) {
     const { name, text, price, quantity } = req.body;
     const { filename } = req.file;
 
+
+
     try {
         const products = await Products.create({ text: text, name: name, price: price, photos: [filename], quantity: quantity })
+        const product = await stripe.products.create({
+            product: products._id.toString(),
+            name: products.name,
+            default_price_data: {
+                currency: "EUR",
+                unit_amount_decimal: products.price.toString(),
+            },
+            shippable: true,
+            url: "http://localhost:4000/" + products._id,
+            images: [
+                process.env.CLIENT_URI+"/img/filename"
+            ]
+        });
+        console.log(product)
         return res.json(products)
     } catch (error) {
         res.status(400)

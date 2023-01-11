@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-import "../css/Order.scss"
+import "../components/Order/Order.scss"
 import { Form } from '../components/other/Form'
 import { useGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
-import { Step } from '../components/order/Step';
+import { Step } from '../components/Order/Step';
 import { Spinner } from '../components/other/Spinner';
-import { OrderCount } from '../components/order/OrderCount';
+import { OrderCount } from '../components/Order/OrderCount';
 
 
 export const Address = () => {

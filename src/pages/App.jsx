@@ -1,25 +1,25 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
 
-import "../css/App.scss"
 import { Main } from './Main'
-import { Login, Register, Reset } from './Auth';
 import { PageNotFound } from './PageNotFound';
 import { Layout } from '../components/layout/Layout';
-import { Products } from './Products';
+import { Products } from './Products/Products';
 import { FAQ } from './FAQ';
 import { Impressum } from './Impressum';
 import { Customer_Rights } from './Customer_Rights';
 import { Support } from './Support';
-import { Product } from './Product';
+import { Product } from './Products/Product';
 import { Account } from './Account';
 import { OnlyUnsignedRoute, ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { MyOrders } from './MyOrders';
 import { Admin, Admin_Edit } from './Admin';
 import { Address } from './Address';
-import { Payment } from '../components/order/Payment';
-import { Spinner } from '../components/other/Spinner';
+// import { Payment } from '../components/order/Payment';
+import { Login } from './Auth/Login';
+import { Register } from './Auth/Register';
+import { Reset } from './Auth/Reset';
 
 
 export default function App() {
@@ -49,7 +49,7 @@ export default function App() {
           <Route path="order" element={<Order />} />
           <Route path="/order/address" element={<Address />} />
 
-          <Route path='order/payment' element={<Payment />} />
+          {/* <Route path='order/payment' element={<Payment />} /> */}
 
         </Route>
 

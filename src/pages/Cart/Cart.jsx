@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import "../css/Cart.scss"
-import { cartArray } from '../features/cart/cart_slice';
-import { usePostCartMutation } from '../features/cart/cart_api';
-import { Spinner } from '../components/other/Spinner';
+import "./Cart.scss"
+import { cartArray } from '../../features/cart/cart_slice';
+import { usePostCartMutation } from '../../features/cart/cart_api';
+import { Spinner } from '../../components/other/Spinner';
 
 
 export function Cart() {

@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import "./Navigation.scss"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart/cart_slice';
-import { Cart } from '../../../pages/Cart';
+import { Cart } from '../../../pages/Cart/Cart';
 import { Hamburger } from '../Hamburger';
 
 

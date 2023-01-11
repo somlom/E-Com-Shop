@@ -2,8 +2,8 @@ import React from 'react'
 import process from 'process';
 import { Link } from 'react-router-dom';
 
-import { useGetData } from '../hooks/Data'
-import "../css/Products.scss"
+import { useGetData } from '../../hooks/Data'
+import "./Products.scss"
 
 
 export const Products = () => {

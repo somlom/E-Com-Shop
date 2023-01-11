@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import "../css/Order.scss"
+import "../components/Order/Order.scss"
 import { Spinner } from '../components/other/Spinner'
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
-import { OrderCount } from "../components/order/OrderCount";
-import { OrderData } from '../components/order/OrderData';
+import { OrderCount } from "../components/Order/OrderCount";
+import { OrderData } from '../components/Order/OrderData';
 import { useCreateOrderMutation } from '../features/cart/payment_api';
 
 
