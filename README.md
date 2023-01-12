@@ -12,7 +12,7 @@ Test on web: https://deploy-site-test.netlify.app/
 - [x] Overwrite navbar for mobile mode
 - [x] Organize CSS (70% done)
 - [x] Fix CSS for safari
-- [ ] Optimize webpack for more performance
+- [x] Optimize webpack for more performance
 - [x] Implement local DB
 - [x] AGB
 - [x] Paying process
@@ -25,7 +25,7 @@ Test on web: https://deploy-site-test.netlify.app/
 - [x] login page
 - [x] reset page
 - [x] Order page
-- [ ] Product page
+- [x] Product page
 - [x] Footer
 - [ ] Hot deals
 - [ ] Search page

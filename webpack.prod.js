@@ -7,4 +7,5 @@ process.env.PUBLIC_URL = JSON.stringify(process.env.PUBLIC_URL || "localhost:400
 
 module.exports = merge(common, {
     mode: 'production',
+    devtool: false,
 });

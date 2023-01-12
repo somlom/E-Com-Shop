@@ -7,27 +7,37 @@ const process = require("process")
 
 module.exports = {
     //# sourceMappingURL=style.css.map
-    entry: path.join(__dirname, "src", "index.js"),
+    entry: {
+        index: {
+            import: path.join(__dirname, "src", "index.js"),
+            dependOn: 'shared',
+        },
+        another: {
+            import: path.join(__dirname, "src", "lodash.js"),
+            dependOn: 'shared',
+        },
+        shared: 'lodash',
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: 'main.bundle.js',
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, "build"),
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: [/node_modules/, /api/, /css/],
+                exclude: [/node_modules/, /api/, /css/, /test/],
                 use: ['babel-loader'],
             },
             {
                 test: /\.(css)$/,
-                exclude: [/node_modules/],
+                exclude: [/node_modules/, /test/],
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
         ],
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.css'],
+        extensions: ['.js', '.jsx', '.css'],
     },
     plugins: [
         new MiniCssExtractPlugin(),
@@ -39,8 +49,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'App',
             publicPath: "/",
-            // favicon: path.join(__dirname, "favicon.svg"),
             template: path.join(__dirname, "public", "index.html"),
         }),
     ],
+    optimization: {
+        // splitChunks: {
+        //     chunks: 'all',
+        // },
+        runtimeChunk: 'single',
+    },
 }
