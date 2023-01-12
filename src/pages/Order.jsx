@@ -9,7 +9,7 @@ import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
 import { OrderCount } from "../components/Order/OrderCount";
 import { OrderData } from '../components/Order/OrderData';
-import { useCreateOrderMutation } from '../features/cart/payment_api';
+import { useCreateOrderMutation } from '../features/payment/payment_api';
 
 
 export const Order = () => {

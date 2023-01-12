@@ -19,7 +19,7 @@ export const Product = () => {
     const { id } = useParams();
     const { value, Spinner } = useGetData("http://" + process.env.PUBLIC_URL + "/products/" + id)
 
-    const [showPhoto, setPhoto] = useState("")
+    const [showPhoto, setPhoto] = useState(false)
 
     const dispatch = useDispatch();
 
@@ -38,18 +38,10 @@ export const Product = () => {
                         <div className="row">
 
                             <div className="gallery column">
-                                {value.photos.map(photo => {
-                                    return (
-                                        <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} key={photo} onClick={() => {
-
-                                            setPhoto(photo)
-                                            return console.log(photo)
-                                        }} />
-                                    )
-                                })}
+                                {value.photos.map(photo => <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} key={photo} onClick={() => { setPhoto(photo) }} />)}
                             </div>
 
-                            <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0] || showPhoto}`}></img>
+                            <img src={`http://${process.env.PUBLIC_URL}/img/${showPhoto ? showPhoto : value.photos[0]}`}></img>
                         </div>
 
                         <div className='buy column'>

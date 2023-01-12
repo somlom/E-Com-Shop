@@ -1,9 +1,8 @@
 import React from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
-import { redirect } from "react-router-dom";
 
 import { Spinner } from "../components/other/Spinner";
-import { useCheckTokenQuery } from "../features/cart/user_api";
+import { useCheckTokenQuery } from "../features/user/user_api";
 
 
 export const ProtectedRoute = () => {

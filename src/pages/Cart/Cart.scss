@@ -70,13 +70,7 @@ img.product_column {
 }
 
 .counter {
-    // display: flex;
-    // flex-direction: row;
-    // padding: 5px;
-    // margin: 5px;
-    // border: solid 1px black;
     width: min-content;
-    // justify-content: center;
 }
 
 .product_column.column * {
@@ -118,9 +112,6 @@ img.product_column {
     padding: 5px;
 }
 .cart_footer button a {
-    // width: 100%;
-    // background-color: $base-color;
-    // border: none;
     color: white;
     font-size: medium;
     font-weight: 500;

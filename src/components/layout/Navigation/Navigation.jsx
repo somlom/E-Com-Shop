@@ -71,7 +71,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} color={"#029eff"} /><span>{count}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} />{count}</button>
           </div>
         </div>
         <div className='nav_column' id="mobile">

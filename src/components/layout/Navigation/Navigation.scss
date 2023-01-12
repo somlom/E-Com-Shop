@@ -101,7 +101,21 @@ div.nav_title * {
     height: auto;
 }
 
+
+.cart_button svg {
+    padding: 2px;
+    height: auto;
+    color: #029eff;
+}
+
 .cart_button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: $base-color;
+    transition: background-color $transform-time;
+    -webkit-transition: background-color $transform-time;
+}
+.cart_button svg:hover {
     color: white;
     cursor: pointer;
     background-color: $base-color;

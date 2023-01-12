@@ -127,9 +127,12 @@ const Admin_Add = () => {
 
     const send_to_backend = async (event) => {
         event.preventDefault()
-
+        console.log(selectedFile)
         const formData = new FormData()
-        formData.append("image", selectedFile)
+        // formData.append("image", selectedFile)
+        for (let i = 0; i < selectedFile.length; i++) {
+            formData.append("image", selectedFile[i]);
+        }
         formData.append("name", input.name)
         formData.append("text", input.text)
         formData.append("price", input.price)
@@ -157,9 +160,11 @@ const Admin_Add = () => {
 
                     <input
                         type="file"
-                        onChange={(e) => setSelectedFile(e.target.files[0])}
+                        multiple
+                        accept="image/*"
                         placeholder="filename"
                         id="filename"
+                        onChange={(e) => setSelectedFile(e.target.files)}
                     />
 
                     <input type="text" id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
@@ -171,7 +176,12 @@ const Admin_Add = () => {
                 </form>
                 <div className="column">
                     {selectedFile &&
-                        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedFile)} />}
+                        // console.log(selectedFile)
+                        Array.from(selectedFile).map(obj => {
+                            // console.log(obj, selectedFile[0])
+                            return <img alt="not fount" key={obj.lastModified} width={"250px"} src={URL.createObjectURL(obj)} />
+                        })
+                    }
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Spinner } from '../components/other/Spinner'
-import { useGetOrdersQuery } from '../features/cart/payment_api'
+import { useGetOrdersQuery } from '../features/payment/payment_api'
 
 
 export const MyOrders = () => {

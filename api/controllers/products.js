@@ -3,7 +3,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/schemas";
-import { upload_photo } from "../functions/photo";
+import { upload_photos } from "../functions/photo";
 
 
 const products = Router();
@@ -11,8 +11,8 @@ const products = Router();
 products.get("/", asyncHandler(get_products));
 products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
-products.post("/add", upload_photo, asyncHandler(add_product))
-products.post("/edit", upload_photo, asyncHandler(edit_product))
+products.post("/add", upload_photos, asyncHandler(add_product))
+// products.post("/edit", upload_photo, asyncHandler(edit_product))
 
 // POST /products/cart
 //
@@ -80,10 +80,11 @@ export async function get_products(req, res) {
 export async function add_product(req, res) {
 
     const { name, text, price, quantity } = req.body;
-    const { filename } = req.file;
+
+    const filename = req.files.map((item) => item.filename).then(() => delete req.files);
 
     try {
-        const products = await Products.create({ text: text, name: name, price: price, photos: [filename], quantity: quantity })
+        const products = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
         if (products) {
             await stripe.products.create({
                 id: products.id,
@@ -94,9 +95,7 @@ export async function add_product(req, res) {
                 },
                 shippable: true,
                 url: "http://localhost:4000/" + products.id,
-                images: [
-                    "http://localhost:4000/img/" + filename
-                ]
+                images: filename
             });
         }
         return res.json(products)
@@ -107,9 +106,6 @@ export async function add_product(req, res) {
 }
 
 export async function edit_product(req, res) {
-
-    // const { name, text, price, quantity } = req.body;
-    // const { filename } = req.file;
 
     const item = await Products.findOne({ _id: req.body._id })
     if (item) {

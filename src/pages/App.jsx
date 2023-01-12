@@ -27,7 +27,7 @@ export default function App() {
   return (
     <Routes>
 
-      <Route element={<Layout />}>
+      <Route exact element={<Layout />}>
 
         <Route index element={<Main />} />
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import "../components/Order/Order.scss"
 import { Form } from '../components/other/Form'
-import { useGetLastUsersOpenOrderQuery } from '../features/cart/payment_api';
+import { useGetLastUsersOpenOrderQuery } from '../features/payment/payment_api';
 import { Step } from '../components/Order/Step';
 import { Spinner } from '../components/other/Spinner';
 import { OrderCount } from '../components/Order/OrderCount';

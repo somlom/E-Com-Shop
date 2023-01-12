@@ -13,8 +13,8 @@ import {
 
 import cartReducer from './features/cart/cart_slice'
 import { cart_api } from './features/cart/cart_api';
-import { payment_api } from "./features/cart/payment_api";
-import { user_api } from "./features/cart/user_api";
+import { payment_api } from "./features/payment/payment_api";
+import { user_api } from "./features/user/user_api";
 
 
 const persistConfig = {
