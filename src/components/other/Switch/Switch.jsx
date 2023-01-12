@@ -1,5 +1,8 @@
 import React from 'react'
 
+import "./Switch.css"
+
+
 export const Switch = ({ first, second, children }) => {
 
     const [clicked, setClick] = React.useState(false)

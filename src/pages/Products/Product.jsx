@@ -4,12 +4,13 @@ import { useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { useTranslation } from 'react-i18next';
 
-import "./Products.scss"
+import "./Products.css"
 import { useGetData } from '../../hooks/Data';
 import { set_to_cart } from '../../features/cart/cart_slice';
 import { useState } from 'react';
 import { Details } from '../../components/Details';
-import { Switch } from '../../components/other/Switch';
+import { Switch } from '../../components/other/Switch/Switch';
+import { Reviews } from '../../components/Reviews/Reviews';
 
 
 export const Product = () => {
@@ -35,12 +36,12 @@ export const Product = () => {
                     </div>
                     <div className='product_on_page' >
 
-                        <div className="row">
-
-                            <div className="gallery column">
-                                {value.photos.map(photo => <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} key={photo} onClick={() => { setPhoto(photo) }} />)}
-                            </div>
-
+                        <div className="photos">
+                            {value.photos.length > 1 ? (
+                                <div className="gallery column">
+                                    {value.photos.map(photo => <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
+                                </div>
+                            ) : ""}
                             <img src={`http://${process.env.PUBLIC_URL}/img/${showPhoto ? showPhoto : value.photos[0]}`}></img>
                         </div>
 
@@ -56,7 +57,7 @@ export const Product = () => {
                 </div>
                 <div className='column'>
                     <Switch first={t("reviews")} second={t("details")}>
-                        <p>some data</p>
+                        <Reviews data={value} />
                         <Details data={value.text} />
                     </Switch>
                 </div>

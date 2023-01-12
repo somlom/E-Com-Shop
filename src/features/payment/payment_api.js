@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { Storage } from "../../hooks/Storage";
 
 export const payment_api = createApi({
     reducerPath: "payment_api",
@@ -6,7 +7,7 @@ export const payment_api = createApi({
         baseUrl: `http://${process.env.PUBLIC_URL}/payment`,
         prepareHeaders: (headers) => {
 
-            const token = localStorage.getItem("user");
+            const token = Storage.getUserKey();
 
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)

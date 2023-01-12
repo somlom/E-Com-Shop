@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
-import { Spinner } from "../components/other/Spinner"
+import { Spinner } from '../components/other/Spinner/Spinner';
 
 
 export const Admin = () => {
@@ -53,7 +53,7 @@ export const Admin_Edit = () => {
         formData.append("price", value.price)
         formData.append("quantity", value.quantity)
 
-        await axios.post("http://localhost:4000/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
+        await axios.post(process.env.PUBLIC_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
             function () {
                 return alert("added")
@@ -127,9 +127,9 @@ const Admin_Add = () => {
 
     const send_to_backend = async (event) => {
         event.preventDefault()
-        console.log(selectedFile)
+
         const formData = new FormData()
-        // formData.append("image", selectedFile)
+
         for (let i = 0; i < selectedFile.length; i++) {
             formData.append("image", selectedFile[i]);
         }
@@ -138,7 +138,7 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
 
-        await axios.post("http://localhost:4000/products/add", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
+        await axios.post(process.env.PUBLIC_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
             function () {
                 return alert("added")
@@ -176,9 +176,7 @@ const Admin_Add = () => {
                 </form>
                 <div className="column">
                     {selectedFile &&
-                        // console.log(selectedFile)
                         Array.from(selectedFile).map(obj => {
-                            // console.log(obj, selectedFile[0])
                             return <img alt="not fount" key={obj.lastModified} width={"250px"} src={URL.createObjectURL(obj)} />
                         })
                     }

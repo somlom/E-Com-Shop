@@ -1,0 +1,37 @@
+
+.details {
+    background-color: #e8f5ff;
+    border: none;
+    border-radius: 18px;
+    padding: 18px;
+    margin: 10px;
+}
+
+.switch.row {
+    border: none;
+    border-radius: 20px;
+    background-color: #e8f5ff;
+    width: fit-content;
+}
+
+.switch span {
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+}
+
+.switch span.show {
+    background-color: #029eff;
+    color: white;
+}
+
+.switch span.hide {
+    background-color: #e8f5ff;
+}
+
+.switch span {
+    transition: background-color 500ms ease;
+}
+.switch:after {
+    transition: right 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+}

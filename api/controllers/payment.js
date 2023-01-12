@@ -1,8 +1,8 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Orders } from "../db/schemas";
+import { create_stripe_session } from "../lib/stripe";
 import { auth_middleware } from "../middlewares/auth_handler";
 
 
@@ -60,35 +60,9 @@ async function pay_order(req, res) {
 
     const order = await Orders.findOne({ user: req.user })
 
-    const search = {
-        data: [],
-        ids: []
-    }
-    order.products.map(obj => {
-        search.data.push({ id: obj.id, quantity: obj.quantity })
-        search.ids.push(obj.id)
-    });
+    const session = await create_stripe_session(order)
 
-    const products = await stripe.products.list({
-        ids: search.ids
-    });
-
-    const new_arr = search.data.map((item, i) => {
-        if (item.id === products.data[i].id) {
-            return { quantity: item.quantity, price: products.data[i].default_price }
-        }
-    })
-
-    const session = await stripe.checkout.sessions.create({
-        shipping_address_collection: { allowed_countries: ['DE'] },
-        line_items: new_arr,
-        customer: req.user,
-        mode: 'payment',
-        success_url: `http://localhost:3000?success=true`,
-        cancel_url: `http://localhost:3000?canceled=true`,
-    });
-
-    return res.json(session.url);
+    return res.json(session);
 }
 
 export default payment;

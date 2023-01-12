@@ -1,6 +1,3 @@
-$base-color: rgb(2, 158, 255);
-$transform-time: 0.15s;
-
 .form_content {
     align-items: center;
 }
@@ -40,7 +37,6 @@ div.responsible_form .form.column{
 
     padding: 12px 20px;
     box-sizing: border-box;
-    // border: none;
     border-radius: 20px;
     border: 1px solid #ccc;
     -webkit-transition: 0.3s;
@@ -50,7 +46,7 @@ div.responsible_form .form.column{
 }
 
 .form input:focus {
-    border: 1px solid  $base-color;
+    border: 1px solid  rgb(2, 158, 255);
 }
 
 .button_opacity.opacity.submit {
@@ -76,7 +72,7 @@ div.responsible_form .form.column{
 }
 
 .button_opacity.primary:hover {
-    background-color: $base-color;
+    background-color: rgb(2, 158, 255);
 }
 
 .button_opacity.green:hover {
@@ -86,8 +82,8 @@ div.responsible_form .form.column{
 .button_opacity:hover {
     color: white;
     cursor: pointer;
-    transition: background-color $transform-time;
-    -webkit-transition: background-color $transform-time;
+    transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
 }
 
 .button_opacity.primary{

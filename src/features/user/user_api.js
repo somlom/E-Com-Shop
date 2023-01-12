@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
+import { Storage } from "../../hooks/Storage";
 
 export const user_api = createApi({
     reducerPath: "user_api",
@@ -6,7 +7,7 @@ export const user_api = createApi({
         baseUrl: `http://${process.env.PUBLIC_URL}/auth`,
         prepareHeaders: (headers) => {
 
-            const token = localStorage.getItem("user");
+            const token = Storage.getUserKey();
 
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)

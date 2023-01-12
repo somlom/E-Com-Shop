@@ -1,12 +1,8 @@
-$base-color: rgb(2, 158, 255);
-$transform-time: 0.15s;
-
 .order_image {
     display: flex;
     width: 30vw;
     max-width: 100px;
     align-self: center;
-    // padding-right: 16px;
 }
 
 .order_items {
@@ -25,7 +21,6 @@ $transform-time: 0.15s;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        // justify-content: flex-start;
     }
 
     .order_item .row,
@@ -58,13 +53,11 @@ $transform-time: 0.15s;
 }
 
 .order_item .row {
-    // width: 100%;
     align-items: center;
     justify-content: space-between;
     background-color: #e8f5ff;
 }
 .order_count {
-    // height: 50vh;
     width: 30%;
     margin: 10px;
     padding: 10px;
@@ -133,18 +126,11 @@ $transform-time: 0.15s;
     white-space: normal;
 }
 
-// .order_item option:hover {
-//     background-color: aqua;
-// }
-
 .order_footer {
     margin-top: 8px;
     padding-top: 8px;
     border: none;
     border-top: solid 1px black;
-    // justify-content: center;
-    // align-items: center;
-    // color: white;
 }
 
 .order_list a button {
@@ -157,15 +143,10 @@ $transform-time: 0.15s;
     text-decoration: none;
 }
 .order_list a {
-    // width: 100%;
-    // background-color: $base-color;
-    // border: none;
-
     width: 100%;
-    background-color: $base-color;
+    background-color: rgb(2, 158, 255);
     border: none;
     color: white;
-    // font-size: medium;s
     font-weight: 500;
     border-radius: 10px;
     padding: 5px;
@@ -178,10 +159,6 @@ $transform-time: 0.15s;
     text-decoration: none;
     text-align: center;
 }
-
-// .address form {
-//     min-width: 300px;
-// }
 
 .address .form_content.column{
     min-width: 300px;
@@ -218,15 +195,12 @@ $transform-time: 0.15s;
 }
 .list a .column svg {
     border: solid 1px black;
-    /* padding: 10px; */
-    /* width: 44px; */
     margin: 0px;
     border-radius: 50%;
     text-align: center;
 }
 
 .dropdown .width a {
-    // width: fit-content;
     text-decoration: none;
     background-color: grey;
     color: white;

@@ -1,9 +1,7 @@
 import React from 'react'
 
 
-export const Form = (props) => {
-
-    const { title, onSubmit, children, responsible } = props;
+export const Form = ({ title, onSubmit, children } ) => {
 
     return (
         <div className='form_content column'>

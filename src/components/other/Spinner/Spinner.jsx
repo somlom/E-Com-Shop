@@ -1,5 +1,8 @@
 import React from 'react'
 
+import "./Spinner.css"
+
+
 export const Spinner = (props) => {
     const text = props.text
     return (

@@ -2,8 +2,8 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
-import { Form } from '../other/Form';
-import "../other/Form.scss"
+import { Form } from '../other/Form/Form';
+import "../other/Form/Form.css"
 
 
 export const ResetForm = () => {
@@ -32,7 +32,7 @@ export const ResetForm = () => {
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
             <div className='form_buttons row'>
                 <button className="button_opacity opacity primary" type='submit'>
-                    <FaUserPlus /><span>{t("reset")}</span>
+                    <FaUserPlus />{t("reset")}
                 </button>
             </div>
         </Form>

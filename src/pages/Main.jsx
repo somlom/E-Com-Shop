@@ -6,7 +6,7 @@ import { Products } from './Products/Products'
 
 export const Main = () => {
 
-  const { t, i18n } = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div>

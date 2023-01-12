@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import React from 'react'
 
-import "./Modal.scss"
+import "./Modal.css"
 import { close_on_esc } from '../../../hooks/close_on_esc';
 
 
@@ -15,7 +15,7 @@ export const Modal = ({ children, handle_modal, title = "" }) => {
         <div className='fade column'>
             <div className='modal column'>
                 <div className='modal_title row'>
-                    <p>{title}</p>
+                    <span>{title}</span>
                     <button className="close_button opacity" onClick={() => handle_modal(false)}>&#x2715;</button>
                 </div>
                 <div className='modal_content'>

@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import "../components/Order/Order.scss"
-import { Spinner } from '../components/other/Spinner'
+import "../components/Order/Order.css"
+import { Spinner } from '../components/other/Spinner/Spinner'
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
 import { OrderCount } from "../components/Order/OrderCount";
 import { OrderData } from '../components/Order/OrderData';
 import { useCreateOrderMutation } from '../features/payment/payment_api';
+import { Storage } from '../hooks/Storage';
 
 
 export const Order = () => {
@@ -20,8 +21,7 @@ export const Order = () => {
     const [create_order] = useCreateOrderMutation();
 
     const send_data = async () => {
-        const resp = await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
-        console.log(resp.data)
+        const resp = await axios.get(`http://${process.env.PUBLIC_URL}/payment/pay`, { headers: { Authorization: `Bearer ${Storage.getUserKey()}` } })
         return window.location.replace(resp.data);
     }
 

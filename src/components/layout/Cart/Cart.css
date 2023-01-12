@@ -1,22 +1,14 @@
-$base-color: rgb(2, 158, 255);
-$transform-time: 0.15s;
-
 .cart {
     text-align: center;
 }
 
 .cart_footer {
-    // position: sticky;
-    // left: 0;
-    // bottom: 0;
     margin-top: 8px;
     padding-top: 8px;
-    // margin-bottom: 8px;
     border: none;
     border-top: solid 1px black;
     justify-content: center;
     align-items: center;
-    // background-color: $base-color;
     color: white;
 }
 
@@ -44,7 +36,6 @@ img.product_column {
     flex-direction: column;
     justify-content: flex-start;
     width: 30vw;
-    // min-width: 100px;
     max-width: 100px;
     padding-right: 16px;
 }
@@ -56,7 +47,7 @@ img.product_column {
     text-align: center;
     color: rgb(255, 0, 0);
     cursor: pointer;
-    transition: opacity $transform-time, text-decoration $transform-time;
+    transition: opacity 0.15s, text-decoration 0.15s;
     padding: 4px;
 }
 
@@ -69,32 +60,8 @@ img.product_column {
     opacity: 0.7;
 }
 
-.counter {
-    width: min-content;
-}
-
 .product_column.column * {
     margin: 1px;
-}
-
-.counter button {
-    border: none;
-    color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: opacity $transform-time;
-}
-
-.counter button.increase_amount_button {
-    background-color: rgb(6, 209, 6);
-}
-
-.counter button.decrease_amount_button {
-    background-color: rgb(255, 0, 0);
-}
-
-.counter button:active {
-    opacity: 0.7;
 }
 
 .cart_footer * {
@@ -103,10 +70,9 @@ img.product_column {
 
 .cart_footer button {
     width: 100%;
-    background-color: $base-color;
+    background-color: rgb(2, 158, 255);
     border: none;
     color: white;
-    // font-size: medium;s
     font-weight: 500;
     border-radius: 10px;
     padding: 5px;

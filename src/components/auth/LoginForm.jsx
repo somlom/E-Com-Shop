@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { Form } from "../other/Form";
-import "../other/Form.scss"
+import { Form } from '../other/Form/Form';
+import "../other/Form/Form.css"
+import { Storage } from '../../hooks/Storage';
 
 
 export const LoginForm = () => {
@@ -34,8 +35,7 @@ export const LoginForm = () => {
 
                 async function (fulfilled) {
 
-                    await localStorage.setItem("user", fulfilled.data)
-                    alert(fulfilled.data)
+                    Storage.setUserKey(fulfilled.data)
                     const { next } = state
                     if (next === null) {
                         return navigate("/")
@@ -59,10 +59,10 @@ export const LoginForm = () => {
                 <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
                 <div className='form_buttons row'>
                     <button className="button_opacity opacity primary" type='submit'>
-                        <FaUserPlus size={15} /><span>{t("login")}</span>
+                        <FaUserPlus size={15} />{t("login")}
                     </button>
                     <button className="button_opacity opacity green" type='button'>
-                        <FaUserPlus size={15} /><span>{t("dont_have_an_account")}</span>
+                        <FaUserPlus size={15} />{t("dont_have_an_account")}
                     </button>
                 </div>
             </Form>

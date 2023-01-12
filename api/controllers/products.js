@@ -94,7 +94,7 @@ export async function add_product(req, res) {
                     unit_amount_decimal: products.price.toString(),
                 },
                 shippable: true,
-                url: "http://localhost:4000/" + products.id,
+                url: process.env.PUBLIC_URL + products.id,
                 images: filename
             });
         }

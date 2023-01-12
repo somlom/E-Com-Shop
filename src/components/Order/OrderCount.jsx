@@ -1,7 +1,7 @@
 import React from "react"
 import { useTranslation } from 'react-i18next';
 
-import "./Order.scss"
+import "./Order.css"
 
 
 export const OrderCount = ({ data, children }) => {

@@ -13,20 +13,18 @@
     z-index: 3;
     background: white;
     padding: 16px;
-    /* border-radius: 16px; */
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
     box-shadow: -20px 20px 30px 20px rgb(0 0 0 / 8%);
 }
 
 .modal_title {
-    /* border-bottom: solid 1px black; */
     justify-content: space-between;
     width: 100%;
     align-items: center;
 }
 
-.modal_title p {
+.modal_title span {
     margin: 0px;
 }
 

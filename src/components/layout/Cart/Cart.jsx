@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import "./Cart.scss"
-import { cartArray } from '../../features/cart/cart_slice';
-import { usePostCartMutation } from '../../features/cart/cart_api';
-import { Spinner } from '../../components/other/Spinner';
+import "./Cart.css"
+import { cartArray } from '../../../features/cart/cart_slice';
+import { usePostCartMutation } from '../../../features/cart/cart_api';
+import { Spinner } from '../../other/Spinner/Spinner';
 
 
 export function Cart() {
@@ -36,11 +36,12 @@ export function Cart() {
     return (
       <React.Suspense fallback={<Spinner />}>
         <div className='cart column'>
-          <Spinner />
+          <h1>Loading...</h1>
         </div>
       </React.Suspense>
     );
-  } else {
+  }
+   else {
     return <h1>error</h1>
   }
 }

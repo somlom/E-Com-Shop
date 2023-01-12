@@ -10,10 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 
-import "./Navigation.scss"
+import "./Navigation.css"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart/cart_slice';
-import { Cart } from '../../../pages/Cart/Cart';
+import { Cart } from '../Cart/Cart';
 import { Hamburger } from '../Hamburger';
 
 
@@ -33,7 +33,7 @@ export const Navigation = () => {
       <div className='nav row'>
 
         <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
-          {menu_state === true ? <GrClose size={30} color={"#e8f5ff"} /> : <GiHamburgerMenu size={30} />}
+          {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
         </div>
 
         <div className='nav_column' onClick={() => handle_menu(false)}>

@@ -1,11 +1,12 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
 const process = require("process")
 
 
 module.exports = {
-
+    //# sourceMappingURL=style.css.map
     entry: path.join(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -14,22 +15,23 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx|ts|tsx)$/,
+                test: /\.(js|jsx)$/,
                 exclude: [/node_modules/, /api/, /css/],
                 use: ['babel-loader'],
             },
             {
-                test: /\.(css|scss|sass)$/,
+                test: /\.(css)$/,
                 exclude: [/node_modules/],
-                use: ["style-loader", "css-loader", "sass-loader",],
+                use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
         ],
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.css'],
+        extensions: ['', '.js', '.jsx', '.css'],
     },
     plugins: [
-        new DefinePlugin({ 
+        new MiniCssExtractPlugin(),
+        new DefinePlugin({
             'process.env': {
                 'PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL || "localhost:4000")
             }

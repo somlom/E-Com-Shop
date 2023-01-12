@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Spinner } from '../components/other/Spinner'
+import { Spinner } from '../components/other/Spinner/Spinner'
 import { useGetOrdersQuery } from '../features/payment/payment_api'
 
 
