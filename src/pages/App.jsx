@@ -14,7 +14,7 @@ import { Account } from './Account';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { MyOrders } from './MyOrders';
-import { Admin, Admin_Edit } from './Admin';
+import { Admin, Admin_Edit } from './Admin/Admin';
 import { Login } from './Auth/Login';
 import { Register } from './Auth/Register';
 import { Reset } from './Auth/Reset';
@@ -28,7 +28,7 @@ export default function App() {
 
       <Route exact element={<Layout />}>
 
-        <Route index element={<Main />} />
+        <Route index path="/" element={<Main />} />
 
         <Route path="products" element={<Products />} />
         <Route path="products/:id" element={<Product />} />

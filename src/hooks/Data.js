@@ -12,7 +12,7 @@ export const usePostData = (url = "", data = "") => {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.post(url, data)
+            const response = await axios.post(process.env.API_URL + url, data)
 
             setValue(await response.data)
         }
@@ -29,7 +29,7 @@ export const useGetData = (url = "") => {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(url)
+            const response = await axios.get(process.env.API_URL + url)
 
             setValue(await response.data)
         }
@@ -68,7 +68,7 @@ export const usePostProtectedData = (url = "", data = "", headers = "") => {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.post(url, data, {
+            const response = await axios.post(process.env.API_URL + url, data, {
                 headers:
                 {
                     Authorization: `Bearer ${Storage.getUserKey()}`
@@ -83,4 +83,43 @@ export const usePostProtectedData = (url = "", data = "", headers = "") => {
     }, [url])
 
     return { value, Spinner }
+}
+
+export const getCart = (req) => {
+    const promise = axios.post(`${process.env.API_URL}/products/cart`, { data: req }).then(({ data }) => data);
+
+    return wrapPromise(promise);
+}
+
+function wrapPromise(promise) {
+    let status = 'pending';
+    let response;
+
+    const suspender = promise.then(
+        res => {
+            status = 'success';
+            response = res;
+        },
+        err => {
+            status = 'error';
+            response = err;
+        },
+    );
+
+    const handler = {
+        pending: () => {
+            throw suspender;
+        },
+        error: () => {
+            throw response;
+        },
+        default: () => response,
+    };
+
+    const read = () => {
+        const result = handler[status] ? handler[status]() : handler.default();
+        return result;
+    };
+
+    return { read };
 }

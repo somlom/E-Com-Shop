@@ -1,8 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { DefinePlugin } = require("webpack");
-const process = require("process")
+// const { DefinePlugin } = require("webpack");
+const { EnvironmentPlugin } = require('webpack');
+const Dotenv = require("dotenv-webpack");
 
 
 module.exports = {
@@ -41,21 +42,24 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin(),
-        new DefinePlugin({
-            'process.env': {
-                'PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL || "localhost:4000")
-            }
+        // new EnvironmentPlugin(
+        //     Object.keys(process.env).filter((key) => key.startsWith('WEBPACK_DEMO_'))
+        //     ),
+        new Dotenv({
+            systemvars: true,
+            path: `./.env`
         }),
         new HtmlWebpackPlugin({
             title: 'App',
             publicPath: "/",
             template: path.join(__dirname, "public", "index.html"),
+            favicon: path.join(__dirname, "public", "favicon.ico"),
         }),
     ],
     optimization: {
-        // splitChunks: {
-        //     chunks: 'all',
-        // },
+        splitChunks: {
+            chunks: 'all',
+        },
         runtimeChunk: 'single',
     },
 }

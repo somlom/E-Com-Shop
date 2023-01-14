@@ -7,6 +7,7 @@ import "./Cart.css"
 import { cartArray } from '../../../features/cart/cart_slice';
 import { usePostCartMutation } from '../../../features/cart/cart_api';
 import { Spinner } from '../../other/Spinner/Spinner';
+import fetchAllCatsData, { getCart } from '../../../hooks/Data';
 
 
 export function Cart() {
@@ -15,6 +16,9 @@ export function Cart() {
 
   const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
+  // const resp = getCart(cart);
+  // const namesList = resp.read();
+
 
   React.useEffect(() => {
     const send_to_backend = async (cart) => {
@@ -26,11 +30,11 @@ export function Cart() {
 
   if (result.isSuccess === true && result.data !== undefined) {
     return (
-      <React.Suspense fallback={<Spinner />}>
-        <div className='cart column'>
-          {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} />}
-        </div>
-      </React.Suspense>
+
+      <div className='cart column'>
+        {/* {console.log(namesList)} */}
+        {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} />}
+      </div>
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
     return (
@@ -41,7 +45,7 @@ export function Cart() {
       </React.Suspense>
     );
   }
-   else {
+  else {
     return <h1>error</h1>
   }
 }
@@ -56,7 +60,7 @@ const Cart_Element = ({ data }) => {
         <div className="column" key={data_val._id}>
 
           <div className='product_row'>
-            <img className='product_column' src={`http://${process.env.PUBLIC_URL}/img/${data_val.photos[0]}`}></img>
+            <img className='product_column' src={`${process.env.API_URL}/img/${data_val.photos[0]}`}></img>
 
             <div className='product_column column'>
               <h3>{data_val.name}</h3>

@@ -17,7 +17,7 @@ export const Impressum = () => {
       <p>{t("Telefone")}</p>
       <p>{t("E-Mail")}</p>
       <p>{t("Disclaimer")}</p>
-      <a href={`${process.env.PUBLIC_URL}/download/agb`}>AGB</a>
+      <a href={`${process.env.API_URL}/download/agb`}>AGB</a>
     </div>
   )
 }

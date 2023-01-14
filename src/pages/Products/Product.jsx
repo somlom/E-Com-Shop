@@ -18,7 +18,7 @@ export const Product = () => {
     const [t] = useTranslation();
 
     const { id } = useParams();
-    const { value, Spinner } = useGetData("http://" + process.env.PUBLIC_URL + "/products/" + id)
+    const { value, Spinner } = useGetData("/products/" + id)
 
     const [showPhoto, setPhoto] = useState(false)
 
@@ -39,10 +39,10 @@ export const Product = () => {
                         <div className="photos">
                             {value.photos.length > 1 ? (
                                 <div className="gallery column">
-                                    {value.photos.map(photo => <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
+                                    {value.photos.map(photo => <img src={`${process.env.API_URL}/img/${photo}`} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
                                 </div>
                             ) : ""}
-                            <img src={`http://${process.env.PUBLIC_URL}/img/${showPhoto ? showPhoto : value.photos[0]}`}></img>
+                            <img src={`${process.env.API_URL}/img/${showPhoto ? showPhoto : value.photos[0]}`}></img>
                         </div>
 
                         <div className='buy column'>

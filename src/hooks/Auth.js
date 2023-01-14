@@ -11,14 +11,16 @@ export const ProtectedRoute = () => {
 
     const value = useCheckTokenQuery();
 
+    console.log(value)
+
     React.useEffect(() => {
-        if (value.isError || value.response === false) {
+        if (value.isError) {
             // navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
             navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
         }
     }, [value])
 
-    if (value.isSuccess && value.data === true) {
+    if (value.isSuccess || value.data === true) {
 
         return <Outlet />;
 

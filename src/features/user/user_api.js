@@ -4,10 +4,11 @@ import { Storage } from "../../hooks/Storage";
 export const user_api = createApi({
     reducerPath: "user_api",
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://${process.env.PUBLIC_URL}/auth`,
+        baseUrl: `${process.env.API_URL}/auth`,
         prepareHeaders: (headers) => {
 
-            const token = Storage.getUserKey();
+            const token = localStorage.getItem("user")
+            console.log(token)
 
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)

@@ -31,16 +31,17 @@ export const LoginForm = () => {
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.post(`http://${process.env.PUBLIC_URL}/auth/login`, input).then(
+            await axios.post(`${process.env.API_URL}/auth/login`, input).then(
 
                 async function (fulfilled) {
-
-                    Storage.setUserKey(fulfilled.data)
+                    const rrr = Storage.setUserKey(fulfilled.data)
                     const { next } = state
-                    if (next === null) {
+                    console.log(rrr, next)
+                    if (next !== undefined) {
+                        return navigate(next.toString())
+                    }else{
                         return navigate("/")
                     }
-                    return navigate(next)
                 },
                 function (error) {
                     return alert(error.response.data.message)

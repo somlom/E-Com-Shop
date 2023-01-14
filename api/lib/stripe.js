@@ -30,8 +30,8 @@ export const create_stripe_session = async (order) => {
                 shipping_address_collection: { allowed_countries: ['DE'] },
                 line_items: new_arr,
                 mode: 'payment',
-                success_url: `${process.env.API_URL}?success=true`,
-                cancel_url: `${process.env.API_URL}?canceled=true`,
+                success_url: `${process.env.PUBLIC_URL}?success=true`,
+                cancel_url: `${process.env.PUBLIC_URL}?canceled=true`,
             });
             return session.url
         } catch (error) {

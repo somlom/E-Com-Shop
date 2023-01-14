@@ -1,9 +1,7 @@
 export const setUserKey = (data) => {
 
-  return (
-    localStorage.setItem("user", data)
-  )
-
+  localStorage.setItem("user", data)
+  return true
 }
 
 export const getUserKey = () => {

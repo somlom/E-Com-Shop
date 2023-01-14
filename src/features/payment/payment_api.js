@@ -4,7 +4,7 @@ import { Storage } from "../../hooks/Storage";
 export const payment_api = createApi({
     reducerPath: "payment_api",
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://${process.env.PUBLIC_URL}/payment`,
+        baseUrl: `${process.env.API_URL}/payment`,
         prepareHeaders: (headers) => {
 
             const token = Storage.getUserKey();

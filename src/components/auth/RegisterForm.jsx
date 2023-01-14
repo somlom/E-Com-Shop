@@ -24,7 +24,7 @@ export const RegisterForm = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post(`http://${process.env.PUBLIC_URL}/auth/register`, input).then(
+            await axios.post(`${process.env.API_URL}/auth/register`, input).then(
                 function (fulfilled) {
                     Storage.setUserKey(fulfilled.data.token)
                     return alert(fulfilled.data.token)

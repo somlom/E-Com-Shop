@@ -6,9 +6,10 @@ import { useGetData } from '../../hooks/Data'
 import "./Products.css"
 
 
-export const Products = ({query}) => {
+export const Products = ({ query }) => {
 
-    const { value, Spinner } = useGetData(`http://${process.env.PUBLIC_URL}/products`);
+    const { value, Spinner } = useGetData(`/products`);
+    // const { value, Spinner } = useGetData('https://jsonplaceholder.typicode.com/todos/1');
 
     return (
         value.length === 0 ? <Spinner /> :
@@ -23,7 +24,7 @@ export const Products = ({query}) => {
                                         <h3>{obj.name}</h3>
                                     </div>
                                 </div>
-                                <img src={`http://${process.env.PUBLIC_URL}/img/${obj.photos[0]}`}></img>
+                                <img src={`${process.env.API_URL}/img/${obj.photos[0]}`}></img>
                             </div>
                         </Link>
                     )

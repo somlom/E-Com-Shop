@@ -11,7 +11,7 @@ import { Spinner } from './components/other/Spinner/Spinner';
 
 
 const root = createRoot(document.getElementById('root'));
-
+console.log(process.env.PUBLIC_URL, process.env.API_URL)
 root.render(
     <React.StrictMode>
         <Provider store={store}>

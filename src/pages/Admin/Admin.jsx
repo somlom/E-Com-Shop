@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AiOutlineArrowLeft } from "react-icons/ai"
 
-import { Spinner } from '../components/other/Spinner/Spinner';
+import { Spinner } from '../../components/other/Spinner/Spinner';
 
 
 export const Admin = () => {
@@ -24,7 +24,7 @@ export const Admin_Edit = () => {
 
     const [value, setValue] = useState([])
 
-    const url = "http://" + process.env.PUBLIC_URL + "/products/" + id
+    const url = process.env.API_URL + "/products/" + id
 
     React.useEffect(() => {
         const fetchData = async () => {
@@ -53,7 +53,7 @@ export const Admin_Edit = () => {
         formData.append("price", value.price)
         formData.append("quantity", value.quantity)
 
-        await axios.post(process.env.PUBLIC_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
+        await axios.post(process.env.API_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
             function () {
                 return alert("added")
@@ -81,12 +81,12 @@ export const Admin_Edit = () => {
                             <div className="carousel column">
                                 {value.photos.map(photo => {
                                     return (
-                                        <img src={`http://${process.env.PUBLIC_URL}/img/${photo}`} />
+                                        <img src={`${process.env.API_URL}/img/${photo}`} />
                                     )
                                 })}
                             </div>
 
-                            {/* <img src={`http://${process.env.PUBLIC_URL}/img/${value.photos[0]}`}></img> */}
+                            {/* <img src={`http://${process.env.API_URL}/img/${value.photos[0]}`}></img> */}
                         </div>
                         <div className='buy column'>
                             text
@@ -113,7 +113,7 @@ export const Admin_Edit = () => {
         return <Spinner />
     }
 }
-const Admin_Add = () => {
+export const Admin_Add = () => {
 
     const [input, setInput] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -138,7 +138,7 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
 
-        await axios.post(process.env.PUBLIC_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
+        await axios.post(process.env.API_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data", } }).then(
 
             function () {
                 return alert("added")
