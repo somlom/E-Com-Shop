@@ -10,9 +10,12 @@
     "test_react_with_coverage": "node --experimental-vm-modules node_modules/.bin/jest react.test.js --coverage",
     "api_dev": "npx nodemon --exec babel-node api/index.js",
     "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config webpack.dev.js\"",
+
     "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config webpack.prod.js && react-compress",
     "start": "concurrently \"node build/index.js\" \"http-server ./build\"",
+    "build_api": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files",
     "start_api": "node build/index.js",
+    
     "stats": "webpack --profile --json > stats.json"
   },
   "author": "",
