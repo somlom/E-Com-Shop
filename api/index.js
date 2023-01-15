@@ -9,7 +9,7 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-require('dotenv').config({path: "../.env"})
+require('dotenv').config()
 
 
 export const app = express()
