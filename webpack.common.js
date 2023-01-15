@@ -8,7 +8,7 @@ require('dotenv').config()
 module.exports = {
 
     //# sourceMappingURL=style.css.map
-    
+
     entry: {
         index: {
             import: path.join(__dirname, "src", "index.js"),

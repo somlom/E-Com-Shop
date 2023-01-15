@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import express from "express";
 import cors from 'cors';
 
@@ -7,7 +9,7 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-require('dotenv').config()
+require('dotenv').config({path: "../.env"})
 
 
 export const app = express()
