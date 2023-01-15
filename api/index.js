@@ -26,7 +26,7 @@ app.use("/download", files)
 
 app.use(error_handler)
 
-app.listen(4000, () => {
-  console.log(`app is listening to port 4000`)
+app.listen(process.env.API_PORT || 10000, () => {
+  console.log(`app is listening to port ${process.env.API_PORT || 10000}`)
 })
 
