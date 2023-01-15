@@ -7,12 +7,10 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-var os = require("os");
-var hostname = os.hostname();
+require('dotenv').config()
 
 
 export const app = express()
-console.log(hostname)
 connect();
 
 app.use(cors());
