@@ -1,13 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const { DefinePlugin } = require("webpack");
-const { EnvironmentPlugin } = require('webpack');
-const Dotenv = require("dotenv-webpack");
+const { DefinePlugin } = require("webpack");
+require('dotenv').config()
 
 
 module.exports = {
+
     //# sourceMappingURL=style.css.map
+    
     entry: {
         index: {
             import: path.join(__dirname, "src", "index.js"),
@@ -42,12 +43,21 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin(),
-        // new EnvironmentPlugin(
-        //     Object.keys(process.env).filter((key) => key.startsWith('WEBPACK_DEMO_'))
-        //     ),
-        new Dotenv({
-            systemvars: true,
-            path: `./.env`
+        new DefinePlugin({
+            process: {
+                env: {
+                    API: JSON.stringify(process.env.API),
+                    TEST_API: JSON.stringify(process.env.TEST_API),
+
+                    EMAIL: JSON.stringify(process.env.EMAIL),
+                    EMAIL_PASSWORD: JSON.stringify(process.env.EMAIL_PASSWORD),
+
+                    STRIPE_PUBLIC: JSON.stringify(process.env.STRIPE_PUBLIC),
+                    STRIPE_SECRET: JSON.stringify(process.env.STRIPE_SECRET),
+                    PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
+                    API_URL: JSON.stringify(process.env.API_URL)
+                }
+            }
         }),
         new HtmlWebpackPlugin({
             title: 'App',

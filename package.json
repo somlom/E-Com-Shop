@@ -12,6 +12,7 @@
     "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config webpack.dev.js\"",
     "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config webpack.prod.js && react-compress",
     "start": "concurrently \"node build/index.js\" \"http-server ./build\"",
+    "start_api": "node build/index.js",
     "stats": "webpack --profile --json > stats.json"
   },
   "author": "",
@@ -23,6 +24,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "http-server": "^14.1.1",
@@ -55,7 +57,6 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "concurrently": "^7.5.0",
     "css-loader": "^6.7.1",
-    "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.3.1",
     "mini-css-extract-plugin": "^2.7.2",
