@@ -17,6 +17,7 @@ const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
         const found = allowedOutputFormats.find(type => file.mimetype === type)
+        console.log(found, file.mimetype in allowedOutputFormats)
         if (found) {
             cb(null, true);
         } else {
@@ -29,4 +30,4 @@ const upload = multer({
 });
 
 export const upload_photo = util.promisify(upload.single('image'));
-export const upload_photos = util.promisify(upload.array('image', 10))
+export const upload_photos = util.promisify(upload.array('image', 10));
