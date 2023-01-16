@@ -1,9 +1,6 @@
 import mongoose from "mongoose";
 import process from "process";
 
-// import { API } from "../../config"
-
-console.log(process.env)
 
 export const connect = async () => {
     mongoose.set('strictQuery', false)

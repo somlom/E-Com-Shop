@@ -1,8 +1,10 @@
+"use strict";
+
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Orders } from "../db/schemas";
-import { create_stripe_session } from "../lib/stripe";
+import { Stripe_Api } from "../lib/stripe";
 import { auth_middleware } from "../middlewares/auth_handler";
 
 
@@ -57,10 +59,11 @@ async function set_order(req, res) {
 }
 
 async function pay_order(req, res) {
+    const stripe = new Stripe_Api();
 
     const order = await Orders.findOne({ user: req.user })
 
-    const session = await create_stripe_session(order)
+    const session = await stripe.create_stripe_session(order)
 
     return res.json(session);
 }

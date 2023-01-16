@@ -11,7 +11,6 @@ import auth from "./controllers/auth";
 import payment from "./controllers/payment";
 require('dotenv').config()
 
-
 export const app = express()
 connect();
 
@@ -28,7 +27,7 @@ app.use("/download", files)
 
 app.use(error_handler)
 
-app.listen(process.env.API_PORT || 10000, () => {
-  console.log(`app is listening to port ${process.env.API_PORT || 10000}`)
+app.listen(process.env.NODE_ENV === "development" ? process.env.API_PORT = 4000 : process.env.API_PORT, () => {
+  console.log(`app is listening to port ${process.env.API_PORT}`)
 })
 

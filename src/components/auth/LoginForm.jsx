@@ -34,9 +34,7 @@ export const LoginForm = () => {
             await axios.post(`${process.env.API_URL}/auth/login`, input).then(
 
                 async function (fulfilled) {
-                    const rrr = Storage.setUserKey(fulfilled.data)
                     const { next } = state
-                    console.log(rrr, next)
                     if (next !== undefined) {
                         return navigate(next.toString())
                     }else{

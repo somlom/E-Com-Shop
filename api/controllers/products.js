@@ -1,9 +1,9 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/schemas";
 import { upload_photos } from "../functions/photo";
+import { Stripe_Api } from "../lib/stripe";
 
 
 const products = Router();
@@ -12,27 +12,7 @@ products.get("/", asyncHandler(get_products));
 products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photos, asyncHandler(add_product))
-// products.post("/edit", upload_photo, asyncHandler(edit_product))
 
-// POST /products/cart
-//
-// Args: [{product: "sn34n3431n4134", quantity: 10}, {product: "s432d324134", quantity: 1}]
-// Return : [
-//     {
-//         "_id": "63be7f496b0f2e23150f3a88",
-//         "name": "Handwärmer LUX (50°)",
-//         "photos": [
-//             "1673428809125-19f9a574fcbc42d5cc5819da929acc1f.jpg"
-//         ],
-//         "tags": [],
-//         "text": "Lux",
-//         "price": 25,
-//         "quantity": 1,
-//         "createdAt": "2023-01-11T09:20:09.152Z",
-//         "updatedAt": "2023-01-11T09:20:09.152Z",
-//         "__v": 0
-//     }
-// ]
 export async function get_cart_items(req, res) {
 
     const { data } = req.body;
@@ -80,25 +60,17 @@ export async function get_products(req, res) {
 export async function add_product(req, res) {
 
     const { name, text, price, quantity } = req.body;
+    console.log(Array.isArray(req.files))
 
-    const filename = req.files.map((item) => item.filename).then(() => delete req.files);
+    const filename = req.files.map((item) => item.filename)
 
     try {
-        const products = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        if (products) {
-            await stripe.products.create({
-                id: products.id,
-                name: products.name,
-                default_price_data: {
-                    currency: "EUR",
-                    unit_amount_decimal: products.price.toString(),
-                },
-                shippable: true,
-                url: process.env.PUBLIC_URL + products.id,
-                images: filename
-            });
+        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
+        if (product) {
+            const stripe = new Stripe_Api();
+            stripe.create_product(product, filename);
         }
-        return res.json(products)
+        return res.json(product)
     } catch (error) {
         res.status(400)
         throw new Error(error)
