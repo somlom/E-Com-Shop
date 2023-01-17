@@ -3,22 +3,23 @@ import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import { Spinner } from '../components/other/Spinner/Spinner';
 import { useCheckTokenQuery } from "../features/user/user_api";
+import { useGetProtectedData } from "./Data";
 
 
 export const ProtectedRoute = () => {
     const location = useLocation()
     const navigate = useNavigate();
 
-    const value = useCheckTokenQuery();
+    const data = useGetProtectedData("/auth/check_token")
 
     React.useEffect(() => {
-        if (value.isError) {
-            // navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
+        if (data.isError) {
             navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
         }
-    }, [value])
+    }, [data])
 
-    if (value.isSuccess || value.data === true) {
+
+    if (data.isSuccess === true) {
 
         return <Outlet />;
 

@@ -46,20 +46,38 @@ export const useGetProtectedData = (url = "", headers_list = "") => {
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(url, {
+            setValue({ isLoading: true })
+            await axios.get(process.env.API_URL + url, {
                 headers:
                 {
                     Authorization: `Bearer ${Storage.getUserKey()}`,
                     headers_list
                 }
-            })
-            setValue(response)
+            }).then((response) => (
+                setValue((prev) => ({
+                    ...prev,
+                    data: response.data || null,
+                    isLoading: false,
+                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                    isError: response.status !== 200 ? true : false,
+                    Spinner,
+
+                }))
+            ), (rejected => (
+                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            )))
         }
+        
         fetchData()
     }, [url])
 
-    return { st_val: value, value: value.data || null, Spinner, status: value.status }
+
+    return value
 }
+
+// <useGetProtectedData url = "" headers_list = "">
+//  {data}
+// </useGetProtectedData>
 
 export const usePostProtectedData = (url = "", data = "", headers = "") => {
 

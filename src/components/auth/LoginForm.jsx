@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
@@ -34,10 +34,11 @@ export const LoginForm = () => {
             await axios.post(`${process.env.API_URL}/auth/login`, input).then(
 
                 async function (fulfilled) {
-                    const { next } = state
+                    localStorage.setItem("user", fulfilled.data)
+                    const next = state?.next
                     if (next !== undefined) {
                         return navigate(next.toString())
-                    }else{
+                    } else {
                         return navigate("/")
                     }
                 },
@@ -61,7 +62,7 @@ export const LoginForm = () => {
                         <FaUserPlus size={15} />{t("login")}
                     </button>
                     <button className="button_opacity opacity green" type='button'>
-                        <FaUserPlus size={15} />{t("dont_have_an_account")}
+                        <Link to="/register"><FaUserPlus size={15} />{t("dont_have_an_account")}</Link>
                     </button>
                 </div>
             </Form>
