@@ -4,17 +4,24 @@ import { Link } from 'react-router-dom';
 
 import { useGetData } from '../../hooks/Data'
 import "./Products.css"
+import { Spinner } from '../../components/other/Spinner/Spinner';
 
 
 export const Products = ({ query }) => {
 
-    const { value, Spinner } = useGetData(`/products`);
+    const { isLoading, isSuccess, isError, data } = useGetData(`/products`);
     // const { value, Spinner } = useGetData('https://jsonplaceholder.typicode.com/todos/1');
 
-    return (
-        value.length === 0 ? <Spinner /> :
+    console.log(isLoading, isSuccess, isError, data)
+
+    if (isLoading) {
+        return <Spinner />
+    } else if (isError) {
+        return <h1>Sorry, error</h1>
+    } else if (isSuccess && data) {
+        return (
             <div className='products row'>
-                {value.map(obj => {
+                {data.map(obj => {
                     return (
                         <Link key={obj._id} to={`/products/${obj._id}`} className="go_to_product">
                             <div className='product'>
@@ -30,6 +37,6 @@ export const Products = ({ query }) => {
                     )
                 })}
             </div>
-
-    )
+        )
+    }
 }

@@ -6,7 +6,6 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
-import { Storage } from '../../hooks/Storage';
 
 
 export const LoginForm = () => {

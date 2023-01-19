@@ -5,53 +5,68 @@ import { Spinner } from '../components/other/Spinner/Spinner';
 import { Storage } from "./Storage";
 
 
-export const usePostData = (url = "", data = "") => {
+export const usePostData = (url = "", data = "", headers = "") => {
 
-    const [value, setValue] = useState([])
+    const [value, setValue] = useState({ isLoading: true })
 
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.post(process.env.API_URL + url, data)
-
-            setValue(await response.data)
+            await axios.post(process.env.API_URL + url, data, headers).then((response) => (
+                setValue((prev) => ({
+                    ...prev,
+                    data: response.data || null,
+                    isLoading: false,
+                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                    isError: response.status !== 200 ? true : false,
+                }))
+            ), (() => (
+                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            )))
         }
         fetchData()
     }, [url])
 
-    return { value, Spinner }
+    return value
 }
 
-export const useGetData = (url = "") => {
+export const useGetData = (url = "", headers = "") => {
 
-    const [value, setValue] = useState([])
+    const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
         const fetchData = async () => {
 
-            const response = await axios.get(process.env.API_URL + url)
-
-            setValue(await response.data)
+            await axios.get(process.env.API_URL + url, headers).then((response) => (
+                setValue((prev) => ({
+                    ...prev,
+                    data: response.data || null,
+                    isLoading: false,
+                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                    isError: response.status !== 200 ? true : false,
+                }))
+            ), (() => (
+                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            )))
         }
         fetchData()
     }, [url])
 
-    return { value, Spinner }
+    return value
 }
 
-export const useGetProtectedData = (url = "", headers_list = "") => {
+export const useGetProtectedData = (url = "", headers = "") => {
 
-    const [value, setValue] = useState([])
+    const [value, setValue] = useState({ isLoading: true })
 
     useEffect(() => {
         const fetchData = async () => {
 
-            setValue({ isLoading: true })
             await axios.get(process.env.API_URL + url, {
                 headers:
                 {
                     Authorization: `Bearer ${Storage.getUserKey()}`,
-                    headers_list
+                    ...headers
                 }
             }).then((response) => (
                 setValue((prev) => ({
@@ -60,14 +75,10 @@ export const useGetProtectedData = (url = "", headers_list = "") => {
                     isLoading: false,
                     isSuccess: response.data !== undefined && response.status === 200 ? true : false,
                     isError: response.status !== 200 ? true : false,
-                    Spinner,
-
                 }))
-            ), (rejected => (
-                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-            )))
+            ), (() => setValue((prev) => ({ ...prev, isLoading: false, isError: true }))))
         }
-        
+
         fetchData()
     }, [url])
 
@@ -81,26 +92,31 @@ export const useGetProtectedData = (url = "", headers_list = "") => {
 
 export const usePostProtectedData = (url = "", data = "", headers = "") => {
 
-    const [value, setValue] = useState([])
+    const [value, setValue] = useState({ isLoading: true })
 
     useEffect(() => {
         const fetchData = async () => {
-
-            const response = await axios.post(process.env.API_URL + url, data, {
+            await axios.post(process.env.API_URL + url, data, {
                 headers:
                 {
-                    Authorization: `Bearer ${Storage.getUserKey()}`
+                    Authorization: `Bearer ${Storage.getUserKey()}`, ...headers
                 }
-                ,
-                headers
-            })
-
-            setValue(await response.data)
+            }).then((response) => (
+                setValue((prev) => ({
+                    ...prev,
+                    data: response.data || null,
+                    isLoading: false,
+                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                    isError: response.status !== 200 ? true : false,
+                }))
+            ), (() => (
+                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            )))
         }
         fetchData()
     }, [url])
 
-    return { value, Spinner }
+    return value
 }
 
 export const getCart = (req) => {
