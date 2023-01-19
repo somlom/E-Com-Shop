@@ -44,8 +44,8 @@ export const Navigation = () => {
             </div>
           </Link>
         </div>
-        <div className='nav_column' id='pc'>
-          <input className='nav_title form' type="text" placeholder="Search" />
+        <div className='nav_column form' id='pc'>
+          <input className='nav_title' type="text" placeholder="Search" />
         </div>
         <div className='row'>
           <div className='nav_column' id='pc' onClick={() => handle_menu(false)}>
@@ -74,8 +74,8 @@ export const Navigation = () => {
             <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} />{count}</button>
           </div>
         </div>
-        <div className='nav_column' id="mobile">
-          <input className='nav_title form' type="text" placeholder={t("search")} />
+        <div className='nav_column form' id="mobile">
+          <input className='nav_title' type="text" placeholder={t("search")} />
         </div>
       </div>
 

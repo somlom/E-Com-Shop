@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-import { Spinner } from '../components/other/Spinner/Spinner';
-import { Storage } from "./Storage";
-
 
 export const usePostData = (url = "", data = "", headers = "") => {
 
@@ -65,7 +62,7 @@ export const useGetProtectedData = (url = "", headers = "") => {
             await axios.get(process.env.API_URL + url, {
                 headers:
                 {
-                    Authorization: `Bearer ${Storage.getUserKey()}`,
+                    Authorization: `Bearer ${localStorage.getItem("user")}`,
                     ...headers
                 }
             }).then((response) => (
@@ -99,7 +96,7 @@ export const usePostProtectedData = (url = "", data = "", headers = "") => {
             await axios.post(process.env.API_URL + url, data, {
                 headers:
                 {
-                    Authorization: `Bearer ${Storage.getUserKey()}`, ...headers
+                    Authorization: `Bearer ${localStorage.getItem("user")}`, ...headers
                 }
             }).then((response) => (
                 setValue((prev) => ({

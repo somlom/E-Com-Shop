@@ -7,12 +7,9 @@ import "./Products.css"
 import { Spinner } from '../../components/other/Spinner/Spinner';
 
 
-export const Products = ({ query }) => {
+export const Products = () => {
 
     const { isLoading, isSuccess, isError, data } = useGetData(`/products`);
-    // const { value, Spinner } = useGetData('https://jsonplaceholder.typicode.com/todos/1');
-
-    console.log(isLoading, isSuccess, isError, data)
 
     if (isLoading) {
         return <Spinner />

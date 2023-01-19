@@ -9,8 +9,6 @@ import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
 import { OrderCount } from "../components/Order/OrderCount";
 import { OrderData } from '../components/Order/OrderData';
-import { useCreateOrderMutation } from '../features/payment/payment_api';
-import { Storage } from '../hooks/Storage';
 
 
 export const Order = () => {
@@ -21,11 +19,11 @@ export const Order = () => {
     // const [create_order] = useCreateOrderMutation();
 
     const create_order = async (order) => {
-        await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${Storage.getUserKey()}` } })
+        await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
     }
 
     const send_data = async () => {
-        const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${Storage.getUserKey()}` } })
+        const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
         return window.location.replace(resp.data);
     }
 

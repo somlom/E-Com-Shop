@@ -2,7 +2,6 @@ import React from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import { Spinner } from '../components/other/Spinner/Spinner';
-import { useCheckTokenQuery } from "../features/user/user_api";
 import { useGetProtectedData } from "./Data";
 
 
