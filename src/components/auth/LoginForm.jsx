@@ -2,10 +2,10 @@ import React from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-import { Form } from "../other/Form";
-import "../other/Form.scss"
+import { Form } from '../other/Form/Form';
+import "../other/Form/Form.css"
 
 
 export const LoginForm = () => {
@@ -30,17 +30,16 @@ export const LoginForm = () => {
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.post(`http://${process.env.PUBLIC_URL}/auth/login`, input).then(
+            await axios.post(`${process.env.API_URL}/auth/login`, input).then(
 
                 async function (fulfilled) {
-
-                    await localStorage.setItem("user", fulfilled.data)
-                    alert(fulfilled.data)
-                    const { next } = state
-                    if (next === null) {
+                    localStorage.setItem("user", fulfilled.data)
+                    const next = state?.next
+                    if (next !== undefined) {
+                        return navigate(next.toString())
+                    } else {
                         return navigate("/")
                     }
-                    return navigate(next)
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -59,10 +58,10 @@ export const LoginForm = () => {
                 <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
                 <div className='form_buttons row'>
                     <button className="button_opacity opacity primary" type='submit'>
-                        <FaUserPlus size={15} /><span>{t("login")}</span>
+                        <FaUserPlus size={15} />{t("login")}
                     </button>
                     <button className="button_opacity opacity green" type='button'>
-                        <FaUserPlus size={15} /><span>{t("dont_have_an_account")}</span>
+                        <Link to="/register"><FaUserPlus size={15} />{t("dont_have_an_account")}</Link>
                     </button>
                 </div>
             </Form>

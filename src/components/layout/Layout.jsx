@@ -3,11 +3,11 @@ import { Outlet } from 'react-router-dom'
 
 import { Footer } from './Footer/Footer'
 import { Navigation } from './Navigation/Navigation'
-import { Spinner } from '../other/Spinner'
-import "./Layout.scss"
+import { Spinner } from '../other/Spinner/Spinner';
+import "./Layout.css"
 
 
-export const Layout = (props) => {
+export const Layout = () => {
 
     return (
         <React.Suspense fallback={<Spinner />}>

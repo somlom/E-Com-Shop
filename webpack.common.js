@@ -1,44 +1,75 @@
 const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
-const process = require("process")
+require('dotenv').config()
 
 
 module.exports = {
 
-    entry: path.join(__dirname, "src", "index.js"),
+    //# sourceMappingURL=style.css.map
+
+    entry: {
+        index: {
+            import: path.join(__dirname, "src", "index.js"),
+            dependOn: 'shared',
+        },
+        another: {
+            import: path.join(__dirname, "src", "lodash.js"),
+            dependOn: 'shared',
+        },
+        shared: 'lodash',
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: 'main.bundle.js',
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, "build"),
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx|ts|tsx)$/,
-                exclude: [/node_modules/, /api/, /css/],
+                test: /\.(js|jsx)$/,
+                exclude: [/node_modules/, /api/, /css/, /test/],
                 use: ['babel-loader'],
             },
             {
-                test: /\.(css|scss|sass)$/,
-                exclude: [/node_modules/],
-                use: ["style-loader", "css-loader", "sass-loader",],
+                test: /\.(css)$/,
+                exclude: [/node_modules/, /test/],
+                use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
         ],
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.css'],
+        extensions: ['.js', '.jsx', '.css'],
     },
     plugins: [
-        new DefinePlugin({ 
-            'process.env': {
-                'PUBLIC_URL': JSON.stringify(process.env.PUBLIC_URL || "localhost:4000")
+        new MiniCssExtractPlugin(),
+        new DefinePlugin({
+            process: {
+                env: {
+                    API: JSON.stringify(process.env.API),
+                    TEST_API: JSON.stringify(process.env.TEST_API),
+
+                    EMAIL: JSON.stringify(process.env.EMAIL),
+                    EMAIL_PASSWORD: JSON.stringify(process.env.EMAIL_PASSWORD),
+
+                    STRIPE_PUBLIC: JSON.stringify(process.env.STRIPE_PUBLIC),
+                    STRIPE_SECRET: JSON.stringify(process.env.STRIPE_SECRET),
+                    PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
+                    API_URL: JSON.stringify(process.env.API_URL)
+                }
             }
         }),
         new HtmlWebpackPlugin({
             title: 'App',
             publicPath: "/",
-            // favicon: path.join(__dirname, "favicon.svg"),
             template: path.join(__dirname, "public", "index.html"),
+            favicon: path.join(__dirname, "public", "favicon.ico"),
         }),
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+        runtimeChunk: 'single',
+    },
 }

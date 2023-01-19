@@ -1,12 +1,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
-import { Products } from './Products'
+import { Products } from './Products/Products'
 
 
 export const Main = () => {
 
-  const { t, i18n } = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div>

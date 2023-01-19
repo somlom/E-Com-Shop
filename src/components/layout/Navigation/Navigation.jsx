@@ -10,10 +10,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 
-import "./Navigation.scss"
+import "./Navigation.css"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart/cart_slice';
-import { Cart } from '../../../pages/Cart';
+import { Cart } from '../Cart/Cart';
 import { Hamburger } from '../Hamburger';
 
 
@@ -52,7 +52,7 @@ export const Navigation = () => {
             <div className='row'>
               <Link className="link column" to="/hot">
                 <div className='with_icon'>
-                  <AiOutlineFire size={20} />
+                  <AiOutlineFire size={20}  />
                   <span>{t("hot_deals")}</span>
                 </div>
               </Link>
@@ -71,7 +71,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} /><span>{count}</span></button>
+            <button className='cart_button opacity' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart size={20} />{count}</button>
           </div>
         </div>
         <div className='nav_column' id="mobile">

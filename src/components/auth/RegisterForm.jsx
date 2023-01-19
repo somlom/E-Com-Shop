@@ -3,8 +3,10 @@ import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
-import { Form } from "../other/Form";
-import "../other/Form.scss"
+import { Form } from '../other/Form/Form';
+import "../other/Form/Form.css"
+import { Storage } from '../../hooks/Storage';
+import { Navigate } from 'react-router-dom';
 
 
 export const RegisterForm = () => {
@@ -23,10 +25,10 @@ export const RegisterForm = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post(`http://${process.env.PUBLIC_URL}/auth/register`, input).then(
+            await axios.post(`${process.env.API_URL}/auth/register`, input).then(
                 function (fulfilled) {
-                    localStorage.setItem("user", fulfilled.data.token)
-                    return alert(fulfilled.data.token)
+                    Storage.setUserKey(fulfilled.data)
+                    return <Navigate to="/" />
                 },
                 function (error) {
                     return alert(error.response.data.message)
@@ -46,7 +48,7 @@ export const RegisterForm = () => {
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />
             <div className='form_buttons row'>
                 <button className="button_opacity opacity primary" type='submit'>
-                    <FaUserPlus /><span>{t("register")}</span>
+                    <FaUserPlus />{t("register")}
                 </button>
             </div>
         </Form>

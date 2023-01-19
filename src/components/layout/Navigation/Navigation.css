@@ -1,0 +1,132 @@
+.nav {
+    justify-content: space-evenly;
+    border: none;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #e8f5ff;
+}
+
+.nav_column {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+.nav_column * {
+    height: min-content;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    align-self: center;
+}
+
+input.nav_title {
+    width: 100%;
+    height: max-content;
+    text-align: start;
+    padding: 12px 20px;
+    margin: 1vw 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 3px solid #ccc;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    outline: none;
+}
+.nav_column#pc {
+    display: flex;
+}
+
+.nav_column#pc input {
+    width: 50vw;
+}
+.nav_column#mobile input {
+    width: 90vw;
+}
+
+.nav_column#mobile {
+    display: none;
+}
+
+input.nav_title:focus {
+    border-bottom: 3px solid rgb(2, 158, 255);
+}
+
+div.nav_title {
+    display: flex;
+    flex-direction: column;
+}
+
+div.nav_title * {
+    margin: 0px;
+    color: black;
+}
+
+@media screen and (max-width: 767px) {
+    .nav_column.buttons {
+        display: none;
+    }
+    .nav_column#pc {
+        display: none;
+    }
+    .nav_column#mobile {
+        display: flex;
+    }
+}
+
+.cart_button {
+    display: flex;
+    background-color: white;
+    border: solid 2px rgb(2, 158, 255);
+    width: min-content;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity 0.15s;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    -webkit-transition: background-color 0.15s;
+}
+
+.cart_button * {
+    padding: 2px;
+    height: auto;
+}
+
+
+.cart_button svg {
+    padding: 2px;
+    height: auto;
+    color: #029eff;
+}
+
+.cart_button:hover {
+    color: white;
+    cursor: pointer;
+    background-color: rgb(2, 158, 255);
+    transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
+}
+.cart_button svg:hover {
+    color: white;
+    cursor: pointer;
+    background-color: rgb(2, 158, 255);
+    transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
+}
+
+.hamburger {
+    z-index: 1;
+    align-items: flex-start;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hamburger a {
+    padding: 10px;
+}

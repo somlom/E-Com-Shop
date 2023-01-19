@@ -1,47 +1,25 @@
 import React from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
-import { redirect } from "react-router-dom";
 
-import { Spinner } from "../components/other/Spinner";
-import { useCheckTokenQuery } from "../features/cart/user_api";
+import { Spinner } from '../components/other/Spinner/Spinner';
+import { useCheckTokenQuery } from "../features/user/user_api";
+import { useGetProtectedData } from "./Data";
 
 
 export const ProtectedRoute = () => {
     const location = useLocation()
     const navigate = useNavigate();
 
-    const value = useCheckTokenQuery();
+    const data = useGetProtectedData("/auth/check_token")
 
     React.useEffect(() => {
-        if (value.isError || value.response === false) {
-            // navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
+        if (data.isError) {
             navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
         }
-    }, [value])
+    }, [data])
 
-    if (value.isSuccess && value.data === true) {
 
-        return <Outlet />;
-
-    } else {
-
-        return <Spinner />
-
-    }
-};
-
-export const OnlyUnsignedRoute = () => {
-    const navigate = useNavigate();
-
-    const value = useCheckTokenQuery();
-
-    React.useEffect(() => {
-        if (value.isSuccess && value.data === true) {
-            navigate("/account")
-        }
-    }, [value])
-
-    if (value.isError || value.response === false) {
+    if (data.isSuccess === true) {
 
         return <Outlet />;
 

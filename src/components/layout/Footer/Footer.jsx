@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 
-import "./Footer.scss"
+import "./Footer.css"
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
 
@@ -14,9 +14,9 @@ export const Footer = () => {
     <div className='footer column'>
 
       <div className='company_data row'>
-        <div><AiOutlinePhone size={20} /> 21321983213821</div>
-        <div><AiOutlineMail size={20} /> interecom.ohg@gmail.com</div>
-        <div><IoIosLocate size={20} /> 71337 Casabbb</div>
+        <div><AiOutlinePhone size={20} /> <span>21321983213821</span></div>
+        <div><AiOutlineMail size={20} /> <span>interecom.ohg@gmail.com</span></div>
+        <div><IoIosLocate size={20} /> <span>71337 Casabbb</span></div>
       </div>
 
       <div className='footer_content column'>

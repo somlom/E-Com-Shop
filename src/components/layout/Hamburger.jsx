@@ -38,12 +38,5 @@ export const Hamburger = ({ handle_menu, state }) => {
                 </Link>
             </div>
         </div>
-        // <ul class="menu">
-        //     <li>One</li>
-        //     <li>Two</li>
-        //     <li>Three</li>
-        //     <li>Four</li>
-        //     <li>Five</li>
-        // </ul>
     )
 }
