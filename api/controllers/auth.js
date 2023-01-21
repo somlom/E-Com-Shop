@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
+import { authenticator } from "otplib"
 
 import { Users } from "../db/schemas";
 import { get_token, verify_token } from "../lib/JWT";
@@ -79,8 +80,29 @@ async function check_token(req, res) {
         res.status(401)
         throw new Error("No token")
     }
-
 }
+
+async function resetUser(req, res) {
+
+    const { email } = req.body;
+
+    const user = await Users.findOne({ email: email })
+
+    if (user) {
+        return res.json({ a: "a" })
+    } else {
+        throw new Error("Sorry, but there is no user with this e-mail")
+    }
+}
+
+// async function adminLogin(req, res) {
+
+//     const { token } = req.body;
+//     const secret = authenticator.generate()
+
+//     authenticator.keyuri()
+
+// }
 
 
 export default auth;
