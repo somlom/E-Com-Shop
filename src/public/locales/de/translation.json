@@ -43,5 +43,7 @@
   "city": "Stadt",
   "house": "Straße und Hausnummer",
   "next_point": "Zum nächsten Schritt",
-  "address": "Adresse"
+  "address": "Adresse",
+  "register": "Registrieren",
+  "password_again": "Kennwort widerholen"
 }
