@@ -11,6 +11,9 @@ Test on web: https://deploy-site-test.netlify.app/
 ### Start dev
 To run the app `yarn run dev`
 
+## Bugs
+- [ ] shit image quality when they small
+- [ ] cant buy more than 1 item; more than 2 you get error
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
