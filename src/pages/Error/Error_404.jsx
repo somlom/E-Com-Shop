@@ -5,7 +5,7 @@ import { CgSmileSad } from "react-icons/cg"
 import "./Error_404.css"
 
 
-export const Error_404 = () => {
+const Error_404 = () => {
     return (
         <div id='error'>
             <div className='error_title'>
@@ -18,3 +18,5 @@ export const Error_404 = () => {
         </div>
     )
 }
+
+export default Error_404

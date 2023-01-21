@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import "./Order.css"
 
 
-export const OrderCount = ({ data, children }) => {
+const OrderCount = ({ data, children }) => {
 
     const [t] = useTranslation();
 
@@ -36,3 +36,5 @@ export const OrderCount = ({ data, children }) => {
     )
 
 }
+
+export default OrderCount

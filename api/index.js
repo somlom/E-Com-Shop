@@ -2,6 +2,7 @@
 
 import express from "express";
 import cors from 'cors';
+require('dotenv').config()
 
 import { connect } from "./db/init"
 import products from './controllers/products';
@@ -9,7 +10,8 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-require('dotenv').config()
+import { logging_handler } from "./middlewares/logger_middleware";
+
 
 export const app = express()
 connect();
@@ -26,6 +28,7 @@ app.use("/payment", payment)
 app.use("/download", files)
 
 app.use(error_handler)
+app.use(logging_handler)
 
 app.listen(process.env.NODE_ENV === "development" ? process.env.API_PORT = 4000 : process.env.API_PORT, () => {
   console.log(`app is listening to port ${process.env.API_PORT}`)

@@ -2,14 +2,16 @@ import React from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import { Spinner } from '../components/other/Spinner/Spinner';
-import { useGetProtectedData } from "./Data";
+import { useGetData } from "./Data";
 
 
 export const ProtectedRoute = () => {
     const location = useLocation()
     const navigate = useNavigate();
 
-    const data = useGetProtectedData("/auth/check_token")
+    const data = useGetData("/auth/check_token", {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+    })
 
     React.useEffect(() => {
         if (data.isError) {

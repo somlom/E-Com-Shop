@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -7,9 +7,10 @@ import "../components/Order/Order.css"
 import { Spinner } from '../components/other/Spinner/Spinner'
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
-import { OrderCount } from "../components/Order/OrderCount";
-import { OrderData } from '../components/Order/OrderData';
 
+
+const OrderCount = lazy(()=> import("../components/Order/OrderCount"))
+const OrderData = lazy(()=> import("../components/Order/OrderData"))
 
 export const Order = () => {
 

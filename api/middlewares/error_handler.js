@@ -1,4 +1,4 @@
-export const error_handler = (err, req, res, next) => {
+export const error_handler = (err, req, res) => {
 
     const status = res.statusCode ? res.statusCode : 500;
 

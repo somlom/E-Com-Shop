@@ -6,3 +6,4 @@ config.js
 test
 coverage
 .env
+stats.json

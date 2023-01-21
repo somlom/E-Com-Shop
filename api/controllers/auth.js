@@ -3,7 +3,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Users } from "../db/schemas";
-import { get_token, verify_token } from "../functions/JWT";
+import { get_token, verify_token } from "../lib/JWT";
 
 
 const auth = Router();

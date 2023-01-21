@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 
-import { verify_token } from "../functions/JWT"
+import { verify_token } from "../lib/JWT"
 
 
 export const auth_middleware = asyncHandler(async (req, res, next) => {

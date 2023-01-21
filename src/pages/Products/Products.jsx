@@ -1,5 +1,5 @@
 import React from 'react'
-import process from 'process';
+// import process from 'process';
 import { Link } from 'react-router-dom';
 
 import { useGetData } from '../../hooks/Data'
@@ -7,7 +7,7 @@ import "./Products.css"
 import { Spinner } from '../../components/other/Spinner/Spinner';
 
 
-export const Products = () => {
+const Products = () => {
 
     const { isLoading, isSuccess, isError, data } = useGetData(`/products`);
 
@@ -37,3 +37,5 @@ export const Products = () => {
         )
     }
 }
+
+export default Products

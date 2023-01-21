@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import process from "process";
+import { send_email } from "../lib/mailer";
 
 
 export const connect = async () => {
@@ -9,6 +10,7 @@ export const connect = async () => {
 
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {
+        send_email("matveidashkevich@gmail.com", "Error: "+toString(error), "<p>sorry</p>")
         console.log(error)
         process.exit(1)
     }

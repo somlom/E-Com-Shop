@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 
 
-export const Account = () => {
+const Account = () => {
 
     const [t] = useTranslation();
 
@@ -28,3 +28,5 @@ export const Account = () => {
         </div>
     )
 }
+
+export default Account
