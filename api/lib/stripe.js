@@ -1,4 +1,5 @@
 import { logging_handler } from '../middlewares/logger_middleware';
+import Mailer from './mailer';
 
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SECRET);
@@ -37,20 +38,21 @@ export class Stripe_Api {
 
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
-                    line_items: new_arr,
+                    line_items: "new_arr",
                     mode: 'payment',
                     success_url: `${process.env.PUBLIC_URL}?success=true`,
                     cancel_url: `${process.env.PUBLIC_URL}?canceled=true`,
                 }, {
                     apiKey: this.stripe_secret
                 });
-                console.log(session)
-                return session.url
+                return { status: true, data: session.url }
             } catch (error) {
-                return error
+                const mailer = new Mailer();
+                mailer.send_email("supersnus1331@gmail.com", "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
+                return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" }
             }
         }
-        return "No order"
+        return { status: false, data: "No order" }
     }
 
     async create_product(product, filename) {

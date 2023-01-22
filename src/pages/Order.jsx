@@ -9,8 +9,8 @@ import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
 
 
-const OrderCount = lazy(()=> import("../components/Order/OrderCount"))
-const OrderData = lazy(()=> import("../components/Order/OrderData"))
+const OrderCount = lazy(() => import("../components/Order/OrderCount"))
+const OrderData = lazy(() => import("../components/Order/OrderData"))
 
 export const Order = () => {
 
@@ -25,7 +25,11 @@ export const Order = () => {
 
     const send_data = async () => {
         const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
-        return window.location.replace(resp.data);
+        if (resp.data.status === true) {
+            return window.location.replace(resp.data);
+        } else {
+            return window.location.replace("resp_data")
+        }
     }
 
     React.useEffect(() => {

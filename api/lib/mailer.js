@@ -1,28 +1,52 @@
+import hbs from 'nodemailer-express-handlebars'
 import nodemailer from "nodemailer"
+import path from "path"
 
-const connection = {
-    host: "smtp.gmail.com",
-    port: 465,
-    auth: {
-        user: process.env.EMAIL,
-        pass: process.env.EMAIL_PASSWORD
+
+export default class Mailer {
+    constructor() {
+        this.email = process.env.EMAIL;
+        this.password = process.env.EMAIL_PASSWORD;
+        this.connection = {
+            host: "smtp.gmail.com",
+            port: 465,
+            // service: 'gmail',
+            secure: true,
+            auth: {
+                user: this.email,
+                pass: this.password
+            }
+        };
+
+        this.handlebarOptions = {
+            viewEngine: {
+                extName: '.handlebars',
+                partialsDir: path.resolve('./api/public/emails'),
+                defaultLayout: false,
+            },
+            plaintextOptions: {
+                uppercaseHeadings: false
+            },
+            viewPath: path.resolve('./api/public/emails'),
+        };
+
+        this.transporter = nodemailer.createTransport(this.connection)
+        this.transporter.use('compile', hbs(this.handlebarOptions))
     }
-};
 
-const transporter = nodemailer.createTransport(connection)
+    send_email(to = "", subject = "", template = "", context = {}) {
 
-
-export const send_email = (to, subject, html) => {
-    const options = {
-        from: `"interEcom" <${connection.auth.user}>`,
-        to: to,
-        subject: subject,
-        html: html,
-    };
-    transporter.sendMail(options, (err, info) => {
-        if (err) {
-            console.log("error " + err);
-        }
-    });
-
+        const options = {
+            from: `"interEcom" <${this.connection.auth.user}>`,
+            to: to,
+            subject: subject,
+            template: template,
+            context: context
+        };
+        this.transporter.sendMail(options, (err, info) => {
+            if (err) {
+                console.log("error " + err);
+            }
+        });
+    }
 }

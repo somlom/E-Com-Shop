@@ -11,9 +11,12 @@ Test on web: https://deploy-site-test.netlify.app/
 ### Start dev
 To run the app `yarn run dev`
 
+## Test
+- [ ] cant buy more than 1 item; more than 2 you get error
+
 ## Bugs
 - [ ] shit image quality when they small
-- [+-] cant buy more than 1 item; more than 2 you get error
+- [x] cant buy more than 1 item; more than 2 you get error
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -29,7 +32,7 @@ To run the app `yarn run dev`
 - [x] AGB
 - [x] Paying process
 
-## Design
+### Design
 - [x] Navbar
 - [x] Cart
 - [x] user page
@@ -43,18 +46,18 @@ To run the app `yarn run dev`
 - [ ] Search page
 - [ ] Admin page
 
-## Product page
+### Product page
 - [ ] Reviews
 - [x] photos
 - [x] details
 
-## Order
+### Order
 - [x] Order box
 - [x] Infos
 - [x] payment
 - [ ] receipt
 
-## user profile
+### user profile
 - [ ] Sending data
 - [ ] Payment methods
 - [ ] Personal data
@@ -63,20 +66,20 @@ To run the app `yarn run dev`
 - [ ] Bestellung
 - [ ] Rechnung
   
-## Backend
+### Backend
 - [ ] Slug
 - [ ] Admin-Page security (2FA)
 
-## Frontend
+### Frontend
 - [ ] Slug
 - [ ] Admin-Page security
 - [ ] Design
 
-## Cart
+### Cart
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
 - [x] Data will be saved in local storage(id) and on server(queries)
 
-## DB
+### DB
 - [x] Implement local DB
 - [x] Schemas
 - [x] Photos
