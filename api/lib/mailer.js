@@ -10,7 +10,6 @@ export default class Mailer {
         this.connection = {
             host: "smtp.gmail.com",
             port: 465,
-            // service: 'gmail',
             secure: true,
             auth: {
                 user: this.email,
@@ -23,9 +22,6 @@ export default class Mailer {
                 extName: '.handlebars',
                 partialsDir: path.resolve('./api/public/emails'),
                 defaultLayout: false,
-            },
-            plaintextOptions: {
-                uppercaseHeadings: false
             },
             viewPath: path.resolve('./api/public/emails'),
         };
@@ -41,11 +37,14 @@ export default class Mailer {
             to: to,
             subject: subject,
             template: template,
-            context: context
+            context: context,
         };
+
         this.transporter.sendMail(options, (err, info) => {
             if (err) {
                 console.log("error " + err);
+            } else {
+                console.log(info.messageId + " : sent email " + subject + " to " + to)
             }
         });
     }

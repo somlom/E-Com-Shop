@@ -38,7 +38,7 @@ export class Stripe_Api {
 
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
-                    line_items: "new_arr",
+                    line_items: new_arr,
                     mode: 'payment',
                     success_url: `${process.env.PUBLIC_URL}?success=true`,
                     cancel_url: `${process.env.PUBLIC_URL}?canceled=true`,

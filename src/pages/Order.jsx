@@ -26,7 +26,7 @@ export const Order = () => {
     const send_data = async () => {
         const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
         if (resp.data.status === true) {
-            return window.location.replace(resp.data);
+            return window.location.replace(resp.data.data);
         } else {
             return window.location.replace("resp_data")
         }

@@ -68,8 +68,6 @@ async function pay_order(req, res) {
         const user = await Users.findById(req.user)
         const mailer = new Mailer()
         
-        console.log(user.name)
-        
         mailer.send_email(user.email, "Hi", "hello", { name: user.name })
     }
 
