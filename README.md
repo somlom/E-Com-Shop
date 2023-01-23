@@ -23,6 +23,8 @@ To run the app `yarn run dev`
 - [ ] Stripe images
 - [ ] hamburger menu design
 - [ ] not all translation keys found (on register page mostly)
+- [ ] when you click on "bezahlen" in cart the module doesnt go away 
+- [ ] buy now button doesnt work
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
