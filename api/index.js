@@ -11,7 +11,6 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-import { logging_handler } from "./middlewares/logger_middleware";
 import Mailer from "./lib/mailer";
 import TOTP from "./lib/totp";
 import { generatePath } from "react-router-dom";
