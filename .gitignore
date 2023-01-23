@@ -7,3 +7,4 @@ test
 coverage
 .env
 stats.json
+yarn-error.log

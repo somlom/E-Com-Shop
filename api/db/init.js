@@ -10,7 +10,7 @@ export const connect = async () => {
 
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {
-        send_email("matveidashkevich@gmail.com", "Error: "+toString(error), "<p>sorry</p>")
+        send_email("supersnus1331@gmail.com", "Error: "+toString(error), "<p>sorry</p>")
         console.log(error)
         process.exit(1)
     }

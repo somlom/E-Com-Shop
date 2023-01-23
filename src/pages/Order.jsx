@@ -17,7 +17,6 @@ export const Order = () => {
     const [t] = useTranslation();
     const cart = useSelector(cartArray);
     const [sendIt, data] = usePostCartMutation();
-    // const [create_order] = useCreateOrderMutation();
 
     const create_order = async (order) => {
         await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })

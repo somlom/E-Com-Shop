@@ -13,7 +13,6 @@ import {
 
 import cartReducer from './features/cart/cart_slice'
 import { cart_api } from './features/cart/cart_api';
-import { payment_api } from "./features/payment/payment_api";
 
 
 const persistConfig = {
@@ -27,7 +26,6 @@ export const store = configureStore({
   reducer: {
     cart: persistedReducer,
     [cart_api.reducerPath]: cart_api.reducer,
-    [payment_api.reducerPath]: payment_api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -36,6 +34,5 @@ export const store = configureStore({
       },
     })
       .concat(cart_api.middleware)
-      .concat(payment_api.middleware)
 })
 export const persistor = persistStore(store)

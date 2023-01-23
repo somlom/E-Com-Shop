@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import "./Cart.css"
 import { cartArray } from '../../../features/cart/cart_slice';
 import { usePostCartMutation } from '../../../features/cart/cart_api';
-import { Spinner } from '../../other/Spinner/Spinner';
 
 
 export function Cart() {
@@ -34,11 +33,9 @@ export function Cart() {
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
     return (
-      <React.Suspense fallback={<Spinner />}>
         <div className='cart column'>
           <h1>Loading...</h1>
         </div>
-      </React.Suspense>
     );
   }
   else {

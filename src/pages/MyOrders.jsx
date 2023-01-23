@@ -1,23 +1,25 @@
 import React from 'react'
 
 import { Spinner } from '../components/other/Spinner/Spinner'
-import { useGetOrdersQuery } from '../features/payment/payment_api'
-
+import { useGetData } from "../hooks/Data"
 
 export const MyOrders = () => {
 
-    const value = useGetOrdersQuery();
+    const { isLoading, isSuccess, isError, data } = useGetData("/payment/get_orders", { Authorization: `Bearer ${localStorage.getItem("user")}` });
 
-    if (value.isError) {
+    if (isError) {
+
         return <h1>Sorry, try later </h1>
-    }
 
-    if (value.isLoading) {
+    } else if (isLoading) {
+
         return <Spinner />
-    } else {
+
+    } else if (isSuccess) {
+
         return (
             <>
-                {value.data.map((obj) => {
+                {data.map((obj) => {
                     return (
                         <div key={obj._id}>
                             <div className='column'>
@@ -25,7 +27,6 @@ export const MyOrders = () => {
                                     <div className='row'>
                                         <p>{obj.updatedAt}</p>
                                         <p>{obj._id}</p>
-                                        {/* <p>{obj.updatedAt}</p> */}
                                     </div>
                                 </div>
                                 <div className='column'>

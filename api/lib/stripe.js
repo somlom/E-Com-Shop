@@ -1,9 +1,9 @@
-import { logging_handler } from '../middlewares/logger_middleware';
+import Stripe from "stripe";
+
 import Mailer from './mailer';
 
-const Stripe = require('stripe');
-const stripe = Stripe(process.env.STRIPE_SECRET);
 
+const stripe = Stripe(process.env.STRIPE_SECRET);
 
 export class Stripe_Api {
     constructor() {
@@ -55,9 +55,9 @@ export class Stripe_Api {
         return { status: false, data: "No order" }
     }
 
-    async create_product(product, filename) {
+    async create_product(product={}, filename=[]) {
 
-        const res = await stripe.products.create({
+        return await stripe.products.create({
             id: product.id,
             name: product.name,
             default_price_data: {
@@ -70,16 +70,12 @@ export class Stripe_Api {
         }, {
             apiKey: this.stripe_secret
         });
-        return res
     }
 
-    async update_product(id, product) {
+    async update_product(id="", product={}) {
 
-        const res = await stripe.products.update(
-            id,
-            {
-                ...product
-            },
+        return await stripe.products.update(
+            id, product,
             {
                 apiKey: this.stripe_secret
             }
