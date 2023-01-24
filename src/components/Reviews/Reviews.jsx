@@ -3,7 +3,7 @@ import React from 'react'
 import "./Reviews.css"
 
 
-export const Reviews = ({ data }) => {
+const Reviews = ({ data }) => {
 
     const isEmpty = data.length === 0 ? true : false
 
@@ -24,3 +24,5 @@ export const Reviews = ({ data }) => {
         )
     }
 }
+
+export default Reviews

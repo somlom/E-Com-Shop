@@ -2,7 +2,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/schemas";
-import { upload_photos } from "../functions/photo";
+import { upload_photos } from "../lib/photo";
 import { Stripe_Api } from "../lib/stripe";
 
 
@@ -37,8 +37,6 @@ export async function get_cart_items(req, res) {
     } else {
         return res.json([])
     }
-
-
 }
 
 export async function get_product_by_id(req, res) {
@@ -50,7 +48,6 @@ export async function get_product_by_id(req, res) {
     } catch (error) {
         return res.json(null)
     }
-
 }
 
 export async function get_products(req, res) {
@@ -60,7 +57,6 @@ export async function get_products(req, res) {
 export async function add_product(req, res) {
 
     const { name, text, price, quantity } = req.body;
-    console.log(Array.isArray(req.files))
 
     const filename = req.files.map((item) => item.filename)
 
@@ -82,7 +78,7 @@ export async function edit_product(req, res) {
     const item = await Products.findOne({ _id: req.body._id })
     if (item) {
         try {
-            const products = await Products.findByIdAndUpdate(req.body._id, { ...req.body })
+            const products = await Products.findByIdAndUpdate(req.body._id, req.body)
             return res.json(products)
         } catch (error) {
             res.status(400)
@@ -91,8 +87,6 @@ export async function edit_product(req, res) {
     } else {
         throw new Error("error")
     }
-
-
 }
 
 export default products;

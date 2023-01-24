@@ -11,6 +11,20 @@ Test on web: https://deploy-site-test.netlify.app/
 ### Start dev
 To run the app `yarn run dev`
 
+## Test
+- [ ] cant buy more than 1 item; more than 2 you get error
+- [ ] cant buy anything anymore if you try you get error
+
+## Bugs
+- [ ] shit image quality when they small
+- [x] cant buy more than 1 item; more than 2 you get error
+- [x] cant buy anything anymore if you try you get error
+- [ ] unsyncronized Stripe and local DB
+- [ ] Stripe images
+- [ ] hamburger menu design
+- [ ] not all translation keys found (on register page mostly)
+- [ ] when you click on "bezahlen" in cart the module doesnt go away 
+- [ ] buy now button doesnt work
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -25,8 +39,9 @@ To run the app `yarn run dev`
 - [x] Implement local DB
 - [x] AGB
 - [x] Paying process
+- [ ] reset page
 
-## Design
+### Design
 - [x] Navbar
 - [x] Cart
 - [x] user page
@@ -40,18 +55,18 @@ To run the app `yarn run dev`
 - [ ] Search page
 - [ ] Admin page
 
-## Product page
+### Product page
 - [ ] Reviews
 - [x] photos
 - [x] details
 
-## Order
+### Order
 - [x] Order box
 - [x] Infos
 - [x] payment
 - [ ] receipt
 
-## user profile
+### user profile
 - [ ] Sending data
 - [ ] Payment methods
 - [ ] Personal data
@@ -60,20 +75,20 @@ To run the app `yarn run dev`
 - [ ] Bestellung
 - [ ] Rechnung
   
-## Backend
+### Backend
 - [ ] Slug
 - [ ] Admin-Page security (2FA)
 
-## Frontend
+### Frontend
 - [ ] Slug
 - [ ] Admin-Page security
 - [ ] Design
 
-## Cart
+### Cart
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
 - [x] Data will be saved in local storage(id) and on server(queries)
 
-## DB
+### DB
 - [x] Implement local DB
 - [x] Schemas
 - [x] Photos

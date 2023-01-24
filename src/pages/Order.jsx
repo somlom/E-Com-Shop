@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -7,26 +7,28 @@ import "../components/Order/Order.css"
 import { Spinner } from '../components/other/Spinner/Spinner'
 import { usePostCartMutation } from '../features/cart/cart_api';
 import { cartArray } from '../features/cart/cart_slice';
-import { OrderCount } from "../components/Order/OrderCount";
-import { OrderData } from '../components/Order/OrderData';
-import { useCreateOrderMutation } from '../features/payment/payment_api';
-import { Storage } from '../hooks/Storage';
 
+
+const OrderCount = lazy(() => import("../components/Order/OrderCount"))
+const OrderData = lazy(() => import("../components/Order/OrderData"))
 
 export const Order = () => {
 
     const [t] = useTranslation();
     const cart = useSelector(cartArray);
     const [sendIt, data] = usePostCartMutation();
-    // const [create_order] = useCreateOrderMutation();
 
     const create_order = async (order) => {
-        await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${Storage.getUserKey()}` } })
+        await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
     }
 
     const send_data = async () => {
-        const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${Storage.getUserKey()}` } })
-        return window.location.replace(resp.data);
+        const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
+        if (resp.data.status === true) {
+            return window.location.replace(resp.data.data);
+        } else {
+            return window.location.replace("resp_data")
+        }
     }
 
     React.useEffect(() => {

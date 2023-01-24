@@ -16,6 +16,7 @@
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -64,6 +65,7 @@ a.link:active {
     .open_menu {
         display: flex;
     }
+
     .close_menu {
         display: none;
     }
@@ -94,4 +96,5 @@ p,
 span,
 a {
     color: #3e4756;
+    text-decoration: none;
 }

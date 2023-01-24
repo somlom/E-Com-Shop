@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 import "./Cart.css"
 import { cartArray } from '../../../features/cart/cart_slice';
 import { usePostCartMutation } from '../../../features/cart/cart_api';
-import { Spinner } from '../../other/Spinner/Spinner';
-import fetchAllCatsData, { getCart } from '../../../hooks/Data';
 
 
 export function Cart() {
@@ -16,8 +14,6 @@ export function Cart() {
 
   const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
-  // const resp = getCart(cart);
-  // const namesList = resp.read();
 
 
   React.useEffect(() => {
@@ -32,17 +28,14 @@ export function Cart() {
     return (
 
       <div className='cart column'>
-        {/* {console.log(namesList)} */}
         {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} />}
       </div>
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
     return (
-      <React.Suspense fallback={<Spinner />}>
         <div className='cart column'>
           <h1>Loading...</h1>
         </div>
-      </React.Suspense>
     );
   }
   else {

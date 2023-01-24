@@ -16,24 +16,53 @@ const products_schema = new Schema({
         type: [String],
         required: [true, "Please add PHOTO"]
     },
-    tags: {
-        type: [String],
-        index: true
-    },
+    // tags: {
+    //     type: [String],
+    //     index: true
+    // },
     text: {
         type: String,
         required: [true, "Please add TEXT"],
-        unique: true, dropDups: true
+        dropDups: true
     },
     price: {
+        // type: mongoose.Types.Decimal128,
         type: Number,
         required: [true, "Please add PRICE"],
     },
     quantity: {
         type: Number,
         required: [true, "Please add QUANTITY"],
+    },
+    technical_data: {
+        type: [Object],
+        required: true
     }
+}, {
+    timestamps: true
+});
 
+const reviews_schema = new Schema({
+    title: {
+        type: String,
+        required: [true, "Please add your NAME"],
+    },
+    stars: {
+        type: String,
+        required: [true, "Please add your SURNAME"],
+    },
+    product: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Products',
+    },
+    user: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Users',
+    },
+    password: {
+        type: String,
+        required: [true, "Please add your PASSWORD"],
+    },
 }, {
     timestamps: true
 });
@@ -54,7 +83,6 @@ const users_schema = new Schema({
         type: String,
         required: [true, "Please add your EMAIL"],
         unique: true,
-        index: true,
     },
     password: {
         type: String,
@@ -69,10 +97,6 @@ const orders_schema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Users',
         required: [true, "Please add your USER_ID"],
-
-    },
-    address: {
-        type: Object,
     },
     payed: {
         type: Boolean,
@@ -104,7 +128,6 @@ const orders_schema = new Schema({
                 },
                 quantity: {
                     type: Number,
-
                 }
             }
         ]
@@ -116,3 +139,4 @@ const orders_schema = new Schema({
 export const Users = mongoose.model('Users', users_schema);
 export const Orders = mongoose.model('Orders', orders_schema);
 export const Products = mongoose.model('Products', products_schema);
+export const Reviews = mongoose.model('Reviews', reviews_schema);

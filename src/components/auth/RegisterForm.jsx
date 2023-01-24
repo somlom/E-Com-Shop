@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
-import { Storage } from '../../hooks/Storage';
 import { Navigate } from 'react-router-dom';
 
 
@@ -27,7 +26,7 @@ export const RegisterForm = () => {
         if (Object.keys(input).length >= 1) {
             await axios.post(`${process.env.API_URL}/auth/register`, input).then(
                 function (fulfilled) {
-                    Storage.setUserKey(fulfilled.data)
+                    localStorage.setItem("user", fulfilled.data)
                     return <Navigate to="/" />
                 },
                 function (error) {

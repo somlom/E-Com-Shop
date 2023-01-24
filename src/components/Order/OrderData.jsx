@@ -6,7 +6,7 @@ import "./Order.css"
 import { set_to_cart, remove_from_cart } from "../../features/cart/cart_slice"
 
 
-export const OrderData = ({ data }) => {
+const OrderData = ({ data }) => {
 
     const [t] = useTranslation();
     const dispatch = useDispatch();
@@ -39,3 +39,5 @@ export const OrderData = ({ data }) => {
         </div>
     )
 }
+
+export default OrderData

@@ -60,9 +60,11 @@ export const LoginForm = () => {
                     <button className="button_opacity opacity primary" type='submit'>
                         <FaUserPlus size={15} />{t("login")}
                     </button>
-                    <button className="button_opacity opacity green" type='button'>
-                        <Link to="/register"><FaUserPlus size={15} />{t("dont_have_an_account")}</Link>
-                    </button>
+                    <Link to="/register">
+                        <button className="button_opacity opacity green" type='button'>
+                            <FaUserPlus size={15} />{t("dont_have_an_account")}
+                        </button>
+                    </Link>
                 </div>
             </Form>
         </>

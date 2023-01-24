@@ -1,18 +1,19 @@
-import React from 'react'
+import React, { Suspense, useState, lazy } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { useTranslation } from 'react-i18next';
 
 import "./Products.css"
-import { useGetData } from '../../hooks/Data';
 import { set_to_cart } from '../../features/cart/cart_slice';
-import { useState } from 'react';
-import { Details } from '../../components/Details';
+import { useGetData } from '../../hooks/Data';
+// import { Details } from '../../components/Details';
 import { Switch } from '../../components/other/Switch/Switch';
-import { Reviews } from '../../components/Reviews/Reviews';
+// import { Reviews } from '../../components/Reviews/Reviews';
 import { Spinner } from '../../components/other/Spinner/Spinner';
 
+const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
+const Details = lazy(() => import('../../components/Details'));
 
 export const Product = () => {
 
@@ -27,11 +28,11 @@ export const Product = () => {
 
     if (isLoading) {
         return <Spinner />
-    }else if(isError){
+    } else if (isError) {
         return <h1>Error</h1>
-    } else if(data.length === 0){
+    } else if (data.length === 0) {
         return <h1>Sorry, here is empty</h1>
-    } else if(isSuccess) {
+    } else if (isSuccess) {
         return (
             <div>
                 <div className='column'>
@@ -62,8 +63,15 @@ export const Product = () => {
                 </div>
                 <div className='column'>
                     <Switch first={t("reviews")} second={t("details")}>
-                        <Reviews data={data} />
-                        <Details data={data.text} />
+
+                        <Suspense fallback={<Spinner />}>
+                            <Reviews data={data} />
+                        </Suspense>
+
+                        <Suspense fallback={<Spinner />}>
+                            <Details data={data.text} />
+                        </Suspense>
+
                     </Switch>
                 </div>
             </div>

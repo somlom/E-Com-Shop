@@ -1,9 +1,8 @@
-"use strict";
-
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
-import { Orders } from "../db/schemas";
+import { Orders, Users } from "../db/schemas";
+import Mailer, { send_email } from "../lib/mailer";
 import { Stripe_Api } from "../lib/stripe";
 import { auth_middleware } from "../middlewares/auth_handler";
 
@@ -64,6 +63,13 @@ async function pay_order(req, res) {
     const order = await Orders.findOne({ user: req.user })
 
     const session = await stripe.create_stripe_session(order)
+
+    if (session) {
+        const user = await Users.findById(req.user)
+        const mailer = new Mailer()
+        
+        mailer.send_email(user.email, "Hi", "hello", { name: user.name })
+    }
 
     return res.json(session);
 }
