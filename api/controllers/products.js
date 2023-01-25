@@ -61,11 +61,16 @@ export async function add_product(req, res) {
     const filename = req.files.map((item) => item.filename)
 
     try {
+        const stripe = new Stripe_Api();
+
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        if (product) {
-            const stripe = new Stripe_Api();
-            stripe.create_product(product, filename);
+        stripe.create_product(product, filename);
+        
+        if (!(stripe || product)) {
+            res.status(400)
+            throw new Error(error)
         }
+        
         return res.json(product)
     } catch (error) {
         res.status(400)

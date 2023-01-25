@@ -23,8 +23,6 @@ To run the app `yarn run dev`
 - [ ] Stripe images
 - [ ] hamburger menu design
 - [ ] not all translation keys found (on register page mostly)
-- [ ] when you click on "bezahlen" in cart the module doesnt go away 
-- [ ] buy now button doesnt work
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -40,6 +38,7 @@ To run the app `yarn run dev`
 - [x] AGB
 - [x] Paying process
 - [ ] reset page
+- [ ] serve imgs on client
 
 ### Design
 - [x] Navbar
@@ -81,7 +80,7 @@ To run the app `yarn run dev`
 
 ### Frontend
 - [ ] Slug
-- [ ] Admin-Page security
+- [ ] Admin-Page security (2FAs)
 - [ ] Design
 
 ### Cart

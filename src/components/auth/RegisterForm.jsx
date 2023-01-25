@@ -43,8 +43,8 @@ export const RegisterForm = () => {
             <input type="text" placeholder={t("name")} id='name' onChange={add_to_state} />
             <input type="text" placeholder={t("surname")} id='surname' onChange={add_to_state} />
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
-            <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
-            <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} />
+            <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autocomplete="current-password"/>
+            <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} autocomplete="current-password"/>
             <div className='form_buttons row'>
                 <button className="button_opacity opacity primary" type='submit'>
                     <FaUserPlus />{t("register")}

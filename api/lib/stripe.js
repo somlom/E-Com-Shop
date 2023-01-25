@@ -57,6 +57,8 @@ export class Stripe_Api {
 
     async create_product(product={}, filename=[]) {
 
+        console.log(process.env.PUBLIC_URL + product.id,)
+
         return await stripe.products.create({
             id: product.id,
             name: product.name,
@@ -65,7 +67,7 @@ export class Stripe_Api {
                 unit_amount_decimal: product.price.toString(),
             },
             shippable: true,
-            url: process.env.PUBLIC_URL + product.id,
+            url: process.env.PUBLIC_URL+ "/" + product.id,
             images: filename
         }, {
             apiKey: this.stripe_secret

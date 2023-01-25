@@ -21,7 +21,7 @@ connect();
 
 app.use(cors());
 app.use(express.json())
-app.use('/img', express.static('api/public/img'))
+// app.use('/img', express.static('api/public/img'))
 
 app.use(express.urlencoded({ extended: false }))
 

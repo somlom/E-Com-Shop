@@ -18,7 +18,7 @@ import { Hamburger } from '../Hamburger';
 
 
 export const Navigation = () => {
-  
+
   const [modal_state, handle_modal] = useState(false);
   const [menu_state, handle_menu] = useState(false);
 
@@ -52,7 +52,7 @@ export const Navigation = () => {
             <div className='row'>
               <Link className="link column" to="/hot">
                 <div className='with_icon'>
-                  <AiOutlineFire size={20}  />
+                  <AiOutlineFire size={20} />
                   <span>{t("hot_deals")}</span>
                 </div>
               </Link>
@@ -81,7 +81,7 @@ export const Navigation = () => {
 
       {modal_state &&
         <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {count} {t("items")}</span>}>
-          <Cart />
+          <Cart handle_close={handle_modal} />
         </Modal>
       }
       {menu_state &&

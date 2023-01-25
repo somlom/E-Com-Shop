@@ -86,6 +86,24 @@ img.product_column {
     text-decoration: none;
 }
 
+.cart_footer a.opacity{
+    width: 100%;
+    background-color: rgb(2, 158, 255);
+    border: none;
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    color: white;
+    font-size: medium;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
 .cart_footer a {
     align-self: flex-start;
     text-decoration: none;

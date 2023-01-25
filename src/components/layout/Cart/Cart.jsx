@@ -8,7 +8,7 @@ import { cartArray } from '../../../features/cart/cart_slice';
 import { usePostCartMutation } from '../../../features/cart/cart_api';
 
 
-export function Cart() {
+export function Cart({ handle_close }) {
 
   const [t] = useTranslation();
 
@@ -28,14 +28,14 @@ export function Cart() {
     return (
 
       <div className='cart column'>
-        {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} />}
+        {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} handle_close={handle_close} />}
       </div>
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
     return (
-        <div className='cart column'>
-          <h1>Loading...</h1>
-        </div>
+      <div className='cart column'>
+        <h1>Loading...</h1>
+      </div>
     );
   }
   else {
@@ -43,7 +43,7 @@ export function Cart() {
   }
 }
 
-const Cart_Element = ({ data }) => {
+const Cart_Element = ({ data, handle_close }) => {
 
   const [t] = useTranslation();
 
@@ -53,7 +53,7 @@ const Cart_Element = ({ data }) => {
         <div className="column" key={data_val._id}>
 
           <div className='product_row'>
-            <img className='product_column' src={`${process.env.API_URL}/img/${data_val.photos[0]}`}></img>
+            <img className='product_column' src={process.env.PUBLIC_URL + "img/" + data_val.photos[0]}></img>
 
             <div className='product_column column'>
               <h3>{data_val.name}</h3>
@@ -67,8 +67,8 @@ const Cart_Element = ({ data }) => {
         </div>
       ))}
       <div className='cart_footer column'>
-        <button><Link to="/order">{t("pay")}</Link></button>
-        <Link to="/account">{t("account")}</Link>
+        <Link to="/order" className='opacity' onClick={() => handle_close()}>{t("pay")}</Link>
+        <Link to="/account" onClick={() => handle_close()}>{t("account")}</Link>
       </div>
     </>
   )

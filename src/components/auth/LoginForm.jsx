@@ -55,7 +55,7 @@ export const LoginForm = () => {
             {state?.message !== undefined ? <h1>{state.message}</h1> : ""}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
                 <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
-                <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} />
+                <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autocomplete="current-password" />
                 <div className='form_buttons row'>
                     <button className="button_opacity opacity primary" type='submit'>
                         <FaUserPlus size={15} />{t("login")}

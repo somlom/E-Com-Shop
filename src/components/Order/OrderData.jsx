@@ -13,7 +13,7 @@ const OrderData = ({ data }) => {
 
     return data.map((obj) =>
         <div className="order_item row" key={obj._id}>
-            <img className='order_image' src={`${process.env.API_URL}/img/${obj.photos[0]}`}></img>
+            <img className='order_image' src={process.env.PUBLIC_URL + "img/" + obj.photos[0]}></img>
             <h3 id="title">{obj.name}</h3>
             <div className='row'>
                 <select value={obj.quantity} onChange={(e) => dispatch(set_to_cart({ id: obj._id, quantity: e.target.value }))}>
