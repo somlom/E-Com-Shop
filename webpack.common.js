@@ -38,16 +38,18 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-                generator: {
-                    filename: "[name][ext]"
-                }
-                // loader: 'file-loader',
-                // options: {
-                //     name: '[name].[ext]',
-                //     outputPath: 'public/img/'
-                // }
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'static/img',
+                            esModule: false // <- here
+                        }
+                    }
+                ]
+
             }
         ],
     },

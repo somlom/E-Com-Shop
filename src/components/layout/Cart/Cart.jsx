@@ -53,7 +53,7 @@ const Cart_Element = ({ data, handle_close }) => {
         <div className="column" key={data_val._id}>
 
           <div className='product_row'>
-            <img className='product_column' src={"../../../public/img/" + data_val.photos[0]}></img>
+            <img className='product_column' src={require("../../../public/img/" + data_val.photos[0])} alt="aa"></img>
 
             <div className='product_column column'>
               <h3>{data_val.name}</h3>

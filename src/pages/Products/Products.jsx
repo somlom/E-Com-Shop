@@ -27,7 +27,7 @@ const Products = () => {
                                         <h3>{obj.name}</h3>
                                     </div>
                                 </div>
-                                <img src={"../../../public/img/" + obj.photos[0]} alt="aa"></img>
+                                <img src={require("../../public/img/" + obj.photos[0])} alt="aa"></img>
                             </div>
                         </Link>
                     )

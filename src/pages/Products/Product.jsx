@@ -45,10 +45,10 @@ export const Product = () => {
                         <div className="photos">
                             {data.photos.length > 1 ? (
                                 <div className="gallery column">
-                                    {data.photos.map(photo => <img src={"../../../public/img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
+                                    {data.photos.map(photo => <img src={require("../../public/img/" + photo)} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
                                 </div>
                             ) : ""}
-                            <img src={showPhoto ? "../../../public/img/" + showPhoto : "../../../public/img/" + data.photos[0]}></img>
+                            <img src={showPhoto ? require("../../public/img/" + showPhoto) : require("../../public/img/" + data.photos[0])}></img>
                         </div>
 
                         <div className='buy column'>
