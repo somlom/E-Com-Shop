@@ -18,7 +18,6 @@ const Products = () => {
         return (
             <div className='products row'>
                 {data.map(obj => {
-                    const file = "../../../public/img/" + obj.photos[0]
                     return (
                         <Link key={obj._id} to={`/products/${obj._id}`} className="go_to_product">
                             <div className='product'>
@@ -28,7 +27,7 @@ const Products = () => {
                                         <h3>{obj.name}</h3>
                                     </div>
                                 </div>
-                                <img src={process.env.PUBLIC_URL + "img/" + obj.photos[0]}></img>
+                                <img src={"../../../public/img/" + obj.photos[0]} alt="aa"></img>
                             </div>
                         </Link>
                     )

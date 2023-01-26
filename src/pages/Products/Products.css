@@ -179,6 +179,8 @@
 }
 
 .primary_button {
+    font-size: small;
+    text-align: center;
     border: none;
     border-radius: 18px;
     padding: 10px;

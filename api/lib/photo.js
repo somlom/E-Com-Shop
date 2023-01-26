@@ -17,7 +17,6 @@ const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
         const found = allowedOutputFormats.find(type => file.mimetype === type)
-        console.log(found, file.mimetype in allowedOutputFormats)
         if (found) {
             cb(null, true);
         } else {

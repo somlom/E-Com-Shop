@@ -2,26 +2,23 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 
-export const usePostData = (url = "", data = "", headers = "") => {
+export const usePostData = (url = "", data = "", headers = "", start = false) => {
 
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
-    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(async () => {
 
-            await axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers }).then((response) => (
-                setValue((prev) => ({
-                    ...prev,
-                    data: response.data || null,
-                    isLoading: false,
-                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
-                    isError: response.status !== 200 ? true : false,
-                }))
-            ), (() => (
-                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-            )))
-        }
-        fetchData()
+        await axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers }).then((response) => (
+            setValue((prev) => ({
+                ...prev,
+                data: response.data || null,
+                isLoading: false,
+                isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                isError: response.status !== 200 ? true : false,
+            }))
+        ), (() => (
+            setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+        )))
     }, [url])
 
     return value
@@ -30,8 +27,6 @@ export const usePostData = (url = "", data = "", headers = "") => {
 export const useGetData = (url = "", headers = {}) => {
 
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
-
-    console.log(url, headers)
 
     useEffect(() => {
         const fetchData = async () => {

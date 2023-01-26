@@ -81,7 +81,7 @@ export const Admin_Edit = () => {
                             <div className="carousel column">
                                 {value.photos.map(photo => {
                                     return (
-                                        <img src={process.env.PUBLIC_URL + "img/" + photo} />
+                                        <img src={"../../../public/img/" + photo} />
                                     )
                                 })}
                             </div>

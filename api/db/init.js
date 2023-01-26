@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import process from "process";
-import { send_email } from "../lib/mailer";
+import Mailer from "../lib/mailer";
 
 
 export const connect = async () => {
@@ -10,7 +10,8 @@ export const connect = async () => {
 
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {
-        send_email("supersnus1331@gmail.com", "Error: "+toString(error), "<p>sorry</p>")
+        const mailer = new Mailer();
+        mailer.send_email("supersnus1331@gmail.com", "Error with server", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
         console.log(error)
         process.exit(1)
     }

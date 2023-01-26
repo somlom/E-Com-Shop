@@ -45,18 +45,18 @@ export const Product = () => {
                         <div className="photos">
                             {data.photos.length > 1 ? (
                                 <div className="gallery column">
-                                    {data.photos.map(photo => <img src={process.env.PUBLIC_URL + "img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
+                                    {data.photos.map(photo => <img src={"../../../public/img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
                                 </div>
                             ) : ""}
-                            <img src={showPhoto ? process.env.PUBLIC_URL + "img/" + showPhoto : process.env.PUBLIC_URL + "img/" + data.photos[0]}></img>
+                            <img src={showPhoto ? "../../../public/img/" + showPhoto : "../../../public/img/" + data.photos[0]}></img>
                         </div>
 
                         <div className='buy column'>
                             <p>{data.text}</p>
                             <div className='buy_row'>
                                 <h3>{data.price}</h3>
-                                <button className='primary_button' type='button'>Buy now</button>
-                                <button className='primary_button' type='button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>{t("add")}</button>
+                                <Link to="/order" className='primary_button' type='button'>Buy now</Link>
+                                <a className='primary_button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>{t("add")}</a>
                             </div>
                         </div>
                     </div>
