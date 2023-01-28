@@ -1,0 +1,31 @@
+div.column form.__form.column * {
+    margin: 10px;
+}
+
+div.column form.__form.column div.__admin_gellery.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.column form.__form.column div.__admin_gellery.row div.__admin_lower_layer {
+    display: flex;
+    width: 250px;
+    height: auto;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+}
+
+div.column form.__form.column div.__admin_gellery.row div.__admin_lower_layer img {
+    width: 250px;
+}
+
+div.column form.__form.column input#name {
+    width: 50%;
+    min-width: 200px;
+}
+
+div.__admin_gellery.row img{
+    width: 200px;
+}

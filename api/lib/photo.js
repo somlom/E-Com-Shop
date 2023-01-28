@@ -27,6 +27,6 @@ const upload = multer({
         }
     },
 });
-
+export const decode_multipart = multer().none();
 export const upload_photo = util.promisify(upload.single('image'));
 export const upload_photos = util.promisify(upload.array('image', 10));

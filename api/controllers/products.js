@@ -12,8 +12,9 @@ products.get("/", asyncHandler(get_products));
 products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photos, asyncHandler(add_product))
+products.post("/edit", upload_photos, asyncHandler(edit_product))
 
-export async function get_cart_items(req, res) {
+async function get_cart_items(req, res) {
 
     const { data } = req.body;
 
@@ -39,7 +40,7 @@ export async function get_cart_items(req, res) {
     }
 }
 
-export async function get_product_by_id(req, res) {
+async function get_product_by_id(req, res) {
 
     const { id } = req.params;
 
@@ -50,27 +51,28 @@ export async function get_product_by_id(req, res) {
     }
 }
 
-export async function get_products(req, res) {
+async function get_products(req, res) {
     return res.json(await Products.find())
 }
 
-export async function add_product(req, res) {
+async function add_product(req, res) {
 
     const { name, text, price, quantity } = req.body;
 
     const filename = req.files.map((item) => item.filename)
+    console.log(filename)
 
     try {
         const stripe = new Stripe_Api();
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        stripe.create_product(product, filename);
-        
+        stripe.create_product(product.id, name, price, filename);
+
         if (!(stripe || product)) {
             res.status(400)
             throw new Error(error)
         }
-        
+
         return res.json(product)
     } catch (error) {
         res.status(400)
@@ -78,13 +80,25 @@ export async function add_product(req, res) {
     }
 }
 
-export async function edit_product(req, res) {
+async function edit_product(req, res) {
+    const { text, name, price, quantity, id } = req.body;
 
-    const item = await Products.findOne({ _id: req.body._id })
+    const filename = req.files.map((item) => item.filename)
+
+    const item = await Products.findById(id)
     if (item) {
         try {
-            const products = await Products.findByIdAndUpdate(req.body._id, req.body)
-            return res.json(products)
+            const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity })
+            if (product) {
+
+                const stripe = new Stripe_Api();
+
+                console.log(product)
+
+                stripe.update_product(id, name, filename)
+                return res.json(products)
+            }
+            throw new Error(error)
         } catch (error) {
             res.status(400)
             throw new Error(error)
@@ -92,6 +106,7 @@ export async function edit_product(req, res) {
     } else {
         throw new Error("error")
     }
+
 }
 
 export default products;

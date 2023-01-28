@@ -50,12 +50,12 @@ export const Navigation = () => {
         <div className='row'>
           <div className='nav_column' id='pc' onClick={() => handle_menu(false)}>
             <div className='row'>
-              <Link className="link column" to="/hot">
+              {/* <Link className="link column" to="/hot">
                 <div className='with_icon'>
                   <AiOutlineFire size={20} />
                   <span>{t("hot_deals")}</span>
                 </div>
-              </Link>
+              </Link> */}
               <Link className="link column" to="/account">
                 <div className='with_icon'>
                   <AiOutlineUser size={20} />

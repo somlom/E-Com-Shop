@@ -12,12 +12,12 @@ export const Hamburger = ({ handle_menu, state }) => {
     return (
         <div className='fade_it'>
             <div className="column hamburger">
-                <Link className="link column" to="/hot" onClick={() => handle_menu(false)}>
+                {/* <Link className="link column" to="/hot" onClick={() => handle_menu(false)}>
                     <div className='row'>
                         <AiOutlineFire size={25} />
                         <span>{t("hot_deals")}</span>
                     </div>
-                </Link>
+                </Link> */}
                 <Link className="link column" to="/register" onClick={() => handle_menu(false)}>
                     <div className='row'>
                         <AiOutlineHeart size={25} />

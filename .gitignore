@@ -8,3 +8,4 @@ coverage
 .env
 stats.json
 yarn-error.log
+.vscode

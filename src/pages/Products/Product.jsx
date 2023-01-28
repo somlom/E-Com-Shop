@@ -7,9 +7,7 @@ import { useTranslation } from 'react-i18next';
 import "./Products.css"
 import { set_to_cart } from '../../features/cart/cart_slice';
 import { useGetData } from '../../hooks/Data';
-// import { Details } from '../../components/Details';
 import { Switch } from '../../components/other/Switch/Switch';
-// import { Reviews } from '../../components/Reviews/Reviews';
 import { Spinner } from '../../components/other/Spinner/Spinner';
 
 const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
@@ -55,7 +53,7 @@ export const Product = () => {
                             <p>{data.text}</p>
                             <div className='buy_row'>
                                 <h3>{data.price}</h3>
-                                <Link to="/order" className='primary_button' type='button'>Buy now</Link>
+                                <Link to="/order" className='primary_button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>Buy now</Link>
                                 <a className='primary_button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>{t("add")}</a>
                             </div>
                         </div>

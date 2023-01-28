@@ -28,6 +28,8 @@ export class Stripe_Api {
                     apiKey: this.stripe_secret
                 });
 
+                console.log(products)
+
                 const new_arr = search.data.map(item => {
 
                     const element = products.data.find(obj => obj.id === item.id)
@@ -55,32 +57,44 @@ export class Stripe_Api {
         return { status: false, data: "No order" }
     }
 
-    async create_product(product={}, filename=[]) {
+    async create_product(id = "", name = "", price = "", filename = []) {
 
-        console.log(process.env.PUBLIC_URL + product.id,)
+        console.log(id, name, price, filename)
+
+        const photos = filename.map(photo => process.env.PUBLIC_URL + "static/img/" + photo)
 
         return await stripe.products.create({
-            id: product.id,
-            name: product.name,
+            id: id,
+            name: name,
             default_price_data: {
                 currency: "EUR",
-                unit_amount_decimal: product.price.toString(),
+                unit_amount_decimal: price.toString(),
             },
             shippable: true,
-            url: process.env.PUBLIC_URL+ "/" + product.id,
-            images: filename
+            url: process.env.PUBLIC_URL + id,
+            images: photos
         }, {
             apiKey: this.stripe_secret
         });
     }
 
-    async update_product(id="", product={}) {
+    async update_product(id = "", name = "", filename = []) {
+        try {
 
-        return await stripe.products.update(
-            id, product,
-            {
-                apiKey: this.stripe_secret
-            }
-        )
+            return await stripe.products.update(
+                id,
+                {
+                    name: name,
+                    shippable: true,
+                    url: process.env.PUBLIC_URL + id,
+                    images: filename
+                },
+                {
+                    apiKey: this.stripe_secret
+                }
+            )
+        } catch (error) {
+            return "No product on stripe"
+        }
     }
 }
