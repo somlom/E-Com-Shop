@@ -1,23 +1,25 @@
 .product {
     display: flex;
     border-radius: 10px;
-    height: 15rem;
+    min-height: 15rem;
+    min-width: 15rem;
+    max-width: 17rem;
     position: relative;
     justify-content: center;
+    align-items: center;
 }
 
 .product img {
-    height: 100%;
+    height: fit-content;
     width: 100%;
     opacity: 100%;
     transition: opacity 0.3s;
     border-radius: 10px;
     max-width: 400px;
-    border: solid 2px #e8f5ff;
 }
 
 .product img:hover {
-    opacity: 70%;
+    opacity: 100%;
 }
 
 .layer span {
@@ -49,14 +51,15 @@
 }
 
 .layer {
-    position: fixed;
     z-index: 1;
     display: flex;
     flex-direction: column;
     position: absolute;
     height: 100%;
     width: 100%;
+    border-radius: 10px;
     justify-content: space-between;
+    border: solid 2px #e8f5ff;
 }
 
 .product_on_page {
@@ -84,6 +87,7 @@
     width: fit-content;
     align-items: center;
 }
+
 .buy_row h3 {
     color: #3e4756;
     margin: 0;
@@ -98,21 +102,22 @@
     height: fit-content;
 }
 
-.product_on_page .photos{
+.product_on_page .photos {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .product_on_page .photos .gallery {
     width: 70px;
     height: fit-content;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 .product_on_page .photos .gallery.column img {
-    height: 80px;
-    width: auto;
+    height: fit-content;
+    width: 50px;
     padding: 0px;
     margin: 10px;
     max-width: 700px;
@@ -125,25 +130,27 @@
 
 @media screen and (max-width: 767px) {
 
-.product_on_page .photos{
-    flex-direction:column-reverse;
-    align-items: center;
-}
+    .product_on_page .photos {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 
-.product_on_page .photos .gallery {
-    width: fit-content;
-    display: flex;
-    flex-direction:row;
-}
-    
+    .product_on_page .photos .gallery {
+        width: fit-content;
+        display: flex;
+        flex-direction: row;
+    }
+
     .product_on_page {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     .product {
         width: 100%;
+        max-width: 100%;
     }
 
     .product_on_page img {
@@ -170,6 +177,7 @@
 .products {
     justify-content: center;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .go_to_product {
@@ -197,6 +205,7 @@
 .product_title {
     align-items: center;
 }
+
 .product_title svg {
     margin-right: 15px;
 }
