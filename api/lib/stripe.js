@@ -57,7 +57,7 @@ export class Stripe_Api {
 
     async create_product(id = "", name = "", price = "", filename = []) {
 
-        const photos = filename.map(photo => process.env.PUBLIC_URL + "img/" + photo)
+        const photos = filename.map(photo => process.env.API_URL + "/img/" + photo)
         console.log(photos)
 
         return await stripe.products.create({
