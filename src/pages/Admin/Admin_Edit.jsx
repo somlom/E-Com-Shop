@@ -65,7 +65,7 @@ export const Admin_Edit = () => {
                         <div className="row __admin_gellery">
                             {value.photos.map(photo => {
                                 return (
-                                    <img src={require("../../assets/img/" + photo)} />
+                                    <img src={process.env.API_URL + "/img/" + photo} />
                                 )
                             })
                             }

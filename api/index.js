@@ -2,7 +2,6 @@
 
 import express from "express";
 import cors from 'cors';
-import { SafeString } from 'handlebars'
 require('dotenv').config()
 
 import { connect } from "./db/init"
@@ -11,9 +10,7 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-import Mailer from "./lib/mailer";
 import TOTP from "./lib/totp";
-import { generatePath } from "react-router-dom";
 
 
 export const app = express()
@@ -21,7 +18,7 @@ connect();
 
 app.use(cors());
 app.use(express.json())
-// app.use('/img', express.static('api/public/img'))
+app.use('/img', express.static('api/public/img'))
 
 app.use(express.urlencoded({ extended: false }))
 

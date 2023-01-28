@@ -27,7 +27,7 @@ const Products = () => {
                                         <h3>{obj.name}</h3>
                                     </div>
                                 </div>
-                                <img src={require("../../assets/img/"+obj.photos[0])} alt="aa"></img>
+                                <img src={process.env.API_URL + "/img/" + obj.photos[0]} alt="aa"></img>
                             </div>
                         </Link>
                     )
