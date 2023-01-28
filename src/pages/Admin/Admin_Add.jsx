@@ -41,7 +41,12 @@ export const Admin_Add = () => {
         )
 
     }
-
+    // "files.watcherExclude": {
+    //     "**/.git/objects/**": true,
+    //     "**/.git/subtree-cache/**": true,
+    //     "**/node_modules/*/**": true,
+    //     "**/.hg/store/**": true
+    // }
     return (
         <div className="column">
             <h1>Add item</h1>

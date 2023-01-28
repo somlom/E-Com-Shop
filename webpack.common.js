@@ -23,7 +23,8 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, "build"),
-        publicPath: 'auto',
+        // publicPath: 'auto',
+        publicPath: "/",
     },
     module: {
         rules: [
@@ -75,10 +76,10 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            title: 'App',
-            publicPath: "/",
+            title: 'interEcom',
             template: path.join(__dirname, "public", "index.html"),
             favicon: path.join(__dirname, "public", "favicon.ico"),
+            scriptLoading: "defer"
         }),
     ],
     optimization: {
