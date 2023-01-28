@@ -28,8 +28,6 @@ export class Stripe_Api {
                     apiKey: this.stripe_secret
                 });
 
-                console.log(products)
-
                 const new_arr = search.data.map(item => {
 
                     const element = products.data.find(obj => obj.id === item.id)
@@ -59,9 +57,8 @@ export class Stripe_Api {
 
     async create_product(id = "", name = "", price = "", filename = []) {
 
-        console.log(id, name, price, filename)
-
-        const photos = filename.map(photo => process.env.PUBLIC_URL + "static/img/" + photo)
+        const photos = filename.map(photo => process.env.PUBLIC_URL + "/img/" + photo)
+        console.log(photos)
 
         return await stripe.products.create({
             id: id,

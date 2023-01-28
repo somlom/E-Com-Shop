@@ -60,7 +60,6 @@ async function add_product(req, res) {
     const { name, text, price, quantity } = req.body;
 
     const filename = req.files.map((item) => item.filename)
-    console.log(filename)
 
     try {
         const stripe = new Stripe_Api();
@@ -92,8 +91,6 @@ async function edit_product(req, res) {
             if (product) {
 
                 const stripe = new Stripe_Api();
-
-                console.log(product)
 
                 stripe.update_product(id, name, filename)
                 return res.json(products)

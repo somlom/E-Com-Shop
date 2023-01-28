@@ -14,7 +14,6 @@ export const Admin_Edit = () => {
 
     React.useEffect(() => {
 
-        console.log(data)
         setValue(data)
 
     }, [isSuccess])
@@ -51,8 +50,6 @@ export const Admin_Edit = () => {
     }
 
     if (isSuccess && data && value !== null) {
-
-        console.log(value)
 
         return (
             <div>
