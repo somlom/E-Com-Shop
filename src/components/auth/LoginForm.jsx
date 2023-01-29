@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
@@ -14,7 +15,7 @@ export const LoginForm = () => {
 
     const { state } = useLocation();
 
-    const [input, setInput] = React.useState({});
+    const [input, setInput] = useState({});
 
     const [t] = useTranslation();
 
@@ -25,28 +26,28 @@ export const LoginForm = () => {
         }))
     }
 
-    const send_to_backend = async (event) => {
+    const send_to_backend = (event) => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
 
-            await axios.post(`${process.env.API_URL}/auth/login`, input).then(
-
-                async function (fulfilled) {
-                    localStorage.setItem("user", fulfilled.data)
-                    const next = state?.next
-                    if (next !== undefined) {
-                        return navigate(next.toString())
-                    } else {
-                        return navigate("/")
-                    }
-                },
-                function (error) {
-                    return alert(error.response.data.message)
+            const api_response = axios.post(`${process.env.API_URL}/auth/login`, input).then((fulfilled) => {
+                localStorage.setItem("user", fulfilled.data)
+                const next = state?.next
+                if (next !== undefined) {
+                    return navigate(next.toString())
+                } else {
+                    return navigate("/")
                 }
+            },
             )
+            toast.promise(api_response, {
+                loading: 'Loading',
+                success: 'Logged in',
+                error: (err) => err.response.data.message,
+            });
         } else {
-            return alert("Error!!! Empty fields")
+            return toast.error("Error!!! Empty fields")
         }
     }
 

@@ -40,8 +40,8 @@ export class Stripe_Api {
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: new_arr,
                     mode: 'payment',
-                    success_url: `${process.env.PUBLIC_URL}?success=true`,
-                    cancel_url: `${process.env.PUBLIC_URL}?canceled=true`,
+                    success_url: `${process.env.PUBLIC_URL}/?success=true`,
+                    cancel_url: `${process.env.PUBLIC_URL}/?canceled=true`,
                 }, {
                     apiKey: this.stripe_secret
                 });
@@ -68,7 +68,7 @@ export class Stripe_Api {
                 unit_amount_decimal: price.toString(),
             },
             shippable: true,
-            url: process.env.PUBLIC_URL + id,
+            url: process.env.PUBLIC_URL + "/products" + id,
             images: photos
         }, {
             apiKey: this.stripe_secret
@@ -78,18 +78,20 @@ export class Stripe_Api {
     async update_product(id = "", name = "", filename = []) {
         try {
 
-            return await stripe.products.update(
+            const updated = await stripe.products.update(
                 id,
                 {
                     name: name,
                     shippable: true,
-                    url: process.env.PUBLIC_URL + id,
+                    url: process.env.PUBLIC_URL + "/products" + id,
                     images: filename
                 },
                 {
                     apiKey: this.stripe_secret
                 }
             )
+
+            return updated
         } catch (error) {
             return "No product on stripe"
         }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useGetData } from "../../hooks/Data"
@@ -13,15 +13,13 @@ export const Admin_Edit = () => {
     const { isError, isLoading, isSuccess, data } = useGetData("/products/" + id)
 
     React.useEffect(() => {
-
         setValue(data)
-
     }, [isSuccess])
 
-    const add_to_state = (event) => {
+    const add_to_state = (event, id) => {
         setValue((prevState) => ({
             ...prevState,
-            [event.target.id]: event.target.value,
+            [id]: event.target.value,
         }))
     }
     const send_to_backend = async (event) => {
@@ -29,8 +27,12 @@ export const Admin_Edit = () => {
 
         const formData = new FormData()
 
-        for (let i = 0; i < selectedFile.length; i++) {
-            formData.append("image", selectedFile[i]);
+        if (selectedFile === null || selectedFile.length === 0) {
+            formData.append("image", value.photos);
+        } else {
+            for (let i = 0; i < selectedFile.length; i++) {
+                formData.append("image", selectedFile[i]);
+            }
         }
         formData.append("id", id)
         formData.append("name", value.name)
@@ -40,11 +42,13 @@ export const Admin_Edit = () => {
 
         await axios.post(process.env.API_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
-            function () {
+            function (a) {
+                console.log(a)
                 return alert("added")
             },
             function (error) {
-                return alert(error.response.data.message)
+                console.log(error)
+                return alert(error.response.data)
             }
         )
     }
@@ -57,7 +61,7 @@ export const Admin_Edit = () => {
                     <h1>Edit item</h1>
                     <form title='Add item' onSubmit={send_to_backend} className="__form column">
 
-                        <input type="text" id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e)} />
+                        <input type="text" id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
 
                         <div className="row __admin_gellery">
                             {value.photos.map(photo => {
@@ -76,14 +80,19 @@ export const Admin_Edit = () => {
                             />
                         </div>
 
-                        <textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e)} />
+                        <textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
                         <div className="row">
 
-                            <input type="number" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e)} />
+                            <input type="number" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
 
-                            <input type="number" id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e)} />
+                            <input type="number" id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
                         </div>
-                        <button type="submit">Add</button>
+                        <div className="column">
+                            <h1>Technical data</h1>
+                            <input type={"text"} placeholder="Header" value={value.technical_header} id="technical_header" onChange={(e) => add_to_state(e, e.target.id)} />
+                            <textarea tabIndex={5} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
+                        </div>
+                        <button type="submit">Edit</button>
                     </form>
                 </div>
             </div>

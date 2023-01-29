@@ -6,7 +6,7 @@ import Mailer from "../lib/mailer";
 export const connect = async () => {
     mongoose.set('strictQuery', false)
     try {
-        const conn = await mongoose.connect(process.env.NODE_ENV === "test" ? process.env.TEST_API : process.env.API)
+        const conn = await mongoose.connect(process.env.NODE_ENV === "development" ? process.env.MONGO_TEST_URL : process.env.MONGO_URL)
 
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {

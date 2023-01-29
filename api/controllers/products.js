@@ -81,27 +81,29 @@ async function add_product(req, res) {
 }
 
 async function edit_product(req, res) {
-    const { text, name, price, quantity, id } = req.body;
+    const { text, name, price, quantity, id, technical_data } = req.body;
 
     const filename = req.files.map((item) => item.filename)
 
     const item = await Products.findById(id)
     if (item) {
         try {
-            const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity })
+            const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
             if (product) {
 
                 const stripe = new Stripe_Api();
 
                 stripe.update_product(id, name, filename)
-                return res.json(products)
+                return res.json(product)
             }
+            res.status(400)
             throw new Error(error)
         } catch (error) {
             res.status(400)
-            throw new Error(error)
+            throw new Error("error")
         }
     } else {
+        res.status(400)
         throw new Error("error")
     }
 

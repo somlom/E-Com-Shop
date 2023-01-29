@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
@@ -9,7 +10,7 @@ import { Navigate } from 'react-router-dom';
 
 
 export const RegisterForm = () => {
-    const [input, setInput] = React.useState({});
+    const [input, setInput] = useState({});
     const [t] = useTranslation();
 
     const add_to_state = (event) => {
@@ -24,17 +25,18 @@ export const RegisterForm = () => {
         event.preventDefault()
 
         if (Object.keys(input).length >= 1) {
-            await axios.post(`${process.env.API_URL}/auth/register`, input).then(
-                function (fulfilled) {
+            const api_response = await axios.post(`${process.env.API_URL}/auth/register`, input).then((fulfilled) => {
                     localStorage.setItem("user", fulfilled.data)
                     return <Navigate to="/" />
                 },
-                function (error) {
-                    return alert(error.response.data.message)
-                }
             )
+            toast.promise(api_response, {
+                loading: 'Loading',
+                success: 'Logged in',
+                error: (err) => err.response.data.message,
+            });
         } else {
-            return alert("Error!!! Empty fields")
+            return toast.error("Error!!! Empty fields")
         }
     }
 
@@ -43,8 +45,8 @@ export const RegisterForm = () => {
             <input type="text" placeholder={t("name")} id='name' onChange={add_to_state} />
             <input type="text" placeholder={t("surname")} id='surname' onChange={add_to_state} />
             <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
-            <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autoComplete="current-password"/>
-            <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} autoComplete="current-password"/>
+            <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autoComplete="current-password" />
+            <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} autoComplete="current-password" />
             <div className='form_buttons row'>
                 <button className="button_opacity opacity primary" type='submit'>
                     <FaUserPlus />{t("register")}

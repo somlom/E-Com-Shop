@@ -21,7 +21,6 @@ export const Admin_Add = () => {
 
         const formData = new FormData()
 
-
         for (let i = 0; i < selectedFile.length; i++) {
             formData.append("image", selectedFile[i]);
         }
@@ -41,12 +40,7 @@ export const Admin_Add = () => {
         )
 
     }
-    // "files.watcherExclude": {
-    //     "**/.git/objects/**": true,
-    //     "**/.git/subtree-cache/**": true,
-    //     "**/node_modules/*/**": true,
-    //     "**/.hg/store/**": true
-    // }
+
     return (
         <div className="column">
             <h1>Add item</h1>
@@ -80,6 +74,16 @@ export const Admin_Add = () => {
                     <input type="number" id='price' placeholder='price' onChange={(e) => add_to_state(e)} />
 
                     <input type="number" id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
+                </div>
+                <div className="row">
+                    <div className="column">
+                        <h1>Technical data</h1>
+                        <input type={"text"} placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)}/>
+                        <textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)}/>
+                    </div>
+                    <div className="column">
+
+                    </div>
                 </div>
                 <button type="submit">Add</button>
             </form>

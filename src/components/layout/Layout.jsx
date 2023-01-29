@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast';
 
 import { Footer } from './Footer/Footer'
 import { Navigation } from './Navigation/Navigation'
@@ -10,7 +11,8 @@ import "./Layout.css"
 export const Layout = () => {
 
     return (
-        <React.Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Spinner />}>
+            <Toaster />
             <div className='layout column'>
                 <Navigation />
                 <div className='content'>
@@ -18,6 +20,6 @@ export const Layout = () => {
                 </div>
                 <Footer />
             </div>
-        </React.Suspense>
+        </Suspense>
     )
 }

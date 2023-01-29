@@ -35,7 +35,18 @@ const products_schema = new Schema({
         required: [true, "Please add QUANTITY"],
     },
     technical_data: {
-        type: [Object],
+        type: [
+            {
+                header: {
+                    type: String,
+                    required: true,
+                },
+                text: {
+                    type: String,
+                    required: true,
+                }
+            }
+        ],
         required: true
     }
 }, {

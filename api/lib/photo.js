@@ -17,8 +17,14 @@ const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
         const found = allowedOutputFormats.find(type => file.mimetype === type)
+
         if (found) {
-            cb(null, true);
+            if (req.files.length < 8) {
+                cb(null, true);
+            } else {
+                const err = new Error('Only 8 pics', 500)
+                return cb(err);
+            }
         } else {
             cb(null, false);
             const err = new Error('Only .png, .jpg and .jpeg format allowed!')
@@ -27,6 +33,6 @@ const upload = multer({
         }
     },
 });
-export const decode_multipart = multer().none();
+
 export const upload_photo = util.promisify(upload.single('image'));
-export const upload_photos = util.promisify(upload.array('image', 10));
+export const upload_photos = util.promisify(upload.array('image', 8));

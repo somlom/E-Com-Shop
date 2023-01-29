@@ -62,7 +62,7 @@ module.exports = {
         new DefinePlugin({
             process: {
                 env: {
-                    API: JSON.stringify(process.env.API),
+                    MONGO_URL: JSON.stringify(process.env.MONGO_URL),
                     TEST_API: JSON.stringify(process.env.TEST_API),
 
                     EMAIL: JSON.stringify(process.env.EMAIL),

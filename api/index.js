@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 import express from "express";
 import cors from 'cors';
 require('dotenv').config()
@@ -11,6 +9,13 @@ import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
 import TOTP from "./lib/totp";
+
+
+if (process.env.NODE_ENV === "development") {
+  process.env.API_PORT = 4000;
+  process.env.API_URL = "http://localhost:4000";
+  process.env.PUBLIC_URL = "http://localhost:3000";
+}
 
 
 export const app = express()
@@ -29,12 +34,10 @@ app.use("/download", files)
 
 
 const auther = new TOTP();
-auther.generateQRCode("supersnus1331@gmail.com")
-// mailer.send_email("supersnus1331@gmail.com", "Admin access", "admin", { code: new SafeString(qr_code) })
-
+auther.generateQRCode(process.env.ADMIN_EMAIL)
 
 app.use(error_handler)
 
-app.listen(process.env.NODE_ENV === "development" ? process.env.API_PORT = 4000 : process.env.API_PORT, () => {
+app.listen(process.env.API_PORT, () => {
   console.log(`app is listening to port ${process.env.API_PORT}`)
 })
