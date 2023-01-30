@@ -7,15 +7,21 @@ require('dotenv').config()
 
 module.exports = {
 
-    //# sourceMappingURL=style.css.map
-
     entry: {
         index: {
             import: path.join(__dirname, "src", "index.js"),
             dependOn: 'shared',
         },
         another: {
-            import: path.join(__dirname, "src", "lodash.js"),
+            import: path.join(__dirname, "src", "store.js"),
+            dependOn: 'shared',
+        },
+        another: {
+            import: path.join(__dirname, "src", "pages", "App.jsx"),
+            dependOn: 'shared',
+        },
+        another: {
+            import: path.join(__dirname, "src", "features", "cart", "cart_slice.js"),
             dependOn: 'shared',
         },
         shared: 'lodash',
@@ -23,7 +29,6 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, "build"),
-        // publicPath: 'auto',
         publicPath: "/",
     },
     module: {
@@ -38,20 +43,20 @@ module.exports = {
                 exclude: [/node_modules/, /test/],
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
-            {
-                test: /\.(png|jpe?g|gif|svg)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'public/img',
-                            esModule: false // <- here
-                        }
-                    }
-                ]
+            // {
+            //     test: /\.(png|jpe?g|gif|svg)$/,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name: '[name].[ext]',
+            //                 outputPath: 'public/img',
+            //                 esModule: false // <- here
+            //             }
+            //         }
+            //     ]
 
-            }
+            // }
         ],
     },
     resolve: {

@@ -5,7 +5,7 @@ import { BsBag } from 'react-icons/bs';
 import { AiOutlineHeart, AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
 
 
-export const Hamburger = ({ handle_menu, state }) => {
+const Hamburger = ({ handle_menu, state }) => {
 
 
     const [t] = useTranslation();
@@ -40,3 +40,5 @@ export const Hamburger = ({ handle_menu, state }) => {
         </div>
     )
 }
+
+export default Hamburger

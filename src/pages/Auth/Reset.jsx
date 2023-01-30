@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { ResetForm } from "../../components/auth/ResetForm";
+import { Spinner } from "../../components/other/Spinner/Spinner";
 
 
-export const Reset = () => {
+export default Reset = () => {
     return (
-        <div className="responsible_form">
-            <ResetForm />
-        </div>
+        <Suspense fallback={<Spinner />}>
+            <div className="responsible_form">
+                <ResetForm />
+            </div>
+        </Suspense>
     )
 }

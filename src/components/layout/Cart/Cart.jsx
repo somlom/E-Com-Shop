@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import "./Cart.css"
+import "../Cart/Cart.css"
 import { cartArray } from '../../../features/cart/cart_slice';
 import { usePostCartMutation } from '../../../features/cart/cart_api';
 

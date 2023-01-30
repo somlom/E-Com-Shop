@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./Admin.css"
 
 
-export const Admin_Add = () => {
+const Admin_Add = () => {
 
     const [input, setInput] = useState("");
     const [selectedFile, setSelectedFile] = useState(null);
@@ -90,3 +90,6 @@ export const Admin_Add = () => {
         </div>
     )
 }
+
+
+export default Admin_Add

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export const Form = ({ title, onSubmit, children } ) => {
+const Form = ({ title, onSubmit, children } ) => {
 
     return (
         <div className='form_content column'>
@@ -12,3 +12,5 @@ export const Form = ({ title, onSubmit, children } ) => {
         </div>
     )
 }
+
+export default Form

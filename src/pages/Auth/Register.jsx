@@ -1,12 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { RegisterForm } from "../../components/auth/RegisterForm";
+import { Spinner } from "../../components/other/Spinner/Spinner";
 
 
-export const Register = () => {
+const Register = () => {
     return (
-        <div className="responsible_form">
-            <RegisterForm />
-        </div>
+        <Suspense fallback={<Spinner />}>
+            <div className="responsible_form">
+                <RegisterForm />
+            </div>
+        </Suspense>
     )
 }
+
+export default Register 

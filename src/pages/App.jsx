@@ -2,26 +2,30 @@ import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from "react-router-dom";
 
 import { Layout } from '../components/layout/Layout';
-import { FAQ } from './FAQ';
-import { Impressum } from './Impressum';
-import { Customer_Rights } from './Customer_Rights';
-import { Support } from './Support';
 import { Product } from './Products/Product';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
-import { MyOrders } from './MyOrders';
-import { Admin } from './Admin/Admin';
-import { Login } from './Auth/Login';
-import { Register } from './Auth/Register';
-import { Reset } from './Auth/Reset';
 import { Spinner } from '../components/other/Spinner/Spinner';
-import { Admin_Edit } from './Admin/Admin_Edit';
-import { Admin_Add } from './Admin/Admin_Add';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
 const Error_404 = lazy(() => import("./Error/Error_404"));
-const Account = lazy(() => import("./Account"));
+
+const MyOrders = lazy(() => import('./Account/MyOrders'));
+const Account = lazy(() => import("./Account/Account"));
+const FAQ = lazy(() => import('./Footer/FAQ'));
+const Impressum = lazy(() => import('./Footer/Impressum'));
+const Customer_Rights = lazy(() => import('./Footer/Customer_Rights'));
+const Support = lazy(() => import('./Footer/Support'));
+
+const Login = lazy(() => import('./Auth/Login'));
+const Register = lazy(() => import('./Auth/Register'));
+const Reset = lazy(() => import('./Auth/Reset'));
+
+const Admin = lazy(() => import('./Admin/Admin'));
+const Admin_Edit = lazy(() => import('./Admin/Admin_Edit'));
+const Admin_Add = lazy(() => import('./Admin/Admin_Add'));
+
 
 export default function App() {
 
@@ -61,7 +65,6 @@ export default function App() {
           <Route path="admin/add" element={<Admin_Add />} />
 
           <Route path="/*" element={<Error_404 />} />
-          <Route path="/spinner" element={<Spinner />} />
         </Route>
       </Routes>
     </Suspense>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const FAQ = () => {
+export default FAQ = () => {
   return (
     <div>FAQ</div>
   )

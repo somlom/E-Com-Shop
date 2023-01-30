@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, useEffect, Suspense } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -31,7 +31,7 @@ export const Order = () => {
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         const send_to_backend = async (cart) => {
             await sendIt(cart)
             await create_order(cart)
@@ -56,7 +56,7 @@ export const Order = () => {
     else {
 
         return (
-            <React.Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Spinner />}>
                 <h1>{t("order")}</h1>
                 <div className='order_items row'>
                     <div className='order_column column'>
@@ -68,7 +68,7 @@ export const Order = () => {
                         </OrderCount>
                     </div>
                 </div>
-            </React.Suspense>
+            </Suspense>
         )
     }
 }

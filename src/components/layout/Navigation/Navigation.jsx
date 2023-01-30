@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { lazy, Suspense, useState } from 'react'
 
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,9 @@ import "./Navigation.css"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart/cart_slice';
 import { Cart } from '../Cart/Cart';
-import { Hamburger } from '../Hamburger';
+import { Spinner } from '../../other/Spinner/Spinner';
+import Hamburger from '../Hamburger';
+
 
 
 export const Navigation = () => {
@@ -31,7 +33,6 @@ export const Navigation = () => {
   return (
     <>
       <div className='nav row'>
-
         <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
           {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
         </div>
@@ -44,9 +45,11 @@ export const Navigation = () => {
             </div>
           </Link>
         </div>
+
         <div className='nav_column form' id='pc'>
           <input className='nav_title' type="text" placeholder="Search" />
         </div>
+
         <div className='row'>
           <div className='nav_column' id='pc' onClick={() => handle_menu(false)}>
             <div className='row'>
@@ -85,7 +88,9 @@ export const Navigation = () => {
         </Modal>
       }
       {menu_state &&
-        <Hamburger handle_menu={handle_menu} state={menu_state} />
+        <Suspense fallback={<Spinner />}>
+          <Hamburger handle_menu={handle_menu} state={menu_state} />
+        </Suspense>
       }
     </>
   )

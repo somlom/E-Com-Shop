@@ -6,7 +6,7 @@ import { useGetData } from "../../hooks/Data"
 import { Spinner } from '../../components/other/Spinner/Spinner';
 
 
-export const Admin_Edit = () => {
+export default Admin_Edit = () => {
     const { id } = useParams();
     const [selectedFile, setSelectedFile] = useState(null);
     const [value, setValue] = useState([]);

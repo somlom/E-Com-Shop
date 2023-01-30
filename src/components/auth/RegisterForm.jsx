@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-
-import { Form } from '../other/Form/Form';
-import "../other/Form/Form.css"
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+
+import "../other/Form/Form.css"
+import Form from "../other/Form/Form"
 
 
 export const RegisterForm = () => {
@@ -26,9 +26,9 @@ export const RegisterForm = () => {
 
         if (Object.keys(input).length >= 1) {
             const api_response = await axios.post(`${process.env.API_URL}/auth/register`, input).then((fulfilled) => {
-                    localStorage.setItem("user", fulfilled.data)
-                    return <Navigate to="/" />
-                },
+                localStorage.setItem("user", fulfilled.data)
+                return <Navigate to="/" />
+            },
             )
             toast.promise(api_response, {
                 loading: 'Loading',

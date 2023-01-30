@@ -7,7 +7,7 @@ import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
 
 
-export const Footer = () => {
+const Footer = () => {
   const [t] = useTranslation();
 
   return (
@@ -48,3 +48,5 @@ export const Footer = () => {
     </div>
   )
 }
+
+export default Footer

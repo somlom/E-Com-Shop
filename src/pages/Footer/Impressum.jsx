@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 
 
-export const Impressum = () => {
+const Impressum = () => {
 
   const [t] = useTranslation();
 
@@ -21,3 +21,5 @@ export const Impressum = () => {
     </div>
   )
 }
+
+export default Impressum

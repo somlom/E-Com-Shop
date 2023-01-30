@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 
-import { Footer } from './Footer/Footer'
 import { Navigation } from './Navigation/Navigation'
 import { Spinner } from '../other/Spinner/Spinner';
 import "./Layout.css"
 
+const Footer = lazy(() => import("./Footer/Footer"));
 
 export const Layout = () => {
 

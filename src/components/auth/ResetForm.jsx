@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
-import { Form } from '../other/Form/Form';
 import "../other/Form/Form.css"
+import Form from "../other/Form/Form"
 
 
 export const ResetForm = () => {
-    const [input, setInput] = React.useState({});
+    const [input, setInput] = useState({});
     const [t] = useTranslation();
 
     const add_to_state = (event) => {

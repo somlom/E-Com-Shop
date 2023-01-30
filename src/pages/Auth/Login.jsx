@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import "./Login.css"
 import { LoginForm } from "../../components/auth/LoginForm";
+import { Spinner } from "../../components/other/Spinner/Spinner";
 
 
-export const Login = () => {
+const Login = () => {
     return (
-        <div className="responsible_form">
-            <LoginForm />
-        </div>
+        <Suspense fallback={<Spinner />}>
+            <div className="responsible_form">
+                <LoginForm />
+            </div>
+        </Suspense>
     )
 }
+
+export default Login
