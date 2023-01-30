@@ -12,15 +12,15 @@ Test on web: https://deploy-site-test.netlify.app/
 To run the app `yarn run dev`
 
 ## Test
-- [ ] cant buy more than 1 item; more than 2 you get error
-- [ ] cant buy anything anymore if you try you get error
-
-## Bugs
-- [ ] shit image quality when they small
 - [x] cant buy more than 1 item; more than 2 you get error
 - [x] cant buy anything anymore if you try you get error
-- [ ] unsyncronized Stripe and local DB
-- [ ] Stripe images
+
+## Bugs
+- [x] shit image quality when they small
+- [x] cant buy more than 1 item; more than 2 you get error
+- [x] cant buy anything anymore if you try you get error
+- [x] unsyncronized Stripe and local DB
+- [x] Stripe images
 - [ ] hamburger menu design
 - [ ] not all translation keys found (on register page mostly)
 
@@ -38,7 +38,6 @@ To run the app `yarn run dev`
 - [x] AGB
 - [x] Paying process
 - [ ] reset page
-- [ ] serve imgs on client
 
 ### Design
 - [x] Navbar
@@ -52,12 +51,12 @@ To run the app `yarn run dev`
 - [x] Footer
 - [ ] Hot deals
 - [ ] Search page
-- [ ] Admin page
+- [x] Admin page
 
 ### Product page
 - [ ] Reviews
 - [x] photos
-- [x] details
+- [ ] details
 
 ### Order
 - [x] Order box

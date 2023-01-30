@@ -40,8 +40,8 @@ export class Stripe_Api {
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: new_arr,
                     mode: 'payment',
-                    success_url: `${process.env.PUBLIC_URL}/?success=true`,
-                    cancel_url: `${process.env.PUBLIC_URL}/?canceled=true`,
+                    success_url: `${process.env.PUBLIC_URL}/order?success=true`,
+                    cancel_url: `${process.env.PUBLIC_URL}/order?success=false`,
                 }, {
                     apiKey: this.stripe_secret
                 });
@@ -58,7 +58,6 @@ export class Stripe_Api {
     async create_product(id = "", name = "", price = "", filename = []) {
 
         const photos = filename.map(photo => process.env.API_URL + "/img/" + photo)
-        console.log(photos)
 
         return await stripe.products.create({
             id: id,
@@ -77,6 +76,7 @@ export class Stripe_Api {
 
     async update_product(id = "", name = "", filename = []) {
         try {
+            const photos = filename.map(photo => process.env.API_URL + "/img/" + photo)
 
             const updated = await stripe.products.update(
                 id,
@@ -84,7 +84,7 @@ export class Stripe_Api {
                     name: name,
                     shippable: true,
                     url: process.env.PUBLIC_URL + "/products" + id,
-                    images: filename
+                    images: photos
                 },
                 {
                     apiKey: this.stripe_secret
