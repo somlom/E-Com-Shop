@@ -1,16 +1,17 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { Suspense, useState } from 'react'
 
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BsBag } from 'react-icons/bs';
-import { AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 
 import "./Navigation.css"
+import "../../other/Form/Form.css"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart/cart_slice';
 import { Cart } from '../Cart/Cart';

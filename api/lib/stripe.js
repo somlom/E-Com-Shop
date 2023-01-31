@@ -10,7 +10,7 @@ export class Stripe_Api {
         this.stripe_secret = process.env.STRIPE_SECRET;
     }
 
-    async create_stripe_session(order) {
+    async create_stripe_session(order = {}) {
         if (order) {
             try {
                 const search = {
@@ -22,11 +22,15 @@ export class Stripe_Api {
                     search.ids.push(obj.id)
                 });
 
+                console.log(search);
+
                 const products = await stripe.products.list({
                     ids: search.ids
                 }, {
                     apiKey: this.stripe_secret
                 });
+
+                console.log(products);
 
                 const new_arr = search.data.map(item => {
 
@@ -35,6 +39,8 @@ export class Stripe_Api {
                         return { quantity: item.quantity, price: element.default_price }
                     }
                 })
+
+                console.log(new_arr);
 
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
@@ -47,6 +53,7 @@ export class Stripe_Api {
                 });
                 return { status: true, data: session.url }
             } catch (error) {
+                console.log(error)
                 const mailer = new Mailer();
                 mailer.send_email("supersnus1331@gmail.com", "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
                 return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" }
@@ -64,7 +71,7 @@ export class Stripe_Api {
             name: name,
             default_price_data: {
                 currency: "EUR",
-                unit_amount_decimal: price.toString(),
+                unit_amount_decimal: (price * 100).toString(),
             },
             shippable: true,
             url: process.env.PUBLIC_URL + "/products" + id,
@@ -85,6 +92,7 @@ export class Stripe_Api {
                     shippable: true,
                     url: process.env.PUBLIC_URL + "/products" + id,
                     images: photos
+                    
                 },
                 {
                     apiKey: this.stripe_secret

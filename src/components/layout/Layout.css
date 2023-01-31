@@ -98,3 +98,52 @@ a {
     color: #3e4756;
     text-decoration: none;
 }
+
+.button_opacity.opacity.submit {
+    margin: 5px;
+}
+
+.button_opacity {
+    display: flex;
+    background-color: white;
+    width: fit-content;
+    border: none;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity 0.15s;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    -webkit-transition: background-color 0.15s;
+}
+
+.button_opacity * {
+    margin: 2px;
+}
+
+.button_opacity.primary:hover {
+    background-color: rgb(2, 158, 255);
+}
+
+.button_opacity.green:hover {
+    background-color: rgb(98, 197, 84);
+}
+
+.button_opacity:hover {
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
+}
+
+.button_opacity.primary{
+    border: solid 2px rgb(2, 158, 255);
+}
+
+.button_opacity.green{
+    border: solid 2px rgb(98, 197, 84);
+}
+
+.button_opacity:active {
+    opacity: 0.7;
+}

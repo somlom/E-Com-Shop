@@ -9,6 +9,7 @@ import { set_to_cart } from '../../features/cart/cart_slice';
 import { useGetData } from '../../hooks/Data';
 import { Switch } from '../../components/other/Switch/Switch';
 import { Spinner } from '../../components/other/Spinner/Spinner';
+import axios from 'axios';
 
 const Reviews = lazy(() => import('../../components/Reviews/Reviews'));
 const Details = lazy(() => import('../../components/Details'));
@@ -23,6 +24,15 @@ export const Product = () => {
     const [showPhoto, setPhoto] = useState(false)
 
     const dispatch = useDispatch();
+
+    const send_data = async () => {
+        const resp = await axios.post(process.env.API_URL + "/payment/pay_as_guest", { id: id, quantity: 1 },)
+        if (resp.data.status === true) {
+            return window.location.replace(resp.data.data);
+        } else {
+            return window.location.replace("resp_data")
+        }
+    }
 
     if (isLoading) {
         return <Spinner />
@@ -53,8 +63,8 @@ export const Product = () => {
                             <p>{data.text}</p>
                             <div className='buy_row'>
                                 <h3>{data.price}</h3>
-                                <Link to="/order" className='primary_button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>Buy now</Link>
-                                <a className='primary_button' onClick={() => { dispatch(set_to_cart({ id: data._id })) }}>{t("add")}</a>
+                                <button className='primary_button' onClick={send_data}>Buy now</button>
+                                <a className='primary_button' onClick={() => dispatch(set_to_cart({ id: data._id }))}>{t("add")}</a>
                             </div>
                         </div>
                     </div>

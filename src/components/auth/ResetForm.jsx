@@ -3,7 +3,7 @@ import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
 import "../other/Form/Form.css"
-import Form from "../other/Form/Form"
+import { Form } from "../other/Form/Form"
 
 
 export const ResetForm = () => {

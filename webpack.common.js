@@ -17,10 +17,6 @@ module.exports = {
             dependOn: 'shared',
         },
         another: {
-            import: path.join(__dirname, "src", "pages", "App.jsx"),
-            dependOn: 'shared',
-        },
-        another: {
             import: path.join(__dirname, "src", "features", "cart", "cart_slice.js"),
             dependOn: 'shared',
         },

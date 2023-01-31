@@ -52,8 +52,13 @@ const Admin_Add = () => {
                     {selectedFile &&
                         Array.from(selectedFile).map(obj => {
                             return (
-                                <div className="__admin_lower_layer">
-                                    <img alt="not fount" key={obj.lastModified} src={URL.createObjectURL(obj)} />
+                                <div className="column">
+                                    <div className="__admin_lower_layer">
+                                        <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
+                                    </div>
+                                    <button type="button" onClick={() =>
+                                        setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
+                                    }>Delete</button>
                                 </div>
                             )
                         })
@@ -71,23 +76,23 @@ const Admin_Add = () => {
                 <input type="text" id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
                 <div className="row">
 
-                    <input type="number" id='price' placeholder='price' onChange={(e) => add_to_state(e)} />
+                    <input type="number" id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
 
                     <input type="number" id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
                 </div>
                 <div className="row">
                     <div className="column">
                         <h1>Technical data</h1>
-                        <input type={"text"} placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)}/>
-                        <textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)}/>
+                        <input type={"text"} placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)} />
+                        <textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)} />
                     </div>
                     <div className="column">
 
                     </div>
                 </div>
                 <button type="submit">Add</button>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 

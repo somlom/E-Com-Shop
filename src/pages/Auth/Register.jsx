@@ -1,16 +1,13 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { RegisterForm } from "../../components/auth/RegisterForm";
-import { Spinner } from "../../components/other/Spinner/Spinner";
 
 
 const Register = () => {
     return (
-        <Suspense fallback={<Spinner />}>
-            <div className="responsible_form">
-                <RegisterForm />
-            </div>
-        </Suspense>
+        <div className="responsible_form">
+            <RegisterForm />
+        </div>
     )
 }
 

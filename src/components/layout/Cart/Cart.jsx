@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -15,8 +15,7 @@ export function Cart({ handle_close }) {
   const cart = useSelector(cartArray);
   const [sendIt, result] = usePostCartMutation();
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     const send_to_backend = async (cart) => {
       await sendIt(cart)
     }

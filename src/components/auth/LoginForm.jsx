@@ -6,7 +6,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import "../other/Form/Form.css"
-import Form from "../other/Form/Form"
+import { Form } from "../other/Form/Form"
 
 export const LoginForm = () => {
 

@@ -13,6 +13,7 @@ payment.post("/set_order", auth_middleware, asyncHandler(set_order))
 payment.get("/get_orders", auth_middleware, asyncHandler(get_orders))
 payment.get("/get_order", auth_middleware, asyncHandler(get_order))
 payment.get("/pay", auth_middleware, asyncHandler(pay_order))
+payment.post("/pay_as_guest", asyncHandler(pay_as_guest))
 
 async function get_orders(req, res) {
 
@@ -57,17 +58,37 @@ async function set_order(req, res) {
     }
 }
 
+async function pay_as_guest(req, res) {
+
+    const order = {
+        products: [req.body]
+    }
+
+    const stripe = new Stripe_Api();
+
+    const session = await stripe.create_stripe_session(order)
+
+    // if (session) {
+    //     const user = await Users.findById(req.user)
+    //     const mailer = new Mailer()
+
+    //     mailer.send_email(user.email, "Hi", "hello", { name: user.name })
+    // }
+
+    return res.json(session);
+}
+
 async function pay_order(req, res) {
     const stripe = new Stripe_Api();
 
-    const order = await Orders.findOne({ user: req.user })
+    const order = await Orders.findOne({ user: req.user, open: true })
 
     const session = await stripe.create_stripe_session(order)
 
     if (session) {
         const user = await Users.findById(req.user)
         const mailer = new Mailer()
-        
+
         mailer.send_email(user.email, "Hi", "hello", { name: user.name })
     }
 
