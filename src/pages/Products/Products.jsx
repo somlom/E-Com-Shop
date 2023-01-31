@@ -22,7 +22,7 @@ const Products = () => {
                         <Link key={obj._id} to={`/products/${obj._id}`} className="go_to_product">
                             <div className='product'>
                                 <div className='layer'>
-                                    <span>{obj.price}</span>
+                                    <span>{obj.price} &euro;</span>
                                     <div className='product_footer'>
                                         <h3>{obj.name}</h3>
                                     </div>

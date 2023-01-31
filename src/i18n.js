@@ -4,13 +4,13 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import XHR from "i18next-http-backend" // <---- add this
 import Backend from 'i18next-http-backend';
 
-import DE from "./public/locales/de/translation.json";
-import EN from "./public/locales/en/translation.json";
-import ES from "./public/locales/es/translation.json";
-import FR from "./public/locales/fr/translation.json";
-import RO from "./public/locales/ro/translation.json";
-import RU from "./public/locales/ru/translation.json";
-import UA from "./public/locales/ua/translation.json";
+import DE from "./locales/de/translation.json";
+import EN from "./locales/en/translation.json";
+import ES from "./locales/es/translation.json";
+import FR from "./locales/fr/translation.json";
+import RO from "./locales/ro/translation.json";
+import RU from "./locales/ru/translation.json";
+import UA from "./locales/ua/translation.json";
 
 
 const resources = {

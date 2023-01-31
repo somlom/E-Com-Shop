@@ -28,13 +28,13 @@ const OrderData = ({ data }) => {
                     <option value={9}>9</option>
                     <option value={10}>10</option>
                 </select>
-                <h3 className='close_menu'>{obj.price * obj.quantity}</h3>
+                <h3 className='close_menu'>{obj.price * obj.quantity}  &euro;</h3>
                 <div className='row'>
                     <button onClick={() => dispatch(remove_from_cart({ id: obj._id }))}>{t("remove")}</button>
                 </div>
             </div>
             <div className='row open_menu'>
-                <h3>{obj.price * obj.quantity}</h3>
+                <h3>{obj.price * obj.quantity}  &euro;</h3>
             </div>
         </div>
     )

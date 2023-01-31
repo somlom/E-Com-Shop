@@ -29,14 +29,14 @@
     border-radius: 30px;
     margin: 3px;
     padding: 5px;
-    width: min-content;
+    width: fit-content;
     align-self: flex-end;
 }
 
 .layer .product_footer {
     border-radius: 0px 10px 10px 10px;
     height: min-content;
-    width: min-content;
+    width: fit-content;
     background-color: #e8f5ff;
     display: flex;
     align-items: flex-end;

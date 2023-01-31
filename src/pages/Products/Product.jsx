@@ -62,7 +62,7 @@ export const Product = () => {
                         <div className='buy column'>
                             <p>{data.text}</p>
                             <div className='buy_row'>
-                                <h3>{data.price}</h3>
+                                <h3>{data.price} &euro;</h3>
                                 <button className='primary_button' onClick={send_data}>Buy now</button>
                                 <a className='primary_button' onClick={() => dispatch(set_to_cart({ id: data._id }))}>{t("add")}</a>
                             </div>

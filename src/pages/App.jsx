@@ -6,12 +6,12 @@ import { Product } from './Products/Product';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order';
 import { Spinner } from '../components/other/Spinner/Spinner';
+import { MyOrders } from './Account/MyOrders';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
 const Error_404 = lazy(() => import("./Error/Error_404"));
 
-const MyOrders = lazy(() => import('./Account/MyOrders'));
 const Account = lazy(() => import("./Account/Account"));
 const FAQ = lazy(() => import('./Footer/FAQ'));
 const Impressum = lazy(() => import('./Footer/Impressum'));

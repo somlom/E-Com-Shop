@@ -17,16 +17,16 @@ const OrderCount = ({ data, children }) => {
         <div className='column'>
             <div className='order_list row'>
                 <span>{t("article")}</span>
-                <span>{i}</span>
+                <span>{i} &euro;</span>
             </div>
             <div className='order_list row'>
                 <span>{t("delivery")}</span>
-                <span>7</span>
+                <span>0 &euro;</span>
             </div>
             <div className='order_footer column'>
                 <div className='order_list row'>
                     <span>{t("total")}</span>
-                    <span>{i + 7}</span>
+                    <span>{i}  &euro;</span>
                 </div>
                 <div className='order_list row'>
                     {children}
