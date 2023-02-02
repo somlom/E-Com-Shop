@@ -1,4 +1,4 @@
-import { unlink } from 'fs';
+import { unlink, existsSync } from 'fs';
 import multer from "multer"
 import util from "util"
 
@@ -36,11 +36,14 @@ const upload = multer({
 });
 
 export const delete_photos = (files) => {
-    files.map(img => {
-        unlink('api/public/img/' + img, (err) => {
-            if (err) console.log(err);
-        });
-    })
+        files.map(img => {
+            const file_exists = existsSync('api/public/img/' + img)
+            if (file_exists) {
+                unlink('api/public/img/' + img, (err) => {
+                    if (err) console.log(err);
+                });
+            }
+        })
 }
 
 export const upload_photo = util.promisify(upload.single('image'));
