@@ -30,7 +30,6 @@ const Admin_Edit = () => {
 
         const formData = new FormData()
 
-
         if (selectedFile !== null) {
             for (let i = 0; i < selectedFile.length; i++) {
                 formData.append("image", selectedFile[i]);
@@ -119,7 +118,7 @@ const Admin_Edit = () => {
                         <div className="column">
                             <h1>Technical data</h1>
                             <input type={"text"} placeholder="Header" value={value.technical_header} id="technical_header" onChange={(e) => add_to_state(e, e.target.id)} />
-                            <textarea tabIndex={5} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
+                            <textarea tabIndex={5} cols={20} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
                         </div>
                         <button type="submit">Edit</button>
                     </form>

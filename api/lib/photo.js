@@ -36,6 +36,7 @@ const upload = multer({
 });
 
 export const delete_photos = (files) => {
+    if (files.length > 0) {
         files.map(img => {
             const file_exists = existsSync('api/public/img/' + img)
             if (file_exists) {
@@ -44,6 +45,7 @@ export const delete_photos = (files) => {
                 });
             }
         })
+    }
 }
 
 export const upload_photo = util.promisify(upload.single('image'));

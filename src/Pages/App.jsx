@@ -7,6 +7,7 @@ import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order/Order';
 import { Spinner } from '../Components/other/Spinner/Spinner';
 import { MyOrders } from './Account/MyOrders';
+import { Order_Guest } from './Order/Order_Guest';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
@@ -51,6 +52,7 @@ export default function App() {
             </Route>
 
             <Route path="order" element={<Order />} />
+            <Route path="pay_as_guest/:id" element={<Order_Guest />} />
 
           </Route>
 
