@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 
-export const usePostData = (url = "", data = "", headers = "", start = false) => {
+export const usePostData = (url = "", data = "", headers = "") => {
 
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-        const fetchData = async () => {
-            return await axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers }).then((response) => (
+        const fetchData = () => {
+            const resp = axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers })
+            return resp.then((response) => (
                 setValue((prev) => ({
                     ...prev,
                     data: response.data || null,
@@ -31,9 +32,9 @@ export const useGetData = (url = "", headers = {}) => {
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
 
-            return await axios.get(process.env.API_URL + url, { headers: headers }).then((response) => (
+            return axios.get(process.env.API_URL + url, { headers: headers }).then((response) => (
                 setValue((prev) => ({
                     ...prev,
                     data: response.data || null,

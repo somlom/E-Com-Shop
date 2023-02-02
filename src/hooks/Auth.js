@@ -1,7 +1,7 @@
-import React from "react"
+import { useEffect } from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
-import { Spinner } from '../components/other/Spinner/Spinner';
+import { Spinner } from '../Components/other/Spinner/Spinner';
 import { useGetData } from "./Data";
 
 
@@ -13,7 +13,7 @@ export const ProtectedRoute = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (data.isError) {
             navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
         }

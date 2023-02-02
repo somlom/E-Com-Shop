@@ -1,0 +1,150 @@
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout {
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex: 1;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+a.link {
+    margin: 2px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a.link:hover,
+a.link:active {
+    color: rgb(2, 158, 255);
+}
+
+/* ##### BUTTONS */
+
+.opacity:hover {
+    opacity: 0.7;
+}
+
+.opacity:active {
+    opacity: 0.5;
+}
+
+.open_menu {
+    display: none;
+}
+
+.close_menu {
+    display: flex;
+}
+
+@media screen and (max-width: 767px) {
+    .open_menu {
+        display: flex;
+    }
+
+    .close_menu {
+        display: none;
+    }
+}
+
+.with_icon {
+    display: flex;
+    flex-direction: column;
+}
+
+.with_icon * {
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: "Varela Round", sans-serif;
+}
+
+h1.title {
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+p,
+span,
+a {
+    color: #3e4756;
+    text-decoration: none;
+}
+
+.button_opacity.opacity.submit {
+    margin: 5px;
+}
+
+.button_opacity {
+    display: flex;
+    background-color: white;
+    width: fit-content;
+    border: none;
+    border-radius: 18px;
+    font-weight: bold;
+    transition: opacity 0.15s;
+    padding: 5px;
+    margin: 5px;
+    align-items: center;
+    -webkit-transition: background-color 0.15s;
+}
+
+.button_opacity * {
+    margin: 2px;
+}
+
+.button_opacity.primary:hover {
+    background-color: rgb(2, 158, 255);
+}
+
+.button_opacity.green:hover {
+    background-color: rgb(98, 197, 84);
+}
+
+.button_opacity:hover {
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    -webkit-transition: background-color 0.15s;
+}
+
+.button_opacity.primary{
+    border: solid 2px rgb(2, 158, 255);
+}
+
+.button_opacity.green{
+    border: solid 2px rgb(98, 197, 84);
+}
+
+.button_opacity:active {
+    opacity: 0.7;
+}

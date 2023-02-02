@@ -1,3 +1,4 @@
+import { unlink } from 'node:fs';
 import multer from "multer"
 import util from "util"
 
@@ -33,6 +34,14 @@ const upload = multer({
         }
     },
 });
+
+export const delete_photos = (files) => {
+    files.map(img => {
+        unlink('api/public/img/' + img, (err) => {
+            if (err) throw err;
+        });
+    })
+}
 
 export const upload_photo = util.promisify(upload.single('image'));
 export const upload_photos = util.promisify(upload.array('image', 8));

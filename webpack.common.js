@@ -2,22 +2,34 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('dotenv').config()
 
 
 module.exports = {
 
     entry: {
+        // lodash: {
+
+        // },
         index: {
             import: path.join(__dirname, "src", "index.js"),
             dependOn: 'shared',
         },
-        another: {
+        redux: {
+            import: path.join(__dirname, "src", "features", "cart_slice.js"),
+            dependOn: 'shared',
+        },
+        redux_api: {
+            import: path.join(__dirname, "src", "features", "cart_slice.js"),
+            dependOn: 'shared',
+        },
+        redux_store: {
             import: path.join(__dirname, "src", "store.js"),
             dependOn: 'shared',
         },
-        another: {
-            import: path.join(__dirname, "src", "features", "cart", "cart_slice.js"),
+        i18n: {
+            import: path.join(__dirname, "src", "i18n.js"),
             dependOn: 'shared',
         },
         shared: 'lodash',
@@ -31,12 +43,12 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: [/node_modules/, /api/, /css/, /test/],
+                exclude: [/node_modules/, /api/, /css/, /test/, /public/,],
                 use: ['babel-loader'],
             },
             {
                 test: /\.(css)$/,
-                exclude: [/node_modules/, /test/],
+                exclude: [/node_modules/, /test/, /api/, /test/, /public/, /hooks/, /features/],
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
             // {
@@ -59,18 +71,11 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css'],
     },
     plugins: [
+        // new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin(),
         new DefinePlugin({
             process: {
                 env: {
-                    MONGO_URL: JSON.stringify(process.env.MONGO_URL),
-                    TEST_API: JSON.stringify(process.env.TEST_API),
-
-                    EMAIL: JSON.stringify(process.env.EMAIL),
-                    EMAIL_PASSWORD: JSON.stringify(process.env.EMAIL_PASSWORD),
-
-                    STRIPE_PUBLIC: JSON.stringify(process.env.STRIPE_PUBLIC),
-                    STRIPE_SECRET: JSON.stringify(process.env.STRIPE_SECRET),
                     PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
                     API_URL: JSON.stringify(process.env.API_URL)
                 }
@@ -84,9 +89,11 @@ module.exports = {
         }),
     ],
     optimization: {
+        // chunkIds: "total-size",
+        usedExports: 'global',
         splitChunks: {
             chunks: 'all',
         },
-        runtimeChunk: 'single',
+        runtimeChunk: true,
     },
 }

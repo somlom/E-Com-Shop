@@ -11,13 +11,13 @@ import {
   REGISTER,
 } from 'redux-persist'
 
-import cartReducer from './features/cart/cart_slice'
-import { cart_api } from './features/cart/cart_api';
+import cartReducer from './features/cart_slice'
+import { cart_api } from './features/cart_api';
 
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storage,
 }
 
 const persistedReducer = persistReducer(persistConfig, cartReducer)
@@ -32,7 +32,6 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    })
-      .concat(cart_api.middleware)
+    }).concat(cart_api.middleware)
 })
 export const persistor = persistStore(store)

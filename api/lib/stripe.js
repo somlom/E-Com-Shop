@@ -22,15 +22,11 @@ export class Stripe_Api {
                     search.ids.push(obj.id)
                 });
 
-                console.log(search);
-
                 const products = await stripe.products.list({
                     ids: search.ids
                 }, {
                     apiKey: this.stripe_secret
                 });
-
-                console.log(products);
 
                 const new_arr = search.data.map(item => {
 
@@ -39,8 +35,6 @@ export class Stripe_Api {
                         return { quantity: item.quantity, price: element.default_price }
                     }
                 })
-
-                console.log(new_arr);
 
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },

@@ -1,8 +1,9 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
+import find from "lodash"
 
 import { Products } from "../db/schemas";
-import { upload_photos } from "../lib/photo";
+import { delete_photos, upload_photos } from "../lib/photo";
 import { Stripe_Api } from "../lib/stripe";
 
 
@@ -20,35 +21,32 @@ async function get_cart_items(req, res) {
 
     const value = await Products.find({ _id: { $in: await data.map(a => a._id) } })
 
-    if (value) {
-        const in_cart = []
+    const in_cart = []
 
-        data.map((item) => {
+    data.map((item) => {
+        const found = value.find(x => x.id === item._id)
+        if (found) {
+            found.quantity = parseInt(item.quantity)
+            in_cart.push(found)
+        }
+    })
 
-            const found = value.find(x => x.id === item._id)
-            if (found) {
-                found.quantity = parseInt(item.quantity)
-                in_cart.push(found)
-            }
+    return res.json(in_cart)
 
-        })
-
-        return res.json(in_cart)
-
-    } else {
-        return res.json([])
-    }
 }
 
 async function get_product_by_id(req, res) {
 
     const { id } = req.params;
 
-    try {
-        return res.json(await Products.findById(id))
-    } catch (error) {
-        return res.json(null)
+    const product = await Products.findById(id)
+
+    if (product) {
+        return res.json(product)
+    } else {
+        return res.status(404);
     }
+
 }
 
 async function get_products(req, res) {
@@ -65,9 +63,8 @@ async function add_product(req, res) {
         const stripe = new Stripe_Api();
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        console.log(filename)
         const stripe_instance = stripe.create_product(product.id, name, price, filename);
-        console.log(stripe_instance)
+
         if (!(stripe_instance || product)) {
             res.status(400)
             throw new Error(error)
@@ -81,14 +78,23 @@ async function add_product(req, res) {
 }
 
 async function edit_product(req, res) {
-    const { text, name, price, quantity, id, technical_data } = req.body;
+    const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
     const filename = req.files.map((item) => item.filename)
 
+
+    // PLAN WHAT THAT SHIT DOES
+
     const item = await Products.findById(id)
+    delete_photos(item.photos.filter(data => !remaining_photos.includes(data)))
     if (item) {
+
         try {
-            const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
+            // const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
+
+            const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos.includes(data)))]
+
+            const product = await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: technical_data })
             if (product) {
 
                 const stripe = new Stripe_Api();
