@@ -38,7 +38,7 @@ const upload = multer({
 export const delete_photos = (files) => {
     files.map(img => {
         unlink('api/public/img/' + img, (err) => {
-            if (err) throw err;
+            if (err) console.log(err);
         });
     })
 }
