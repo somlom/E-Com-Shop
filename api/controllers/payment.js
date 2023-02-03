@@ -2,7 +2,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Orders, Users } from "../db/schemas";
-import Mailer, { send_email } from "../lib/mailer";
+import Mailer from "../lib/mailer";
 import { Stripe_Api } from "../lib/stripe";
 import { auth_middleware } from "../middlewares/auth_handler";
 

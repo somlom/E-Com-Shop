@@ -33,5 +33,7 @@
     "city": "City",
     "house": "Street and house number",
     "next_point": "Next step",
-    "address": "Address"
+    "address": "Address",
+    "already_registered": "To login",
+    "agb_text": "AGB text"
 }

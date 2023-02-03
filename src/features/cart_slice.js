@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'react-hot-toast';
 
 
 const get_count = (state) => {
@@ -47,6 +48,7 @@ export const cart_slice = createSlice({
         get_count(state)
 
       }
+      toast.success("Successfuly added!")
     },
     remove_from_cart: (state, action) => {
 

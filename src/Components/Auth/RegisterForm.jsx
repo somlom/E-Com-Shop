@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import "../other/Form/Form.css"
@@ -50,9 +50,15 @@ export const RegisterForm = () => {
             <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autoComplete="current-password" />
             <input type="password" placeholder={t("password_again")} id='password2' onChange={add_to_state} autoComplete="current-password" />
             <div className='form_buttons row'>
-                <button className="button_opacity opacity primary" type='submit'>
-                    <FaUserPlus />{t("register")}
+            <span>{t("agb_text")}</span>
+                <button className="button_opacity opacity green" type='submit'>
+                    <FaUserPlus size={15}/>{t("register")}
                 </button>
+                <Link to="/login">
+                    <button className="button_opacity opacity primary" type='button'>
+                        <FaUserPlus size={15}/>{t("already_registered")}
+                    </button>
+                </Link>
             </div>
         </Form>
     )

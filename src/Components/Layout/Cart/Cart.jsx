@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaUser } from "react-icons/fa"
 
 import "./Cart.css"
 import { cartArray } from '../../../features/cart_slice';
@@ -28,6 +29,10 @@ export function Cart({ handle_close }) {
 
       <div className='cart column'>
         {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} handle_close={handle_close} />}
+        <div className='cart_footer column'>
+          {result.data.length > 0 && <Link to="/order" className='opacity' onClick={() => handle_close()}>{t("pay")}</Link>}
+          <Link className='row' to="/account" onClick={() => handle_close()}><FaUser size={20}/>{t("account")}</Link>
+        </div>
       </div>
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
@@ -41,6 +46,9 @@ export function Cart({ handle_close }) {
     return <h1>error</h1>
   }
 }
+
+// cart quantity wird falsch aufgezahlt, weil quantity local gespeichert ist.
+// Lösung: Quantity auf dem Server aufzählen
 
 const Cart_Element = ({ data, handle_close }) => {
 
@@ -65,10 +73,6 @@ const Cart_Element = ({ data, handle_close }) => {
 
         </div>
       ))}
-      <div className='cart_footer column'>
-        <Link to="/order" className='opacity' onClick={handle_close}>{t("pay")}</Link>
-        <Link to="/account" onClick={handle_close}>{t("account")}</Link>
-      </div>
     </>
   )
 }

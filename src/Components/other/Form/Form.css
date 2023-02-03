@@ -16,7 +16,8 @@ div.responsible_form .form.column{
 }
 
 .form_buttons {
-    align-content: center;
+    width: fit-content;
+    align-self: center;
 }
 
 .form_buttons button {

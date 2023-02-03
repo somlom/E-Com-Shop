@@ -45,5 +45,7 @@
   "next_point": "Zum nächsten Schritt",
   "address": "Adresse",
   "register": "Registrieren",
-  "password_again": "Kennwort widerholen"
+  "password_again": "Kennwort widerholen",
+  "already_registered": "Zum Einloggen",
+  "agb_text": "AGB text"
 }

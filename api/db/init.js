@@ -11,7 +11,7 @@ export const connect = async () => {
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {
         const mailer = new Mailer();
-        mailer.send_email("supersnus1331@gmail.com", "Error with server", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
+        mailer.send_email(process.env.ADMIN_EMAIL, "Error with server", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
         console.log(error)
         process.exit(1)
     }

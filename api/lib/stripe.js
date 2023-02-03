@@ -51,7 +51,7 @@ export class Stripe_Api {
             } catch (error) {
                 console.log(error)
                 const mailer = new Mailer();
-                mailer.send_email("supersnus1331@gmail.com", "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
+                mailer.send_email(process.env.ADMIN_EMAIL, "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
                 return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" }
             }
         }
