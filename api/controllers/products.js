@@ -63,7 +63,7 @@ async function add_product(req, res) {
         const stripe = new Stripe_Api();
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        const stripe_instance = await stripe.create_product(product.id, name, price, filename);
+        const stripe_instance = stripe.create_product(product.id, name, price, filename);
 
         if (!stripe_instance || !product) {
             res.status(400)

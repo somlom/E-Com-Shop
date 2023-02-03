@@ -6,7 +6,7 @@ const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, '../public/img');
+        cb(null, 'api/public/img');
 
     },
     filename: function (req, file, cb) {
