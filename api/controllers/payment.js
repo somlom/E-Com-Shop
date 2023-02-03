@@ -71,7 +71,7 @@ async function pay_as_guest(req, res) {
     if (session.status) {
         return res.json(session);
     } else {
-        return res.json(session.data);
+        return res.status(400).json(session.data);
     }
 }
 

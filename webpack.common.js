@@ -89,7 +89,7 @@ module.exports = {
         }),
     ],
     optimization: {
-        // chunkIds: "total-size",
+        chunkIds: "total-size",
         usedExports: 'global',
         splitChunks: {
             chunks: 'all',

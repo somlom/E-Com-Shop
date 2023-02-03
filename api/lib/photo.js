@@ -41,9 +41,9 @@ export const delete_photos = (files) => {
             const file_exists = existsSync('api/public/img/' + img)
             if (file_exists === true) {
                 unlink('api/public/img/' + img, (err) => {
-                    if (err) console.log(err);
+                    if (err) console.log("err",err);
                 });
-            }
+            } 
         })
     }
 }
