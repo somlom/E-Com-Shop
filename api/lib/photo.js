@@ -7,6 +7,7 @@ const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        console.log(__dirname)
         console.log(path.join(__dirname, "../public/img"))
         cb(null, path.join(__dirname, "../public/img"));
 

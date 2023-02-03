@@ -65,12 +65,14 @@ async function add_product(req, res) {
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
         const stripe_instance = stripe.create_product(product.id, name, price, filename);
 
-        if (!stripe_instance || !product) {
+        if (stripe_instance && product) {
+
+            return res.json(product)
+
+        } else {
             res.status(400)
             throw new Error("error")
         }
-
-        return res.json(product)
     } catch (error) {
         res.status(400)
         throw new Error(error)
