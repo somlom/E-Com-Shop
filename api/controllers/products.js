@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import find from "lodash"
 
 import { Products } from "../db/schemas";
-import { delete_photos, upload_photos } from "../lib/photo";
+import { upload_photos } from "../lib/photo";
 import { Stripe_Api } from "../lib/stripe";
 
 
