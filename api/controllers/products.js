@@ -90,7 +90,6 @@ async function edit_product(req, res) {
     if (item) {
 
         try {
-            // const product = await Products.findByIdAndUpdate(id, { text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos.includes(data)))]
 

@@ -17,6 +17,7 @@ export class Stripe_Api {
                     data: [],
                     ids: []
                 }
+                console.log(search)
                 order.products.map(obj => {
                     search.data.push({ id: obj.id, quantity: obj.quantity })
                     search.ids.push(obj.id)
@@ -27,7 +28,7 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
-
+                console.log(products)
                 const new_arr = search.data.map(item => {
 
                     const element = products.data.find(obj => obj.id === item.id)
@@ -35,7 +36,7 @@ export class Stripe_Api {
                         return { quantity: item.quantity, price: element.default_price }
                     }
                 })
-
+                console.log(new_arr)
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: new_arr,
@@ -45,6 +46,7 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
+                // console.log(session)
                 return { status: true, data: session.url }
             } catch (error) {
                 console.log(error)
