@@ -86,7 +86,7 @@ async function edit_product(req, res) {
     // PLAN WHAT THAT SHIT DOES
 
     const item = await Products.findById(id)
-    delete_photos(item.photos.filter(data => !remaining_photos.includes(data)))
+    // delete_photos(item.photos.filter(data => !remaining_photos.includes(data)))
     if (item) {
 
         try {
