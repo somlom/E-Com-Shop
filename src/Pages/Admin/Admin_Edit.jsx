@@ -35,8 +35,11 @@ const Admin_Edit = () => {
                 formData.append("image", selectedFile[i]);
             }
         }
-
-        formData.append("remaining_photos", value.photos);
+        if (value.photos.length !== 0) {
+            for (let i = 0; i < value.photos.length; i++) {
+                formData.append("remaining_photos", value.photos[i]);
+            }
+        }
 
         formData.append("id", id)
         formData.append("name", value.name)
@@ -74,9 +77,11 @@ const Admin_Edit = () => {
                                             <div className="__admin_lower_layer">
                                                 <img alt="not found" key={obj} src={process.env.API_URL + "/img/" + obj} />
                                             </div>
-                                            <button type="button" onClick={() =>
-                                                setValue({ ...value, photos: value.photos.filter((a) => a !== obj) })
-                                            }>Delete</button>
+                                            {/* {value.photos.length > 1 && */}
+                                                <button type="button" onClick={() =>
+                                                    setValue({ ...value, photos: value.photos.filter((a) => a !== obj) })
+                                                }>Delete</button>
+                                            {/* } */}
                                         </div>
                                     )
                                 })

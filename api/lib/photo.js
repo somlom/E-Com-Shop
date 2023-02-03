@@ -7,9 +7,6 @@ const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(__dirname)
-        console.log(path.join(__dirname, "../public/img"))
-        // cb(null, path.join(__dirname, "../public/img"));
         cb(null, 'api/public/img');
 
     },
@@ -39,18 +36,19 @@ const upload = multer({
     },
 });
 
-// export const delete_photos = (files) => {
-//     if (files.length > 0) {
-//         files.map(img => {
-//             const file_exists = existsSync('api/public/img/' + img)
-//             if (file_exists === true) {
-//                 unlink('api/public/img/' + img, (err) => {
-//                     if (err) console.log("err",err);
-//                 });
-//             } 
-//         })
-//     }
-// }
+export const delete_photos = (files) => {
+    if (files.length > 0) {
+        files.map(img => {
+            const file_exists = existsSync('api/public/img/' + img)
+            if (file_exists === true) {
+                console.log("removed " + 'api/public/img/' + img)
+                unlink('api/public/img/' + img, (err) => {
+                    if (err) console.log("err", err);
+                });
+            }
+        })
+    }
+}
 
 export const upload_photo = util.promisify(upload.single('image'));
 export const upload_photos = util.promisify(upload.array('image', 8));

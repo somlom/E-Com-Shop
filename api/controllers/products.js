@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import find from "lodash"
 
 import { Products } from "../db/schemas";
-import { upload_photos } from "../lib/photo";
+import { upload_photos, delete_photos } from "../lib/photo";
 import { Stripe_Api } from "../lib/stripe";
 
 
@@ -88,7 +88,12 @@ async function edit_product(req, res) {
     // PLAN WHAT THAT SHIT DOES
 
     const item = await Products.findById(id)
-    // delete_photos(item.photos.filter(data => !remaining_photos.includes(data)))
+
+    if (remaining_photos) {
+        const difference = item.photos.filter(data => !remaining_photos.includes(data, 0))
+        delete_photos(difference)
+    }
+    
     if (item) {
 
         try {
