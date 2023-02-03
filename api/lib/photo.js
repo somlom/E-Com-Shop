@@ -1,12 +1,14 @@
 import { unlink, existsSync } from 'fs';
 import multer from "multer"
+import path from 'path';
 import util from "util"
 
 const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'api/public/img');
+        console.log(path.join(__dirname, "../public/img"))
+        cb(null, path.join(__dirname, "../public/img"));
 
     },
     filename: function (req, file, cb) {
