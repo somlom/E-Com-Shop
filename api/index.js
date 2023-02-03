@@ -1,5 +1,6 @@
 import express from "express";
 import cors from 'cors';
+import path from "path";
 require('dotenv').config()
 
 import { connect } from "./db/init"
@@ -23,7 +24,8 @@ connect();
 
 app.use(cors());
 app.use(express.json())
-app.use('/img', express.static('api/public/img'))
+console.log(path.join(__dirname, 'public', 'img'))
+app.use('/img', express.static(path.join(__dirname, 'public', 'img')))
 
 app.use(express.urlencoded({ extended: false }))
 
