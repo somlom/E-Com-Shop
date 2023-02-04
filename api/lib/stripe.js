@@ -17,7 +17,7 @@ export class Stripe_Api {
                     data: [],
                     ids: []
                 }
-                console.log(search)
+                // console.log(search)
                 order.products.map(obj => {
                     search.data.push({ id: obj.id, quantity: obj.quantity })
                     search.ids.push(obj.id)
@@ -28,7 +28,7 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
-                console.log(products)
+                // console.log(products)
                 const new_arr = search.data.map(item => {
 
                     const element = products.data.find(obj => obj.id === item.id)
@@ -36,7 +36,7 @@ export class Stripe_Api {
                         return { quantity: item.quantity, price: element.default_price }
                     }
                 })
-                console.log(new_arr)
+                // console.log(new_arr)
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: new_arr,
@@ -49,7 +49,7 @@ export class Stripe_Api {
                 // console.log(session)
                 return { status: true, data: session.url }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
                 const mailer = new Mailer();
                 mailer.send_email(process.env.ADMIN_EMAIL, "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
                 return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" }
@@ -80,6 +80,9 @@ export class Stripe_Api {
     async update_product(id = "", name = "", filename = []) {
         try {
             const photos = filename.map(photo => process.env.API_URL + "/img/" + photo)
+            
+            // https://stripe.com/docs/products-prices/manage-prices?dashboard-or-api=api#default-price
+            // await stripe.prices.update('id', {lookup_key: 'MY_LOOKUP_KEY'});#
 
             const updated = await stripe.products.update(
                 id,

@@ -5,9 +5,10 @@ import { Layout } from '../Components/Layout/Layout';
 import { Product } from './Products/Product';
 import { ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order/Order';
-import { Spinner } from '../Components/other/Spinner/Spinner';
+import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { MyOrders } from './Account/MyOrders';
 import { Order_Guest } from './Order/Order_Guest';
+import { Personal_Data } from './Account/Personal_Data';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
@@ -49,6 +50,7 @@ export default function App() {
 
             <Route path="account" element={<Account />}>
               <Route path="orders" element={<MyOrders />} />
+              <Route path="personal_data" element={<Personal_Data />} />
             </Route>
 
             <Route path="order" element={<Order />} />

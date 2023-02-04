@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useGetData } from "../../hooks/Data"
-import { Spinner } from '../../Components/other/Spinner/Spinner';
+import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import "./Admin.css"
 
 

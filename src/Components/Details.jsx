@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
-import "../Pages/Products/Products.css"
+import "./Details.css"
 
 
 const Details = () => {

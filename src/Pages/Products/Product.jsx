@@ -7,8 +7,8 @@ import { useTranslation } from 'react-i18next';
 import "./Products.css"
 import { set_to_cart } from '../../features/cart_slice';
 import { useGetData } from '../../hooks/Data';
-import { Switch } from '../../Components/other/Switch/Switch';
-import { Spinner } from '../../Components/other/Spinner/Spinner';
+import { Switch } from '../../Components/Other/Switch/Switch';
+import { Spinner } from '../../Components/Other/Spinner/Spinner';
 // import axios from 'axios';
 
 const Reviews = lazy(() => import('../../Components/Reviews/Reviews'));

@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import './i18n';
 import App from './Pages/App';
 import { store, persistor } from './store';
-import { Spinner } from './Components/other/Spinner/Spinner';
+import { Spinner } from './Components/Other/Spinner/Spinner';
 
 
 const root = createRoot(document.getElementById('root'));

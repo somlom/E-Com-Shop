@@ -93,7 +93,7 @@ async function edit_product(req, res) {
         const difference = item.photos.filter(data => !remaining_photos.includes(data, 0))
         delete_photos(difference)
     }
-    
+
     if (item) {
 
         try {
@@ -107,16 +107,17 @@ async function edit_product(req, res) {
 
                 stripe.update_product(id, name, filename)
                 return res.json(product)
+            } else {
+                res.status(400)
+                throw new Error(product)
             }
-            res.status(400)
-            throw new Error(error)
         } catch (error) {
             res.status(400)
-            throw new Error("error")
+            throw new Error(error)
         }
     } else {
         res.status(400)
-        throw new Error("error")
+        throw new Error("No items specified")
     }
 
 }

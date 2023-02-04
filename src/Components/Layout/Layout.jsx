@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 
 import { Navigation } from './Navigation/Navigation'
-import { Spinner } from '../other/Spinner/Spinner';
+import { Spinner } from '../Other/Spinner/Spinner';
 import "./Layout.css"
 
 const Footer = lazy(() => import("./Footer/Footer"));

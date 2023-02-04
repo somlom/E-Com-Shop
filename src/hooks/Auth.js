@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
-import { Spinner } from '../Components/other/Spinner/Spinner';
+import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { useGetData } from "./Data";
 
 

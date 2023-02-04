@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useGetData } from '../../hooks/Data'
 import "./Products.css"
-import { Spinner } from '../../Components/other/Spinner/Spinner';
+import { Spinner } from '../../Components/Other/Spinner/Spinner';
 
 
 const Products = () => {

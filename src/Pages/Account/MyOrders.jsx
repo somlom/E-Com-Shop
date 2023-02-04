@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Spinner } from '../../Components/other/Spinner/Spinner'
+import { Spinner } from '../../Components/Other/Spinner/Spinner'
 import { useGetData } from "../../hooks/Data"
 
 export const MyOrders = () => {

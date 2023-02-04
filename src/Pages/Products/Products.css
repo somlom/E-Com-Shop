@@ -139,6 +139,7 @@
 
     .product_on_page .photos .gallery {
         width: fit-content;
+        align-items: center;
         display: flex;
         flex-direction: row;
     }

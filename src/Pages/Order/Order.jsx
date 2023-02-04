@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import "../../Components/Order/Order.css"
-import { Spinner } from '../../Components/other/Spinner/Spinner'
+import { Spinner } from '../../Components/Other/Spinner/Spinner'
 import { usePostCartMutation } from '../../features/cart_api';
 import { cartArray } from '../../features/cart_slice';
 

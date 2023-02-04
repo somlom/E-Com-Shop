@@ -11,11 +11,11 @@ import { useSelector } from 'react-redux';
 
 
 import "./Navigation.css"
-import "../../other/Form/Form.css"
+import "../../Other/Form/Form.css"
 import { Modal } from '../Modal/Modal'
 import { selectCount } from '../../../features/cart_slice';
 import { Cart } from '../Cart/Cart';
-import { Spinner } from '../../other/Spinner/Spinner';
+import { Spinner } from '../../Other/Spinner/Spinner';
 import Hamburger from '../Hamburger';
 
 
