@@ -29,11 +29,12 @@ export class Stripe_Api {
                     apiKey: this.stripe_secret
                 });
                 // console.log(products)
-                const new_arr = search.data.map(item => {
+                const new_arr = []
+                search.data.map(item => {
 
                     const element = products.data.find(obj => obj.id === item.id)
                     if (element) {
-                        return { quantity: item.quantity, price: element.default_price }
+                        return new_arr.push({ quantity: item.quantity, price: element.default_price })
                     }
                 })
                 // console.log(new_arr)
