@@ -68,11 +68,9 @@ async function pay_as_guest(req, res) {
 
     const session = await stripe.create_stripe_session(order)
 
-    if (session.status) {
-        return res.json(session);
-    } else {
-        return res.status(400).json(session.data);
-    }
+    session.status === true ? res.status(200) : res.status(400);
+
+    return res.json(session);
 }
 
 async function pay_order(req, res) {
@@ -88,8 +86,7 @@ async function pay_order(req, res) {
 
         mailer.send_email(user.email, "Hi", "hello", { name: user.name })
         return res.json(session);
-    }
-    else {
+    } else {
         return res.json(session.data);
     }
 }

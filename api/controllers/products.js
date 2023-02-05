@@ -43,7 +43,7 @@ async function check_cart(req, res) {
     const updated_arr = data.filter(obj => value.find(x => x.id === obj._id))
     updated_arr.map(obj => quantity += parseInt(obj.quantity))
 
-    return res.json({cart: Array.from(updated_arr), quantity: quantity})
+    return res.json({ cart: Array.from(updated_arr), quantity: quantity })
 }
 
 async function get_product_by_id(req, res) {
@@ -73,9 +73,9 @@ async function add_product(req, res) {
         const stripe = new Stripe_Api();
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        const stripe_instance = stripe.create_product(product.id, name, price, filename);
+        const stripe_instance = await stripe.create_product(product.id, name, price, filename);
 
-        if (stripe_instance && product) {
+        if (stripe_instance.status && product) {
 
             return res.json(product)
 
@@ -115,11 +115,11 @@ async function edit_product(req, res) {
 
                 const stripe = new Stripe_Api();
 
-                stripe.update_product(id, name, filename)
-                return res.json(product)
+                const updated = await stripe.update_product(id, name, filename, price)
+                return res.json(updated)
             } else {
                 res.status(400)
-                throw new Error(product)
+                throw new Error("product wasnt created")
             }
         } catch (error) {
             res.status(400)
