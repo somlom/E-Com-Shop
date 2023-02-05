@@ -1,5 +1,4 @@
-import React, { Suspense, useState } from 'react'
-
+import React, { Suspense, useState, useEffect } from 'react'
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { GrClose } from 'react-icons/gr';
@@ -13,11 +12,11 @@ import { useSelector } from 'react-redux';
 import "./Navigation.css"
 import "../../Other/Form/Form.css"
 import { Modal } from '../Modal/Modal'
-import { selectCount } from '../../../features/cart_slice';
+import { cartArray } from '../../../features/cart_slice';
 import { Cart } from '../Cart/Cart';
 import { Spinner } from '../../Other/Spinner/Spinner';
 import Hamburger from '../Hamburger';
-
+import { usePostCountMutation } from '../../../features/cart_api';
 
 
 export const Navigation = () => {
@@ -26,7 +25,17 @@ export const Navigation = () => {
   const [menu_state, handle_menu] = useState(false);
 
   const [t] = useTranslation();
-  const count = useSelector(selectCount);
+  const cart = useSelector(cartArray);
+
+  const [sendIt, result] = usePostCountMutation();
+
+  useEffect(() => {
+    const send_to_backend = async (cart) => {
+      await sendIt(cart)
+    }
+    send_to_backend(cart)
+
+  }, [cart])
 
   const body = document.body;
   menu_state === true ? body.style.overflow = "hidden" : body.style.overflow = "auto";
@@ -75,7 +84,7 @@ export const Navigation = () => {
             </div>
           </div>
           <div className='nav_column'>
-            <button className='button_opacity opacity primary' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count}</button>
+            <button className='button_opacity opacity primary' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{result.data?.quantity}</button>
           </div>
         </div>
         <div className='nav_column form' id="mobile">
@@ -84,7 +93,7 @@ export const Navigation = () => {
       </div>
 
       {modal_state &&
-        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {count} {t("items")}</span>}>
+        <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {result.data?.quantity} {t("items")}</span>}>
           <Cart handle_close={handle_modal} />
         </Modal>
       }

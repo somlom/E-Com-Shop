@@ -47,12 +47,7 @@ export function Cart({ handle_close }) {
   }
 }
 
-// cart quantity wird falsch aufgezahlt, weil quantity local gespeichert ist.
-// Lösung: Quantity auf dem Server aufzählen
-
-const Cart_Element = ({ data, handle_close }) => {
-
-  const [t] = useTranslation();
+const Cart_Element = ({ data }) => {
 
   return (
     <>
@@ -67,10 +62,8 @@ const Cart_Element = ({ data, handle_close }) => {
               {data_val.quantity === 1 ? "" : <span>x{data_val.quantity}</span>}
             </div>
           </div>
-
-          <div className='product_row'>
-          </div>
-
+          {/* <div className='product_row'>
+          </div> */}
         </div>
       ))}
     </>

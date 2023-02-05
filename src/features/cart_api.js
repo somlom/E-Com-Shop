@@ -16,8 +16,17 @@ export const cart_api = createApi({
                 responseType: "json",
             }),
             invalidatesTags: [{ type: 'Cart', id: 'LIST' }]
+        }),
+        postCount: builder.mutation({
+            query: (data) => ({
+                url: "/check_cart",
+                method: 'POST',
+                body: { data: data },
+                responseType: "json",
+            }),
+            invalidatesTags: [{ type: 'Cart', id: 'LIST' }]
         })
     })
 })
 
-export const { usePostCartMutation, useGetAllQuery } = cart_api;
+export const { usePostCartMutation, useGetAllQuery, usePostCountMutation } = cart_api;

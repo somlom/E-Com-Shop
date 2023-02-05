@@ -1,6 +1,5 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-import find from "lodash"
 
 import { Products } from "../db/schemas";
 import { upload_photos, delete_photos } from "../lib/photo";
@@ -14,6 +13,7 @@ products.get("/:id", asyncHandler(get_product_by_id))
 products.post("/cart", asyncHandler(get_cart_items))
 products.post("/add", upload_photos, asyncHandler(add_product))
 products.post("/edit", upload_photos, asyncHandler(edit_product))
+products.post("/check_cart", asyncHandler(check_cart))
 
 async function get_cart_items(req, res) {
 
@@ -30,9 +30,20 @@ async function get_cart_items(req, res) {
             in_cart.push(found)
         }
     })
-
     return res.json(in_cart)
+}
 
+async function check_cart(req, res) {
+    const { data } = req.body;
+
+    let quantity = 0
+
+    const value = await Products.find({ _id: { $in: await data.map(a => a._id) } })
+
+    const updated_arr = data.filter(obj => value.find(x => x.id === obj._id))
+    updated_arr.map(obj => quantity += parseInt(obj.quantity))
+
+    return res.json({cart: Array.from(updated_arr), quantity: quantity})
 }
 
 async function get_product_by_id(req, res) {
@@ -46,7 +57,6 @@ async function get_product_by_id(req, res) {
     } else {
         return res.status(404);
     }
-
 }
 
 async function get_products(req, res) {
@@ -119,7 +129,6 @@ async function edit_product(req, res) {
         res.status(400)
         throw new Error("No items specified")
     }
-
 }
 
 export default products;
