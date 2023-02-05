@@ -85,7 +85,7 @@ export class Stripe_Api {
                 product: product_id,
                 unit_amount: (price * 100).toString(),
                 currency: 'eur',
-                product: '63de445e743b398895069d70',
+                product: product_id,
                 active: active
             }, {
                 apiKey: this.stripe_secret
@@ -133,7 +133,8 @@ export class Stripe_Api {
 
                 return { status: true, data: updated }
             } catch (error) {
-                return { status: false, data: "error pj" }
+                console.log(error)
+                return { status: false, data: error }
             }
         } else {
             return { status: false, data: "No product on stripe" }
