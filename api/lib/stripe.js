@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import Mailer from './mailer';
 
 
-const stripe = Stripe(process.env.STRIPE_SECRET);
+const stripe = new Stripe(process.env.STRIPE_SECRET);
 
 export class Stripe_Api {
     constructor() {
@@ -35,6 +35,7 @@ export class Stripe_Api {
                         return search.ids.push({ quantity: item.quantity, price: element.default_price })
                     }
                 })
+                // console.log(search)
                 const session = await stripe.checkout.sessions.create({
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: search.ids,
@@ -126,14 +127,15 @@ export class Stripe_Api {
                     product_on_stripe.default_price,
                     {
                         active: false
-                    }, {
-                    apiKey: this.stripe_secret
-                }
+                    },
+                    {
+                        apiKey: this.stripe_secret
+                    }
                 )
 
                 return { status: true, data: updated }
             } catch (error) {
-                console.log(error)
+                // console.log(error)
                 return { status: false, data: error }
             }
         } else {

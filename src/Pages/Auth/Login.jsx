@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import "./Login.css"
 import { LoginForm } from "../../Components/Auth/LoginForm";

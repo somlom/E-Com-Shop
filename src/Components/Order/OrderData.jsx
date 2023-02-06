@@ -2,8 +2,9 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next';
 
-import "./Order.css"
+import "./OrderData.css"
 import { set_to_cart, remove_from_cart } from "../../features/cart_slice"
+import { Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 
 const OrderData = ({ data }) => {
@@ -12,10 +13,10 @@ const OrderData = ({ data }) => {
     const dispatch = useDispatch();
 
     return data.map((obj) =>
-        <div className="order_item row" key={obj._id}>
+        <Row className="order_item" key={obj._id}>
             <img className='order_image' src={process.env.API_URL + "/img/" + obj.photos[0]}></img>
             <h3 id="title">{obj.name}</h3>
-            <div className='row'>
+            <Row>
                 <select value={obj.quantity} onChange={(e) => dispatch(set_to_cart({ id: obj._id, quantity: e.target.value }))}>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
@@ -29,14 +30,14 @@ const OrderData = ({ data }) => {
                     <option value={10}>10</option>
                 </select>
                 <h3 className='close_menu'>{obj.price * obj.quantity}  &euro;</h3>
-                <div className='row'>
+                <Row>
                     <button onClick={() => dispatch(remove_from_cart({ id: obj._id }))}>{t("remove")}</button>
-                </div>
-            </div>
-            <div className='row open_menu'>
+                </Row>
+            </Row>
+            <Row className='open_menu'>
                 <h3>{obj.price * obj.quantity}  &euro;</h3>
-            </div>
-        </div>
+            </Row>
+        </Row>
     )
 }
 

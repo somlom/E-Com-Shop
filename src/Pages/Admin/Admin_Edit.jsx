@@ -5,13 +5,16 @@ import { useParams } from "react-router-dom";
 import { useGetData } from "../../hooks/Data"
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import "./Admin.css"
+import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
+import { Input } from "../../Components/Other/Form/Form";
+import { Button } from "../../Components/Other/Buttons/Standart";
 
 
 const Admin_Edit = () => {
     const { id } = useParams();
     const [selectedFile, setSelectedFile] = useState(null);
     const [value, setValue] = useState({});
-    const { isError, isLoading, isSuccess, data } = useGetData("/products/" + id)
+    const { isError, isSuccess, data } = useGetData("/products/" + id)
 
     useEffect(() => {
         if (data !== null) {
@@ -61,74 +64,70 @@ const Admin_Edit = () => {
     if (isSuccess && data && value !== null) {
 
         return (
-            <div>
-                <div className="column">
-                    <h1>Edit item</h1>
-                    <form title='Add item' onSubmit={send_to_backend} className="__form column">
+            <Column>
+                <h1>Edit item</h1>
+                <form title='Add item' onSubmit={send_to_backend} className="__form column">
 
-                        <input type="text" id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
+                    <Input.Text id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
 
-                        <div className="row __admin_gellery">
-                            <h1>Photos already on server</h1>
-                            {value.photos &&
-                                value.photos.map(obj => {
-                                    return (
-                                        <div className="column">
-                                            <div className="__admin_lower_layer">
-                                                <img alt="not found" key={obj} src={process.env.API_URL + "/img/" + obj} />
-                                            </div>
-                                            {/* {value.photos.length > 1 && */}
-                                                <button type="button" onClick={() =>
-                                                    setValue({ ...value, photos: value.photos.filter((a) => a !== obj) })
-                                                }>Delete</button>
-                                            {/* } */}
+                    <Row className=" __admin_gellery">
+                        <h1>Photos already on server</h1>
+                        {value.photos &&
+                            value.photos.map(obj => {
+                                return (
+                                    <Column>
+                                        <div className="__admin_lower_layer">
+                                            <img alt="not found" key={obj} src={process.env.API_URL + "/img/" + obj} />
                                         </div>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className="row __admin_gellery">
-                            <h1>Photos to load</h1>
-                            {selectedFile &&
-                                Array.from(selectedFile).map(obj => {
-                                    return (
-                                        <div className="column">
-                                            <div className="__admin_lower_layer">
-                                                <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
-                                            </div>
-                                            <button type="button" onClick={() =>
-                                                setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
-                                            }>Delete</button>
+                                        <Button.Primary type="button" onClick={() =>
+                                            setValue({ ...value, photos: value.photos.filter((a) => a !== obj) })
+                                        }>Delete</Button.Primary>
+                                    </Column>
+                                )
+                            })
+                        }
+                    </Row>
+                    <Row className="__admin_gellery">
+                        <h1>Photos to load</h1>
+                        {selectedFile &&
+                            Array.from(selectedFile).map(obj => {
+                                return (
+                                    <Column>
+                                        <div className="__admin_lower_layer">
+                                            <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
                                         </div>
-                                    )
-                                })
-                            }
-                            <input
-                                type="file"
-                                multiple
-                                accept="image/*"
-                                placeholder="filename"
-                                id="filename"
-                                onChange={(e) => setSelectedFile((prev) => prev === null ? e.target.files : [...prev, ...e.target.files])}
-                            />
-                        </div>
+                                        <Button.Primary type="button" onClick={() =>
+                                            setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
+                                        }>Delete</Button.Primary>
+                                    </Column>
+                                )
+                            })
+                        }
+                        <input
+                            type="file"
+                            multiple
+                            accept="image/*"
+                            placeholder="filename"
+                            id="filename"
+                            onChange={(e) => setSelectedFile((prev) => prev === null ? e.target.files : [...prev, ...e.target.files])}
+                        />
+                    </Row>
 
-                        <textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
-                        <div className="row">
+                    <textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
+                    <Row>
 
-                            <input type="number" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
+                        <Input.Number step="0.01" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
 
-                            <input type="number" id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
-                        </div>
-                        <div className="column">
-                            <h1>Technical data</h1>
-                            <input type={"text"} placeholder="Header" value={value.technical_header} id="technical_header" onChange={(e) => add_to_state(e, e.target.id)} />
-                            <textarea tabIndex={5} cols={20} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
-                        </div>
-                        <button type="submit">Edit</button>
-                    </form>
-                </div>
-            </div>
+                        <Input.Number id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
+                    </Row>
+                    <Column>
+                        <h1>Technical data</h1>
+                        <Input.Text placeholder="Header" value={value.technical_header} id="technical_header" onChange={(e) => add_to_state(e, e.target.id)} />
+                        <textarea tabIndex={5} cols={20} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
+                    </Column>
+                    <Button.Success type="submit">Edit</Button.Success>
+                </form>
+            </Column>
         )
     } else if (isError) {
         return <h1>Sorry, no item here</h1>

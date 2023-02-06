@@ -1,0 +1,44 @@
+.order_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order_list * {
+    margin: 5px;
+}
+
+.order_list a button {
+    width: 100%;
+    color: white;
+    font-size: medium;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.order_list a {
+    width: 100%;
+    background-color: rgb(2, 158, 255);
+    border: none;
+    color: white;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    color: white;
+    font-size: medium;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.order_footer {
+    margin-top: 8px;
+    padding-top: 8px;
+    border: none;
+    border-top: solid 1px black;
+}

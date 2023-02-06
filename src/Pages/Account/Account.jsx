@@ -1,37 +1,42 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-hot-toast';
+import { BsBag } from "react-icons/bs"
+import { AiOutlineUser } from "react-icons/ai"
+import { BiReceipt, BiLogOut } from "react-icons/bi"
 
-import '../../Components/Order/Order.css'
+import './Account.css'
+import { Column } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 
 const Account = () => {
 
     const [t] = useTranslation();
 
+    const logout_user = () => {
+        localStorage.removeItem("user")
+        return toast.success(t("logged_out"))
+    }
+
     return (
-        <div className='column'>
-            <h1>My account</h1>
-            <div className='row'>
-                <div className='dropdown column'>
-                    <div className='width'>
-                        <Link to="/account/orders">{t("my_orders")}</Link>
-                    </div>
-                    <div className='width'>
-                        <Link to="/account/payments">{t("payments")}</Link>
-                    </div>
-                    <div className='width'>
-                        <Link to="/account/wishlist">{t("wishlist")}</Link>
-                    </div>
-                    <div className='width'>
-                        <Link to="/account/personal_data">{t("personal_data")}</Link>
-                    </div>
-                </div>
-                <div className='column'>
+        <Column>
+            <h1>{t("my_account")}</h1>
+            <div className='dropdown_data'>
+                <Column className='dropdown'>
+
+                    <Link className='width' to="/account/orders"><BsBag />{t("my_orders")}</Link>
+                    <Link className='width' to="/account/payments"><BiReceipt />{t("payments")}</Link>
+                    {/* <Link className='width' to="/account/wishlist">{t("wishlist")}</Link> */}
+                    <Link className='width' to="/account/personal_data"><AiOutlineUser />{t("personal_data")}</Link>
+
+                    <Link to="/" className='dropdown_button' onClick={logout_user}><BiLogOut />{t("logout")}</Link>
+                </Column>
+                <Column className='account_content'>
                     <Outlet />
-                </div>
+                </Column>
             </div>
-        </div>
+        </Column>
     )
 }
 

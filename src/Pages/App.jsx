@@ -29,7 +29,7 @@ const Admin_Edit = lazy(() => import('./Admin/Admin_Edit'));
 const Admin_Add = lazy(() => import('./Admin/Admin_Add'));
 
 
-export default function App() {
+export function App() {
 
   return (
     <Suspense fallback={<Spinner />}>

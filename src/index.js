@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import './i18n';
-import App from './Pages/App';
+import { App } from './Pages/App';
 import { store, persistor } from './store';
 import { Spinner } from './Components/Other/Spinner/Spinner';
 

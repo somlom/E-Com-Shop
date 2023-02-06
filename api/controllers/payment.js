@@ -16,7 +16,6 @@ payment.get("/pay", auth_middleware, asyncHandler(pay_order));
 payment.post("/pay_as_guest", asyncHandler(pay_as_guest));
 
 async function get_orders(req, res) {
-
     const user_order = await Orders.find({ user: req.user }).populate("products._id")
 
     return res.json(user_order)
@@ -28,7 +27,6 @@ async function get_order(req, res) {
     const populated_order = await user_order.populate("products._id")
 
     return res.json(populated_order)
-
 }
 
 async function set_order(req, res) {
@@ -60,13 +58,11 @@ async function set_order(req, res) {
 
 async function pay_as_guest(req, res) {
 
-    const order = {
-        products: [req.body]
-    }
-
     const stripe = new Stripe_Api();
 
-    const session = await stripe.create_stripe_session(order)
+    const session = await stripe.create_stripe_session({
+        products: [req.body]
+    })
 
     session.status === true ? res.status(200) : res.status(400);
 
@@ -74,6 +70,24 @@ async function pay_as_guest(req, res) {
 }
 
 async function pay_order(req, res) {
+    // https://stripe.com/docs/api/invoices/object
+    const stripe = new Stripe_Api();
+
+    const order = await Orders.findOne({ user: req.user, open: true })
+    const session = await stripe.create_stripe_session(order)
+
+    if (session.status) {
+        const user = await Users.findById(req.user)
+        const mailer = new Mailer()
+
+        mailer.send_email(user.email, "Hi", "hello", { name: user.name })
+        return res.json(session);
+    } else {
+        return res.json(session.data);
+    }
+}
+
+async function close_order(req, res) {
     const stripe = new Stripe_Api();
 
     const order = await Orders.findOne({ user: req.user, open: true })

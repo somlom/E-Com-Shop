@@ -1,5 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Button } from "../../Components/Other/Buttons/Standart";
+import { Input } from "../../Components/Other/Form/Form";
+import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
 
 import "./Admin.css"
 
@@ -42,24 +45,24 @@ const Admin_Add = () => {
     }
 
     return (
-        <div className="column">
+        <Column>
             <h1>Add item</h1>
             <form title='Add item' onSubmit={send_to_backend} className="__form column">
 
-                <input type="text" id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
+                <Input.Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
 
-                <div className="row __admin_gellery">
+                <Row className="__admin_gellery">
                     {selectedFile &&
                         Array.from(selectedFile).map(obj => {
                             return (
-                                <div className="column">
+                                <Column>
                                     <div className="__admin_lower_layer">
                                         <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
                                     </div>
-                                    <button type="button" onClick={() =>
+                                    <Button.Primary type="button" onClick={() =>
                                         setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
-                                    }>Delete</button>
-                                </div>
+                                    }>Delete</Button.Primary>
+                                </Column>
                             )
                         })
                     }
@@ -71,28 +74,26 @@ const Admin_Add = () => {
                         id="filename"
                         onChange={(e) => setSelectedFile((prev) => prev === null ? e.target.files : [...prev, ...e.target.files])}
                     />
-                </div>
+                </Row>
 
-                <input type="text" id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
-                <div className="row">
+                <Input.Text id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
+                <Row>
 
-                    <input type="number" id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
+                    <Input.Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
+                    <Input.Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
 
-                    <input type="number" id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
-                </div>
-                <div className="row">
-                    <div className="column">
+                </Row>
+
+                <Row>
+                    <Column>
                         <h1>Technical data</h1>
-                        <input type={"text"} placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)} />
+                        <Input.Text placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)} />
                         <textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)} />
-                    </div>
-                    <div className="column">
-
-                    </div>
-                </div>
-                <button type="submit">Add</button>
-            </form >
-        </div >
+                    </Column>
+                </Row>
+                <Button.Success type="submit">Add</Button.Success>
+            </form>
+        </Column>
     )
 }
 

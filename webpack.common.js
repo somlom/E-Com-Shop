@@ -9,9 +9,6 @@ require('dotenv').config()
 module.exports = {
 
     entry: {
-        // lodash: {
-
-        // },
         index: {
             import: path.join(__dirname, "src", "index.js"),
             dependOn: 'shared',

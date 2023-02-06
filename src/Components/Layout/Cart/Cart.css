@@ -12,10 +12,6 @@
     color: white;
 }
 
-.cart.column .column{
-    /* margin-top: 10px; */
-}
-
 .product_column {
     display: flex;
     width: 100%;

@@ -23,7 +23,7 @@ const Details = () => {
         <div className='details'>
             <h2>{t("details")}</h2>
             {data.map(text => (
-                <div>
+                <div key={text.header}>
                     <h3>{(text.header).toUpperCase()}</h3>
                     <p>{text.text}</p>
                 </div>

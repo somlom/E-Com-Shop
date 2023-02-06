@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./Login.css"
 import { ResetForm } from "../../Components/Auth/ResetForm";
 
 

@@ -47,11 +47,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-
     detection: options,
     resources,
-
-    debug: false,
+    debug: true,
     fallbackLng: "en",
     // supportedLngs: ['de', 'en', 'fr'],
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage

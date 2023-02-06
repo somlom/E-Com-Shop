@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 
-import "../Other/Form/Form.css"
-import { Form } from "../Other/Form/Form"
+import { Form, Input } from "../Other/Form/Form"
+import { Button } from '../Other/Buttons/Standart';
 
 
 export const ResetForm = () => {
@@ -29,11 +29,11 @@ export const ResetForm = () => {
 
     return (
         <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
-            <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
+            <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
             <div className='form_buttons row'>
-                <button className="button_opacity opacity primary" type='submit'>
+                <Button.Primary type='submit'>
                     <FaUserPlus />{t("reset")}
-                </button>
+                </Button.Primary>
             </div>
         </Form>
     )

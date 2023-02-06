@@ -5,23 +5,26 @@ import { useTranslation } from 'react-i18next';
 import "./Footer.css"
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
+import { Input } from '../../Other/Form/Form';
+import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
 const Footer = () => {
   const [t] = useTranslation();
 
   return (
-    <div className='footer column'>
+    <Column className='footer'>
 
-      <div className='company_data row'>
+      <Row className='company_data'>
         <div><AiOutlinePhone size={20} /> <span>21321983213821</span></div>
         <div><AiOutlineMail size={20} /> <span>interecom.ohg@gmail.com</span></div>
         <div><IoIosLocate size={20} /> <span>71337 Casabbb</span></div>
-      </div>
+      </Row>
 
-      <div className='footer_content column'>
-        <div className='row'>
-          <div className='column'>
+      <Column className='footer_content'>
+        <Row>
+
+          <Column>
             <Link to="/faq" className="link">
               {t("faq")}
             </Link>
@@ -34,18 +37,20 @@ const Footer = () => {
             <Link to="/support" className="link">
               {t("support")}
             </Link>
-          </div>
-          <div className='column'>
+          </Column>
+
+          <Column>
             <p>{t("newsletter_text")}</p>
             <div className='form column'>
-              <input type="text" placeholder='E-Mail' />
+              <Input.Text placeholder='E-Mail' />
             </div>
             <p>{t("payment_methods")}</p>
-          </div>
-        </div>
-      </div>
+          </Column>
 
-    </div>
+        </Row>
+      </Column>
+
+    </Column>
   )
 }
 

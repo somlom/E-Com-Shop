@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa"
 import "./Cart.css"
 import { cartArray } from '../../../features/cart_slice';
 import { usePostCartMutation } from '../../../features/cart_api';
+import { Column } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
 export function Cart({ handle_close }) {
@@ -27,23 +28,29 @@ export function Cart({ handle_close }) {
   if (result.isSuccess === true && result.data !== undefined) {
     return (
 
-      <div className='cart column'>
+      <Column className='cart'>
         {result.data.length === 0 ? <h1 className='column'>{t("no_items")}</h1> : <Cart_Element data={result.data} handle_close={handle_close} />}
-        <div className='cart_footer column'>
-          {result.data.length > 0 && <Link to="/order" className='opacity' onClick={() => handle_close()}>{t("pay")}</Link>}
-          <Link className='row' to="/account" onClick={() => handle_close()}><FaUser size={20}/>{t("account")}</Link>
-        </div>
-      </div>
+
+        <Column className='cart_footer'>
+          {
+            result.data.length > 0 &&
+            <Link to="/order" className='opacity' onClick={() => handle_close()}>{t("pay")}</Link>
+          }
+          <Link className='row' to="/account" onClick={() => handle_close()}><FaUser size={20} />{t("account")}</Link>
+
+        </Column>
+
+      </Column>
     );
   } else if ((result.isLoading || result.isUninitialized) === true) {
     return (
-      <div className='cart column'>
-        <h1>Loading...</h1>
-      </div>
+      <Column className='cart'>
+        <h1>{t("loading")}</h1>
+      </Column>
     );
   }
   else {
-    return <h1>error</h1>
+    return <h1>{t("error")}</h1>
   }
 }
 
@@ -52,19 +59,17 @@ const Cart_Element = ({ data }) => {
   return (
     <>
       {data.map(data_val => (
-        <div className="column" key={data_val._id}>
+        <Column key={data_val._id}>
 
           <div className='product_row'>
             <img className='product_column' src={process.env.API_URL + "/img/" + data_val.photos[0]} alt="aa"></img>
 
-            <div className='product_column column'>
+            <Column className='product_column'>
               <h3>{data_val.name}</h3>
               {data_val.quantity === 1 ? "" : <span>x{data_val.quantity}</span>}
-            </div>
+            </Column>
           </div>
-          {/* <div className='product_row'>
-          </div> */}
-        </div>
+        </Column>
       ))}
     </>
   )

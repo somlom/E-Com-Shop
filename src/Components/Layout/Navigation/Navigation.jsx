@@ -10,13 +10,16 @@ import { useSelector } from 'react-redux';
 
 
 import "./Navigation.css"
-import "../../Other/Form/Form.css"
 import { Modal } from '../Modal/Modal'
 import { cartArray } from '../../../features/cart_slice';
 import { Cart } from '../Cart/Cart';
 import { Spinner } from '../../Other/Spinner/Spinner';
 import Hamburger from '../Hamburger';
 import { usePostCountMutation } from '../../../features/cart_api';
+import { Button } from '../../Other/Buttons/Standart';
+import { Input } from '../../Other/Form/Form';
+import { NavElement } from '../../Other/Buttons/With_Icon/NavElement';
+import { Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
 export const Navigation = () => {
@@ -30,20 +33,20 @@ export const Navigation = () => {
   const [sendIt, result] = usePostCountMutation();
 
   useEffect(() => {
-    const send_to_backend = async (cart) => {
-      await sendIt(cart)
-    }
-    send_to_backend(cart)
-
+    sendIt(cart)
   }, [cart])
 
   const body = document.body;
-  menu_state === true ? body.style.overflow = "hidden" : body.style.overflow = "auto";
+  if (menu_state === true) {
+    body.style.overflow = "hidden"
+  } else {
+    body.style.overflow = "auto";
+  }
 
   return (
     <>
-      <div className='nav row'>
-        <div className='open_menu nav_column' onClick={() => handle_menu(!menu_state)}>
+      <Row className='nav'>
+        <div className='open_menu nav_column' onClick={() => handle_menu(prev => !prev)}>
           {menu_state === true ? <GrClose size={30} /> : <GiHamburgerMenu size={30} />}
         </div>
 
@@ -57,40 +60,37 @@ export const Navigation = () => {
         </div>
 
         <div className='nav_column form' id='pc'>
-          <input className='nav_title' type="text" placeholder="Search" />
+          <Input.Text className={'nav_title'} placeholder={"Search"} />
         </div>
 
-        <div className='row'>
+        <Row>
           <div className='nav_column' id='pc' onClick={() => handle_menu(false)}>
-            <div className='row'>
-              {/* <Link className="link column" to="/hot">
-                <div className='with_icon'>
-                  <AiOutlineFire size={20} />
-                  <span>{t("hot_deals")}</span>
-                </div>
-              </Link> */}
+            <Row>
+
               <Link className="link column" to="/account">
-                <div className='with_icon'>
+                <NavElement>
                   <AiOutlineUser size={20} />
                   <span>{t("account")}</span>
-                </div>
+                </NavElement>
               </Link>
+
               <Link className="link column" to="/order">
-                <div className='with_icon'>
+                <NavElement>
                   <BsBag size={20} />
                   <span>{t("order")}</span>
-                </div>
+                </NavElement>
               </Link>
-            </div>
+
+            </Row>
           </div>
           <div className='nav_column'>
-            <button className='button_opacity opacity primary' type="button" onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{result.data?.quantity}</button>
+            <Button.Primary type={"button"} onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{result.data?.quantity}</Button.Primary>
           </div>
-        </div>
+        </Row>
         <div className='nav_column form' id="mobile">
-          <input className='nav_title' type="text" placeholder={t("search")} />
+          <Input.Text className='nav_title' placeholder={t("search")} />
         </div>
-      </div>
+      </Row>
 
       {modal_state &&
         <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {result.data?.quantity} {t("items")}</span>}>

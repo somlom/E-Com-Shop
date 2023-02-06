@@ -2,41 +2,40 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { BsBag } from 'react-icons/bs';
-import { AiOutlineHeart, AiOutlineFire, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineUser } from 'react-icons/ai';
+import { Column, Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 
-const Hamburger = ({ handle_menu, state }) => {
+const Hamburger = ({ handle_menu }) => {
 
 
     const [t] = useTranslation();
     return (
         <div className='fade_it'>
-            <div className="column hamburger">
-                {/* <Link className="link column" to="/hot" onClick={() => handle_menu(false)}>
-                    <div className='row'>
-                        <AiOutlineFire size={25} />
-                        <span>{t("hot_deals")}</span>
-                    </div>
-                </Link> */}
+            <Column className="hamburger">
+
                 <Link className="link column" to="/register" onClick={() => handle_menu(false)}>
-                    <div className='row'>
+                    <Row>
                         <AiOutlineHeart size={25} />
                         <span>{t("wishlist")}</span>
-                    </div>
+                    </Row>
                 </Link>
+
                 <Link className="link column" to="/account" onClick={() => handle_menu(false)}>
-                    <div className='row'>
+                    <Row>
                         <AiOutlineUser size={25} />
                         <span>{t("account")}</span>
-                    </div>
+                    </Row>
                 </Link>
+
                 <Link className="link column" to="/order" onClick={() => handle_menu(false)}>
-                    <div className='row'>
+                    <Row>
                         <BsBag size={25} />
                         <span>{t("order")}</span>
-                    </div>
+                    </Row>
                 </Link>
-            </div>
+
+            </Column>
         </div>
     )
 }

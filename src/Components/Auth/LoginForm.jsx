@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-import "../Other/Form/Form.css"
-import { Form } from "../Other/Form/Form"
+import { Form, Input } from "../Other/Form/Form"
+import { Button } from '../Other/Buttons/Standart';
 
 export const LoginForm = () => {
 
@@ -30,7 +30,9 @@ export const LoginForm = () => {
 
         if (Object.keys(input).length >= 1) {
 
-            const api_response = axios.post(`${process.env.API_URL}/auth/login`, input).then((fulfilled) => {
+            const api_response = axios.post(`${process.env.API_URL}/auth/login`, input)
+            
+            api_response.then((fulfilled) => {
                 localStorage.setItem("user", fulfilled.data)
                 const next = state?.next
                 if (next !== undefined) {
@@ -41,12 +43,12 @@ export const LoginForm = () => {
             },
             )
             toast.promise(api_response, {
-                loading: 'Loading',
-                success: 'Logged in',
+                loading: t("loading"),
+                success: t("logged_in"),
                 error: (err) => err.response.data.message,
             });
         } else {
-            return toast.error("Error!!! Empty fields")
+            return toast.error(t("empty_fields"))
         }
     }
 
@@ -54,17 +56,20 @@ export const LoginForm = () => {
         <>
             {state?.message !== undefined ? <h1>{state.message}</h1> : ""}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
-                <input type="email" placeholder="E-mail" id='email' onChange={add_to_state} />
-                <input type="password" placeholder={t("password")} id='password' onChange={add_to_state} autoComplete="current-password" />
+                <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
+                <Input.Password placeholder={t("password")} id='password' onChange={add_to_state} />
                 <div className='form_buttons row'>
-                    <button className="button_opacity opacity primary" type='submit'>
+
+                    <Button.Primary type='submit'>
                         <FaUserPlus size={15} />{t("login")}
-                    </button>
+                    </Button.Primary>
+
                     <Link to="/register">
-                        <button className="button_opacity opacity green" type='button'>
+                        <Button.Success type='button'>
                             <FaUserPlus size={15} />{t("dont_have_an_account")}
-                        </button>
+                        </Button.Success>
                     </Link>
+
                 </div>
             </Form>
         </>
