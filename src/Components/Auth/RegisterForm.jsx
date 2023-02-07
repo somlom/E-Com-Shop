@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast';
 
 import { Form, Input } from "../Other/Form/Form"
 import { Button } from '../Other/Buttons/Standart';
+import { Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 
 export const RegisterForm = () => {
@@ -37,7 +38,7 @@ export const RegisterForm = () => {
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("logged_in"),
-                error: (err) => err.response.data.message,
+                error: (err) => err.message,
             });
         } else {
             return toast.error(t("empty_fields"))
@@ -52,7 +53,7 @@ export const RegisterForm = () => {
                 <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Input.Password placeholder={t("password")} id='password' onChange={add_to_state} />
                 <Input.Password placeholder={t("password_again")} id='password2' onChange={add_to_state} />
-                <div className='form_buttons row'>
+                <Row className='form_buttons'>
                     <Button.Success type='submit'>
                         <FaUserPlus size={15} />{t("register")}
                     </Button.Success>
@@ -61,7 +62,7 @@ export const RegisterForm = () => {
                             <FaUserPlus size={15} />{t("already_registered")}
                         </Button.Primary>
                     </Link>
-                </div>
+                </Row>
             </Form>
             <span>{t("agb_text")}</span>
         </>

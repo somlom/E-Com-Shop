@@ -16,17 +16,13 @@ const products_schema = new Schema({
         type: [String],
         required: [true, "Please add PHOTO"]
     },
-    // tags: {
-    //     type: [String],
-    //     index: true
-    // },
     text: {
         type: String,
         required: [true, "Please add TEXT"],
         dropDups: true
     },
     price: {
-        // type: mongoose.Types.Decimal128,
+        type: mongoose.Types.Decimal128,
         type: Number,
         required: [true, "Please add PRICE"],
     },
@@ -56,11 +52,15 @@ const products_schema = new Schema({
 const reviews_schema = new Schema({
     title: {
         type: String,
-        required: [true, "Please add your NAME"],
+        required: [true, "Please add your TITLE"],
     },
     stars: {
         type: String,
-        required: [true, "Please add your SURNAME"],
+        required: [true, "Please add your STARS"],
+    },
+    text: {
+        type: String,
+        required: [true, "Please add TEXT"],
     },
     product: {
         type: mongoose.Types.ObjectId,
@@ -70,10 +70,11 @@ const reviews_schema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Users',
     },
-    password: {
-        type: String,
-        required: [true, "Please add your PASSWORD"],
+    photos: {
+        type: [String],
+        required: [true, "Please add PHOTO"]
     },
+
 }, {
     timestamps: true
 });

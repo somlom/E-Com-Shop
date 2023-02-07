@@ -6,17 +6,34 @@ import Mailer from './mailer';
 const stripe = new Stripe(process.env.STRIPE_SECRET);
 
 export class Stripe_Api {
+
     constructor() {
         this.stripe_secret = process.env.STRIPE_SECRET;
+    }
+
+    report_error(error_name = "", stack = "") {
+        const mailer = new Mailer();
+        console.log(stack)
+        return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
+    }
+
+    async create_client(name = { name: "", surname: "" }, email = "") {
+        const customer = await stripe.customers.create({
+            name: name.name + " " + name.surname,
+            email: email,
+        });
+        return customer
     }
 
     async create_stripe_session(order = {}) {
         if (order) {
             try {
+
                 const search = {
                     products: [],
                     ids: []
                 }
+
                 order.products.map(obj => {
                     search.products.push({ id: obj.id, quantity: obj.quantity })
                     search.ids.push(obj.id)
@@ -27,6 +44,7 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
+
                 search.ids = []
                 search.products.map(item => {
 
@@ -35,8 +53,14 @@ export class Stripe_Api {
                         return search.ids.push({ quantity: item.quantity, price: element.default_price })
                     }
                 })
+
                 // console.log(search)
+
                 const session = await stripe.checkout.sessions.create({
+
+                    client_reference_id: order.id ? order.id : "",
+                    customer_email: order.user ? order.user : "",
+
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: search.ids,
                     mode: 'payment',
@@ -45,27 +69,30 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
+
+                // console.log(session)
+
                 return { status: true, data: session.url }
             } catch (error) {
-                const mailer = new Mailer();
-                mailer.send_email(process.env.ADMIN_EMAIL, "error", "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
-                return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" }
+                this.report_error("Error on Stripe Session", error.stack)
+                return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" };
             }
         }
+        this.report_error("No order Stripe", error.stack)
         return { status: false, data: "No order" }
     }
 
-    async create_product(id = "", name = "", price = "", filename = []) {
+    async create_product(id = "", name = "", price = 0, filename = []) {
 
         const photos = filename.map(photo => process.env.API_URL + "/img/" + photo)
-
+        console.log(price)
         try {
             const result = await stripe.products.create({
                 id: id,
                 name: name,
                 default_price_data: {
                     currency: "EUR",
-                    unit_amount_decimal: (price * 100).toString(),
+                    unit_amount_decimal: (price).toString(),
                 },
                 shippable: true,
                 url: process.env.PUBLIC_URL + "/products" + id,
@@ -75,6 +102,7 @@ export class Stripe_Api {
             });
             return { status: true, data: result }
         } catch (error) {
+            this.report_error("Error on Stripe create product", error.stack)
             return { status: false, data: error }
         }
     }
@@ -93,6 +121,7 @@ export class Stripe_Api {
             });
             return { status: true, data: new_price }
         } catch (error) {
+            this.report_error("Error on Stripe create price", error.stack)
             return { status: false, data: "error price" }
         }
 
@@ -135,10 +164,11 @@ export class Stripe_Api {
 
                 return { status: true, data: updated }
             } catch (error) {
-                // console.log(error)
+                this.report_error("Error on Stripe update product", error.stack)
                 return { status: false, data: error }
             }
         } else {
+            this.report_error("No product on stripe", "no stack")
             return { status: false, data: "No product on stripe" }
         }
     }

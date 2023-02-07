@@ -65,14 +65,16 @@ async function get_products(req, res) {
 
 async function add_product(req, res) {
 
-    const { name, text, price, quantity } = req.body;
+    const { name, text, price, quantity, technical_data } = req.body;
+
+    console.log(name, text, price, quantity, technical_data)
 
     const filename = req.files.map((item) => item.filename)
 
     try {
         const stripe = new Stripe_Api();
 
-        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
+        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
         const stripe_instance = await stripe.create_product(product.id, name, price, filename);
 
         if (stripe_instance.status && product) {
@@ -92,10 +94,9 @@ async function add_product(req, res) {
 async function edit_product(req, res) {
     const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
+    console.log(price)
+
     const filename = req.files.map((item) => item.filename)
-
-
-    // PLAN WHAT THAT SHIT DOES
 
     const item = await Products.findById(id)
 

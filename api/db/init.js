@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 import process from "process";
+
 import Mailer from "../lib/mailer";
 
 
 export const connect = async () => {
     mongoose.set('strictQuery', false)
     try {
-        const conn = await mongoose.connect(process.env.NODE_ENV === "development" ? process.env.MONGO_TEST_URL : process.env.MONGO_URL)
+        const conn = await mongoose.connect(process.env.NODE_ENV === "development" ? process.env.MONGO_TEST_URL : process.env.MONGO_URL);
 
         console.log(('DB connected: ' + conn.connection.host))
     } catch (error) {

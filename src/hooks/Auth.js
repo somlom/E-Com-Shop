@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useTranslation } from "react-i18next";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
 import { Spinner } from '../Components/Other/Spinner/Spinner';
@@ -6,6 +7,7 @@ import { useGetData } from "./Data";
 
 
 export const ProtectedRoute = () => {
+    const [t] = useTranslation();
     const location = useLocation()
     const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ export const ProtectedRoute = () => {
 
     useEffect(() => {
         if (data.isError) {
-            navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
+            navigate("/login", { state: { next: location.pathname, message: t("login_to_proceed") } })
         }
     }, [data])
 

@@ -10,6 +10,7 @@ import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
 import TOTP from "./lib/totp";
+import reviews from "./controllers/reviews";
 
 
 if (process.env.NODE_ENV === "development") {
@@ -29,6 +30,7 @@ app.use('/img', express.static('api/public/img'))
 app.use(express.urlencoded({ extended: false }))
 
 app.use("/products", products)
+app.use("/reviews", reviews)
 app.use("/auth", auth)
 app.use("/payment", payment)
 app.use("/download", files)

@@ -8,6 +8,7 @@ import { Spinner } from '../../Components/Other/Spinner/Spinner'
 import { usePostCartMutation } from '../../features/cart_api';
 import { cartArray } from '../../features/cart_slice';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Pay } from '../../Components/Other/Buttons/Pay/Pay';
 
 
 const OrderCount = lazy(() => import("../../Components/Order/OrderCount"))
@@ -61,7 +62,7 @@ export const Order = () => {
                     </Column>
                     <div className='order_count'>
                         <OrderCount data={cart_data.data}>
-                            <a className="opacity" onClick={pay_order}>{t("pay")}</a>
+                            <Pay onClick={pay_order}>{t("pay")}</Pay>
                         </OrderCount>
                     </div>
                 </Row>

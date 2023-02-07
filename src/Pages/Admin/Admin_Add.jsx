@@ -49,8 +49,10 @@ const Admin_Add = () => {
             <h1>Add item</h1>
             <form title='Add item' onSubmit={send_to_backend} className="__form column">
 
+                <label>Title</label>
                 <Input.Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
 
+                <label>Photos</label>
                 <Row className="__admin_gellery">
                     {selectedFile &&
                         Array.from(selectedFile).map(obj => {
@@ -75,14 +77,15 @@ const Admin_Add = () => {
                         onChange={(e) => setSelectedFile((prev) => prev === null ? e.target.files : [...prev, ...e.target.files])}
                     />
                 </Row>
+                <label>Text</label>
+                <textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
-                <Input.Text id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
-                <Row>
+                <label>Price</label>
+                <Input.Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
 
-                    <Input.Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
-                    <Input.Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
+                <label>Quantity</label>
+                <Input.Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
 
-                </Row>
 
                 <Row>
                     <Column>

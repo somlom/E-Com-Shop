@@ -70,11 +70,13 @@ async function pay_as_guest(req, res) {
 }
 
 async function pay_order(req, res) {
+
     // https://stripe.com/docs/api/invoices/object
+    
     const stripe = new Stripe_Api();
 
-    const order = await Orders.findOne({ user: req.user, open: true })
-    const session = await stripe.create_stripe_session(order)
+    const order = await Orders.findOne({ user: req.user, open: true });
+    const session = await stripe.create_stripe_session(order);
 
     if (session.status) {
         const user = await Users.findById(req.user)

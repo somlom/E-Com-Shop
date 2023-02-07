@@ -1,0 +1,14 @@
+a.pay_button {
+    background-color: rgb(2, 158, 255);
+    width: 100%;
+    font-size: medium;
+    text-decoration: none;
+    text-align: center;
+    align-self: center;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-weight: 500;
+    border-radius: 10px;
+    margin: 5px;
+}

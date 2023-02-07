@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 
 import { Form, Input } from "../Other/Form/Form"
 import { Button } from '../Other/Buttons/Standart';
+import { Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 export const LoginForm = () => {
 
@@ -45,7 +46,7 @@ export const LoginForm = () => {
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("logged_in"),
-                error: (err) => err.response.data.message,
+                error: (err) => err.message,
             });
         } else {
             return toast.error(t("empty_fields"))
@@ -54,11 +55,11 @@ export const LoginForm = () => {
 
     return (
         <>
-            {state?.message !== undefined ? <h1>{state.message}</h1> : ""}
+            {state?.message !== undefined ? <h3>{state.message}</h3> : ""}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
                 <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Input.Password placeholder={t("password")} id='password' onChange={add_to_state} />
-                <div className='form_buttons row'>
+                <Row className='form_buttons'>
 
                     <Button.Primary type='submit'>
                         <FaUserPlus size={15} />{t("login")}
@@ -70,7 +71,7 @@ export const LoginForm = () => {
                         </Button.Success>
                     </Link>
 
-                </div>
+                </Row>
             </Form>
         </>
     )

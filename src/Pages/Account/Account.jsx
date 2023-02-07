@@ -26,8 +26,6 @@ const Account = () => {
                 <Column className='dropdown'>
 
                     <Link className='width' to="/account/orders"><BsBag />{t("my_orders")}</Link>
-                    <Link className='width' to="/account/payments"><BiReceipt />{t("payments")}</Link>
-                    {/* <Link className='width' to="/account/wishlist">{t("wishlist")}</Link> */}
                     <Link className='width' to="/account/personal_data"><AiOutlineUser />{t("personal_data")}</Link>
 
                     <Link to="/" className='dropdown_button' onClick={logout_user}><BiLogOut />{t("logout")}</Link>

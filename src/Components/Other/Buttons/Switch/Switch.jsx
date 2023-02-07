@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Row } from '../../Structure/Flex-Box/Flex-Box'
 
 import "./Switch.css"
 
@@ -9,10 +10,10 @@ export const Switch = ({ first, second, children }) => {
 
     return (
         <>
-            <div className='switch row' onClick={() => setClick(!clicked)}>
-                <span className={clicked === false ? "show" : "hide"}>{first}</span>
-                <span className={clicked === true ? "show" : "hide"}>{second}</span>
-            </div>
+            <Row className='switch'>
+                <span className={clicked === false ? "show" : "hide"} onClick={() => setClick(!clicked)}>{first}</span>
+                <span className={clicked === true ? "show" : "hide"} onClick={() => setClick(!clicked)}>{second}</span>
+            </Row>
             {!clicked && children[0]}
             {clicked && children[1]}
         </>

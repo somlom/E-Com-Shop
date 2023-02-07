@@ -41,9 +41,9 @@ const Footer = () => {
 
           <Column>
             <p>{t("newsletter_text")}</p>
-            <div className='form column'>
+            <Column className='form'>
               <Input.Text placeholder='E-Mail' />
-            </div>
+            </Column>
             <p>{t("payment_methods")}</p>
           </Column>
 

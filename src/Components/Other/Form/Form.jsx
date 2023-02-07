@@ -1,4 +1,5 @@
 import React from 'react'
+import { Column } from '../Structure/Flex-Box/Flex-Box'
 
 import "./Form.css"
 
@@ -6,12 +7,12 @@ import "./Form.css"
 export const Form = ({ title, onSubmit, children }) => {
 
     return (
-        <div className='form_content column'>
+        <Column className='form_content'>
             <h3 className='form_title'>{title}</h3>
             <form className="form column" onSubmit={onSubmit}>
                 {children}
             </form>
-        </div>
+        </Column>
     )
 }
 

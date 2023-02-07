@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React from 'react'
 
 import "./Modal.css"
@@ -7,8 +6,6 @@ import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
 export const Modal = ({ children, handle_modal, title = "" }) => {
-
-    const [t] = useTranslation();
 
     close_on_esc(handle_modal);
 

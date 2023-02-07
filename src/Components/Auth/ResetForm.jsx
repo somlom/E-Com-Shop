@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Form, Input } from "../Other/Form/Form"
 import { Button } from '../Other/Buttons/Standart';
+import { Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 
 export const ResetForm = () => {
@@ -30,11 +31,11 @@ export const ResetForm = () => {
     return (
         <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
             <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
-            <div className='form_buttons row'>
+            <Row className='form_buttons'>
                 <Button.Primary type='submit'>
                     <FaUserPlus />{t("reset")}
                 </Button.Primary>
-            </div>
+            </Row>
         </Form>
     )
 }

@@ -7,8 +7,6 @@
 }
 
 .nav_column {
-    margin: 3px;
-    display: flex;
     align-items: center;
     width: fit-content;
 }
@@ -26,6 +24,13 @@
     padding: 0;
 }
 
+.nav_column#cart {
+    display: flex;
+    min-width: 98px;
+    min-height: 64px;
+    justify-content: center;
+}
+
 input.nav_title {
     width: 100%;
     height: max-content;
@@ -39,6 +44,7 @@ input.nav_title {
     transition: 0.3s;
     outline: none;
 }
+
 .nav_column#pc {
     display: flex;
 }
@@ -46,6 +52,7 @@ input.nav_title {
 .nav_column#pc input {
     width: 50vw;
 }
+
 .nav_column#mobile input {
     width: 90vw;
 }
@@ -72,9 +79,11 @@ div.nav_title * {
     .nav_column.buttons {
         display: none;
     }
+
     .nav_column#pc {
         display: none;
     }
+
     .nav_column#mobile {
         display: flex;
     }
