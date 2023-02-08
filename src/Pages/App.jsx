@@ -9,6 +9,7 @@ import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { MyOrders } from './Account/MyOrders';
 import { Order_Guest } from './Order/Order_Guest';
 import { Personal_Data } from './Account/Personal_Data';
+import { Stresstest } from '../Stresstest';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
@@ -38,6 +39,7 @@ export function App() {
         <Route exact element={<Layout />}>
 
           <Route index path="/" element={<Main />} />
+          <Route index path="/loaderio-9e785ff186e7e8db7b1d2e1b5a8ac1f2" element={<Stresstest />} />
 
           <Route path="products" element={<Products />} />
           <Route path="products/:id" element={<Product />} />
