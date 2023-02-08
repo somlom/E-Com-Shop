@@ -1,8 +1,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
+import { Card } from '../Layout/Card/Card';
 
 import { Column, Row } from '../Other/Structure/Flex-Box/Flex-Box'
 import "./Reviews.css"
+import { Stars } from './Stars/Stars';
 
 
 const Reviews = ({ data }) => {
@@ -26,7 +28,7 @@ const Reviews = ({ data }) => {
             id: 2,
             title: "Good present for my wife",
             text: "lore",
-            stars: 5,
+            stars: 4,
             createdAt: 12312332,
             photos: [
                 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAMFBMVEXi4uImJiadnZ2SkpLZ2dlsbGxdXV15eXnGxsaoqKiysrKGhoZNTU3Q0NA7Ozu8vLx+CZkfAAAAtElEQVRoge3T2Q6DIBCF4Tkim0t9/7etS22TWg2a3pj834WTcCKDgGYAAAAAAAC4qVbV+Kyj5PtPLc8L1F7zJEHOPbr6XUvzIkFxmiTLmVWq1lqcF8lpfqVVY5bk1zoomEUNe/m5Jq91RaVxaxTWOo02y4J/539pYuHRhaP8QpPtdmQpH+UXmmwPNnTdcol28jOS8/Ku31zRccmN4n5+8jsmzffPNqidDiLv5QAAAAAAALilJ/frBu723vpKAAAAAElFTkSuQmCC",
@@ -38,10 +40,10 @@ const Reviews = ({ data }) => {
 
     return (
         data_to_map.map(obj => (
-            <Column key={obj.id} className='review'>
+            <Card key={obj.id}>
                 <Row className="review_head">
                     <Column>
-                        <span>{obj.stars}</span>
+                        <Stars length={obj.stars} />
                         <h2>{obj.title}</h2>
                     </Column>
                     <span>{obj.createdAt}</span>
@@ -52,7 +54,7 @@ const Reviews = ({ data }) => {
                     </Row>
                     <p>{obj.text}</p>
                 </Column>
-            </Column>
+            </Card>
         ))
     )
 }

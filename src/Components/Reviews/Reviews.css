@@ -1,17 +1,20 @@
-div.review {
+/* div.review {
     background-color: #e8f5ff;
     border: none;
     border-radius: 18px;
     padding: 18px;
     margin: 10px;
-}
+} */
 
-div.review div.review_head {
+div.review_head {
     display: flex;
     justify-content: space-between;
 }
 
-div.review div.review_photos img,
-div.review div.review_body p {
+div.review_photos img,
+div.review_body p {
     margin: 10px;
+}
+div.review_photos {
+    flex-wrap: wrap;
 }

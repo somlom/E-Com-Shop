@@ -22,9 +22,9 @@ const Products = () => {
                     return (
                         <Link key={obj._id} to={`/products/${obj._id}`} className="go_to_product">
                             <div className='product'>
-                                <div className='layer'>
+                                <div className='mask'>
                                     <span>{obj.price} &euro;</span>
-                                    <div className='product_footer'>
+                                    <div className='mask_footer'>
                                         <h3>{obj.name}</h3>
                                     </div>
                                 </div>

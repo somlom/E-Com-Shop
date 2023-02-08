@@ -10,6 +10,7 @@ import { useGetData } from '../../hooks/Data';
 import { Switch } from '../../Components/Other/Buttons/Switch/Switch';
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Product_Reviews } from '../../Components/Reviews/Product_Reviews/Product_Reviews';
 
 const Reviews = lazy(() => import('../../Components/Reviews/Reviews'));
 const Details = lazy(() => import('../../Components/Details/Details'));
@@ -33,15 +34,15 @@ export const Product = () => {
         return <h1>{t("empty_page")}</h1>
     } else if (isSuccess) {
         return (
-            <div>
-                <Column>
-                    <Row className='product_title'>
+            <>
+                <Column className="">
+                    <Row className='product_header'>
                         <Link to="/"><AiOutlineArrowLeft size={35} /></Link>
                         <h1>{data.name}</h1>
                     </Row>
-                    <div className='product_on_page' >
+                    <div className='product_body' >
 
-                        <div className="photos">
+                        <div className="product_photos">
                             {data.photos.length > 1 ? (
                                 <Column className="gallery">
                                     {data.photos.map(photo => <img src={process.env.API_URL + "/img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
@@ -51,20 +52,31 @@ export const Product = () => {
                         </div>
 
                         <Column className='buy'>
+
                             <p>{data.text}</p>
-                            <div className='buy_row'>
-                                <h3>{data.price} &euro;</h3>
-                                <Link to={"/pay_as_guest/" + id} className='primary_button'>Buy now</Link>
-                                <a className='primary_button' onClick={() => dispatch(set_to_cart({ id: data._id }))}>{t("add")}</a>
-                            </div>
+
+                            <Column className="product_text">
+                                <Row className="product_text_element">
+                                    <img src={process.env.API_URL + "/img/" + data.photos[0]} />
+                                    <p>{data.text}</p>
+                                </Row>
+                            </Column>
                         </Column>
                     </div>
                 </Column>
-                <Column>
+                <Row>
+                    <div>
+
+                    </div>
                     <Switch first={t("reviews")} second={t("details")}>
 
                         <Suspense fallback={<Spinner />}>
-                            <Reviews data={data} />
+                            <Row className="reviews">
+                                <Product_Reviews rating={4} title={data.name} text={data.text} img={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAMFBMVEXi4uImJiadnZ2SkpLZ2dlsbGxdXV15eXnGxsaoqKiysrKGhoZNTU3Q0NA7Ozu8vLx+CZkfAAAAtElEQVRoge3T2Q6DIBCF4Tkim0t9/7etS22TWg2a3pj834WTcCKDgGYAAAAAAAC4qVbV+Kyj5PtPLc8L1F7zJEHOPbr6XUvzIkFxmiTLmVWq1lqcF8lpfqVVY5bk1zoomEUNe/m5Jq91RaVxaxTWOo02y4J/539pYuHRhaP8QpPtdmQpH+UXmmwPNnTdcol28jOS8/Ku31zRccmN4n5+8jsmzffPNqidDiLv5QAAAAAAALilJ/frBu723vpKAAAAAElFTkSuQmCC"} />
+                                <Column>
+                                    <Reviews data={data} />
+                                </Column>
+                            </Row>
                         </Suspense>
 
                         <Suspense fallback={<Spinner />}>
@@ -72,8 +84,13 @@ export const Product = () => {
                         </Suspense>
 
                     </Switch>
-                </Column>
-            </div>
+                </Row>
+                <Row className='buy_row'>
+                    <h3>{data.price} &euro;</h3>
+                    <Link to={"/pay_as_guest/" + id} className='primary_button'>{t("buy_now")}</Link>
+                    <a className='primary_button' onClick={() => dispatch(set_to_cart({ id: data._id }))}>{t("add")}</a>
+                </Row>
+            </>
         )
     }
 

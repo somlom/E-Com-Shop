@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
-import "./Details.css"
+import { Card } from '../Layout/Card/Card';
 
 
 const Details = () => {
@@ -20,7 +20,7 @@ const Details = () => {
     ]
 
     return (
-        <div className='details'>
+        <Card>
             <h2>{t("details")}</h2>
             {data.map(text => (
                 <div key={text.header}>
@@ -28,7 +28,7 @@ const Details = () => {
                     <p>{text.text}</p>
                 </div>
             ))}
-        </div>
+        </Card>
     )
 }
 

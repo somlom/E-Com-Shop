@@ -3,6 +3,7 @@
     border-radius: 20px;
     background-color: #e8f5ff;
     width: fit-content;
+    margin: 10px;
 }
 
 .switch span {
@@ -25,4 +26,8 @@
 }
 .switch:after {
     transition: right 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+}
+
+.switch_column{
+    width: 100%;
 }

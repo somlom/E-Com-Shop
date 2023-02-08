@@ -14,7 +14,7 @@ export class Stripe_Api {
     report_error(error_name = "", stack = "") {
         const mailer = new Mailer();
         console.log(stack)
-        return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
+        return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: stack, logs: "https://dashboard.stripe.com/test/logs" })
     }
 
     async create_client(name = { name: "", surname: "" }, email = "") {
@@ -54,13 +54,23 @@ export class Stripe_Api {
                     }
                 })
 
-                // console.log(search)
+                const session_object = {
+                    shipping_address_collection: { allowed_countries: ['DE'] },
+                    line_items: search.ids,
+                    mode: 'payment',
+                    success_url: `${process.env.PUBLIC_URL}/order?success=true`,
+                    cancel_url: `${process.env.PUBLIC_URL}/order?success=false`,
+                }
+
+                if (order.id) {
+                    session_object.client_reference_id = order.id
+                }
+
+                if (order.user) {
+                    session_object.customer_email = order.user
+                }
 
                 const session = await stripe.checkout.sessions.create({
-
-                    client_reference_id: order.id ? order.id : "",
-                    customer_email: order.user ? order.user : "",
-
                     shipping_address_collection: { allowed_countries: ['DE'] },
                     line_items: search.ids,
                     mode: 'payment',
@@ -69,8 +79,6 @@ export class Stripe_Api {
                 }, {
                     apiKey: this.stripe_secret
                 });
-
-                // console.log(session)
 
                 return { status: true, data: session.url }
             } catch (error) {

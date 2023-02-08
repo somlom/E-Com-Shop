@@ -48,20 +48,20 @@ module.exports = {
                 exclude: [/node_modules/, /test/, /api/, /test/, /public/, /hooks/, /features/],
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
-            // {
-            //     test: /\.(png|jpe?g|gif|svg)$/,
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: '[name].[ext]',
-            //                 outputPath: 'public/img',
-            //                 esModule: false // <- here
-            //             }
-            //         }
-            //     ]
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'public/img',
+                            esModule: false // <- here
+                        }
+                    }
+                ]
 
-            // }
+            }
         ],
     },
     resolve: {

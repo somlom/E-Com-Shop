@@ -15,40 +15,55 @@ const Footer = () => {
   return (
     <Column className='footer'>
 
-      <Row className='company_data'>
-        <div><AiOutlinePhone size={20} /> <span>21321983213821</span></div>
-        <div><AiOutlineMail size={20} /> <span>interecom.ohg@gmail.com</span></div>
-        <div><IoIosLocate size={20} /> <span>71337 Casabbb</span></div>
+      <Row className='footer_header'>
+
+        <div>
+          <AiOutlinePhone size={20} />
+          <span>21321983213821</span>
+        </div>
+
+        <div>
+          <AiOutlineMail size={20} />
+          <span>interecom.ohg@gmail.com</span>
+        </div>
+
+        <div>
+          <IoIosLocate size={20} />
+          <span>71337 Casabbb</span>
+        </div>
+
       </Row>
 
-      <Column className='footer_content'>
-        <Row>
+      <Row className='footer_body'>
 
-          <Column>
-            <Link to="/faq" className="link">
-              {t("faq")}
-            </Link>
-            <Link to="/impressum" className="link">
-              {t("impressum")}
-            </Link>
-            <Link to="/customer_rights" className="link">
-              {t("customer_rights")}
-            </Link>
-            <Link to="/support" className="link">
-              {t("support")}
-            </Link>
+        <Column className="footer_links">
+          <Link to="/faq" className="link">
+            {t("faq")}
+          </Link>
+          <Link to="/impressum" className="link">
+            {t("impressum")}
+          </Link>
+          <Link to="/customer_rights" className="link">
+            {t("customer_rights")}
+          </Link>
+          <Link to="/support" className="link">
+            {t("support")}
+          </Link>
+        </Column>
+
+        <Column className="footer_newsletter">
+
+          <p>{t("newsletter_text")}</p>
+          <Column className='form'>
+            <Input.Text placeholder='E-Mail' />
           </Column>
 
-          <Column>
-            <p>{t("newsletter_text")}</p>
-            <Column className='form'>
-              <Input.Text placeholder='E-Mail' />
-            </Column>
-            <p>{t("payment_methods")}</p>
-          </Column>
+        </Column>
+        {/* <p>{t("payment_methods")}</p>  */}
+        <img src={require("../../../static/logo-stripe.png")} />
 
-        </Row>
-      </Column>
+      </Row>
+
 
     </Column>
   )
