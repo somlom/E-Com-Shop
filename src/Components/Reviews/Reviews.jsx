@@ -1,17 +1,12 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next';
-import { Card } from '../Layout/Card/Card';
 
+import { Card } from '../Layout/Card/Card';
 import { Column, Row } from '../Other/Structure/Flex-Box/Flex-Box'
 import "./Reviews.css"
 import { Stars } from './Stars/Stars';
 
 
 const Reviews = ({ data }) => {
-
-    console.log(data)
-
-    const [t] = useTranslation();
 
     const data_to_map = [
         {
@@ -50,7 +45,7 @@ const Reviews = ({ data }) => {
                 </Row>
                 <Column className={"review_body"}>
                     <Row className={"review_photos"}>
-                        {obj.photos.map(photo => <img className='' key="photo" src={photo} />)}
+                        {obj.photos.map(photo => <img key="photo" src={photo} />)}
                     </Row>
                     <p>{obj.text}</p>
                 </Column>

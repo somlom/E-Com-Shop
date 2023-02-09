@@ -27,7 +27,18 @@ const Admin_Edit = () => {
             ...prevState,
             [id]: event.target.value,
         }))
+
+        console.log({ [id]: event.target.value }, value)
     }
+
+    const add_data_to_state = (event, id) => {
+        // const result =  value.find(obj=>obj.header || obj.text === "")
+        // setValue((prevState) => ({
+        //     ...prevState,
+        //     [id]: event.target.value,
+        // }))
+    }
+
     const send_to_backend = async (event) => {
         event.preventDefault()
 
@@ -49,6 +60,7 @@ const Admin_Edit = () => {
         formData.append("text", value.text)
         formData.append("price", value.price)
         formData.append("quantity", value.quantity)
+        formData.append("technical_data", JSON.stringify([{ header: value.technical_header, text: value.technical_text }]))
 
         await axios.post(process.env.API_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
@@ -122,8 +134,14 @@ const Admin_Edit = () => {
                     </Row>
                     <Column>
                         <h1>Technical data</h1>
-                        <Input.Text placeholder="Header" value={value.technical_header} id="technical_header" onChange={(e) => add_to_state(e, e.target.id)} />
-                        <textarea tabIndex={5} cols={20} placeholder="Text" value={value.technical_text} id="technical_text" onChange={(e) => add_to_state(e, e.target.id)} />
+                        {value.technical_data && value.technical_data.map(obj => (
+                            console.log(obj),
+                            <>
+                                <Input.Text placeholder="Header" value={obj.header} id="technical_header" onChange={(e) => add_data_to_state(e, "header")} />
+                                <textarea tabIndex={5} cols={20} placeholder="Text" value={obj.text} id="technical_text" onChange={(e) => add_data_to_state(e, "text")} />
+
+                            </>
+                        ))}
                     </Column>
                     <Button.Success type="submit">Edit</Button.Success>
                 </form>

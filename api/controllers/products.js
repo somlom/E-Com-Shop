@@ -94,24 +94,22 @@ async function add_product(req, res) {
 async function edit_product(req, res) {
     const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
-    console.log(price)
-
     const filename = req.files.map((item) => item.filename)
+
+    console.log(technical_data)
 
     const item = await Products.findById(id)
 
-    if (remaining_photos) {
-        const difference = item.photos.filter(data => !remaining_photos.includes(data, 0))
-        delete_photos(difference)
-    }
+    const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
+    delete_photos(difference)
 
     if (item) {
 
         try {
 
-            const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos.includes(data)))]
+            const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]
 
-            const product = await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: technical_data })
+            const product = await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: JSON.parse(technical_data) })
             if (product) {
 
                 const stripe = new Stripe_Api();

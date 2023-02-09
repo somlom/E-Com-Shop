@@ -3,13 +3,12 @@ import { Routes, Route } from "react-router-dom";
 
 import { Layout } from '../Components/Layout/Layout';
 import { Product } from './Products/Product';
-import { ProtectedRoute } from '../hooks/Auth';
+import { AdminRoute, ProtectedRoute } from '../hooks/Auth';
 import { Order } from './Order/Order';
 import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { MyOrders } from './Account/MyOrders';
 import { Order_Guest } from './Order/Order_Guest';
 import { Personal_Data } from './Account/Personal_Data';
-import { Stresstest } from '../Stresstest';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
@@ -39,7 +38,6 @@ export function App() {
         <Route exact element={<Layout />}>
 
           <Route index path="/" element={<Main />} />
-          <Route index path="/loaderio-9e785ff186e7e8db7b1d2e1b5a8ac1f2" element={<Stresstest />} />
 
           <Route path="products" element={<Products />} />
           <Route path="products/:id" element={<Product />} />
@@ -65,10 +63,12 @@ export function App() {
           <Route path='impressum' element={<Impressum />} />
           <Route path='customer_rights' element={<Customer_Rights />} />
           <Route path='support' element={<Support />} />
-
-          <Route path="admin" element={<Admin />} />
-          <Route path="admin/:id" element={<Admin_Edit />} />
-          <Route path="admin/add" element={<Admin_Add />} />
+          <Route path='faq' element={<FAQ />} />
+          <Route element={<AdminRoute />}>
+            <Route path='admin' element={<Admin />} />
+            <Route path="admin/:id" element={<Admin_Edit />} />
+            <Route path="admin/add" element={<Admin_Add />} />
+          </Route>
 
           <Route path="/*" element={<Error_404 />} />
         </Route>

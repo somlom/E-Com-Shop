@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 import { Users } from "../db/schemas";
 import { get_token, verify_token } from "../lib/JWT";
 import Mailer from "../lib/mailer";
-import TOTP from "../lib/totp";
+import { auth_middleware } from "../middlewares/auth_handler";
 
 
 const auth = Router();
@@ -15,7 +15,7 @@ auth.post("/register", asyncHandler(registerUser))
 auth.post("/reset", asyncHandler(requestReset))
 auth.get("/reset/:token", asyncHandler(resetUser))
 auth.get("/check_token", asyncHandler(check_token))
-auth.get("/admin", asyncHandler(adminLogin))
+auth.get("/admin", auth_middleware, asyncHandler(adminLogin))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
@@ -122,12 +122,12 @@ async function resetUser(req, res) {
 
 async function adminLogin(req, res) {
 
-    const { token } = req.params;
-    const auther = new TOTP()
-    const isValid = auther.isValid(token)
-
-    console.log(isValid)
-    // authenticator.keyuri()
+    const user = await Users.findById(req.user)
+    if (user.email === process.env.ADMIN_EMAIL) {
+        return res.json(true)
+    } else {
+        return res.status(400).json(false)
+    }
 
 }
 

@@ -6,10 +6,8 @@
   "scripts": {
     "test_api": "jest api.test.js",
     "test_api_with_coverage": "node --experimental-vm-modules node_modules/.bin/jest api.test.js --coverage",
-
     "api_dev": "npx nodemon --exec babel-node api/index.js",
     "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config webpack.dev.js\"",
-    
     "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config webpack.prod.js",
     "start": "concurrently \"node build/index.js\" \"http-server ./build\""
   },
@@ -35,9 +33,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.0",
     "nodemailer-express-handlebars": "^6.0.0",
-    "otplib": "^12.0.1",
     "process": "^0.11.10",
-    "qrcode": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",

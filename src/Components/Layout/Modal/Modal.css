@@ -28,10 +28,6 @@
     margin: 0px;
 }
 
-.modal_content {
-    overflow-y: auto;
-}
-
 .close_button {
     height: 20px;
     width: 20px;

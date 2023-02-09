@@ -40,29 +40,34 @@ export const Product = () => {
                         <Link to="/"><AiOutlineArrowLeft size={35} /></Link>
                         <h1>{data.name}</h1>
                     </Row>
-                    <div className='product_body' >
+                    <Column className="product_body">
+                        <div className='product_text' >
 
-                        <div className="product_photos">
-                            {data.photos.length > 1 ? (
-                                <Column className="gallery">
-                                    {data.photos.map(photo => <img src={process.env.API_URL + "/img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
-                                </Column>
-                            ) : ""}
-                            <img src={showPhoto ? process.env.API_URL + "/img/" + showPhoto : process.env.API_URL + "/img/" + data.photos[0]}></img>
-                        </div>
+                            <div className="product_photos">
+                                {data.photos.length > 1 ? (
+                                    <Column className="gallery">
+                                        {data.photos.map(photo => <img src={process.env.API_URL + "/img/" + photo} className={(photo === showPhoto) ? "active" : ""} key={photo} onClick={() => { setPhoto(photo) }} />)}
+                                    </Column>
+                                ) : ""}
+                                <img src={showPhoto ? process.env.API_URL + "/img/" + showPhoto : process.env.API_URL + "/img/" + data.photos[0]}></img>
+                            </div>
 
-                        <Column className='buy'>
+                            <Column className='buy'>
+                                <p>{data.text}</p>
 
-                            <p>{data.text}</p>
-
-                            <Column className="product_text">
-                                <Row className="product_text_element">
+                                {/* <Column className="product_text"> */}
+                                {/* <Row className="product_text_element">
                                     <img src={process.env.API_URL + "/img/" + data.photos[0]} />
                                     <p>{data.text}</p>
-                                </Row>
+                                </Row> */}
+                                {/* </Column> */}
                             </Column>
-                        </Column>
-                    </div>
+                        </div>
+                        <Row className="product_text_element">
+                            <img src={process.env.API_URL + "/img/" + data.photos[0]} />
+                            <p>{data.text}</p>
+                        </Row>
+                    </Column>
                 </Column>
                 <Row>
                     <div>

@@ -19,7 +19,7 @@ const Admin_Add = () => {
         }))
     }
 
-    const send_to_backend = async (event) => {
+    const send_to_backend = (event) => {
         event.preventDefault()
 
         const formData = new FormData()
@@ -32,7 +32,7 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
 
-        await axios.post(process.env.API_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
+        axios.post(process.env.API_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
             function () {
                 return alert("added")
@@ -41,7 +41,6 @@ const Admin_Add = () => {
                 return alert(error.response.data.message)
             }
         )
-
     }
 
     return (

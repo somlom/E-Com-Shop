@@ -32,3 +32,32 @@ export const ProtectedRoute = () => {
 
     }
 };
+
+export const AdminRoute = () => {
+    const navigate = useNavigate();
+
+    const data = useGetData("/auth/admin", {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+    })
+
+    console.log(data)
+
+    useEffect(() => {
+        if (data.isError) {
+            navigate("/404")
+        }
+    }, [data])
+
+
+    if (data.isSuccess === true && data.data === true) {
+
+        return <Outlet />;
+
+    } else {
+
+        return <Spinner />
+
+    }
+};
+
+// axios.post(`${process.env.API_URL}/auth/admin`, { token: totp }, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })

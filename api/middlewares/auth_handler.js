@@ -9,9 +9,13 @@ export const auth_middleware = asyncHandler(async (req, res, next) => {
         try {
             const token = req.headers.authorization.split(' ')[1]
             const decoded = await verify_token(token)
-            req.user = decoded.data
-            
-            next()
+            if(decoded.status === false){
+                res.status(401)
+                throw new Error("Wrong token")
+            }else{
+                req.user = decoded.data
+                next()
+            }
         } catch (error) {
             res.status(401)
             throw new Error(error)

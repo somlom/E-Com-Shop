@@ -1,6 +1,5 @@
 import express from "express";
 import cors from 'cors';
-import path from "path";
 require('dotenv').config()
 
 import { connect } from "./db/init"
@@ -9,7 +8,6 @@ import files from './controllers/files';
 import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
-import TOTP from "./lib/totp";
 import reviews from "./controllers/reviews";
 
 
@@ -34,10 +32,6 @@ app.use("/reviews", reviews)
 app.use("/auth", auth)
 app.use("/payment", payment)
 app.use("/download", files)
-
-
-const auther = new TOTP();
-auther.generateQRCode(process.env.ADMIN_EMAIL)
 
 app.use(error_handler)
 
