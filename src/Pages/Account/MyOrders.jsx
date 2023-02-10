@@ -1,8 +1,8 @@
 import React from 'react'
-import moment from "moment"
 import { useTranslation } from 'react-i18next';
 import { MdMoneyOff, MdAttachMoney, MdError } from "react-icons/md"
 import { BsTruck } from "react-icons/bs"
+import { format } from 'date-fns'
 
 import "./MyOrders.css"
 import { Spinner } from '../../Components/Other/Spinner/Spinner'
@@ -29,12 +29,11 @@ export const MyOrders = () => {
 
         return (
             data.map((obj) => {
-                const date = moment(obj.updatedAt, true).format("dddd, DD MMM HH:mm")
                 return (
                     <div className="card" key={obj._id}>
                         <Column className='card_data'>
                             <Row className='date_row'>
-                                <p>{date}</p>
+                                <p>{format(new Date(obj.updatedAt), 'dd/MM/yyyy')}</p>
                                 <p>Numm. {obj._id}</p>
                             </Row>
                             <Row>

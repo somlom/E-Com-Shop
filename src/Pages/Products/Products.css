@@ -198,9 +198,9 @@
 }
 
 .products {
-    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
 }
 
 .go_to_product {

@@ -54,13 +54,6 @@ export const Product = () => {
 
                             <Column className='buy'>
                                 <p>{data.text}</p>
-
-                                {/* <Column className="product_text"> */}
-                                {/* <Row className="product_text_element">
-                                    <img src={process.env.API_URL + "/img/" + data.photos[0]} />
-                                    <p>{data.text}</p>
-                                </Row> */}
-                                {/* </Column> */}
                             </Column>
                         </div>
                         <Row className="product_text_element">
@@ -85,7 +78,7 @@ export const Product = () => {
                         </Suspense>
 
                         <Suspense fallback={<Spinner />}>
-                            <Details data={data.text} />
+                            <Details data={data.technical_data} />
                         </Suspense>
 
                     </Switch>

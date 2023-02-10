@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('dotenv').config()
 
 
@@ -18,7 +18,7 @@ module.exports = {
             dependOn: 'shared',
         },
         redux_api: {
-            import: path.join(__dirname, "src", "features", "cart_slice.js"),
+            import: path.join(__dirname, "src", "features", "cart_api.js"),
             dependOn: 'shared',
         },
         redux_store: {
@@ -56,7 +56,7 @@ module.exports = {
                         options: {
                             name: '[name].[ext]',
                             outputPath: 'public/img',
-                            esModule: false // <- here
+                            esModule: false
                         }
                     }
                 ]
@@ -68,7 +68,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css'],
     },
     plugins: [
-        // new BundleAnalyzerPlugin(),
+        new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin(),
         new DefinePlugin({
             process: {

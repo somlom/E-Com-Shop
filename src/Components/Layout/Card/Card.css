@@ -1,4 +1,4 @@
-div.card_layout {
+.card_layout {
     background-color: #e8f5ff;
     border: none;
     border-radius: 18px;
@@ -7,6 +7,6 @@ div.card_layout {
     height: min-content;
 }
 
-div.card_layout img {
+.card_layout img {
     display: flex;
 }
