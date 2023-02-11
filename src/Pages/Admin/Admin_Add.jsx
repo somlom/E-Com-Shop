@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Button } from "../../Components/Other/Buttons/Standart";
-import { Input } from "../../Components/Other/Form/Form";
-import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
+import { toast } from "react-hot-toast";
 
 import "./Admin.css"
+import { Button } from "../../Components/Other/Buttons/Standart";
+import { Input, Form } from "../../Components/Other/Form/Form";
+import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
 
 
 const Admin_Add = () => {
@@ -13,7 +14,7 @@ const Admin_Add = () => {
     const [selectedFile, setSelectedFile] = useState(null);
 
     const add_to_state = (event) => {
-        setInput((prevState) => ({
+        return setInput((prevState) => ({
             ...prevState,
             [event.target.id]: event.target.value,
         }))
@@ -32,13 +33,13 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
 
-        axios.post(process.env.API_URL + "/products/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
+        axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
             function () {
-                return alert("added")
+                return toast.success("added")
             },
             function (error) {
-                return alert(error.response.data.message)
+                return toast.error(error.response.data)
             }
         )
     }
@@ -46,7 +47,7 @@ const Admin_Add = () => {
     return (
         <Column>
             <h1>Add item</h1>
-            <form title='Add item' onSubmit={send_to_backend} className="__form column">
+            <Form title='Add item' onSubmit={send_to_backend} className="__form column">
 
                 <label>Title</label>
                 <Input.Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
@@ -94,7 +95,7 @@ const Admin_Add = () => {
                     </Column>
                 </Row>
                 <Button.Success type="submit">Add</Button.Success>
-            </form>
+            </Form>
         </Column>
     )
 }

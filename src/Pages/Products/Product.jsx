@@ -70,9 +70,9 @@ export const Product = () => {
 
                         <Suspense fallback={<Spinner />}>
                             <Row className="reviews">
-                                <Product_Reviews rating={4} title={data.name} text={data.text} img={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAMFBMVEXi4uImJiadnZ2SkpLZ2dlsbGxdXV15eXnGxsaoqKiysrKGhoZNTU3Q0NA7Ozu8vLx+CZkfAAAAtElEQVRoge3T2Q6DIBCF4Tkim0t9/7etS22TWg2a3pj834WTcCKDgGYAAAAAAAC4qVbV+Kyj5PtPLc8L1F7zJEHOPbr6XUvzIkFxmiTLmVWq1lqcF8lpfqVVY5bk1zoomEUNe/m5Jq91RaVxaxTWOo02y4J/539pYuHRhaP8QpPtdmQpH+UXmmwPNnTdcol28jOS8/Ku31zRccmN4n5+8jsmzffPNqidDiLv5QAAAAAAALilJ/frBu723vpKAAAAAElFTkSuQmCC"} />
+                                <Product_Reviews rating={4} title={data.name} text={data.text} img={process.env.API_URL + "/img/" + data.photos[0]} />
                                 <Column>
-                                    <Reviews data={data} />
+                                    <Reviews data={id} />
                                 </Column>
                             </Row>
                         </Suspense>
@@ -85,7 +85,7 @@ export const Product = () => {
                 </Row>
                 <Row className='buy_row'>
                     <h3>{data.price} &euro;</h3>
-                    <Link to={"/pay_as_guest/" + id} className='primary_button'>{t("buy_now")}</Link>
+                    <Link to={"/pay_for_item/" + id} className='primary_button'>{t("buy_now")}</Link>
                     <a className='primary_button' onClick={() => dispatch(set_to_cart({ id: data._id }))}>{t("add")}</a>
                 </Row>
             </>

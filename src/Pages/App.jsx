@@ -9,19 +9,20 @@ import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { MyOrders } from './Account/MyOrders';
 import { Order_Guest } from './Order/Order_Guest';
 import { Personal_Data } from './Account/Personal_Data';
+import { Add_Review } from './Products/Add_Review';
+import { Order_Status } from './Order/Order_Status';
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
 const Error_404 = lazy(() => import("./Error/Error_404"));
 
 const Account = lazy(() => import("./Account/Account"));
-const FAQ = lazy(() => import('./Footer/FAQ'));
-const Impressum = lazy(() => import('./Footer/Impressum'));
 const Customer_Rights = lazy(() => import('./Footer/Customer_Rights'));
 const Support = lazy(() => import('./Footer/Support'));
 
 const Login = lazy(() => import('./Auth/Login'));
 const Register = lazy(() => import('./Auth/Register'));
+const Request_Reset = lazy(() => import('./Auth/Request_Reset'));
 const Reset = lazy(() => import('./Auth/Reset'));
 
 const Admin = lazy(() => import('./Admin/Admin'));
@@ -44,6 +45,7 @@ export function App() {
 
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="request_reset" element={<Request_Reset />} />
           <Route path="reset" element={<Reset />} />
 
           <Route element={<ProtectedRoute />} >
@@ -54,16 +56,14 @@ export function App() {
             </Route>
 
             <Route path="order" element={<Order />} />
-            <Route path="pay_as_guest/:id" element={<Order_Guest />} />
+            <Route path="order_status" element={<Order_Status />} />
+            <Route path="pay_for_item/:id" element={<Order_Guest />} />
+            <Route path="products/:id/add_review" element={<Add_Review />} />
 
           </Route>
 
-
-          <Route path='faq' element={<FAQ />} />
-          <Route path='impressum' element={<Impressum />} />
           <Route path='customer_rights' element={<Customer_Rights />} />
           <Route path='support' element={<Support />} />
-          <Route path='faq' element={<FAQ />} />
           <Route element={<AdminRoute />}>
             <Route path='admin' element={<Admin />} />
             <Route path="admin/:id" element={<Admin_Edit />} />

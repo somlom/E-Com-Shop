@@ -21,7 +21,7 @@ export default class Mailer {
             viewEngine: {
                 extName: '.handlebars',
                 partialsDir: path.resolve('./api/public/emails'),
-                defaultLayout: false,
+                defaultLayout: 'api/public/emails/main',
             },
             viewPath: path.resolve('./api/public/emails'),
         };

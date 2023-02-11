@@ -40,8 +40,6 @@ export const AdminRoute = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
     })
 
-    console.log(data)
-
     useEffect(() => {
         if (data.isError) {
             navigate("/404")

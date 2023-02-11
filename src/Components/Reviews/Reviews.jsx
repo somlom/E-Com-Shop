@@ -6,7 +6,7 @@ import "./Reviews.css"
 import { Stars } from './Stars/Stars';
 
 
-const Reviews = ({ data }) => {
+const Reviews = ({ product_id }) => {
 
     const data_to_map = [
         {

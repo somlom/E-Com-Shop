@@ -9,6 +9,7 @@ import { error_handler } from "./middlewares/error_handler";
 import auth from "./controllers/auth";
 import payment from "./controllers/payment";
 import reviews from "./controllers/reviews";
+import admin from "./controllers/admin";
 
 
 if (process.env.NODE_ENV === "development") {
@@ -32,6 +33,7 @@ app.use("/reviews", reviews)
 app.use("/auth", auth)
 app.use("/payment", payment)
 app.use("/download", files)
+app.use("/admin", admin)
 
 app.use(error_handler)
 

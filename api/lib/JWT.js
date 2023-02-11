@@ -1,15 +1,12 @@
 import { verify, sign } from "jsonwebtoken";
 
-import { Users } from "../db/schemas";
-
 
 export const verify_token = async (token = "") => {
 
     try {
         const decoded = verify(token, "secret")
-        const user = await Users.findById(decoded._id)
-        if (user) {
-            return { status: true, data: user._id }
+        if (decoded) {
+            return { status: true, data: decoded }
         } else {
             return { status: false, data: "Invalid token" }
         }
@@ -18,6 +15,7 @@ export const verify_token = async (token = "") => {
     }
 }
 
-export const get_token = (_id, expiresIn = "") => {
-    return sign({ _id }, "secret", expiresIn.length === 0 ? { expiresIn: '1h' } : { expiresIn: expiresIn })
+export const get_token = (data, expiresIn = "") => {
+    const signed_token = sign({ payload: data }, "secret", expiresIn.length === 0 ? { expiresIn: '1h' } : { expiresIn: expiresIn })
+    return signed_token
 }

@@ -78,6 +78,8 @@
     position: sticky;
     bottom: 10px;
     align-items: center;
+    margin: 10px;
+    box-shadow: 0 0 20px #0000005e;
 }
 
 .buy_row * {

@@ -37,12 +37,12 @@ const Footer = () => {
       <Row className='footer_body'>
 
         <Column className="footer_links">
-          <Link to="/faq" className="link">
-            {t("faq")}
-          </Link>
-          <Link to="/impressum" className="link">
+          <a href={require("../../../static/files/AGB.pdf")} className="link">
+            {t("agb")}
+          </a>
+          <a href={require("../../../static/files/IMPRESSUM.pdf")} className="link">
             {t("impressum")}
-          </Link>
+          </a>
           <Link to="/customer_rights" className="link">
             {t("customer_rights")}
           </Link>

@@ -110,6 +110,9 @@ const orders_schema = new Schema({
         ref: 'Users',
         required: [true, "Please add your USER_ID"],
     },
+    stripe_order_id: {
+        type: String
+    },
     payed: {
         type: Boolean,
         default: false

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 import { useGetData } from "../../hooks/Data"
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import "./Admin.css"
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
-import { Input } from "../../Components/Other/Form/Form";
+import { Form, Input } from "../../Components/Other/Form/Form";
 import { Button } from "../../Components/Other/Buttons/Standart";
 
 
@@ -39,7 +40,7 @@ const Admin_Edit = () => {
         // }))
     }
 
-    const send_to_backend = async (event) => {
+    const send_to_backend = (event) => {
         event.preventDefault()
 
         const formData = new FormData()
@@ -62,13 +63,13 @@ const Admin_Edit = () => {
         formData.append("quantity", value.quantity)
         formData.append("technical_data", JSON.stringify([{ header: value.technical_header, text: value.technical_text }]))
 
-        await axios.post(process.env.API_URL + "/products/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
+        axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
-            function (a) {
-                return alert("added")
+            function () {
+                return toast.success("added")
             },
             function (error) {
-                return alert(error.response.data)
+                return toast.error(error.response.data)
             }
         )
     }
@@ -78,7 +79,7 @@ const Admin_Edit = () => {
         return (
             <Column>
                 <h1>Edit item</h1>
-                <form title='Add item' onSubmit={send_to_backend} className="__form column">
+                <Form title='Add item' onSubmit={send_to_backend} className="__form column">
 
                     <Input.Text id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
 
@@ -144,7 +145,7 @@ const Admin_Edit = () => {
                         ))}
                     </Column>
                     <Button.Success type="submit">Edit</Button.Success>
-                </form>
+                </Form>
             </Column>
         )
     } else if (isError) {

@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
+import Stripe from "stripe";
 
 import { Users } from "../db/schemas";
 import { get_token, verify_token } from "../lib/JWT";
@@ -10,15 +11,23 @@ import { auth_middleware } from "../middlewares/auth_handler";
 
 const auth = Router();
 
+const stripe = new Stripe(process.env.STRIPE_SECRET);
+
 auth.post("/login", asyncHandler(loginUser))
 auth.post("/register", asyncHandler(registerUser))
-auth.post("/reset", asyncHandler(requestReset))
-auth.get("/reset/:token", asyncHandler(resetUser))
+
+auth.post("/request_reset", asyncHandler(requestResetUser))
+auth.post("/reset/:token", asyncHandler(resetUser))
+
 auth.get("/check_token", asyncHandler(check_token))
+
 auth.get("/admin", auth_middleware, asyncHandler(adminLogin))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
+    
+    // https://stripe.com/docs/api/payment_intents/object
+
     if (email && password) {
 
         const user = await Users.findOne({ email })
@@ -75,7 +84,12 @@ async function check_token(req, res) {
         const token = req.headers.authorization.split(' ')[1]
         const response = await verify_token(token)
         if (response.status === true) {
-            return res.json(response.status)
+            const user = await Users.findById(response.data.payload)
+            if (user) {
+                return res.json(response.status)
+            } else {
+                return res.status(401).json(response.status)
+            }
         } else {
             return res.status(401).json(response.status)
         }
@@ -86,15 +100,15 @@ async function check_token(req, res) {
     }
 }
 
-async function requestReset(req, res) {
+async function requestResetUser(req, res) {
 
     const { email } = req.body;
-
     const user = await Users.findOne({ email: email })
 
     if (user) {
         const mailer = new Mailer();
-        mailer.send_email(user.email, "Reset your password", "password_reset", { url: "url" })
+        const token = get_token(user.email)
+        mailer.send_email(user.email, "Reset your password", "password_reset", { url: `${process.env.PUBLIC_URL}/reset?token=${token}` })
         return res.json({ data: "E-Mail sent" })
     } else {
         throw new Error("Sorry, but there is no user with this e-mail")
@@ -104,19 +118,33 @@ async function requestReset(req, res) {
 async function resetUser(req, res) {
 
     const { token } = req.params;
+    const { password, password2 } = req.body;
 
-    const user = await Users.findOne({ email: email })
+    const user_email = await verify_token(token)
 
-    if (user) {
-        const reset_token = await verify_token(token)
-        if (reset_token.status) {
-            return res.json({ _id: reset_token.data })
+    if (user_email.status) {
+
+        const user = await Users.findOne({ email: user_email.data.payload })
+
+        if (user) {
+
+            const salt = await bcrypt.genSalt(5)
+            const hash = await bcrypt.hash(password, salt);
+            const are_same = await bcrypt.compare(password2, hash);
+            if (!are_same) {
+                res.status(401)
+                throw Error("Passwords are not same")
+            }
+            const update_user = await Users.findByIdAndUpdate(user._id, { password: hash })
+            return res.json(get_token(update_user._id));
+
         } else {
             res.status(401)
-            throw new Error(reset_token.data)
+            throw new Error("Sorry, something went wrong")
         }
     } else {
-        throw new Error("Sorry, something went wrong")
+        res.status(400)
+        throw new Error("Invalid token")
     }
 }
 

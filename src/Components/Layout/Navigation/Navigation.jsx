@@ -5,7 +5,6 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-
 import "./Navigation.css"
 import { Modal } from '../Modal/Modal'
 import { cartArray } from '../../../features/cart_slice';
@@ -29,7 +28,7 @@ export const Navigation = () => {
     sendIt(cart)
   }, [cart])
 
-  const count = result.data?.quantity || 0
+  const count = result.data?.quantity
 
   return (
     <Row className='nav'>

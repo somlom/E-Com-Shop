@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
+
 export const cart_api = createApi({
     reducerPath: "cart_api",
     baseQuery: fetchBaseQuery({ baseUrl: `${process.env.API_URL}/products` }),
@@ -7,6 +8,11 @@ export const cart_api = createApi({
     endpoints: (builder) => ({
         getAll: builder.query({
             query: () => "/",
+            providesTags: (result, error, arg) =>
+                result ?
+                    [...result.map(({ id }) => ({ type: 'Post', id })), 'Post']
+                    :
+                    ['Post'],
         }),
         postCart: builder.mutation({
             query: (data) => ({
@@ -15,7 +21,7 @@ export const cart_api = createApi({
                 body: { data: data },
                 responseType: "json",
             }),
-            invalidatesTags: [{ type: 'Cart', id: 'LIST' }]
+            invalidatesTags: (result, error, arg) => [{ type: 'Cart', id: arg.id }],
         }),
         postCount: builder.mutation({
             query: (data) => ({
@@ -24,7 +30,7 @@ export const cart_api = createApi({
                 body: { data: data },
                 responseType: "json",
             }),
-            invalidatesTags: [{ type: 'Cart', id: 'LIST' }]
+            invalidatesTags: (result, error, arg) => [{ type: 'Cart', id: arg.id }],
         })
     })
 })

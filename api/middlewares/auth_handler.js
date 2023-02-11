@@ -13,7 +13,7 @@ export const auth_middleware = asyncHandler(async (req, res, next) => {
                 res.status(401)
                 throw new Error("Wrong token")
             }else{
-                req.user = decoded.data
+                req.user = decoded.data.payload
                 next()
             }
         } catch (error) {
