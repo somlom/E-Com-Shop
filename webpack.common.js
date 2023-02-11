@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 require('dotenv').config()
 
 
@@ -68,7 +67,6 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css'],
     },
     plugins: [
-        new BundleAnalyzerPlugin(),
         new MiniCssExtractPlugin(),
         new DefinePlugin({
             process: {
