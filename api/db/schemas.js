@@ -88,9 +88,9 @@ const users_schema = new Schema({
         type: String,
         required: [true, "Please add your SURNAME"],
     },
-    address: {
-        type: String,
-    },
+    // address: {
+    //     type: String,
+    // },
     email: {
         type: String,
         required: [true, "Please add your EMAIL"],
@@ -117,18 +117,18 @@ const orders_schema = new Schema({
         type: Boolean,
         default: false
     },
-    rejected: {
-        type: Boolean,
-        default: false
-    },
-    pending: {
-        type: Boolean,
-        default: false
-    },
-    delivered: {
-        type: Boolean,
-        default: false
-    },
+    // rejected: {
+    //     type: Boolean,
+    //     default: false
+    // },
+    // pending: {
+    //     type: Boolean,
+    //     default: false
+    // },
+    // delivered: {
+    //     type: Boolean,
+    //     default: false
+    // },
     open: {
         type: Boolean,
         default: true
