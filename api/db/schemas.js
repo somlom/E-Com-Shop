@@ -54,7 +54,7 @@ const reviews_schema = new Schema({
         type: String,
         required: [true, "Please add your TITLE"],
     },
-    stars: {
+    rating: {
         type: String,
         required: [true, "Please add your STARS"],
     },
@@ -88,9 +88,6 @@ const users_schema = new Schema({
         type: String,
         required: [true, "Please add your SURNAME"],
     },
-    // address: {
-    //     type: String,
-    // },
     email: {
         type: String,
         required: [true, "Please add your EMAIL"],
@@ -117,21 +114,13 @@ const orders_schema = new Schema({
         type: Boolean,
         default: false
     },
-    // rejected: {
-    //     type: Boolean,
-    //     default: false
-    // },
-    // pending: {
-    //     type: Boolean,
-    //     default: false
-    // },
-    // delivered: {
-    //     type: Boolean,
-    //     default: false
-    // },
     open: {
         type: Boolean,
         default: true
+    },
+    amount: {
+        type: Number,
+        default: 0
     },
     products: {
         type: [
@@ -150,6 +139,24 @@ const orders_schema = new Schema({
 }, {
     timestamps: true
 })
+
+orders_schema.pre('save', async function (next) {
+
+    const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })
+
+    let count = 0;
+
+
+    this.products.map((obj) => {
+
+        const found = populated.find(ttt => ttt.id === obj.id)
+        count += obj.quantity * found.price
+
+    })
+
+    this.amount = count
+    next();
+});
 
 export const Users = mongoose.model('Users', users_schema);
 export const Orders = mongoose.model('Orders', orders_schema);

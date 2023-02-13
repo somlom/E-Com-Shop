@@ -59,7 +59,6 @@ const Footer = () => {
           </Column>
 
         </Column>
-        {/* <p>{t("payment_methods")}</p>  */}
         <img src={require("../../../static/logo-stripe.png")} />
 
       </Row>

@@ -4,19 +4,19 @@ import { useTranslation } from 'react-i18next'
 import "./Product_Reviews.css"
 import { Card } from '../../Layout/Card/Card'
 import { Pay } from '../../Other/Buttons/Pay/Pay'
-import { Stars } from '../Stars/Stars'
+import { Rating } from '../Rating/Rating'
 
 
-export const Product_Reviews = ({ title, rating, img }) => {
+export const Product_Reviews = ({ title, rating, img, id }) => {
 
     const [t] = useTranslation();
 
     return (
         <Card classs={"product_reviews"}>
             <img src={img} />
-            <Stars length={rating} />
+            <Rating length={rating} />
             <h2>{title}</h2>
-            <Pay>{t("click_to_leave_your_review!")}</Pay>
+            <Pay to={"/products/add_review/" + id}>{t("click_to_leave_your_review")}</Pay>
         </Card>
     )
 }

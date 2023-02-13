@@ -40,9 +40,21 @@ const Number = (props) => {
     )
 }
 
+const Textarea = (props) => {
+
+    const { onChange, onSubmit, cols, rows, children } = props
+
+    return (
+        <textarea onChange={onChange} onSubmit={onSubmit} cols={cols} rows={rows} {...props}>
+            {children}
+        </textarea>
+    )
+}
+
 export const Input = {
     Email: Email,
     Password: Password,
     Text: Text,
-    Number: Number
+    Number: Number,
+    Textarea: Textarea
 }

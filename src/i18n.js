@@ -8,8 +8,10 @@ import DE from "./locales/de/translation.json";
 import EN from "./locales/en/translation.json";
 import ES from "./locales/es/translation.json";
 import FR from "./locales/fr/translation.json";
+import PL from "./locales/pl/translation.json";
 import RO from "./locales/ro/translation.json";
 import RU from "./locales/ru/translation.json";
+import TR from "./locales/tr/translation.json";
 import UA from "./locales/ua/translation.json";
 
 
@@ -34,6 +36,12 @@ const resources = {
   },
   ua: {
     translation: UA
+  },
+  pl: {
+    translation: PL
+  },
+  tr: {
+    translation: TR
   },
 };
 

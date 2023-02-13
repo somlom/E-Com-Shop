@@ -2,14 +2,14 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/schemas";
-import { upload_photos, delete_photos } from "../lib/photo";
+import { delete_photos } from "../lib/photo";
 import { create_product, update_product } from "../lib/stripe";
 
 
-const admin = Router();
+export const admin = Router();
 
-admin.post("/add", upload_photos, asyncHandler(add_product))
-admin.post("/edit", upload_photos, asyncHandler(edit_product))
+admin.post("/add", asyncHandler(add_product))
+admin.post("/edit", asyncHandler(edit_product))
 
 async function add_product(req, res) {
 
@@ -70,5 +70,3 @@ async function edit_product(req, res) {
         throw new Error("No items specified")
     }
 }
-
-export default admin;

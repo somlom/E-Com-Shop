@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
-import { Column, Row } from '../../Structure/Flex-Box/Flex-Box'
 
 import "./Switch.css"
+import { Column, Row } from '../../Structure/Flex-Box/Flex-Box'
 
 
 export const Switch = ({ first, second, children }) => {
 
     const [clicked, setClick] = useState(false)
 
-    return (   
-        //  width: 100%;
+    return (
         <>
             <Column className={"switch_column"}>
                 <Row className='switch'>

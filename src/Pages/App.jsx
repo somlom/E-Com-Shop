@@ -1,22 +1,27 @@
 import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from "react-router-dom";
 
-import { Layout } from '../Components/Layout/Layout';
-import { Product } from './Products/Product';
+// LAYOUT
 import { AdminRoute, ProtectedRoute } from '../hooks/Auth';
-import { Order } from './Order/Order';
+import { Layout } from '../Components/Layout/Layout';
 import { Spinner } from '../Components/Other/Spinner/Spinner';
-import { MyOrders } from './Account/MyOrders';
-import { Order_Guest } from './Order/Order_Guest';
-import { Personal_Data } from './Account/Personal_Data';
+// PRODUCTS
+import { Product } from './Products/Product';
 import { Add_Review } from './Products/Add_Review';
+// ORDER
+import { Order } from './Order/Order';
 import { Order_Status } from './Order/Order_Status';
+import { Order_Guest } from './Order/Order_Guest';
+// ACCOUNT
+import { MyOrders } from './Account/MyOrders/MyOrders';
+import { Personal_Data } from './Account/Personal_Data/Personal_Data';
+
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));
 const Error_404 = lazy(() => import("./Error/Error_404"));
 
-const Account = lazy(() => import("./Account/Account"));
+const Account = lazy(() => import("./Account/Account/Account"));
 const Customer_Rights = lazy(() => import('./Footer/Customer_Rights'));
 const Support = lazy(() => import('./Footer/Support'));
 
@@ -50,7 +55,8 @@ export function App() {
 
           <Route element={<ProtectedRoute />} >
 
-            <Route path="account" element={<Account />}>
+            <Route path="/account" element={<Account />}>
+              <Route path="" element={<MyOrders />} />
               <Route path="orders" element={<MyOrders />} />
               <Route path="personal_data" element={<Personal_Data />} />
             </Route>
@@ -58,15 +64,16 @@ export function App() {
             <Route path="order" element={<Order />} />
             <Route path="order_status" element={<Order_Status />} />
             <Route path="pay_for_item/:id" element={<Order_Guest />} />
-            <Route path="products/:id/add_review" element={<Add_Review />} />
+            <Route path="products/add_review/:id" element={<Add_Review />} />
 
           </Route>
 
           <Route path='customer_rights' element={<Customer_Rights />} />
           <Route path='support' element={<Support />} />
+
           <Route element={<AdminRoute />}>
             <Route path='admin' element={<Admin />} />
-            <Route path="admin/:id" element={<Admin_Edit />} />
+            <Route path="/products/:id/admin" element={<Admin_Edit />} />
             <Route path="admin/add" element={<Admin_Add />} />
           </Route>
 

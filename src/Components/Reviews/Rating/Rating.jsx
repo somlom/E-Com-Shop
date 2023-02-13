@@ -2,7 +2,7 @@ import React from 'react'
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 
-export const Stars = (props) => {
+export const Rating = (props) => {
 
     const max_length = 5;
 

@@ -22,6 +22,7 @@
 }
 
 .switch span {
+    cursor: pointer;
     transition: background-color 500ms ease;
 }
 .switch:after {

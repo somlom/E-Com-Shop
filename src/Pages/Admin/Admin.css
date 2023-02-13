@@ -2,13 +2,13 @@ div.column form.__form.column * {
     margin: 10px;
 }
 
-div.column form.__form.column div.__admin_gellery.row {
+div.column form.__form.column div.__admin_gallery.row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-div.column form.__form.column div.__admin_gellery.row div.__admin_lower_layer {
+div.column form.__form.column div.__admin_gallery.row div.__admin_lower_layer {
     display: flex;
     width: 250px;
     height: auto;
@@ -17,7 +17,7 @@ div.column form.__form.column div.__admin_gellery.row div.__admin_lower_layer {
     align-items: center;
 }
 
-div.column form.__form.column div.__admin_gellery.row div.__admin_lower_layer img {
+div.column form.__form.column div.__admin_gallery.row div.__admin_lower_layer img {
     width: 250px;
 }
 
@@ -26,6 +26,13 @@ div.column form.__form.column input#name {
     min-width: 200px;
 }
 
-div.__admin_gellery.row img{
+div.__admin_gallery.row img{
     width: 200px;
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+div.__admin_gallery{
+    flex-wrap: wrap;
 }

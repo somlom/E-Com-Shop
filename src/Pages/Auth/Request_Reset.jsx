@@ -30,7 +30,7 @@ const Request_Reset = () => {
 
             toast.promise(api_response, {
                 loading: t("loading"),
-                success: t("Check_your_email"),
+                success: t("check_your_email"),
                 error: (err) => err.message,
             });
         } else {

@@ -202,7 +202,7 @@
 .products {
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .go_to_product {

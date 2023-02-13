@@ -6,13 +6,13 @@ import { useTranslation } from 'react-i18next';
 
 import "./Products.css"
 import { set_to_cart } from '../../features/cart_slice';
-import { useGetData } from '../../hooks/Data';
+import { GetTextTranslation, useGetData } from '../../hooks/Data';
 import { Switch } from '../../Components/Other/Buttons/Switch/Switch';
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 import { Product_Reviews } from '../../Components/Reviews/Product_Reviews/Product_Reviews';
 
-const Reviews = lazy(() => import('../../Components/Reviews/Reviews'));
+const Reviews = lazy(() => import('../../Components/Reviews/Reviews/Reviews'));
 const Details = lazy(() => import('../../Components/Details/Details'));
 
 export const Product = () => {
@@ -21,10 +21,11 @@ export const Product = () => {
 
     const { id } = useParams();
     const { isLoading, isError, data, isSuccess } = useGetData("/products/" + id)
-
+    // const revs = useGetData("/reviews/" + id)
     const [showPhoto, setPhoto] = useState(false)
 
     const dispatch = useDispatch();
+
 
     if (isLoading) {
         return <Spinner />
@@ -58,7 +59,11 @@ export const Product = () => {
                         </div>
                         <Row className="product_text_element">
                             <img src={process.env.API_URL + "/img/" + data.photos[0]} />
-                            <p>{data.text}</p>
+
+                            <p>
+                                <GetTextTranslation src_lang='de' dest_lang='de' text={data.text} />
+                            </p>
+
                         </Row>
                     </Column>
                 </Column>
@@ -70,9 +75,9 @@ export const Product = () => {
 
                         <Suspense fallback={<Spinner />}>
                             <Row className="reviews">
-                                <Product_Reviews rating={4} title={data.name} text={data.text} img={process.env.API_URL + "/img/" + data.photos[0]} />
+                                <Product_Reviews rating={4} title={data.name} text={data.text} id={id} img={process.env.API_URL + "/img/" + data.photos[0]} />
                                 <Column>
-                                    <Reviews data={id} />
+                                    <Reviews data={"revs.data"} />
                                 </Column>
                             </Row>
                         </Suspense>

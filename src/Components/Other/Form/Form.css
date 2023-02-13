@@ -24,7 +24,7 @@ div.responsible_form .form.column{
     margin: 10px;
 }
 
-.form p, .form input {
+.form p, .form input, .form textarea {
     width: 100%;
     margin: 1vw 0;
 }
@@ -34,18 +34,17 @@ div.responsible_form .form.column{
     text-align: center;
 }
 
-.form input {
-
+.form input,
+.form textarea {
     padding: 12px 20px;
     box-sizing: border-box;
     border-radius: 20px;
     border: 1px solid #ccc;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
     outline: none;
     align-self: center;
 }
 
-.form input:focus {
+.form input:focus,
+.form textarea:focus {
     border: 1px solid  rgb(2, 158, 255);
 }

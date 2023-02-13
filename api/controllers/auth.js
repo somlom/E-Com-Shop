@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-import Stripe from "stripe";
 
 import { Users } from "../db/schemas";
 import { get_token, verify_token } from "../lib/JWT";
@@ -9,9 +8,7 @@ import Mailer from "../lib/mailer";
 import { auth_middleware } from "../middlewares/auth_handler";
 
 
-const auth = Router();
-
-const stripe = new Stripe(process.env.STRIPE_SECRET);
+export const auth = Router();
 
 auth.post("/login", asyncHandler(loginUser))
 auth.post("/register", asyncHandler(registerUser))
@@ -158,6 +155,3 @@ async function adminLogin(req, res) {
     }
 
 }
-
-
-export default auth;

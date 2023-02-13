@@ -78,13 +78,12 @@ const Admin_Edit = () => {
 
         return (
             <Column>
-                <h1>Edit item</h1>
-                <Form title='Add item' onSubmit={send_to_backend} className="__form column">
-
+                <Form title='Edit item' onSubmit={send_to_backend} className="__form column">
+                    Name
                     <Input.Text id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
 
-                    <Row className=" __admin_gellery">
-                        <h1>Photos already on server</h1>
+                    <Row className="__admin_gallery">
+                        <h3>Photos already on server</h3>
                         {value.photos &&
                             value.photos.map(obj => {
                                 return (
@@ -100,8 +99,8 @@ const Admin_Edit = () => {
                             })
                         }
                     </Row>
-                    <Row className="__admin_gellery">
-                        <h1>Photos to load</h1>
+                    <Row className="__admin_gallery">
+                        <h3>Photos to load</h3>
                         {selectedFile &&
                             Array.from(selectedFile).map(obj => {
                                 return (
@@ -125,13 +124,20 @@ const Admin_Edit = () => {
                             onChange={(e) => setSelectedFile((prev) => prev === null ? e.target.files : [...prev, ...e.target.files])}
                         />
                     </Row>
-
-                    <textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
+                    Text
+                    <Input.Textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
                     <Row>
 
-                        <Input.Number step="0.01" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
+                        <Column>
+                            Price
+                            <Input.Number step="0.01" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
+                        </Column>
 
-                        <Input.Number id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
+                        <Column>
+                            Quantity
+                            <Input.Number id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
+                        </Column>
+                        
                     </Row>
                     <Column>
                         <h1>Technical data</h1>
@@ -139,8 +145,7 @@ const Admin_Edit = () => {
                             console.log(obj),
                             <>
                                 <Input.Text placeholder="Header" value={obj.header} id="technical_header" onChange={(e) => add_data_to_state(e, "header")} />
-                                <textarea tabIndex={5} cols={20} placeholder="Text" value={obj.text} id="technical_text" onChange={(e) => add_data_to_state(e, "text")} />
-
+                                <Input.Textarea tabIndex={5} cols={20} placeholder="Text" value={obj.text} id="technical_text" onChange={(e) => add_data_to_state(e, "text")} />
                             </>
                         ))}
                     </Column>

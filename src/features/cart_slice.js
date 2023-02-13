@@ -30,6 +30,7 @@ export const cart_slice = createSlice({
       } else {
 
         state.cart.push({ _id: action.payload.id, quantity: 1 });
+        toast.success("Successfuly added!")
 
       }
     },

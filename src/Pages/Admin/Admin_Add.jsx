@@ -53,7 +53,7 @@ const Admin_Add = () => {
                 <Input.Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
 
                 <label>Photos</label>
-                <Row className="__admin_gellery">
+                <Row className="__admin_gallery">
                     {selectedFile &&
                         Array.from(selectedFile).map(obj => {
                             return (
@@ -78,7 +78,7 @@ const Admin_Add = () => {
                     />
                 </Row>
                 <label>Text</label>
-                <textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
+                <Input.Textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
                 <label>Price</label>
                 <Input.Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
@@ -91,7 +91,7 @@ const Admin_Add = () => {
                     <Column>
                         <h1>Technical data</h1>
                         <Input.Text placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)} />
-                        <textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)} />
+                        <Input.Textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)} />
                     </Column>
                 </Row>
                 <Button.Success type="submit">Add</Button.Success>

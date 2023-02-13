@@ -41,7 +41,7 @@ export const Order = () => {
 
     if (cart_data.isError === true) {
 
-        return <h1>{t("loading_error")}</h1>
+        return <h1>{t("error")}</h1>
 
     } else if ((cart_data.isLoading) || cart_data.isUninitialized) {
 

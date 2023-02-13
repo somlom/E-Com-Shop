@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-hot-toast';
 import { BsBag } from "react-icons/bs"
 import { AiOutlineUser } from "react-icons/ai"
-import { BiReceipt, BiLogOut } from "react-icons/bi"
+import { BiLogOut } from "react-icons/bi"
 
 import './Account.css'
-import { Column } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Column } from '../../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 
 const Account = () => {
