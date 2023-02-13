@@ -91,6 +91,8 @@ async function close_order(req, res) {
 
     const order = await Orders.findById(order_id)
 
+    console.log("old ",order);
+
     const session = await stripe.checkout.sessions.retrieve(
         order.stripe_order_id, { apiKey: process.env.STRIPE_SECRET }
     );
@@ -103,8 +105,13 @@ async function close_order(req, res) {
         if (order.payed === false) {
 
             order.payed = true
-            order.open = true
+            order.open = false
             await order.save()
+
+            console.log("new ",order)
+
+
+
             const user = await Users.findById(req.user)
             const mailer = new Mailer()
             // const coupon = await stripe.coupons.create({
