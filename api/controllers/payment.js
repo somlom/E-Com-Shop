@@ -55,9 +55,9 @@ async function pay_for_item(req, res) {
     const product = req.body
     product._id = product.id
 
-    const order = await Orders.create({ user: req.user, products: [product] }).populate("user")
-    // const order_user = await order.populate("user")
-    const session = await create_stripe_session(order, order.id, order.user.email)
+    const order = await Orders.create({ user: req.user, products: [product] })
+    const user = await Users.findById(req.user)
+    const session = await create_stripe_session(order, order.id, user.email)
 
     order.stripe_order_id = session.id
     await order.save()
