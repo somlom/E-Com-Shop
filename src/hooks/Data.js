@@ -12,6 +12,9 @@ export const usePostData = (url = "", data = "", headers = "") => {
         return () => {
 
             const resp = axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers })
+            
+            console.log(resp)
+
             resp.then((response) => (
                 setValue((prev) => ({
                     ...prev,

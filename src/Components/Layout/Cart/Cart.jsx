@@ -19,11 +19,7 @@ export function Cart({ handle_close }) {
   const [sendIt, result] = usePostCartMutation();
 
   useEffect(() => {
-    const send_to_backend = async (cart) => {
-      await sendIt(cart)
-    }
-    send_to_backend(cart)
-
+    sendIt(cart)
   }, [cart])
 
   if (result.isSuccess === true && result.data !== undefined) {
