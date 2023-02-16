@@ -1,7 +1,7 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
-import { Products } from "../db/schemas";
+import { Products } from "../db/products";
 
 
 export const products = Router();
@@ -31,6 +31,7 @@ async function get_cart_items(req, res) {
 }
 
 async function check_cart(req, res) {
+
     const { data } = req.body;
 
     let quantity = 0

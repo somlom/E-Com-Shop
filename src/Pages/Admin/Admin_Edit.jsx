@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+import "./Admin.css"
 import { useGetData } from "../../hooks/Data"
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
-import "./Admin.css"
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
 import { Form, Input } from "../../Components/Other/Form/Form";
 import { Button } from "../../Components/Other/Buttons/Standart";
@@ -66,7 +66,7 @@ const Admin_Edit = () => {
         axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
             function () {
-                return toast.success("added")
+                return toast.success("updated")
             },
             function (error) {
                 return toast.error(error.response.data)

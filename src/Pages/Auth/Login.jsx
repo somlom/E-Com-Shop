@@ -46,7 +46,7 @@ const Login = () => {
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("logged_in"),
-                error: (err) => err.message,
+                error: (err) => t(err.message),
             });
         } else {
             return toast.error(t("empty_fields"))
@@ -58,9 +58,9 @@ const Login = () => {
             {state?.message !== undefined ? <h3>{state.message}</h3> : ""}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
                 <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
-                <Input.Password placeholder={t("password")} id='password' onChange={add_to_state} />
+                <Input.Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
                 <Column>
-                <Link to="/request_reset">{t("forgot_password")}</Link>
+                    <Link to="/request_reset">{t("forgot_password")}</Link>
                     <Row className='form_buttons'>
 
                         <Button.Primary type='submit'>

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useTranslation } from 'react-i18next';
 import { MdMoneyOff, MdAttachMoney } from "react-icons/md"
-import { format } from 'date-fns'
+import { format, sub } from 'date-fns'
 
 import "./MyOrders.css"
 import { Spinner } from '../../../Components/Other/Spinner/Spinner'
@@ -38,10 +38,10 @@ export const MyOrders = () => {
         })
 
         return (
-            <>
+            <Suspense fallback={<Spinner />}>
                 {new_data.payed.map((obj) => <Order key={obj._id} obj={obj} />)}
                 {new_data.unpayed.map((obj) => <Order key={obj._id} obj={obj} />)}
-            </>
+            </Suspense>
         )
 
     }
@@ -49,13 +49,24 @@ export const MyOrders = () => {
 
 const Order = ({ obj }) => {
 
-    const [t] = useTranslation()
+    const locales = {
+        de:"de",
+        us:"us",
+        ru:"ru",
+    }
 
+    const [t] = useTranslation()
+    // return format(date, formatStr, {
+    //     locale: locales[window.__localeId__] // or global.__localeId__
+    // })
+    // sub()
     return (
         <div className="card">
             <Column className='card_data'>
                 <Row className='date_row'>
-                    <p>{format(new Date(obj.updatedAt), 'dd/MM/yyyy')}</p>
+                    <p>{format(new Date(obj.updatedAt), 'dd/MM/yyyy hh:mm', {
+                        locale: locales[window.__localeId__] // or global.__localeId__
+                    })}</p>
                     <p>Numm. {obj._id}</p>
                 </Row>
                 <Row>

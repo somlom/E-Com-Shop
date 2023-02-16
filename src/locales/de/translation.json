@@ -66,5 +66,9 @@
   "404_error": "404 Fehler",
   "sorry": "Verzeihung",
   "back_to_homepage": "Zurück zur Startseite",
-  "buy_now": "Kaufe jetzt"
+  "buy_now": "Kaufe jetzt",
+  "registered": "Registriert!",
+  "invalid_credentials": "Ungültige Anmeldeinformationen",
+  "passwords_are_not_same": "Passwörter sind nicht gleich",
+  "smth_went_wrong": "Entschuldigung, etwas ist schief gelaufen"
 }

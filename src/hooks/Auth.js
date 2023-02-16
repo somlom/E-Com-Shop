@@ -6,7 +6,7 @@ import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { useGetData } from "./Data";
 
 
-export const ProtectedRoute = () => {
+const ProtectedRoute = () => {
     const [t] = useTranslation();
     const location = useLocation()
     const navigate = useNavigate();
@@ -47,7 +47,7 @@ export const AdminRoute = () => {
     }, [data])
 
 
-    if (data.isSuccess === true && data.data === true) {
+    if (data.isSuccess === true) {
 
         return <Outlet />;
 
@@ -57,5 +57,7 @@ export const AdminRoute = () => {
 
     }
 };
+
+export default ProtectedRoute;
 
 // axios.post(`${process.env.API_URL}/auth/admin`, { token: totp }, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })

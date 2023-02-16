@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { Routes, Route } from "react-router-dom";
 
 // LAYOUT
-import { AdminRoute, ProtectedRoute } from '../hooks/Auth';
+import { AdminRoute } from '../hooks/Auth';
 import { Layout } from '../Components/Layout/Layout';
 import { Spinner } from '../Components/Other/Spinner/Spinner';
 // PRODUCTS
@@ -16,6 +16,7 @@ import { Order_Guest } from './Order/Order_Guest';
 import { MyOrders } from './Account/MyOrders/MyOrders';
 import { Personal_Data } from './Account/Personal_Data/Personal_Data';
 
+const ProtectedRoute = lazy(() => import('../hooks/Auth'));
 
 const Main = lazy(() => import("./Main"));
 const Products = lazy(() => import("./Products/Products"));

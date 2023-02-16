@@ -24,7 +24,7 @@ const Email = (props) => {
 
 const Password = (props) => {
     return (
-        <input type="password" autoComplete="current-password" {...props} />
+        <input type="password" {...props} />
     )
 }
 

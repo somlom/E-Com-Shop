@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
-import { Navigate, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import "./Login.css"
@@ -13,6 +13,7 @@ import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 const Register = () => {
 
+    const navigate = useNavigate()
     const [input, setInput] = useState({});
     const [t] = useTranslation();
 
@@ -31,15 +32,16 @@ const Register = () => {
 
             const api_response = axios.post(`${process.env.API_URL}/auth/register`, input)
 
-            api_response.then(fulfilled => {
+            api_response.then((fulfilled) => {
+                console.log(fulfilled)
                 localStorage.setItem("user", fulfilled.data)
-                return <Navigate to="/" />
+                return navigate("/")
             }
             )
             toast.promise(api_response, {
                 loading: t("loading"),
-                success: t("logged_in"),
-                error: (err) => err.message,
+                success: t("registered"),
+                error: (err) => t(err.message),
             });
         } else {
             return toast.error(t("empty_fields"))
@@ -47,8 +49,7 @@ const Register = () => {
     }
 
     return (
-      <div className="responsible_form">
-
+        <div className="responsible_form">
 
             <Form title={t("register")} onSubmit={(e) => send_to_backend(e)} >
                 <Input.Text placeholder={t("name")} id='name' onChange={add_to_state} />
@@ -68,7 +69,7 @@ const Register = () => {
                 </Row>
             </Form>
             <span>{t("agb_text")}</span>
-            </div>
+        </div>
     )
 }
 

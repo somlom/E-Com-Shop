@@ -58,5 +58,9 @@
   "404_error": "404 Eroare",
   "sorry": "Îmi pare rău",
   "back_to_homepage": "Înapoi la pagina de start",
-  "buy_now": "Cumpără acum"
+  "buy_now": "Cumpără acum",
+  "registered": "Ne pare rău, dar această adresă de e-mail este deja înregistrată",
+  "invalid_credentials": "Acreditări nevalide",
+  "passwords_are_not_same": "Parolele nu sunt aceleași",
+  "smth_went_wrong": "Scuze, ceva a mers greșit"
 }

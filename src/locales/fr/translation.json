@@ -58,5 +58,9 @@
   "404_error": "Erreur 404",
   "sorry": "Désolé",
   "back_to_homepage": "retour à la page d'accueil",
-  "buy_now": "Acheter maintenant"
+  "buy_now": "Acheter maintenant",
+  "registered": "Désolé, mais cette adresse e-mail est déjà enregistrée",
+  "invalid_credentials": "les informations d'identification invalides",
+  "passwords_are_not_same": "Les mots de passe ne sont pas les mêmes",
+  "smth_went_wrong": "Désolé, quelque chose s'est mal passé"
 }

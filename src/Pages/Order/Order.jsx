@@ -1,6 +1,7 @@
 import React, { lazy, useEffect, Suspense } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 import "../../Components/Order/Order.css"
@@ -29,13 +30,15 @@ export const Order = () => {
         if (resp.data.status === true) {
             return window.location.replace(resp.data.data);
         } else {
-            return window.location.replace("resp_data")
+            return toast.error(t("smth_went_wrong"))
         }
     }
 
     useEffect(() => {
+
         get_cart(cart)
         create_order(cart)
+
     }, [cart])
 
 

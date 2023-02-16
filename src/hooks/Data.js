@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+
 import { Spinner } from "../Components/Other/Spinner/Spinner"
 
 
@@ -8,21 +9,22 @@ export const usePostData = (url = "", data = "", headers = "") => {
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-        const fetchData = () => {
+        return () => {
+
             const resp = axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers })
-            return resp.then((response) => (
+            resp.then((response) => (
                 setValue((prev) => ({
                     ...prev,
                     data: response.data || null,
                     isLoading: false,
-                    isSuccess: response.data !== undefined && response.status === 200 ? true : false,
+                    isSuccess: response.status === 200 ? true : false,
                     isError: response.status !== 200 ? true : false,
                 }))
             ), (() => (
                 setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
             )))
         }
-        fetchData()
+
     }, [url])
 
     return value
@@ -33,36 +35,54 @@ export const useGetData = (url = "", headers = {}, full_url = "") => {
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-        const fetchData = () => {
 
-            if (full_url.length > 0) {
-                return axios.get(process.env.API_URL + full_url, headers === "" ? "" : { headers: headers }).then((response) => (
-                    setValue((prev) => ({
-                        ...prev,
-                        data: response.data || null,
-                        isLoading: false,
-                        isSuccess: response.data !== undefined && response.status === 200 ? true : false,
-                        isError: response.status !== 200 ? true : false,
-                    }))
-                ), (() => (
-                    setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-                )))
-            } else if (url.length > 0) {
+        return () => {
 
-                return axios.get(process.env.API_URL + url, headers === "" ? "" : { headers: headers }).then((response) => (
-                    setValue((prev) => ({
-                        ...prev,
-                        data: response.data || null,
-                        isLoading: false,
-                        isSuccess: response.data !== undefined && response.status === 200 ? true : false,
-                        isError: response.status !== 200 ? true : false,
-                    }))
-                ), (() => (
-                    setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-                )))
-            }
+            axios.get(full_url === "" ? process.env.API_URL + url : full_url, headers === "" ? "" : { headers: headers })
+                .then(
+                    (response) => (
+                        setValue((prev) => ({
+                            ...prev,
+                            data: response.data || null,
+                            isLoading: false,
+                            isSuccess: response.status === 200 ? true : false,
+                            isError: response.status !== 200 ? true : false,
+                        }))
+                    ), (
+                    () => (
+                        setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+                    )))
+
+            // if (full_url.length > 0) {
+            //     const resp = axios.get(process.env.API_URL + full_url, headers === "" ? "" : { headers: headers })
+            //     resp.then((response) => (
+            //         setValue((prev) => ({
+            //             ...prev,
+            //             data: response.data || null,
+            //             isLoading: false,
+            //             isSuccess: response.status === 200 ? true : false,
+            //             isError: response.status !== 200 ? true : false,
+            //         }))
+            //     ), (() => (
+            //         setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            //     )))
+            // } else if (url.length > 0) {
+
+            //     const resp = axios.get(process.env.API_URL + url, headers === "" ? "" : { headers: headers })
+            //     resp.then((response) => (
+
+            //         setValue((prev) => ({
+            //             ...prev,
+            //             data: response.data || null,
+            //             isLoading: false,
+            //             isSuccess: response.status === 200 ? true : false,
+            //             isError: response.status > 200 ? true : false,
+            //         }))
+            //     ), (() => (
+            //         setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
+            //     )))
+            // }
         }
-        fetchData()
     }, [url])
 
     return value

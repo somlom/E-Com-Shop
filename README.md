@@ -37,7 +37,7 @@ To run the app `yarn run dev`
 - [x] Implement local DB
 - [x] AGB
 - [x] Paying process
-- [ ] reset page
+- [x] reset page
 
 ### Design
 - [x] Navbar
@@ -65,22 +65,17 @@ To run the app `yarn run dev`
 - [ ] receipt
 
 ### user profile
-- [ ] Sending data
-- [ ] Payment methods
 - [ ] Personal data
-- [ ] Merkzettel
-- [ ] Zahlungen
-- [ ] Bestellung
-- [ ] Rechnung
+- [x] Bestellung
   
 ### Backend
 - [ ] Slug
-- [ ] Admin-Page security (2FA)
+- [x] Admin-Page 
 
 ### Frontend
 - [ ] Slug
-- [ ] Admin-Page security (2FAs)
-- [ ] Design
+- [x] Admin-Page
+- [x] Design
 
 ### Cart
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved

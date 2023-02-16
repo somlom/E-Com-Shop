@@ -65,6 +65,8 @@ export const create_stripe_session = async (order = {}, id = "", email = "") => 
                 apiKey: process.env.STRIPE_SECRET
             });
 
+            console.log(session.status)
+
             return { status: true, data: session.url, id: session.id }
         } catch (error) {
             report_error("Error on Stripe Session", error.stack)

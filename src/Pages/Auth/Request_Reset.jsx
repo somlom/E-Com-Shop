@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import "./Login.css"
@@ -31,7 +30,8 @@ const Request_Reset = () => {
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("check_your_email"),
-                error: (err) => err.message,
+                error: t("no_user_with_email"),
+                // Sorry, but there is no user with this e-mail
             });
         } else {
             return toast.error(t("empty_fields"))

@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
-import { Users } from "../db/schemas";
+import { Users } from "../db/users";
 import { get_token, verify_token } from "../lib/JWT";
 import Mailer from "../lib/mailer";
 import { auth_middleware } from "../middlewares/auth_handler";
@@ -22,7 +22,7 @@ auth.get("/admin", auth_middleware, asyncHandler(adminLogin))
 
 async function loginUser(req, res) {
     const { email, password } = req.body;
-    
+
     // https://stripe.com/docs/api/payment_intents/object
 
     if (email && password) {
@@ -35,16 +35,13 @@ async function loginUser(req, res) {
             if (hash === true) {
                 return res.json(get_token(user._id));
             } else {
-                res.status(401)
-                throw Error("Invalid credentials")
+                return res.status(401).json({ key: "invalid_credentials" })
             }
         } else {
-            res.status(401)
-            throw Error("Invalid credentials")
+            return res.status(401).json({ key: "invalid_credentials" })
         }
     } else {
-        res.status(401)
-        throw Error("Please, fill all fields")
+        return res.status(401).json({ key: "empty_fields" })
     }
 }
 
@@ -55,22 +52,24 @@ async function registerUser(req, res) {
 
         const user = await Users.findOne({ email })
 
+        console.log(user)
+
         if (user) {
-            res.status(401)
-            throw Error("Sorry, but this e-mail address is already registered")
+            return res.status(401).json({ key: "registered" })
+            // .json("Sorry, but this e-mail address is already registered")
         }
         const salt = await bcrypt.genSalt(5)
         const hash = await bcrypt.hash(password, salt);
         const are_same = await bcrypt.compare(password2, hash);
         if (!are_same) {
-            res.status(401)
-            throw Error("Invalid credentials")
+            return res.status(401).json({ key: "invalid_credentials" })
+            // .json("Invalid credentials")
         }
         const new_user = await Users.create({ email: email, password: hash, name: name, surname: surname });
         return res.json(get_token(new_user._id));
     } else {
-        res.status(400)
-        throw new Error("Please, fill all fields")
+        return res.status(401).json({ key: "empty_fields" })
+        // .json("Please, fill all fields")
     }
 }
 
@@ -80,20 +79,19 @@ async function check_token(req, res) {
 
         const token = req.headers.authorization.split(' ')[1]
         const response = await verify_token(token)
+
         if (response.status === true) {
             const user = await Users.findById(response.data.payload)
             if (user) {
-                return res.json(response.status)
+                return res.status(200).json()
             } else {
-                return res.status(401).json(response.status)
+                return res.status(401).json()
             }
         } else {
-            return res.status(401).json(response.status)
+            return res.status(401).json()
         }
-
     } else {
-        res.status(401)
-        throw new Error("No token")
+        return res.status(401).json()
     }
 }
 
@@ -106,9 +104,9 @@ async function requestResetUser(req, res) {
         const mailer = new Mailer();
         const token = get_token(user.email)
         mailer.send_email(user.email, "Reset your password", "password_reset", { url: `${process.env.PUBLIC_URL}/reset?token=${token}` })
-        return res.json({ data: "E-Mail sent" })
+        return res.status(200).json()
     } else {
-        throw new Error("Sorry, but there is no user with this e-mail")
+        return res.status(401).json()
     }
 }
 
@@ -129,19 +127,18 @@ async function resetUser(req, res) {
             const hash = await bcrypt.hash(password, salt);
             const are_same = await bcrypt.compare(password2, hash);
             if (!are_same) {
-                res.status(401)
-                throw Error("Passwords are not same")
+                return res.status(401).json({ key: "passwords_are_not_same" })
+                // "Passwords are not same"
             }
             const update_user = await Users.findByIdAndUpdate(user._id, { password: hash })
             return res.json(get_token(update_user._id));
 
         } else {
-            res.status(401)
-            throw new Error("Sorry, something went wrong")
+            return res.status(400).json({ key: "smth_went_wrong" })
+            // "Sorry, something went wrong"
         }
     } else {
-        res.status(400)
-        throw new Error("Invalid token")
+        return res.status(400).json({ key: "smth_went_wrong" })
     }
 }
 
@@ -149,9 +146,9 @@ async function adminLogin(req, res) {
 
     const user = await Users.findById(req.user)
     if (user.email === process.env.ADMIN_EMAIL) {
-        return res.json(true)
+        return res.status(200).json()
     } else {
-        return res.status(400).json(false)
+        return res.status(400).json()
     }
 
 }

@@ -2,7 +2,8 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 import Stripe from "stripe";
 
-import { Orders, Users } from "../db/schemas";
+import { Orders } from "../db/order";
+import { Users } from "../db/users";
 import Mailer from "../lib/mailer";
 import { create_stripe_session } from "../lib/stripe";
 
@@ -20,8 +21,8 @@ payment.get("/close_order/:order_id", asyncHandler(close_order));
 
 
 async function get_orders(req, res) {
-    const user_order = await Orders.find({ user: req.user }).populate("products._id")
-    return res.json(user_order)
+    const order = await Orders.find({ user: req.user }).populate("products._id")
+    return res.json(order)
 }
 
 async function set_order(req, res) {
@@ -29,20 +30,26 @@ async function set_order(req, res) {
     const { cart } = req.body;
 
     if (cart) {
-        const user_order = await Orders.findOne({ user: req.user, open: true })
+        const order = await Orders.findOne({ user: req.user, open: true })
+        if (order) {
 
-        if (!user_order) {
+            if (cart === order.products) {
+                return res.json(order)
+
+            } else {
+
+                // const upd = await Orders.findByIdAndUpdate(order._id, { products: cart })
+
+                const upd = await order.updateOne({ products: cart })
+                // order.products = cart;
+                // await order.save()
+                return res.json(upd)
+            }
+
+        } else {
             const order = await Orders.create({ user: req.user, products: cart })
             return res.json(order)
 
-        } else {
-            if (cart === user_order.products) {
-                return res.json(user_order)
-            } else {
-                user_order.products = cart;
-                await user_order.save()
-            }
-            return res.json(user_order)
         }
     } else {
         res.status(301)
@@ -56,15 +63,28 @@ async function pay_for_item(req, res) {
     product._id = product.id
 
     const order = await Orders.create({ user: req.user, products: [product] })
-    const user = await Users.findById(req.user)
-    const session = await create_stripe_session(order, order.id, user.email)
 
-    order.stripe_order_id = session.id
-    await order.save()
+    if (order) {
 
-    session.status === true ? res.status(200) : res.status(400);
+        const user = await Users.findById(req.user)
+        if (user) {
 
-    return res.json(session);
+            const session = await create_stripe_session(order, order.id, user.email)
+
+            if (session.status === true) {
+                await order.updateOne({ stripe_order_id: session.id })
+
+                return res.status(200).json(session);
+
+            } else {
+                return res.status(400).json({ key: "smth_went_wrong" });
+            }
+        } else {
+            return res.status(400).json({ key: "login_to_proceed" })
+        }
+    } else {
+        return res.status(400).json({ key: "smth_went_wrong" })
+    }
 }
 
 async function pay_order(req, res) {
@@ -73,13 +93,12 @@ async function pay_order(req, res) {
 
     const session = await create_stripe_session(order, order.id, order.user.email)
 
-    order.stripe_order_id = session.id
-    await order.save()
+    await order.updateOne({ stripe_order_id: session.id })
 
-    if (session.status) {
+    if (session.status === true) {
         return res.json(session);
     } else {
-        return res.json(session.data);
+        return res.status(400);
     }
 }
 
@@ -91,37 +110,25 @@ async function close_order(req, res) {
 
     const order = await Orders.findById(order_id)
 
-    console.log("old ",order);
-
     const session = await stripe.checkout.sessions.retrieve(
         order.stripe_order_id, { apiKey: process.env.STRIPE_SECRET }
     );
 
-    const paymentIntent = await stripe.paymentIntents.retrieve(
-        session.payment_intent, { apiKey: process.env.STRIPE_SECRET }
-    );
+    // const paymentIntent = await stripe.paymentIntents.retrieve(
+    //     session.payment_intent, { apiKey: process.env.STRIPE_SECRET }
+    // );
 
-    if (paymentIntent.status === "succeeded") {
-        if (order.payed === false) {
+    // if (paymentIntent.status === "succeeded") {
 
-            order.payed = true
-            order.open = false
-            await order.save()
+    if (session.status === "complete") {
+        if (order.payed === false && order.open === true) {
 
-            console.log("new ",order)
+            await order.updateOne({ open: false, payed: true })
 
-
-
-            const user = await Users.findById(req.user)
             const mailer = new Mailer()
-            // const coupon = await stripe.coupons.create({
-            //   percent_off: 5,
-            //   duration: 'once',
-            //   duration_in_months: 1,
-            // })
 
-            mailer.send_email(user.email, "Hi. Your order is placed", "hello", { name: user.name })
-            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "hello", { name: user.name })
+            mailer.send_email(session.customer_email, "Hi. Your order is placed", "hello", { name: session.shipping_details.name })
+            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "hello", { name: session.customer_details.address.postal_code })
 
             return res.json(session);
         } else {

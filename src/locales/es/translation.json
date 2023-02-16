@@ -58,5 +58,9 @@
   "404_error": "error 404",
   "sorry": "Lo siento",
   "back_to_homepage": "Volver a la página de inicio",
-  "buy_now": "Comprar ahora"
+  "buy_now": "Comprar ahora",
+  "registered": "Lo sentimos, pero esta dirección de correo electrónico ya está registrada",
+  "invalid_credentials": "Credenciales no válidas",
+  "passwords_are_not_same": "Las contraseñas no son las mismas",
+  "smth_went_wrong": "Perdón, algo salió mal"
 }

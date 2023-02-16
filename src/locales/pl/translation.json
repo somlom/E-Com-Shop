@@ -58,5 +58,9 @@
     "404_error": "404 Błąd",
     "sorry": "Przepraszam",
     "back_to_homepage": "Powrót do strony głównej",
-    "buy_now": "Kup Teraz"
+    "buy_now": "Kup Teraz",
+    "registered": "Przepraszamy, ale ten adres e-mail jest już zarejestrowany",
+    "invalid_credentials": "Nieprawidłowe poświadczenia",
+    "passwords_are_not_same": "Hasła nie są takie same",
+    "smth_went_wrong": "Przepraszam, coś poszło nie tak"
   }

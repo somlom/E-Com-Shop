@@ -58,5 +58,9 @@
   "404_error": "404 hata",
   "sorry": "Üzgünüm",
   "back_to_homepage": "ana sayfaya geri dön",
-  "buy_now": "Şimdi al"
+  "buy_now": "Şimdi al",
+  "registered": "Üzgünüz, ancak bu e-posta adresi zaten kayıtlı",
+  "invalid_credentials": "Geçersiz kimlik bilgileri",
+  "passwords_are_not_same": "Şifreler aynı değil",
+  "smth_went_wrong": "Üzgünüm, bir şeyler ters gitti"
 }
