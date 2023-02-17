@@ -6,7 +6,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import "./Login.css"
-import { Form, Input } from '../../Components/Other/Form/Form';
+import { Form, Email, Password } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
@@ -57,8 +57,8 @@ const Login = () => {
         <div className="responsible_form">
             {state?.message !== undefined ? <h3>{state.message}</h3> : ""}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
-                <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
-                <Input.Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
+                <Email placeholder="E-mail" id='email' onChange={add_to_state} />
+                <Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
                 <Column>
                     <Link to="/request_reset">{t("forgot_password")}</Link>
                     <Row className='form_buttons'>

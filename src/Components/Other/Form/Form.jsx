@@ -16,31 +16,31 @@ export const Form = ({ title, onSubmit, children }) => {
     )
 }
 
-const Email = (props) => {
+export const Email = (props) => {
     return (
         <input type="email" {...props} />
     )
 }
 
-const Password = (props) => {
+export const Password = (props) => {
     return (
         <input type="password" {...props} />
     )
 }
 
-const Text = (props) => {
+export const Text = (props) => {
     return (
         <input type="text" {...props} />
     )
 }
 
-const Number = (props) => {
+export const Number = (props) => {
     return (
         <input type="number" {...props} />
     )
 }
 
-const Textarea = (props) => {
+export const Textarea = (props) => {
 
     const { onChange, onSubmit, cols, rows, children } = props
 
@@ -49,12 +49,4 @@ const Textarea = (props) => {
             {children}
         </textarea>
     )
-}
-
-export const Input = {
-    Email: Email,
-    Password: Password,
-    Text: Text,
-    Number: Number,
-    Textarea: Textarea
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import { Button } from '../../Components/Other/Buttons/Standart'
-import { Form, Input } from '../../Components/Other/Form/Form'
+import { Form, Text, Number, Textarea } from '../../Components/Other/Form/Form'
 
 
 export const Add_Review = () => {
@@ -23,11 +23,11 @@ export const Add_Review = () => {
   return (
     <Form onSubmit={onSubmit}>
       Title
-      <Input.Text id="title" onChange={add_to_state} />
+      <Text id="title" onChange={add_to_state} />
       Rating
-      <Input.Number id="rating" onChange={add_to_state} />
+      <Number id="rating" onChange={add_to_state} />
       Text
-      <Input.Textarea id="text" onChange={add_to_state} />
+      <Textarea id="text" onChange={add_to_state} />
       <Button.Success type="submit">Submit</Button.Success>
     </Form>
   )

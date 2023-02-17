@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 
 import "./Admin.css"
 import { Button } from "../../Components/Other/Buttons/Standart";
-import { Input, Form } from "../../Components/Other/Form/Form";
+import { Textarea, Number, Text, Form } from "../../Components/Other/Form/Form";
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
 
 
@@ -32,6 +32,7 @@ const Admin_Add = () => {
         formData.append("text", input.text)
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
+        formData.append("technical_data", input.technical_data)
 
         axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
 
@@ -50,7 +51,7 @@ const Admin_Add = () => {
             <Form title='Add item' onSubmit={send_to_backend} className="__form column">
 
                 <label>Title</label>
-                <Input.Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
+                <Text id='name' placeholder='name' onChange={(e) => add_to_state(e)} />
 
                 <label>Photos</label>
                 <Row className="__admin_gallery">
@@ -78,22 +79,17 @@ const Admin_Add = () => {
                     />
                 </Row>
                 <label>Text</label>
-                <Input.Textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
+                <Textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
                 <label>Price</label>
-                <Input.Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
+                <Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
 
                 <label>Quantity</label>
-                <Input.Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
+                <Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
 
+                <h1>Technical data</h1>
+                <Textarea tabIndex={5} placeholder="Text" id="technical_data" onChange={(e) => add_to_state(e)} />
 
-                <Row>
-                    <Column>
-                        <h1>Technical data</h1>
-                        <Input.Text placeholder="Header" id="technical_header" onChange={(e) => add_to_state(e)} />
-                        <Input.Textarea tabIndex={5} placeholder="Text" id="technical_text" onChange={(e) => add_to_state(e)} />
-                    </Column>
-                </Row>
                 <Button.Success type="submit">Add</Button.Success>
             </Form>
         </Column>

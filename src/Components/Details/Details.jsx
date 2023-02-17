@@ -22,12 +22,7 @@ const Details = ({ data }) => {
     return (
         <Card>
             <h2>{t("details")}</h2>
-            {data.map(text => (
-                <div key={text._id}>
-                    <h3>{(text.header).toUpperCase()}</h3>
-                    <p>{text.text}</p>
-                </div>
-            ))}
+            <p>{data}</p>
         </Card>
     )
 }

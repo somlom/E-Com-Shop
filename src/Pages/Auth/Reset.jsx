@@ -6,7 +6,7 @@ import { useNavigate, useLocation, Link, useSearchParams,useParams } from 'react
 import toast from 'react-hot-toast';
 
 import "./Login.css"
-import { Form, Input } from '../../Components/Other/Form/Form';
+import { Form, Password } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
@@ -45,8 +45,8 @@ const Reset = () => {
     return (
         <div className="responsible_form">
             <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
-                <Input.Password placeholder="password" id='password' onChange={add_to_state} />
-                <Input.Password placeholder="password2" id='password2' onChange={add_to_state} />
+                <Password placeholder="password" id='password' onChange={add_to_state} />
+                <Password placeholder="password2" id='password2' onChange={add_to_state} />
                 <Row className='form_buttons'>
                     <Button.Primary type='submit'>
                         <FaUserPlus />{t("reset")}

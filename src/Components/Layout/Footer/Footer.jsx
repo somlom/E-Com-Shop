@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import "./Footer.css"
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
-import { Input } from '../../Other/Form/Form';
+import { Text } from '../../Other/Form/Form';
 import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
@@ -55,7 +55,7 @@ const Footer = () => {
 
           <p>{t("newsletter_text")}</p>
           <Column className='form'>
-            <Input.Text placeholder='E-Mail' />
+            <Text placeholder='E-Mail' />
           </Column>
 
         </Column>

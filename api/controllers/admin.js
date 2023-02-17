@@ -20,13 +20,10 @@ async function add_product(req, res) {
     try {
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
-            .then(
-                async () => await create_product(product.id, name, price, filename)
-            )
-        // const stripe_instance = await create_product(product.id, name, price, filename);
+        await create_product(product.id, name, price, filename)
 
 
-        return res.status(200)
+        return res.status(200).json()
 
     } catch (error) {
         res.status(400)
@@ -50,11 +47,11 @@ async function edit_product(req, res) {
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]
 
-            await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: JSON.parse(technical_data) })
-                .then(
-                    async () => await update_product(id, name, filename, price)
-                )
-            return res.status(200)
+            await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: technical_data }).then(
+                async () => await update_product(id, name, filename, price)
+            )
+
+            return res.status(200).json()
 
         } catch (error) {
             res.status(400)

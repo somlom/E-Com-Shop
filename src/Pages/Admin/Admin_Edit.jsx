@@ -7,7 +7,7 @@ import "./Admin.css"
 import { useGetData } from "../../hooks/Data"
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box";
-import { Form, Input } from "../../Components/Other/Form/Form";
+import { Form, Text, Textarea, Number } from "../../Components/Other/Form/Form";
 import { Button } from "../../Components/Other/Buttons/Standart";
 
 
@@ -24,20 +24,10 @@ const Admin_Edit = () => {
     }, [isSuccess])
 
     const add_to_state = (event, id) => {
-        setValue((prevState) => ({
+        return setValue((prevState) => ({
             ...prevState,
             [id]: event.target.value,
         }))
-
-        console.log({ [id]: event.target.value }, value)
-    }
-
-    const add_data_to_state = (event, id) => {
-        // const result =  value.find(obj=>obj.header || obj.text === "")
-        // setValue((prevState) => ({
-        //     ...prevState,
-        //     [id]: event.target.value,
-        // }))
     }
 
     const send_to_backend = (event) => {
@@ -61,9 +51,11 @@ const Admin_Edit = () => {
         formData.append("text", value.text)
         formData.append("price", value.price)
         formData.append("quantity", value.quantity)
-        formData.append("technical_data", JSON.stringify([{ header: value.technical_header, text: value.technical_text }]))
+        formData.append("technical_data", value.technical_data)
 
-        axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
+        const response = axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } })
+        console.log(response)
+        response.then(
 
             function () {
                 return toast.success("updated")
@@ -80,7 +72,7 @@ const Admin_Edit = () => {
             <Column>
                 <Form title='Edit item' onSubmit={send_to_backend} className="__form column">
                     Name
-                    <Input.Text id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
+                    <Text id='name' value={value.name} placeholder='name' onChange={(e) => add_to_state(e, e.target.id)} />
 
                     <Row className="__admin_gallery">
                         <h3>Photos already on server</h3>
@@ -125,29 +117,25 @@ const Admin_Edit = () => {
                         />
                     </Row>
                     Text
-                    <Input.Textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
+                    <Textarea type="text" cols={12} id='text' value={value.text} placeholder='text' onChange={(e) => add_to_state(e, e.target.id)} />
                     <Row>
 
                         <Column>
                             Price
-                            <Input.Number step="0.01" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
+                            <Number step="0.01" id='price' value={value.price} placeholder='price' onChange={(e) => add_to_state(e, e.target.id)} />
                         </Column>
 
                         <Column>
                             Quantity
-                            <Input.Number id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
+                            <Number id='quantity' value={value.quantity} placeholder='quantity' onChange={(e) => add_to_state(e, e.target.id)} />
                         </Column>
-                        
+
                     </Row>
                     <Column>
                         <h1>Technical data</h1>
-                        {value.technical_data && value.technical_data.map(obj => (
-                            console.log(obj),
-                            <>
-                                <Input.Text placeholder="Header" value={obj.header} id="technical_header" onChange={(e) => add_data_to_state(e, "header")} />
-                                <Input.Textarea tabIndex={5} cols={20} placeholder="Text" value={obj.text} id="technical_text" onChange={(e) => add_data_to_state(e, "text")} />
-                            </>
-                        ))}
+
+                        <Textarea tabIndex={5} cols={20} placeholder="Text" value={value.technical_data} id="technical_data" onChange={(e) => add_to_state(e, e.target.id)} />
+
                     </Column>
                     <Button.Success type="submit">Edit</Button.Success>
                 </Form>

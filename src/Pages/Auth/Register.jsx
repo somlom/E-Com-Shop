@@ -6,7 +6,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import "./Login.css"
-import { Form, Input } from '../../Components/Other/Form/Form';
+import { Form, Text, Email, Password } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
@@ -51,11 +51,11 @@ const Register = () => {
         <div className="responsible_form">
 
             <Form title={t("register")} onSubmit={(e) => send_to_backend(e)} >
-                <Input.Text placeholder={t("name")} id='name' onChange={add_to_state} />
-                <Input.Text placeholder={t("surname")} id='surname' onChange={add_to_state} />
-                <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
-                <Input.Password placeholder={t("password")} id='password' onChange={add_to_state} />
-                <Input.Password placeholder={t("password_again")} id='password2' onChange={add_to_state} />
+                <Text placeholder={t("name")} id='name' onChange={add_to_state} />
+                <Text placeholder={t("surname")} id='surname' onChange={add_to_state} />
+                <Email placeholder="E-mail" id='email' onChange={add_to_state} />
+                <Password placeholder={t("password")} id='password' onChange={add_to_state} />
+                <Password placeholder={t("password_again")} id='password2' onChange={add_to_state} />
                 <Row className='form_buttons'>
                     <Button.Success type='submit'>
                         <FaUserPlus size={15} />{t("register")}

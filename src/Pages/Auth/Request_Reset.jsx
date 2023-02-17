@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 
 import "./Login.css"
-import { Form, Input } from '../../Components/Other/Form/Form';
+import { Form, Email } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 
@@ -41,7 +41,7 @@ const Request_Reset = () => {
     return (
         <div className="responsible_form">
             <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
-                <Input.Email placeholder="E-mail" id='email' onChange={add_to_state} />
+                <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Row className='form_buttons'>
                     <Button.Primary type='submit'>
                         <FaUserPlus />{t("reset")}
