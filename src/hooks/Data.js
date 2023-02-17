@@ -9,7 +9,6 @@ export const usePostData = (url = "", data = "", headers = "") => {
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-        return () => {
 
             const resp = axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers })
             
@@ -26,7 +25,6 @@ export const usePostData = (url = "", data = "", headers = "") => {
             ), (() => (
                 setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
             )))
-        }
 
     }, [url])
 
@@ -38,8 +36,6 @@ export const useGetData = (url = "", headers = {}, full_url = "") => {
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
-
-        return () => {
 
             axios.get(full_url === "" ? process.env.API_URL + url : full_url, headers === "" ? "" : { headers: headers })
                 .then(
@@ -55,37 +51,6 @@ export const useGetData = (url = "", headers = {}, full_url = "") => {
                     () => (
                         setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
                     )))
-
-            // if (full_url.length > 0) {
-            //     const resp = axios.get(process.env.API_URL + full_url, headers === "" ? "" : { headers: headers })
-            //     resp.then((response) => (
-            //         setValue((prev) => ({
-            //             ...prev,
-            //             data: response.data || null,
-            //             isLoading: false,
-            //             isSuccess: response.status === 200 ? true : false,
-            //             isError: response.status !== 200 ? true : false,
-            //         }))
-            //     ), (() => (
-            //         setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-            //     )))
-            // } else if (url.length > 0) {
-
-            //     const resp = axios.get(process.env.API_URL + url, headers === "" ? "" : { headers: headers })
-            //     resp.then((response) => (
-
-            //         setValue((prev) => ({
-            //             ...prev,
-            //             data: response.data || null,
-            //             isLoading: false,
-            //             isSuccess: response.status === 200 ? true : false,
-            //             isError: response.status > 200 ? true : false,
-            //         }))
-            //     ), (() => (
-            //         setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-            //     )))
-            // }
-        }
     }, [url])
 
     return value

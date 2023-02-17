@@ -127,7 +127,7 @@ async function close_order(req, res) {
 
             const mailer = new Mailer()
 
-            mailer.send_email(session.customer_email, "Hi. Your order is placed", "hello", { name: session.shipping_details.name })
+            mailer.send_email(session.customer_email, "Ihre Bestellung ist in der Verarbeitung", "order", { name: session.shipping_details.name })
             mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "hello", { name: session.customer_details.address.postal_code })
 
             return res.json(session);

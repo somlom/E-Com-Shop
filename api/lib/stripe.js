@@ -5,10 +5,10 @@ import Mailer from './mailer';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET);
 
-const report_error = (error_name = "", stack = "") => {
+const report_error = (error_name = "", error = "") => {
     const mailer = new Mailer();
     console.log(stack)
-    return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: stack, logs: "https://dashboard.stripe.com/test/logs" })
+    return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
 }
 
 export const create_client = async (name = { name: "", surname: "" }, email = "") => {
@@ -69,11 +69,11 @@ export const create_stripe_session = async (order = {}, id = "", email = "") => 
 
             return { status: true, data: session.url, id: session.id }
         } catch (error) {
-            report_error("Error on Stripe Session", error.stack)
+            report_error("Error on Stripe Session", error)
             return { status: false, data: "Sorry, we are having some problems with trafic right now. Please, try agein later" };
         }
     }
-    report_error("No order Stripe", error.stack)
+    report_error("No order Stripe", error)
     return { status: false, data: "No order" }
 }
 
@@ -96,7 +96,7 @@ export const create_product = async (id = "", name = "", price = 0, filename = [
         });
         return { status: true, data: result }
     } catch (error) {
-        report_error("Error on Stripe create product", error.stack)
+        report_error("Error on Stripe create product", error)
         return { status: false, data: error }
     }
 }
@@ -115,7 +115,7 @@ export const create_new_price = async (product_id = "", price = "", active = tru
         });
         return { status: true, data: new_price }
     } catch (error) {
-        report_error("Error on Stripe create price", error.stack)
+        report_error("Error on Stripe create price", error)
         return { status: false, data: "error price" }
     }
 
@@ -158,11 +158,11 @@ export const update_product = async (id = "", name = "", filename = [], price = 
 
             return { status: true, data: updated }
         } catch (error) {
-            report_error("Error on Stripe update product", error.stack)
+            report_error("Error on Stripe update product", error)
             return { status: false, data: error }
         }
     } else {
-        report_error("No product on stripe", "no stack")
+        report_error("No product on stripe", ["no stack"])
         return { status: false, data: "No product on stripe" }
     }
 }

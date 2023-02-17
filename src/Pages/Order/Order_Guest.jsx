@@ -11,7 +11,6 @@ export const Order_Guest = () => {
 
     useEffect(() => {
 
-
         return () => {
             axios.post(process.env.API_URL + "/payment/pay_for_item", { id: id, quantity: 1 },
                 { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })

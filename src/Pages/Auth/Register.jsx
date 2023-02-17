@@ -33,7 +33,6 @@ const Register = () => {
             const api_response = axios.post(`${process.env.API_URL}/auth/register`, input)
 
             api_response.then((fulfilled) => {
-                console.log(fulfilled)
                 localStorage.setItem("user", fulfilled.data)
                 return navigate("/")
             }

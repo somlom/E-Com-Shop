@@ -9,7 +9,10 @@
 
 <body>
     <h1>Sorry, here is error</h1>
-    {{error}}
+    {{#each error}}
+        {{this}}
+    <p>---------------------------</p>
+    {{/each}}
     <p>Check logs: {{logs}}</p>
 </body>
 
