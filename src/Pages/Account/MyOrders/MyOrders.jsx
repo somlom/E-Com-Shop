@@ -24,23 +24,9 @@ export const MyOrders = () => {
 
     } else if (isSuccess) {
 
-        const new_data = {
-            payed: [],
-            unpayed: []
-        }
-
-        data.map(obj => {
-            if (obj.payed) {
-                new_data.payed.push(obj)
-            } else {
-                new_data.unpayed.push(obj)
-            }
-        })
-
         return (
             <Suspense fallback={<Spinner />}>
-                {new_data.payed.map((obj) => <Order key={obj._id} obj={obj} />)}
-                {new_data.unpayed.map((obj) => <Order key={obj._id} obj={obj} />)}
+                {data.map((obj) => <Order key={obj._id} obj={obj} />)}
             </Suspense>
         )
 

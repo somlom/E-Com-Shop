@@ -21,7 +21,7 @@ payment.get("/close_order/:order_id", asyncHandler(close_order));
 
 
 async function get_orders(req, res) {
-    const order = await Orders.find({ user: req.user }).populate("products._id")
+    const order = await Orders.find({ user: req.user, payed: true }).populate("products._id")
     return res.json(order)
 }
 
