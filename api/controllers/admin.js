@@ -14,7 +14,7 @@ admin.post("/edit", asyncHandler(edit_product))
 async function add_product(req, res) {
 
     const { name, text, price, quantity, technical_data } = req.body;
-
+    console.log(text, name, price, quantity, technical_data)
     const filename = req.files.map((item) => item.filename)
 
     try {
@@ -23,7 +23,7 @@ async function add_product(req, res) {
         await create_product(product.id, name, price, filename)
 
 
-        return res.status(200).json()
+        return res.json()
 
     } catch (error) {
         res.status(400)
@@ -36,14 +36,17 @@ async function edit_product(req, res) {
 
     const filename = req.files.map((item) => item.filename)
 
+    console.log(text, name, price, quantity, id, technical_data, remaining_photos)
+
     const item = await Products.findById(id)
 
-    const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
-    delete_photos(difference)
 
     if (item) {
 
         try {
+
+            const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
+            delete_photos(difference)
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]
 
@@ -51,7 +54,7 @@ async function edit_product(req, res) {
                 async () => await update_product(id, name, filename, price)
             )
 
-            return res.status(200).json()
+            return res.json()
 
         } catch (error) {
             res.status(400)

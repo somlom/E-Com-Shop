@@ -68,7 +68,7 @@ orders_schema.pre('updateOne', async function (next) {
     // console.log(this.findOne({ open: true }))
     // const aaa = this.getUpdate().$set.count = 1337
     // console.log(aaa)
-    // console.log("aawaa")
+    console.log("-----------------------------------")
     console.log(this.where({ open: true }))
     // ----------------------------------------------------------
     // const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })

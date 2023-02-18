@@ -54,7 +54,6 @@ const Admin_Edit = () => {
         formData.append("technical_data", value.technical_data)
 
         const response = axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } })
-        console.log(response)
         response.then(
 
             function () {

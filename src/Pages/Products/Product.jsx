@@ -77,7 +77,7 @@ export const Product = () => {
                             <Row className="reviews">
                                 <Product_Reviews rating={4} title={data.name} text={data.text} id={id} img={process.env.API_URL + "/img/" + data.photos[0]} />
                                 <Column>
-                                    <Reviews data={"revs.data"} />
+                                    <Reviews id={id} />
                                 </Column>
                             </Row>
                         </Suspense>

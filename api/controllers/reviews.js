@@ -17,6 +17,8 @@ async function add_review(req, res) {
     const { title, rating, text } = req.body
     const filename = req.files.map((item) => item.filename)
 
+    console.log(title, rating, text, filename)
+
     const new_review = await Reviews.create({ title: title, rating: rating, text: text, photos: filename, product: id })
 
     return res.json(new_review)
@@ -26,7 +28,7 @@ async function get_reviews(req, res) {
 
     const { id } = req.params;
 
-    const reviews = await Reviews.find({ product: id }).populate("users")
+    const reviews = await Reviews.find({ product: id })
 
     return res.json(reviews)
 }

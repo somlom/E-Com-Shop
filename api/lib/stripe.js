@@ -7,7 +7,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET);
 
 const report_error = (error_name = "", error = "") => {
     const mailer = new Mailer();
-    console.log(stack)
     return mailer.send_email(process.env.ADMIN_EMAIL, error_name, "error", { error: error, logs: "https://dashboard.stripe.com/test/logs" })
 }
 
