@@ -46,12 +46,9 @@ const orders_schema = new Schema({
 
 orders_schema.pre('save', async function (next) {
 
-    console.log(this._id)
-
     const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })
 
     let count = 0;
-
 
     this.products.map((obj) => {
 
@@ -64,12 +61,23 @@ orders_schema.pre('save', async function (next) {
     next();
 });
 
-orders_schema.pre('updateOne', async function (next) {
-    // console.log(this.findOne({ open: true }))
-    // const aaa = this.getUpdate().$set.count = 1337
-    // console.log(aaa)
-    console.log("-----------------------------------")
-    console.log(this.where({ open: true }))
+orders_schema.post(['updateOne', "findOneAndUpdate", "updateMany", "update"], async function (doc, next) {
+
+    const product = await Orders.findOne({ stripe_order_id: this.getUpdate().stripe_order_id })
+
+    let count = 0;
+
+    const populated = await Products.find({ _id: { $in: product.products.map(a => a._id) } })
+
+    product.products.map((obj) => {
+        console.log(obj)
+        const found = populated.find(ttt => ttt.id === obj.id)
+        count += obj.quantity * found.price
+
+    })
+
+    this.getUpdate().$set.amount = count
+    console.log(count)
     // ----------------------------------------------------------
     // const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })
 

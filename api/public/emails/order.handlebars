@@ -1,10 +1,162 @@
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-    
+    <style>
+        body {
+            margin: 0;
+            background-color: #e8f5ff;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #e8f5ff;
+            padding-bottom: 60px;
+        }
+
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-spacing: 0;
+            font-family: sans-serif;
+            color: #171a1b;
+        }
+
+        .two-columns {
+            text-align: center;
+            font-size: 0;
+        }
+
+        .column .two-columns {
+            width: 100%;
+            max-width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+
+        }
+
+        .three-columns {
+            text-align: center;
+            font-size: 0;
+            padding: 15px 0 25px;
+        }
+
+        .column .three-columns {
+            width: 100%;
+            max-width: 200px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        .padding .three-columns {
+            padding: 15px;
+        }
+
+        .three-columns .content {
+            font-size: 15px;
+            line-height: 20px;
+        }
+    </style>
+    <center class="wrapper">
+        <table class="main" width="100%">
+            <!-- TOP BORDER -->
+            <tr>
+                <td height="8" style="background-color:#029eff;"></td>
+            </tr>
+            <!-- LOGO SECTION -->
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td class="two-columns">
+                                <table class="column">
+                                    <tr>
+                                        <td style="padding: 0 0 10px;">
+                                            <a href="link"><img class="img" src="img/modern.jpg" alt="" width="180"></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="column">
+                                    <trd>
+                                        <td style="padding: 10px 72px;">
+                                        </td>
+                                    </trd>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- THREE COLUMN SECTUON -->
+            <tr>
+                <td>
+                    <table width="100%">
+                        <tr>
+                            <td class="three-columns">
+                                <table class="column">
+                                    <tr>
+                                        <td class="padding">
+                                            <table class="content">
+                                                <tr>
+                                                    <td>
+                                                        <p>Order</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <!-- FOOTER -->
+            <tr>
+                <td style="background-color: #abdbff; border-radius: 18px 18px 0px 0px;">
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: center; padding: 45px 20px ; color: #ffffff;">
+                                <a href=""><img src="img/modern-white.png" alt="" width="180"></a>
+
+                                <p style="padding: 10px;">interEcom</p>
+                                <p style="padding: 10px;">DEUSTCHLAND</p>
+
+                                <a href="#"><img src="img/white-facebook.png" alt="" width="30"></a>
+                                <a href="#"><img src="img/white-twitter.png" alt="" width="30"></a>
+                                <a href="#"><img src="img/white-instagram.png" alt="" width="30"></a>
+                                <a href="#"><img src="img/white-youtube.png" alt="" width="30"></a>
+                                <a href="#"><img src="img/white-linkedin.png" alt="" width="30"></a>
+                                <p style="padding: 10px;">folgen sie uns</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </center>
 </body>
+
 </html>

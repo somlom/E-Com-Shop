@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 import { Button } from '../../Components/Other/Buttons/Standart'
 import { Form, Text, Textarea } from '../../Components/Other/Form/Form'
@@ -15,6 +16,7 @@ import { Spinner } from '../../Components/Other/Spinner/Spinner'
 export const Add_Review = () => {
 
   const { id } = useParams();
+  const [t] = useTranslation()
 
   const { isSuccess, isLoading, data } = useGetData("/products/" + id)
 

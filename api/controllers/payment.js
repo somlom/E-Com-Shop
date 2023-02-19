@@ -37,12 +37,7 @@ async function set_order(req, res) {
                 return res.json(order)
 
             } else {
-
-                // const upd = await Orders.findByIdAndUpdate(order._id, { products: cart })
-
                 const upd = await order.updateOne({ products: cart })
-                // order.products = cart;
-                // await order.save()
                 return res.json(upd)
             }
 
@@ -128,13 +123,13 @@ async function close_order(req, res) {
             const mailer = new Mailer()
 
             mailer.send_email(session.customer_email, "Ihre Bestellung ist in der Verarbeitung", "order", { name: session.shipping_details.name })
-            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "hello", { name: session.customer_details.address.postal_code })
+            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "order_alert", { customer_details: session.customer_details, address:session.customer_details.address })
 
             return res.json(session);
         } else {
-            return res.status(304)
+            return res.status(304).json()
         }
     } else {
-        return res.status(404)
+        return res.status(404).json()
     }
 }

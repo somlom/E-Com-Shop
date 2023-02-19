@@ -15,13 +15,18 @@ async function add_review(req, res) {
 
     const { id } = req.params;
     const { title, rating, text } = req.body
-    const filename = req.files.map((item) => item.filename)
+    
+    if(title && rating && text && req.files){
 
-    console.log(title, rating, text, filename)
+        const filename = req.files.map((item) => item.filename)
 
-    const new_review = await Reviews.create({ title: title, rating: rating, text: text, photos: filename, product: id })
+        const new_review = await Reviews.create({ title: title, rating: rating, text: text, photos: filename, product: id })
 
-    return res.json(new_review)
+        return res.json(new_review)
+    }else{
+        res.status(400).json({key:"not_all_fields"})
+    }
+
 }
 
 async function get_reviews(req, res) {

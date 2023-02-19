@@ -12,3 +12,4 @@ yarn-error.log
 .yarnclean
 sample.json
 lodash.js
+migrate-mongo-config.js

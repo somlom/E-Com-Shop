@@ -34,6 +34,10 @@ const products_schema = new Schema({
     technical_data: {
         type: String,
         required: true,
+    },
+    reviews: {
+        type: [mongoose.Types.ObjectId],
+        ref: "Reviews"
     }
 }, {
     timestamps: true
