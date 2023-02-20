@@ -29,7 +29,7 @@ const orders_schema = new Schema({
     products: {
         type: [
             {
-                product: {
+                order: {
                     type: mongoose.Types.ObjectId,
                     ref: 'Products',
                     unique: false
@@ -63,36 +63,26 @@ orders_schema.pre('save', async function (next) {
 
 orders_schema.post(['updateOne', "findOneAndUpdate", "updateMany", "update"], async function (doc, next) {
 
-    const product = await Orders.findOne({ stripe_order_id: this.getUpdate().stripe_order_id })
+    if (this.getUpdate().$set.products) {
+        const order = await Orders.findOne({ products: this.getUpdate().$set.products })
 
-    let count = 0;
+        const populated = await Products.find({ _id: { $in: order.products.map(a => a._id) } })
 
-    const populated = await Products.find({ _id: { $in: product.products.map(a => a._id) } })
+        let count = 0;
 
-    product.products.map((obj) => {
-        console.log(obj)
-        const found = populated.find(ttt => ttt.id === obj.id)
-        count += obj.quantity * found.price
+        order.products.map((obj) => {
+            console.log(obj)
+            const found = populated.find(ttt => ttt.id === obj.id)
+            count += (obj.quantity * found.price)
 
-    })
+        })
 
-    this.getUpdate().$set.amount = count
-    console.log(count)
-    // ----------------------------------------------------------
-    // const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })
+        await order.updateOne({ amount: count })
 
-    // let count = 0;
-
-    // this.products.map((obj) => {
-
-    //     const found = populated.find(ttt => ttt.id === obj.id)
-    //     count += obj.quantity * found.price
-
-    // })
-
-
-    // this.amount = count
-    next();
+        next();
+    } else {
+        next();
+    }
 });
 
 export const Orders = mongoose.model('Orders', orders_schema);

@@ -10,7 +10,7 @@ import { GetTextTranslation, useGetData } from '../../hooks/Data';
 import { Switch } from '../../Components/Other/Buttons/Switch/Switch';
 import { Spinner } from '../../Components/Other/Spinner/Spinner';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
-import { Product_Reviews } from '../../Components/Reviews/Product_Reviews/Product_Reviews';
+
 
 const Reviews = lazy(() => import('../../Components/Reviews/Reviews/Reviews'));
 const Details = lazy(() => import('../../Components/Details/Details'));
@@ -74,15 +74,9 @@ export const Product = () => {
                     <Switch first={t("reviews")} second={t("details")}>
 
                         <Suspense fallback={<Spinner />}>
-                            <Row className="reviews">
-                                <Product_Reviews rating={4} title={data.name} text={data.text} id={id} img={process.env.API_URL + "/img/" + data.photos[0]} />
-                                <Column>
-                                    <Reviews id={id} />
-                                </Column>
-                            </Row>
-                        </Suspense>
-
-                        <Suspense fallback={<Spinner />}>
+                            <Reviews id={id} product_data={data} />
+                            </Suspense>
+                            <Suspense fallback={<Spinner />}>
                             <Details data={data.technical_data} />
                         </Suspense>
 

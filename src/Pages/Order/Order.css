@@ -20,7 +20,7 @@ div.order_status_body {
 
 div.order_img {
     display: flex;
-    background-color: rgb(183, 244, 252);
+    background-color: #e8f5ff;
     border: none;
     border-radius: 50%;
     width: 100px;
@@ -32,5 +32,5 @@ div.order_img {
 div.order_img svg {
     padding: 0;
     margin: 0;
-        color: rgb(48, 231, 255);
+    color: rgb(2, 158, 255);
 }

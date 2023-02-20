@@ -6,7 +6,7 @@ import { Pay } from '../../Other/Buttons/Pay/Pay'
 import { Rating } from '../Rating/Rating'
 
 
-export const Product_Reviews = ({ title, rating, img, id }) => {
+const Product_Reviews = ({ title, rating, img, id }) => {
 
     const [t] = useTranslation();
 
@@ -19,3 +19,4 @@ export const Product_Reviews = ({ title, rating, img, id }) => {
         </Card>
     )
 }
+export default Product_Reviews
