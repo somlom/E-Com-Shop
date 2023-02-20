@@ -1,5 +1,5 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next';
+import { format } from 'date-fns'
 
 import "./Reviews.css"
 import { Card } from '../../Layout/Card/Card';
@@ -18,13 +18,13 @@ const Reviews = ({ id }) => {
 
         return (
             data.map(obj => (
-                <Card key={obj.id}>
+                <Card key={obj._id}>
                     <Row className="review_head">
                         <Column>
                             <Rating length={obj.rating} />
                             <h2>{obj.title}</h2>
                         </Column>
-                        <span>{obj.createdAt}</span>
+                        <span>{format(new Date(obj.createdAt), "dd/MM/yyyy hh:mm")}</span>
                     </Row>
                     <Column className={"review_body"}>
                         <Row className={"review_photos"}>

@@ -1,4 +1,4 @@
-import React, { Suspense, useState, lazy } from 'react'
+import { Suspense, useState, lazy } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AiOutlineArrowLeft } from "react-icons/ai"

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 
@@ -17,9 +17,9 @@ export const Layout = () => {
             <Toaster />
             <Column className='layout'>
                 <Navigation />
-                <div className='content'>
+                <Column className='content'>
                     <Outlet />
-                </div>
+                </Column>
                 <Footer />
             </Column>
         </Suspense>

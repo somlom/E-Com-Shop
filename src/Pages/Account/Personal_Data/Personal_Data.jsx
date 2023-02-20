@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Spinner } from '../../../Components/Other/Spinner/Spinner'
 import { Column } from '../../../Components/Other/Structure/Flex-Box/Flex-Box'
 import { useGetData } from '../../../hooks/Data'

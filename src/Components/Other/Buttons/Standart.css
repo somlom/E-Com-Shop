@@ -1,3 +1,11 @@
+.opacity:hover {
+    opacity: 0.7;
+}
+
+.opacity:active {
+    opacity: 0.5;
+}
+
 .button_opacity.opacity.submit {
     margin: 5px;
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 
@@ -10,7 +9,7 @@ export const Rating = ({ className, id, length }) => {
     return (
         <div {...prs} style={{ width: "max-content" }}>
             {[...Array(max_length)].map((_, star_index) => {
-                return star_index < length ? <AiFillStar size={25} /> : <AiOutlineStar size={25} />
+                return star_index < length ? <AiFillStar size={25} key={star_index} /> : <AiOutlineStar size={25} key={star_index} />
             })}
         </div>
     )

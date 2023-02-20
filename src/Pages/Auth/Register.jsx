@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';

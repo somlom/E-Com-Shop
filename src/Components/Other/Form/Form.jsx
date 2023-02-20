@@ -1,4 +1,3 @@
-import React from 'react'
 import { Column } from '../Structure/Flex-Box/Flex-Box'
 
 import "./Form.css"

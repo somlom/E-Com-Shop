@@ -21,7 +21,6 @@ To run the app `yarn run dev`
 - [x] cant buy anything anymore if you try you get error
 - [x] unsyncronized Stripe and local DB
 - [x] Stripe images
-- [ ] hamburger menu design
 - [ ] not all translation keys found (on register page mostly)
 
 ## To-Do
@@ -49,27 +48,24 @@ To run the app `yarn run dev`
 - [x] Order page
 - [x] Product page
 - [x] Footer
-- [ ] Hot deals
-- [ ] Search page
 - [x] Admin page
 
 ### Product page
-- [ ] Reviews
+- [x] Reviews
 - [x] photos
-- [ ] details
+- [x] details
 
 ### Order
 - [x] Order box
 - [x] Infos
 - [x] payment
-- [ ] receipt
+- [x] receipt
 
 ### user profile
 - [ ] Personal data
 - [x] Bestellung
   
 ### Backend
-- [ ] Slug
 - [x] Admin-Page 
 
 ### Frontend

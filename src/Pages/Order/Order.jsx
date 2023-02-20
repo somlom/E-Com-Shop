@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, Suspense } from 'react'
+import { lazy, useEffect, Suspense } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';

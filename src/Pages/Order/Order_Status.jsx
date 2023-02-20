@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
@@ -6,7 +6,7 @@ import { MdDone, MdClose } from "react-icons/md"
 
 import "./Order.css"
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box"
-import { useGetData, usePostData } from "../../hooks/Data"
+import { useGetData } from "../../hooks/Data"
 import { usePostCartMutation } from '../../features/cart_api'
 import { cartArray } from '../../features/cart_slice'
 import { Spinner } from '../../Components/Other/Spinner/Spinner'

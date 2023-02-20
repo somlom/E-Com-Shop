@@ -1,5 +1,3 @@
-import React from 'react'
-
 import "./Modal.css"
 import { close_on_esc } from '../../../hooks/close_on_esc';
 import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';

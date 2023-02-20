@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Customer_Rights = () => {
   return (
     <div>Customer_Rights</div>

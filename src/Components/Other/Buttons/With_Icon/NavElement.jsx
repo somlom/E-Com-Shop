@@ -1,5 +1,3 @@
-import React from 'react'
-
 import "./NavElement.css"
 
 export const NavElement = ({ children }) => {

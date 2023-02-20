@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import "./Switch.css"
 import { Column, Row } from '../../Structure/Flex-Box/Flex-Box'

@@ -1,9 +1,7 @@
 import { Suspense } from 'react'
 import { useTranslation } from 'react-i18next';
 import { MdMoneyOff, MdAttachMoney } from "react-icons/md"
-import { formatRelative, subDays } from 'date-fns'
-import * as Locales from 'date-fns/locale';
-import i18n from "i18next"
+import { format } from 'date-fns'
 
 import "./MyOrders.css"
 import { Spinner } from '../../../Components/Other/Spinner/Spinner'
@@ -47,10 +45,7 @@ const Order = ({ obj }) => {
             <Row className="card">
                 <Column className='card_data'>
                     <Column className='data'>
-                        <p>{formatRelative(subDays(new Date(obj.updatedAt), 1), new Date(), {
-
-                            locale: Locales[i18n.language]
-                        })}</p>
+                        <p>{format(new Date(obj.updatedAt), "dd/MM/yyyy hh:mm")}</p>
                         <p>Numm. {obj._id}</p>
                     </Column>
                     <Row>

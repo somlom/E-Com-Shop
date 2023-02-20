@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 const get_class = (staticClass, className) => {
     if (className) {
         return (staticClass + ' ' + className)

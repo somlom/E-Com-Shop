@@ -1,11 +1,8 @@
-import React from 'react'
-
 import "./Spinner.css"
 
 
-export const Spinner = (props) => {
-    const text = props.text
-    // document.body.style.overflow = "hidden"
+export const Spinner = ({text}) => {
+
     return (
         <div className="prepair_spinner">
             <div className="spinner">
