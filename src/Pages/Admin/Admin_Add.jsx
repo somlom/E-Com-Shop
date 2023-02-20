@@ -33,16 +33,15 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
         formData.append("technical_data", input.technical_data)
+    
+        const response_promise = axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } })
 
-        axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } }).then(
+        toast.promise(response_promise, {
+            loading: "loading",
+            success: "added",
+            error: (err) => t(err.message),
+        })
 
-            function () {
-                return toast.success("added")
-            },
-            function (error) {
-                return toast.error(error.response.data)
-            }
-        )
     }
 
     return (
@@ -83,6 +82,9 @@ const Admin_Add = () => {
 
                 <label>Price</label>
                 <Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
+
+                <label>Quantity</label>
+                <Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
 
                 <label>Quantity</label>
                 <Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />

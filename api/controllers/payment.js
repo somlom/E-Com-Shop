@@ -21,7 +21,7 @@ payment.get("/close_order/:order_id", asyncHandler(close_order));
 
 
 async function get_orders(req, res) {
-    const order = await Orders.find({ user: req.user, payed: true }).populate("products._id")
+    const order = await Orders.find({ user: req.user, payed: true }).populate("products._id").sort({updatedAt: "descending"})
     return res.json(order)
 }
 
@@ -37,8 +37,8 @@ async function set_order(req, res) {
                 return res.json(order)
 
             } else {
-                const upd = await order.updateOne({ products: cart })
-                return res.json(upd)
+                await order.updateOne({ products: cart })
+                return res.json()
             }
 
         } else {
@@ -85,7 +85,7 @@ async function pay_for_item(req, res) {
 async function pay_order(req, res) {
 
     const order = await Orders.findOne({ user: req.user, open: true }).populate("user");
-
+console.log("order")
     const session = await create_stripe_session(order, order.id, order.user.email)
 
     await order.updateOne({ stripe_order_id: session.id })
@@ -109,25 +109,21 @@ async function close_order(req, res) {
         order.stripe_order_id, { apiKey: process.env.STRIPE_SECRET }
     );
 
-    // const paymentIntent = await stripe.paymentIntents.retrieve(
-    //     session.payment_intent, { apiKey: process.env.STRIPE_SECRET }
-    // );
-
-    // if (paymentIntent.status === "succeeded") {
-
+    const popp = await order.populate("products._id")
     if (session.status === "complete") {
         if (order.payed === false && order.open === true) {
 
             await order.updateOne({ open: false, payed: true })
+
 
             const mailer = new Mailer()
 
             mailer.send_email(session.customer_email, "Ihre Bestellung ist in der Verarbeitung", "order", { name: session.shipping_details.name })
             mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "order_alert", { customer_details: session.customer_details, address:session.customer_details.address })
 
-            return res.json(session);
+            return res.json(order);
         } else {
-            return res.status(304).json()
+            return res.status(304).json(popp)
         }
     } else {
         return res.status(404).json()

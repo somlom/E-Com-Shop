@@ -1,7 +1,9 @@
-import React, { Suspense } from 'react'
+import { Suspense } from 'react'
 import { useTranslation } from 'react-i18next';
 import { MdMoneyOff, MdAttachMoney } from "react-icons/md"
-import { format, sub } from 'date-fns'
+import { formatRelative, subDays } from 'date-fns'
+import * as Locales from 'date-fns/locale';
+import i18n from "i18next"
 
 import "./MyOrders.css"
 import { Spinner } from '../../../Components/Other/Spinner/Spinner'
@@ -11,6 +13,7 @@ import { Column, Row } from '../../../Components/Other/Structure/Flex-Box/Flex-B
 
 
 export const MyOrders = () => {
+    const [t] = useTranslation()
 
     const { isLoading, isSuccess, isError, data } = useGetData("/payment/get_orders", { Authorization: `Bearer ${localStorage.getItem("user")}` });
 
@@ -22,7 +25,9 @@ export const MyOrders = () => {
 
         return <Spinner />
 
-    } else if (isSuccess) {
+    } else if (isSuccess && data.length === 0) {
+        return <h1>{t("no_payments")}</h1>
+    } else if (isSuccess && data.length > 0) {
 
         return (
             <Suspense fallback={<Spinner />}>
@@ -35,43 +40,37 @@ export const MyOrders = () => {
 
 const Order = ({ obj }) => {
 
-    const locales = {
-        de:"de",
-        us:"us",
-        ru:"ru",
-    }
-
     const [t] = useTranslation()
-    // return format(date, formatStr, {
-    //     locale: locales[window.__localeId__] // or global.__localeId__
-    // })
-    // sub()
+
     return (
-        <div className="card">
-            <Column className='card_data'>
-                <Row className='date_row'>
-                    <p>{format(new Date(obj.updatedAt), 'dd/MM/yyyy hh:mm', {
-                        locale: locales[window.__localeId__] // or global.__localeId__
-                    })}</p>
-                    <p>Numm. {obj._id}</p>
-                </Row>
-                <Row>
-                    {obj.payed === false ?
-                        <Rejected>
-                            <MdMoneyOff />
-                            {t("unpayed")}
-                        </Rejected>
-                        :
-                        <Success>
-                            <MdAttachMoney />
-                            {t("payed")}
-                        </Success>
-                    }
-                </Row>
-            </Column>
-            <Column className='card_amount'>
-                <h3>-{obj.amount} &euro;</h3>
-            </Column>
-        </div>
+        <Suspense fallback={<Spinner />}>
+            <Row className="card">
+                <Column className='card_data'>
+                    <Column className='data'>
+                        <p>{formatRelative(subDays(new Date(obj.updatedAt), 1), new Date(), {
+
+                            locale: Locales[i18n.language]
+                        })}</p>
+                        <p>Numm. {obj._id}</p>
+                    </Column>
+                    <Row>
+                        {obj.payed === false ?
+                            <Rejected>
+                                <MdMoneyOff />
+                                {t("unpayed")}
+                            </Rejected>
+                            :
+                            <Success>
+                                <MdAttachMoney />
+                                {t("payed")}
+                            </Success>
+                        }
+                    </Row>
+                </Column>
+                <Column className='card_amount'>
+                    <h3>-{obj.amount} &euro;</h3>
+                </Column>
+            </Row>
+        </Suspense>
     )
 }

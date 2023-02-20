@@ -14,14 +14,12 @@ admin.post("/edit", asyncHandler(edit_product))
 async function add_product(req, res) {
 
     const { name, text, price, quantity, technical_data } = req.body;
-    console.log(text, name, price, quantity, technical_data)
-    const filename = req.files.map((item) => item.filename)
 
     try {
+        const filename = req.files.map((item) => item.filename)
 
         const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
         await create_product(product.id, name, price, filename)
-
 
         return res.json()
 
@@ -35,8 +33,6 @@ async function edit_product(req, res) {
     const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
     const filename = req.files.map((item) => item.filename)
-
-    console.log(text, name, price, quantity, id, technical_data, remaining_photos)
 
     const item = await Products.findById(id)
 

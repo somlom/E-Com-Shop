@@ -54,15 +54,11 @@ const Admin_Edit = () => {
         formData.append("technical_data", value.technical_data)
 
         const response = axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } })
-        response.then(
-
-            function () {
-                return toast.success("updated")
-            },
-            function (error) {
-                return toast.error(error.response.data)
-            }
-        )
+        toast.promise(response, {
+            loading: "loading",
+            success: "added",
+            error: (err) => t(err.message),
+        })
     }
 
     if (isSuccess && data && value !== null) {

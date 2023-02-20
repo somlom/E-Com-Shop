@@ -17,3 +17,20 @@
 div.order_status_body {
     justify-content: space-around;
 }
+
+div.order_img {
+    display: flex;
+    background-color: rgb(183, 244, 252);
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+div.order_img svg {
+    padding: 0;
+    margin: 0;
+        color: rgb(48, 231, 255);
+}

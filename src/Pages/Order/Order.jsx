@@ -25,13 +25,12 @@ export const Order = () => {
         await axios.post(process.env.API_URL + "/payment/set_order", { cart: order }, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
     }
 
-    const pay_order = async () => {
-        const resp = await axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
-        if (resp.data.status === true) {
-            return window.location.replace(resp.data.data);
-        } else {
-            return toast.error(t("smth_went_wrong"))
-        }
+    const pay_order = () => {
+        axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
+            (resp) => window.location.replace(resp.data.data),
+
+            () => toast.error(t("smth_went_wrong"))
+        )
     }
 
     useEffect(() => {

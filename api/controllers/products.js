@@ -41,7 +41,6 @@ async function check_cart(req, res) {
     const updated_arr = data.filter(obj => value.find(x => x.id === obj._id))
 
     updated_arr.map((obj) => quantity += parseInt(obj.quantity))
-
     return res.json({ cart: Array.from(updated_arr), quantity: quantity })
 }
 

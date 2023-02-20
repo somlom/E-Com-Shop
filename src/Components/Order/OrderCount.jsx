@@ -19,7 +19,7 @@ const OrderCount = ({ data, children }) => {
         <Column>
             <Row className='order_list'>
                 <span>{t("article")}</span>
-                <span>{i} &euro;</span>
+                <span>{Math.round(i * 100) / 100} &euro;</span>
             </Row>
             <Row className='order_list'>
                 <span>{t("delivery")}</span>
@@ -28,7 +28,7 @@ const OrderCount = ({ data, children }) => {
             <Column className='order_footer'>
                 <Row className='order_list'>
                     <span>{t("total")}</span>
-                    <span>{i}  &euro;</span>
+                    <span>{Math.round(i * 100) / 100}  &euro;</span>
                 </Row>
                 <Row className='order_list'>
                     {children}

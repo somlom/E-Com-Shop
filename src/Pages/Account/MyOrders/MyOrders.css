@@ -1,27 +1,25 @@
 div.card {
-    display: flex;
-    flex-direction: row;
     border: none;
     border-radius: 10px;
     padding: 10px;
     background-color: #e8f5ff;
     margin: 10px 0px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-div.date_row.row {
-    width: 100%;
+div.data.row {
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .card_data {
     justify-content: space-between;
-    width: 100%;
+    width: fit-content;
 }
 
 .card_amount {
     white-space: nowrap;
-    margin: 20px;
     width: min-content;
     justify-content: center;
     align-items: flex-end;
