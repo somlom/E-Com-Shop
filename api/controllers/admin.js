@@ -2,7 +2,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Products } from "../db/products";
-import { delete_photos } from "../lib/photo";
+import { delete_photos, find_files_on_server } from "../lib/files/files";
 import { create_product, update_product } from "../lib/stripe";
 
 
@@ -42,13 +42,23 @@ async function edit_product(req, res) {
         try {
 
             const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
-            delete_photos(difference)
+
+            const files_to_delete = await find_files_on_server(difference)
+
+            if (files_to_delete.same) {
+                delete_photos(files_to_delete)
+            }
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]
 
-            await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: technical_data }).then(
-                async () => await update_product(id, name, filename, price)
-            )
+            await item.updateOne({ text: text, name: name, price: price, photos: files_to_update, quantity: quantity, technical_data: technical_data })
+                .then(
+                    async () => await update_product(id, name, filename, price)
+                )
+                .catch(() => {
+                    res.status(500)
+                    throw new Error("edit product error")
+                })
 
             return res.json()
 

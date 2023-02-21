@@ -20,7 +20,7 @@ const products_schema = new Schema({
         dropDups: true
     },
     price: {
-        type: Types.Decimal128,
+        type: Number,
         required: [true, "Please add PRICE"],
     },
     quantity: {

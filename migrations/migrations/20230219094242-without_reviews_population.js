@@ -8,8 +8,6 @@ module.exports = {
     const products = await db.collection('products').find()
     const reviews = await db.collection('reviews').find()
 
-    console.log(products, reviews)
-
     reviews.forEach(async (element) => await products.updateOne({ id: element.product }, { reviews: ["63f0f7d0e6d42909fc9bb7cc"] }));
   },
 

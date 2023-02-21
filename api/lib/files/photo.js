@@ -1,10 +1,9 @@
-import { unlink, existsSync } from 'fs';
-import multer from "multer"
-import util from "util";
+import Multer, { diskStorage } from "multer"
+import { promisify } from "util";
 
 const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
-const storage = multer.diskStorage({
+const storage = diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'api/public/img');
 
@@ -14,7 +13,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({
+const upload = Multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
         const found = allowedOutputFormats.find(type => file.mimetype === type)
@@ -35,19 +34,5 @@ const upload = multer({
     },
 });
 
-export const delete_photos = (files) => {
-    if (files.length > 0) {
-        files.forEach(img => {
-            const file_exists = existsSync('api/public/img/' + img)
-            if (file_exists === true) {
-                console.log("removed " + 'api/public/img/' + img)
-                unlink('api/public/img/' + img, (err) => {
-                    if (err) console.log("err", err);
-                });
-            }
-        })
-    }
-}
-
-export const upload_photo = util.promisify(upload.single('image'));
-export const upload_photos = util.promisify(upload.array('image', 8));
+export const upload_photo = promisify(upload.single('image'));
+export const upload_photos = promisify(upload.array('image', 8));

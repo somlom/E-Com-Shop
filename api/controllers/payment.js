@@ -85,7 +85,7 @@ async function pay_for_item(req, res) {
 async function pay_order(req, res) {
 
     const order = await Orders.findOne({ user: req.user, open: true }).populate("user");
-console.log("order")
+
     const session = await create_stripe_session(order, order.id, order.user.email)
 
     await order.updateOne({ stripe_order_id: session.id })

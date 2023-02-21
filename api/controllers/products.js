@@ -16,7 +16,7 @@ async function get_cart_items(req, res) {
 
     const { data } = req.body;
 
-    const value = await Products.find({ _id: { $in: data.map(a => {return a._id}).filter(a => a) } })
+    const value = await Products.find({ _id: { $in: data.map(a => { return a._id }).filter(a => a) } })
 
     const in_cart = []
 
@@ -36,7 +36,7 @@ async function check_cart(req, res) {
 
     let quantity = 0
 
-    const value = await Products.find({ _id: { $in: await data.map(a => a._id) } })
+    const value = await Products.find({ _id: { $in: await data.map((a) => a._id) } })
 
     // create find files function
 

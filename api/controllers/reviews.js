@@ -2,7 +2,7 @@ import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
 import { Reviews } from "../db/reviews";
-import { upload_photos } from "../lib/photo";
+import { upload_photos } from "../lib/files/photo";
 import { auth_middleware } from "../middlewares/auth_handler";
 
 

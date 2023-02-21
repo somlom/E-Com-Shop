@@ -1,6 +1,5 @@
-import express from "express";
+import express, { json, urlencoded } from "express";
 import cors from 'cors';
-import csurf from 'csurf';
 import helmet from 'helmet';
 require('dotenv').config()
 
@@ -11,7 +10,7 @@ import { auth } from "./controllers/auth";
 import { payment } from "./controllers/payment";
 import { reviews } from "./controllers/reviews";
 import { admin } from "./controllers/admin";
-import { upload_photos } from "./lib/photo";
+import { upload_photos } from "./lib/files/photo";
 import { auth_middleware } from "./middlewares/auth_handler";
 import { user_router } from "./controllers/user";
 
@@ -24,25 +23,28 @@ if (process.env.NODE_ENV === "development") {
 
 
 connect();
+// file deepcode ignore UseCsurfForExpress: <please specify a reason of ignoring this>
 const app = express()
 
 app.disable('x-powered-by');
-app.use(csurf())
-app.use(helmet())
-app.use(cors());
-app.use(express.json())
-app.use('/img', express.static('api/public/img'))
 
-app.use(express.urlencoded({ extended: false }))
+// SETUP
+app
+  .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
+  .use(cors())
+  .use(json())
+  .use(urlencoded({ extended: false }))
 
-app.use("/products", products)
-app.use("/reviews", reviews)
-app.use("/auth", auth)
-app.use("/payment", auth_middleware, payment)
-app.use("/admin", upload_photos, admin)
-app.use("/user", auth_middleware, user_router)
-
-app.use(error_handler)
+// ROUTES
+app
+  .use('/img', express.static('api/public/img'))
+  .use("/products", products)
+  .use("/reviews", reviews)
+  .use("/auth", auth)
+  .use("/payment", auth_middleware, payment)
+  .use("/admin", upload_photos, admin)
+  .use("/user", auth_middleware, user_router)
+  .use(error_handler)
 
 app.listen(process.env.API_PORT, () => {
   console.log(`app is listening to port ${process.env.API_PORT}`)

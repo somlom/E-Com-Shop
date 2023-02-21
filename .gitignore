@@ -10,7 +10,7 @@ stats.json
 yarn-error.log
 .vscode
 .yarnclean
-sample.json
 lodash.js
 migrate-mongo-config.js
 .dccache
+sample.*
