@@ -5,10 +5,11 @@ import { format } from 'date-fns'
 import "./Reviews.css"
 import { Card } from '../../Layout/Card/Card';
 import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box'
-import { Rating } from '../Rating/Rating';
 import { useGetData } from '../../../hooks/Data';
 import { Spinner } from '../../Other/Spinner/Spinner';
-// import { Product_Reviews } from "../Product_Reviews/Product_Reviews"
+
+const Rating = lazy(() => import("../Rating/Rating"))
+
 
 const Product_Reviews = lazy(() => import("../Product_Reviews/Product_Reviews"))
 

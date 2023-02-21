@@ -1,7 +1,5 @@
-import mongoose from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
-
-const { Schema } = mongoose;
 
 const reviews_schema = new Schema({
     title: {
@@ -17,11 +15,11 @@ const reviews_schema = new Schema({
         required: [true, "Please add TEXT"],
     },
     product: {
-        type: mongoose.Types.ObjectId,
+        type: Types.ObjectId,
         ref: 'Products',
     },
     user: {
-        type: mongoose.Types.ObjectId,
+        type: Types.ObjectId,
         ref: 'Users',
     },
     photos: {
@@ -33,4 +31,4 @@ const reviews_schema = new Schema({
     timestamps: true
 });
 
-export const Reviews = mongoose.model('Reviews', reviews_schema);
+export const Reviews = model('Reviews', reviews_schema);

@@ -10,7 +10,7 @@ export const usePostData = (url = "", data = "", headers = "") => {
 
     useEffect(() => {
 
-            const resp = axios.post(process.env.API_URL + url, data, headers === "" ? "" : { headers: headers })
+            const resp = axios.post(process.env.API_URL + url, data, headers.length === 0 ? "" : { headers: headers })
 
             resp.then((response) => (
                 setValue((prev) => ({
@@ -29,13 +29,13 @@ export const usePostData = (url = "", data = "", headers = "") => {
     return value
 }
 
-export const useGetData = (url = "", headers = {}, full_url = "") => {
+export const useGetData = (url = "", headers = "", full_url = "") => {
 
     const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
 
     useEffect(() => {
 
-            axios.get(full_url === "" ? process.env.API_URL + url : full_url, headers === "" ? "" : { headers: headers })
+            axios.get(full_url === "" ? process.env.API_URL + url : full_url, headers.length === 0 ? "" : { headers: headers })
                 .then(
                     (response) => (
                         setValue((prev) => ({

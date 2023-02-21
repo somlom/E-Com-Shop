@@ -74,9 +74,9 @@ const Admin_Edit = () => {
                         {value.photos &&
                             value.photos.map(obj => {
                                 return (
-                                    <Column>
+                                    <Column key={obj}>
                                         <div className="__admin_lower_layer">
-                                            <img alt="not found" key={obj} src={process.env.API_URL + "/img/" + obj} />
+                                            <img alt="not found" src={process.env.API_URL + "/img/" + obj} />
                                         </div>
                                         <Button.Primary type="button" onClick={() =>
                                             setValue({ ...value, photos: value.photos.filter((a) => a !== obj) })
@@ -91,9 +91,9 @@ const Admin_Edit = () => {
                         {selectedFile &&
                             Array.from(selectedFile).map(obj => {
                                 return (
-                                    <Column>
+                                    <Column key={obj.name}>
                                         <div className="__admin_lower_layer">
-                                            <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
+                                            <img alt="not found" src={URL.createObjectURL(obj)} />
                                         </div>
                                         <Button.Primary type="button" onClick={() =>
                                             setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))

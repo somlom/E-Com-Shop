@@ -27,9 +27,10 @@ export const create_stripe_session = async (order = {}, id = "", email = "") => 
                 ids: []
             }
 
-            order.products.map(obj => {
+            order.products.forEach((obj) => {
                 search.products.push({ id: obj.id, quantity: obj.quantity })
                 search.ids.push(obj.id)
+                return
             });
 
             const products = await stripe.products.list({
@@ -103,9 +104,8 @@ export const create_new_price = async (product_id = "", price = "", active = tru
     try {
         const new_price = await stripe.prices.create({
             product: product_id,
-            unit_amount: price * 100,
+            unit_amount: Math.imul(price, 100),
             currency: 'eur',
-            product: product_id,
             active: active
         }, {
             apiKey: process.env.STRIPE_SECRET

@@ -32,11 +32,13 @@ const Register = () => {
 
             const api_response = axios.post(`${process.env.API_URL}/auth/register`, input)
 
-            api_response.then((fulfilled) => {
-                localStorage.setItem("user", fulfilled.data)
-                return navigate("/")
-            }
-            )
+            api_response
+                .then((fulfilled) => {
+                    localStorage.setItem("user", fulfilled.data)
+                    return navigate("/")
+                })
+                .catch(() => null)
+
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("registered"),

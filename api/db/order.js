@@ -1,13 +1,11 @@
-import mongoose from 'mongoose';
+import { Schema, Types, model } from 'mongoose';
 
 import { Products } from "./products"
 
 
-const { Schema } = mongoose;
-
 const orders_schema = new Schema({
     user: {
-        type: mongoose.Types.ObjectId,
+        type: Types.ObjectId,
         ref: 'Users',
         required: [true, "Please add your USER_ID"],
     },
@@ -30,7 +28,7 @@ const orders_schema = new Schema({
         type: [
             {
                 order: {
-                    type: mongoose.Types.ObjectId,
+                    type: Types.ObjectId,
                     ref: 'Products',
                     unique: false
                 },
@@ -48,16 +46,18 @@ orders_schema.pre('save', async function (next) {
 
     const populated = await Products.find({ _id: { $in: this.products.map(a => a._id) } })
 
-    let count = 0;
 
-    this.products.map((obj) => {
+    const count_amount = () => {
+        let count = 0;
+        this.products.forEach(obj => {
+            const found = populated.find(ttt => ttt.id === obj.id)
+            count += obj.quantity * found.price
+        });
 
-        const found = populated.find(ttt => ttt.id === obj.id)
-        count += obj.quantity * found.price
+        return Math.round(count * 100) / 100
+    }
 
-    })
-
-    this.amount = count
+    this.amount = count_amount()
     next();
 });
 
@@ -70,11 +70,9 @@ orders_schema.post(['updateOne', "findOneAndUpdate", "updateMany", "update"], as
 
         let count = 0;
 
-        order.products.map((obj) => {
-            console.log(obj)
+        order.products.forEach((obj) => {
             const found = populated.find(ttt => ttt.id === obj.id)
             count += (obj.quantity * found.price)
-
         })
 
         await order.updateOne({ amount: count })
@@ -85,4 +83,4 @@ orders_schema.post(['updateOne', "findOneAndUpdate", "updateMany", "update"], as
     }
 });
 
-export const Orders = mongoose.model('Orders', orders_schema);
+export const Orders = model('Orders', orders_schema);

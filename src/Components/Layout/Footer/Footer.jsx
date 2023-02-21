@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
-
-import "./Footer.css"
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
+
+import "./Footer.css"
 import { Text } from '../../Other/Form/Form';
 import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 

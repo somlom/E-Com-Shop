@@ -10,11 +10,7 @@ module.exports = {
 
     console.log(products, reviews)
 
-    return reviews.forEach(async (element) => {
-
-      return await products.updateOne({ id: element.product }, { reviews: ["63f0f7d0e6d42909fc9bb7cc"] })
-
-    });
+    reviews.forEach(async (element) => await products.updateOne({ id: element.product }, { reviews: ["63f0f7d0e6d42909fc9bb7cc"] }));
   },
 
   async down(db, client) {

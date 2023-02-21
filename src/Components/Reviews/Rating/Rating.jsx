@@ -1,7 +1,7 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 
-export const Rating = ({ className, id, length }) => {
+const Rating = ({ className, id, length }) => {
 
     const max_length = 5;
     const prs = { className, id }
@@ -34,3 +34,5 @@ export const Add_Rating = ({ length, className, id, handle_stars }) => {
         </div>
     )
 }
+
+export default Rating

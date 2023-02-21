@@ -1,7 +1,4 @@
-import mongoose from 'mongoose';
-
-
-const { Schema } = mongoose;
+import { Schema, Types, model } from 'mongoose';
 
 
 const products_schema = new Schema({
@@ -23,8 +20,7 @@ const products_schema = new Schema({
         dropDups: true
     },
     price: {
-        type: mongoose.Types.Decimal128,
-        type: Number,
+        type: Types.Decimal128,
         required: [true, "Please add PRICE"],
     },
     quantity: {
@@ -36,11 +32,11 @@ const products_schema = new Schema({
         required: true,
     },
     reviews: {
-        type: [mongoose.Types.ObjectId],
+        type: [Types.ObjectId],
         ref: "Reviews"
     }
 }, {
     timestamps: true
 });
 
-export const Products = mongoose.model('Products', products_schema);
+export const Products = model('Products', products_schema);

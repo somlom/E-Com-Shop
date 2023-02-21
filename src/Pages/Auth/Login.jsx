@@ -33,16 +33,17 @@ const Login = () => {
 
             const api_response = axios.post(`${process.env.API_URL}/auth/login`, input)
 
-            api_response.then((fulfilled) => {
-                localStorage.setItem("user", fulfilled.data)
-                const next = state?.next
-                if (next !== undefined) {
-                    return navigate(next.toString())
-                } else {
-                    return navigate("/")
-                }
-            },
-            )
+            api_response
+                .then((fulfilled) => {
+                    localStorage.setItem("user", fulfilled.data)
+                    const next = state?.next
+                    if (next !== undefined) {
+                        return navigate(next.toString())
+                    } else {
+                        return navigate("/")
+                    }
+                })
+                .catch(() => null)
             toast.promise(api_response, {
                 loading: t("loading"),
                 success: t("logged_in"),

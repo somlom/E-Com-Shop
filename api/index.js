@@ -1,5 +1,7 @@
 import express from "express";
 import cors from 'cors';
+import csurf from 'csurf';
+import helmet from 'helmet';
 require('dotenv').config()
 
 import { connect } from "./db/init"
@@ -21,9 +23,12 @@ if (process.env.NODE_ENV === "development") {
 }
 
 
-export const app = express()
 connect();
+const app = express()
 
+app.disable('x-powered-by');
+app.use(csurf())
+app.use(helmet())
 app.use(cors());
 app.use(express.json())
 app.use('/img', express.static('api/public/img'))

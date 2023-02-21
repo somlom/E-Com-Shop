@@ -57,9 +57,9 @@ const Admin_Add = () => {
                     {selectedFile &&
                         Array.from(selectedFile).map(obj => {
                             return (
-                                <Column>
+                                <Column key={obj.name}>
                                     <div className="__admin_lower_layer">
-                                        <img alt="not found" key={obj.lastModified} src={URL.createObjectURL(obj)} />
+                                        <img alt="not found" src={URL.createObjectURL(obj)} />
                                     </div>
                                     <Button.Primary type="button" onClick={() =>
                                         setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))

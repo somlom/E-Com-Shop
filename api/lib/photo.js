@@ -1,7 +1,6 @@
 import { unlink, existsSync } from 'fs';
 import multer from "multer"
-import path from 'path';
-import util from "util"
+import util from "util";
 
 const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
@@ -38,7 +37,7 @@ const upload = multer({
 
 export const delete_photos = (files) => {
     if (files.length > 0) {
-        files.map(img => {
+        files.forEach(img => {
             const file_exists = existsSync('api/public/img/' + img)
             if (file_exists === true) {
                 console.log("removed " + 'api/public/img/' + img)

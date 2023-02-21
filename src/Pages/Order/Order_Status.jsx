@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { MdDone, MdClose } from "react-icons/md"
+import { toast } from 'react-hot-toast'
 
 import "./Order.css"
 import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box"
@@ -12,7 +13,6 @@ import { cartArray } from '../../features/cart_slice'
 import { Spinner } from '../../Components/Other/Spinner/Spinner'
 import OrderCount from '../../Components/Order/OrderCount'
 import { Pay } from '../../Components/Other/Buttons/Pay/Pay'
-import { toast } from 'react-hot-toast'
 import { Card } from '../../Components/Layout/Card/Card'
 import OrderData from '../../Components/Order/OrderData'
 
