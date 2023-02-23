@@ -38,7 +38,7 @@ const Login = () => {
                     localStorage.setItem("user", fulfilled.data)
                     const next = state?.next
                     if (next !== undefined) {
-                        return navigate(next.toString())
+                        return navigate(next)
                     } else {
                         return navigate("/")
                     }
@@ -56,7 +56,7 @@ const Login = () => {
 
     return (
         <div className="responsible_form">
-            {state?.message !== undefined ? <h3>{state.message}</h3> : ""}
+            {state?.message && <h3>{state.message}</h3>}
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />

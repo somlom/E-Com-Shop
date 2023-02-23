@@ -21,7 +21,7 @@ payment.get("/close_order/:order_id", asyncHandler(close_order));
 
 
 async function get_orders(req, res) {
-    const order = await Orders.find({ user: req.user, payed: true }).populate("products._id").sort({updatedAt: "descending"})
+    const order = await Orders.find({ user: req.user, payed: true }).populate("products._id").sort({ updatedAt: "descending" })
     return res.json(order)
 }
 
@@ -103,27 +103,39 @@ async function close_order(req, res) {
 
     const { order_id } = req.params;
 
-    const order = await Orders.findById(order_id)
+    const order = await Orders.findById(order_id).populate("products._id")
 
     const session = await stripe.checkout.sessions.retrieve(
         order.stripe_order_id, { apiKey: process.env.STRIPE_SECRET }
     );
 
-    const popp = await order.populate("products._id")
+
     if (session.status === "complete") {
+
+
         if (order.payed === false && order.open === true) {
 
             await order.updateOne({ open: false, payed: true })
+            const products = [];
 
-
+            Array.from(order.products).forEach(element => {
+                element._id.quantity = parseInt(element.quantity)
+                products.push(element._id)
+            })
             const mailer = new Mailer()
 
             mailer.send_email(session.customer_email, "Ihre Bestellung ist in der Verarbeitung", "order", { name: session.shipping_details.name })
-            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "order_alert", { customer_details: session.customer_details, address:session.customer_details.address })
+            mailer.send_email(process.env.ADMIN_EMAIL, "NEW ORDER", "order_alert", { customer_details: session.customer_details, address: session.customer_details.address })
 
-            return res.json(order);
+            return res.json(products);
         } else {
-            return res.status(304).json(popp)
+            const products = [];
+
+            Array.from(order.products).forEach(element => {
+                element._id.quantity = parseInt(element.quantity)
+                products.push(element._id)
+            })
+            return res.status(200).json(products)
         }
     } else {
         return res.status(404).json()

@@ -16,8 +16,9 @@ const ProtectedRoute = () => {
     })
 
     useEffect(() => {
+        console.log(location.pathname+location.search)
         if (data.isError) {
-            navigate("/login", { state: { next: location.pathname, message: t("login_to_proceed") } })
+            navigate("/login", { state: { next: location.pathname+location.search, message: t("login_to_proceed") } })
         }
     }, [data])
 

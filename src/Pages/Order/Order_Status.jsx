@@ -31,7 +31,7 @@ export const Order_Status = () => {
     } else if (res.isError) {
       <h1>Sorry, error</h1>
     } else if (res.isSuccess && res.data) {
-      return <Order_Success data={res.data.products} />
+      return <Order_Success data={res.data} />
     }
   } else {
     return <Order_Failed />
@@ -41,35 +41,28 @@ export const Order_Status = () => {
 const Order_Success = ({ data }) => {
 
   const [t] = useTranslation()
-  const [get_cart, cart_data] = usePostCartMutation();
-  useEffect(() => {
-    get_cart(data)
-  }, [data])
-  if (cart_data.isSuccess) {
-    return (
-      <Column className={"order_status"}>
-        <Row className={"order_status_header"}>
-          <div className='order_img'><MdDone size={200} /></div>
-          <span>{t("thanks_for_order")}</span>
-        </Row>
-        <Column className={"order_status_body"}>
-          <Suspense fallback={<Spinner />}>
-            <Card>
-              <OrderData data={cart_data?.data} counter={false} remove_btn={false} />
-            </Card>
-            <Card>
-              <OrderCount data={cart_data?.data} />
-            </Card>
-          </Suspense>
-        </Column>
+
+  return (
+    <Column className={"order_status"}>
+      <Row className={"order_status_header"}>
+        <div className='order_img'><MdDone size={200} /></div>
+        <span>{t("thanks_for_order")}</span>
+      </Row>
+      <Column className={"order_status_body"}>
+        <Suspense fallback={<Spinner />}>
+          <Card>
+            <OrderData data={data} counter={false} remove_btn={false} />
+          </Card>
+          <Card>
+            <OrderCount data={data} />
+          </Card>
+        </Suspense>
       </Column>
-    )
-  } else {
-    return <Spinner />
-  }
+    </Column>
+  )
 }
 
-const Order_Failed = () => {
+const Order_Failed = ({ data }) => {
 
   const [t] = useTranslation()
   const cart = useSelector(cartArray);
@@ -78,7 +71,6 @@ const Order_Failed = () => {
   useEffect(() => {
     get_cart(cart)
   }, [cart])
-
 
   const pay_order = () => {
     axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
@@ -98,7 +90,7 @@ const Order_Failed = () => {
         {cart_data.isSuccess ? (
           <Suspense fallback={<Spinner />}>
             <Card>
-              <OrderData data={cart_data.data} counter={false} remove_btn={false} />
+              <OrderData data={data} counter={false} remove_btn={false} />
             </Card>
             <Card>
               <OrderCount data={cart_data.data}>

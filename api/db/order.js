@@ -27,7 +27,7 @@ const orders_schema = new Schema({
     products: {
         type: [
             {
-                order: {
+                _id: {
                     type: Types.ObjectId,
                     ref: 'Products',
                     unique: false

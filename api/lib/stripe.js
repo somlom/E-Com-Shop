@@ -84,7 +84,7 @@ export const create_product = async (id = "", name = "", price = 0, filename = [
             name: name,
             default_price_data: {
                 currency: "EUR",
-                unit_amount_decimal: price * 100,
+                unit_amount_decimal: Math.round(parseInt(price) * 100),
             },
             shippable: true,
             url: process.env.PUBLIC_URL + "/products/" + id,
@@ -104,7 +104,7 @@ export const create_new_price = async (product_id = "", price = "", active = tru
     try {
         const new_price = await stripe.prices.create({
             product: product_id,
-            unit_amount: Math.imul(price, 100),
+            unit_amount: Math.round(parseInt(price) * 100),
             currency: 'eur',
             active: active
         }, {

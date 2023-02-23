@@ -34,7 +34,7 @@ async function check_cart(req, res) {
 
     const { data } = req.body;
 
-    let quantity = 0
+    let quantity = 0;
 
     const value = await Products.find({ _id: { $in: await data.map((a) => a._id) } })
 

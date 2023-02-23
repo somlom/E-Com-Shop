@@ -6,8 +6,8 @@ import { set_to_cart, remove_from_cart } from "../../features/cart_slice"
 import { Row } from '../Other/Structure/Flex-Box/Flex-Box';
 
 
-const OrderData = ({ data, counter = true, remove_btn = true }) => {
-    
+const OrderData = ({ data = [{_id: "", photos: [], name: "", quantity: "", price: ""}], counter = true, remove_btn = true }) => {
+
     const [t] = useTranslation();
     const dispatch = useDispatch();
 

@@ -55,9 +55,9 @@ async function edit_product(req, res) {
                 .then(
                     async () => await update_product(id, name, filename, price)
                 )
-                .catch(() => {
+                .catch((onrejected) => {
                     res.status(500)
-                    throw new Error("edit product error")
+                    throw new Error(onrejected)
                 })
 
             return res.json()
