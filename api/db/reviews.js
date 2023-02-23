@@ -7,7 +7,7 @@ const reviews_schema = new Schema({
         required: [true, "Please add your TITLE"],
     },
     rating: {
-        type: String,
+        type: Number,
         required: [true, "Please add your STARS"],
     },
     text: {
