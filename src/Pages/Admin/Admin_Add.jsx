@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 import "./Admin.css"
@@ -10,7 +10,7 @@ import { Column, Row } from "../../Components/Other/Structure/Flex-Box/Flex-Box"
 
 const Admin_Add = () => {
 
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
 
     const add_to_state = (event) => {
@@ -33,16 +33,20 @@ const Admin_Add = () => {
         formData.append("price", input.price)
         formData.append("quantity", input.quantity)
         formData.append("technical_data", input.technical_data)
-    
-        const response_promise = axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } })
+        formData.append("product_text", JSON.stringify(input.product_text))
 
+        const response_promise = axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } })
+        console.log(response_promise)
         toast.promise(response_promise, {
             loading: "loading",
             success: "added",
-            error: (err) => t(err.message),
+            error: (err) => err.response.data || "error with adding product",
         })
-
     }
+
+    useEffect(() => {
+        console.log(input)
+    }, [input])
 
     return (
         <Column>
@@ -61,8 +65,25 @@ const Admin_Add = () => {
                                     <div className="__admin_lower_layer">
                                         <img alt="not found" src={URL.createObjectURL(obj)} />
                                     </div>
-                                    <Button.Primary type="button" onClick={() =>
+                                    <Button.Primary type="button" onClick={() => {
                                         setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
+
+                                        const delete_text = () => {
+                                            const prev = input.product_text;
+                                            if (prev) {
+                                                if (prev.length > 1) {
+                                                    delete prev[obj.name]
+                                                    return prev
+                                                } else {
+                                                    return delete input.product_text;
+                                                }
+                                            } else {
+                                                return prev
+                                            }
+                                            // { ...prev, product_text: prev.product_text === undefined ? "" : delete prev.product_text[obj.name] }
+                                        }
+                                        setInput(prev => ({ ...prev, product_text: delete_text() }))
+                                    }
                                     }>Delete</Button.Primary>
                                 </Column>
                             )
@@ -80,11 +101,22 @@ const Admin_Add = () => {
                 <label>Text</label>
                 <Textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
+                {selectedFile &&
+                    <div>
+                        <label>Body</label>
+                        {Array.from(selectedFile).map((obj, i) => {
+                            return (
+                                <Row key={obj.name}>
+                                    <Textarea tabIndex={5} id='product_text' placeholder='text' onChange={(e) => setInput(prev => ({ ...prev, product_text: !prev?.product_text ? { [obj.name]: e.target.value } : { ...prev.product_text, [obj.name]: e.target.value } }))} />
+                                    <img src={URL.createObjectURL(obj)} width="200px" />
+                                </Row>
+                            )
+                        })}
+                    </div>
+                }
+
                 <label>Price</label>
                 <Number id='price' step="0.01" placeholder='price' onChange={(e) => add_to_state(e)} />
-
-                <label>Quantity</label>
-                <Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />
 
                 <label>Quantity</label>
                 <Number id='quantity' placeholder='quantity' onChange={(e) => add_to_state(e)} />

@@ -24,6 +24,10 @@ async function add_product(req, res) {
         return res.json()
 
     } catch (error) {
+
+        if (error.name === "MongoServerError") {
+            return res.status(400).json(error.message)
+        }
         res.status(400)
         throw new Error(error)
     }
