@@ -1,7 +1,7 @@
-import express, { json, urlencoded } from "express";
+import express from "express";
 import cors from 'cors';
-import helmet from 'helmet';
-require('dotenv').config()
+import { crossOriginResourcePolicy } from 'helmet';
+import { config } from "dotenv"
 
 import { connect } from "./db/init"
 import { products } from './controllers/products';
@@ -15,25 +15,24 @@ import { auth_middleware } from "./middlewares/auth_handler";
 import { user_router } from "./controllers/user";
 
 
+// SETUP
+
+config()
+
 if (process.env.NODE_ENV === "development") {
   process.env.API_PORT = 4000;
   process.env.API_URL = "http://localhost:4000";
   process.env.PUBLIC_URL = "http://localhost:3000";
 }
 
-
 connect();
-// file deepcode ignore UseCsurfForExpress: <please specify a reason of ignoring this>
-const app = express()
 
-app.disable('x-powered-by');
-
-// SETUP
-app
-  .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
+const app = express().disable('x-powered-by')
+  .use(crossOriginResourcePolicy({ policy: "cross-origin" }))
+  // .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
   .use(cors())
-  .use(json())
-  .use(urlencoded({ extended: false }))
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
 
 // ROUTES
 app

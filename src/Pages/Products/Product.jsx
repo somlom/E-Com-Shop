@@ -53,9 +53,9 @@ export const Product = () => {
                                 <img src={showPhoto ? process.env.API_URL + "/img/" + showPhoto : process.env.API_URL + "/img/" + data.photos[0]}></img>
                             </div>
 
-                            <Column className='buy'>
-                                <p>{data.text}</p>
-                            </Column>
+                            <div>
+                                <span>{data.text}</span>
+                            </div>
                         </div>
                         {data.product_text.map((obj) => {
                             return (
