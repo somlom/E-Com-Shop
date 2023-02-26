@@ -27,6 +27,18 @@ const products_schema = new Schema({
         type: Number,
         required: [true, "Please add QUANTITY"],
     },
+    product_text: {
+        type: [{
+            pic: {
+                type: String,
+                required: true
+            },
+            text: {
+                type: String,
+                required: true
+            }
+        }],
+    },
     technical_data: {
         type: String,
         required: true,

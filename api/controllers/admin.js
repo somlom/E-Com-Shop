@@ -13,12 +13,12 @@ admin.post("/edit", asyncHandler(edit_product))
 
 async function add_product(req, res) {
 
-    const { name, text, price, quantity, technical_data } = req.body;
+    const { name, text, price, quantity, technical_data, product_text } = req.body;
 
     try {
         const filename = req.files.map((item) => item.filename)
 
-        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data })
+        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data, product_text: JSON.parse(product_text) })
         await create_product(product.id, name, price, filename)
 
         return res.json()

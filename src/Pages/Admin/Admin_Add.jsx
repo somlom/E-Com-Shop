@@ -36,7 +36,6 @@ const Admin_Add = () => {
         formData.append("product_text", JSON.stringify(input.product_text))
 
         const response_promise = axios.post(process.env.API_URL + "/admin/add", formData, { headers: { "Content-Type": "multipart/form-data" } })
-        console.log(response_promise)
         toast.promise(response_promise, {
             loading: "loading",
             success: "added",
@@ -44,9 +43,32 @@ const Admin_Add = () => {
         })
     }
 
-    useEffect(() => {
-        console.log(input)
-    }, [input])
+    const get_text_to_pic_array = (prev, pic_name, e) => {
+        if (prev !== null && prev.product_text) {
+            const text_found = prev.product_text.find(obj => obj.pic === pic_name)
+            if (text_found) {
+                text_found.text = e.target.value
+                return prev.product_text
+            } else {
+                return [...prev.product_text, { pic: pic_name, text: e.target.value }]
+            }
+        } else {
+            return [{ pic: pic_name, text: e.target.value }]
+        }
+    }
+
+    const delete_text = (pic_name) => {
+        const prev = input.product_text;
+        if (prev) {
+            if (prev.length > 1) {
+                return prev.filter(pic_obj => pic_obj.pic !== pic_name)
+            } else {
+                return delete input.product_text;
+            }
+        } else {
+            return prev
+        }
+    }
 
     return (
         <Column>
@@ -67,22 +89,7 @@ const Admin_Add = () => {
                                     </div>
                                     <Button.Primary type="button" onClick={() => {
                                         setSelectedFile(Array.from(selectedFile).filter((a) => a.name !== obj.name))
-
-                                        const delete_text = () => {
-                                            const prev = input.product_text;
-                                            if (prev) {
-                                                if (prev.length > 1) {
-                                                    delete prev[obj.name]
-                                                    return prev
-                                                } else {
-                                                    return delete input.product_text;
-                                                }
-                                            } else {
-                                                return prev
-                                            }
-                                            // { ...prev, product_text: prev.product_text === undefined ? "" : delete prev.product_text[obj.name] }
-                                        }
-                                        setInput(prev => ({ ...prev, product_text: delete_text() }))
+                                        setInput(prev => ({ ...prev, product_text: delete_text(obj.name) }))
                                     }
                                     }>Delete</Button.Primary>
                                 </Column>
@@ -102,13 +109,13 @@ const Admin_Add = () => {
                 <Textarea tabIndex={5} id='text' placeholder='text' onChange={(e) => add_to_state(e)} />
 
                 {selectedFile &&
-                    <div>
+                    <div style={{ border: "1px solid black" }}>
                         <label>Body</label>
-                        {Array.from(selectedFile).map((obj, i) => {
+                        {Array.from(selectedFile).map((obj) => {
                             return (
-                                <Row key={obj.name}>
-                                    <Textarea tabIndex={5} id='product_text' placeholder='text' onChange={(e) => setInput(prev => ({ ...prev, product_text: !prev?.product_text ? { [obj.name]: e.target.value } : { ...prev.product_text, [obj.name]: e.target.value } }))} />
-                                    <img src={URL.createObjectURL(obj)} width="200px" />
+                                <Row className={"row __admin_gallery"} key={obj.name} >
+                                    <img src={URL.createObjectURL(obj)} width="200px" height="min-content" />
+                                    <Textarea tabIndex={5} id='product_text' placeholder='text' onChange={(e) => setInput(prev => ({ ...prev, product_text: get_text_to_pic_array(prev, obj.name, e) }))} />
                                 </Row>
                             )
                         })}

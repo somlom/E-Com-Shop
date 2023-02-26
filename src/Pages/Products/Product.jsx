@@ -57,14 +57,18 @@ export const Product = () => {
                                 <p>{data.text}</p>
                             </Column>
                         </div>
-                        <Row className="product_text_element">
-                            <img src={process.env.API_URL + "/img/" + data.photos[0]} />
+                        {data.product_text.map((obj) => {
+                            return (
+                                <Row className="product_text_element" key={obj._id}>
+                                    <img src={process.env.API_URL + "/img/" + obj.pic} />
 
-                            <p>
-                                <GetTextTranslation src_lang='de' dest_lang='de' text={data.text} />
-                            </p>
+                                    <p>
+                                        <GetTextTranslation src_lang='de' dest_lang='de' text={obj.text} />
+                                    </p>
 
-                        </Row>
+                                </Row>
+                            )
+                        })}
                     </Column>
                 </Column>
                 <Row>
@@ -75,8 +79,8 @@ export const Product = () => {
 
                         <Suspense fallback={<Spinner />}>
                             <Reviews id={id} product_data={data} />
-                            </Suspense>
-                            <Suspense fallback={<Spinner />}>
+                        </Suspense>
+                        <Suspense fallback={<Spinner />}>
                             <Details data={data.technical_data} />
                         </Suspense>
 
