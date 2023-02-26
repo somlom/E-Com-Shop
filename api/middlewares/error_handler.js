@@ -1,7 +1,7 @@
 import Mailer from "../lib/mailer"
 
 
-export const error_handler = (err, req, res) => {
+export const error_handler = (err, req, res, next) => {
     console.log(err)
     const mailer = new Mailer()
     mailer.send_email(process.env.ADMIN_EMAIL, "Error", "hello", { name: err.stack })
