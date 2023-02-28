@@ -12,7 +12,7 @@ import { Cart } from '../Cart/Cart';
 import { usePostCountMutation } from '../../../features/cart_api';
 import { Button } from '../../Other/Buttons/Standart';
 import { NavElement } from '../../Other/Buttons/With_Icon/NavElement';
-import { Row } from '../../Other/Structure/Flex-Box/Flex-Box';
+import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
 
 
 export const Navigation = () => {
@@ -42,10 +42,10 @@ export const Navigation = () => {
       </div>
       <div className='nav_column'>
         <Link to="/">
-          <div className='nav_title'>
+          <Column>
             <h1>E</h1>
             <span>interEcom</span>
-          </div>
+          </Column>
         </Link>
       </div>
 

@@ -231,11 +231,9 @@
 
 .product_text_element img {
     min-width: 150px;
-    /* border: none;
-    border-radius: 10px; */
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 76primary_button7px) {
 
     .product_text_element:nth-child(odd) {
         flex-direction: row;

@@ -111,7 +111,7 @@ const Admin_Add = () => {
                 {selectedFile &&
                     <div style={{ border: "1px solid black" }}>
                         <label>Body</label>
-                        {Array.from(selectedFile).map((obj) => {
+                        {Array.from(selectedFile).map((obj, i) => {
                             return (
                                 <Row className={"row __admin_gallery"} key={obj.name} >
                                     <img src={URL.createObjectURL(obj)} width="200px" height="min-content" />

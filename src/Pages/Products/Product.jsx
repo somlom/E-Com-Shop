@@ -42,7 +42,7 @@ export const Product = () => {
                         <h1>{data.name}</h1>
                     </Row>
                     <Column className="product_body">
-                        <div className='product_text' >
+                        <div className='product_text'>
 
                             <div className="product_photos">
                                 {data.photos.length > 1 ? (

@@ -2,7 +2,6 @@
     justify-content: space-evenly;
     border: none;
     align-items: center;
-    flex-wrap: wrap;
     background: #e8f5ff;
 }
 
@@ -28,18 +27,7 @@
     padding: 0;
 }
 
-div.nav_title {
-    display: flex;
-    flex-direction: column;
-}
-
 div.nav_title * {
     margin: 0px;
     color: black;
-}
-
-@media screen and (max-width: 767px) {
-    .nav_column.buttons {
-        display: none;
-    }
 }
