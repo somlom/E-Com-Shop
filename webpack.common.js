@@ -7,15 +7,25 @@ require('dotenv').config()
 
 module.exports = {
 
-    //# sourceMappingURL=style.css.map
-
     entry: {
         index: {
             import: path.join(__dirname, "src", "index.js"),
             dependOn: 'shared',
         },
-        another: {
-            import: path.join(__dirname, "src", "lodash.js"),
+        redux: {
+            import: path.join(__dirname, "src", "features", "cart_slice.js"),
+            dependOn: 'shared',
+        },
+        redux_api: {
+            import: path.join(__dirname, "src", "features", "cart_api.js"),
+            dependOn: 'shared',
+        },
+        redux_store: {
+            import: path.join(__dirname, "src", "store.js"),
+            dependOn: 'shared',
+        },
+        i18n: {
+            import: path.join(__dirname, "src", "i18n.js"),
             dependOn: 'shared',
         },
         shared: 'lodash',
@@ -23,19 +33,34 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, "build"),
+        publicPath: "/",
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: [/node_modules/, /api/, /css/, /test/],
+                exclude: [/node_modules/, /api/, /css/, /test/, /public/,],
                 use: ['babel-loader'],
             },
             {
                 test: /\.(css)$/,
-                exclude: [/node_modules/, /test/],
+                exclude: [/node_modules/, /test/, /api/, /test/, /public/, /hooks/, /features/],
                 use: [MiniCssExtractPlugin.loader, "css-loader",],
             },
+            {
+                test: /\.(png|jpe?g|gif|svg|pdf|flow)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'public',
+                            esModule: false
+                        }
+                    }
+                ]
+
+            }
         ],
     },
     resolve: {
@@ -46,30 +71,24 @@ module.exports = {
         new DefinePlugin({
             process: {
                 env: {
-                    API: JSON.stringify(process.env.API),
-                    TEST_API: JSON.stringify(process.env.TEST_API),
-
-                    EMAIL: JSON.stringify(process.env.EMAIL),
-                    EMAIL_PASSWORD: JSON.stringify(process.env.EMAIL_PASSWORD),
-
-                    STRIPE_PUBLIC: JSON.stringify(process.env.STRIPE_PUBLIC),
-                    STRIPE_SECRET: JSON.stringify(process.env.STRIPE_SECRET),
                     PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
                     API_URL: JSON.stringify(process.env.API_URL)
                 }
             }
         }),
         new HtmlWebpackPlugin({
-            title: 'App',
-            publicPath: "/",
+            title: 'interEcom',
             template: path.join(__dirname, "public", "index.html"),
             favicon: path.join(__dirname, "public", "favicon.ico"),
+            scriptLoading: "defer"
         }),
     ],
     optimization: {
+        chunkIds: "total-size",
+        usedExports: 'global',
         splitChunks: {
             chunks: 'all',
         },
-        runtimeChunk: 'single',
+        runtimeChunk: true,
     },
 }

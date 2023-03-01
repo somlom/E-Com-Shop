@@ -4,13 +4,15 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import XHR from "i18next-http-backend" // <---- add this
 import Backend from 'i18next-http-backend';
 
-import DE from "./public/locales/de/translation.json";
-import EN from "./public/locales/en/translation.json";
-import ES from "./public/locales/es/translation.json";
-import FR from "./public/locales/fr/translation.json";
-import RO from "./public/locales/ro/translation.json";
-import RU from "./public/locales/ru/translation.json";
-import UA from "./public/locales/ua/translation.json";
+import DE from "./locales/de/translation.json";
+import EN from "./locales/en/translation.json";
+import ES from "./locales/es/translation.json";
+import FR from "./locales/fr/translation.json";
+import PL from "./locales/pl/translation.json";
+import RO from "./locales/ro/translation.json";
+import RU from "./locales/ru/translation.json";
+import TR from "./locales/tr/translation.json";
+import UA from "./locales/ua/translation.json";
 
 
 const resources = {
@@ -35,6 +37,12 @@ const resources = {
   ua: {
     translation: UA
   },
+  pl: {
+    translation: PL
+  },
+  tr: {
+    translation: TR
+  },
 };
 
 const options = {
@@ -47,10 +55,8 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-
     detection: options,
     resources,
-
     debug: true,
     fallbackLng: "en",
     // supportedLngs: ['de', 'en', 'fr'],
@@ -58,7 +64,7 @@ i18n
     // if you're using a language detector, do not define the lng option
 
     interpolation: {
-      escapeValue: false // react already safes from xss
+      escapeValue: false // xss safe
     }
   });
 

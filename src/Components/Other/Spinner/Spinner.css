@@ -1,0 +1,25 @@
+.prepair_spinner {
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-sizing: unset;
+    justify-content: center;
+    position: fixed;
+}
+.spinner {
+    width: 200px;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border: 20px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 20px solid #3498db;
+    animation: spin 1s ease-out infinite;
+}

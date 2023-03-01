@@ -1,0 +1,36 @@
+.order_status {
+    width: 100%;
+    height: 100%;
+}
+
+.order_status_header,
+.order_status_header * {
+    margin: 40px;
+}
+
+.order_status_header {
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+div.order_status_body {
+    justify-content: space-around;
+}
+
+div.order_img {
+    display: flex;
+    background-color: #e8f5ff;
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+div.order_img svg {
+    padding: 0;
+    margin: 0;
+    color: rgb(2, 158, 255);
+}

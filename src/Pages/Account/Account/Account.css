@@ -1,0 +1,59 @@
+.dropdown .width {
+    width: auto;
+    background-color: #e8f5ff;
+    padding: 12px;
+    border-radius: 20px;
+    margin: 2px;
+    text-decoration: none;
+}
+
+.dropdown .width:focus {
+    background-color: #abdbff;
+}
+
+.dropdown {
+    position: sticky;
+    height: min-content;
+    min-width: 230px;
+    margin: 10px;
+    padding: 8px;
+    top: 10px;
+}
+
+.dropdown * {
+    height: min-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+a.dropdown_button {
+    margin: 10px;
+}
+
+div.account_content.column {
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+
+    .dropdown {
+        width: 100%;
+        margin: 0;
+        background-color: white;
+        align-self: center;
+        top: 0;
+    }
+
+    div.dropdown_data {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    div.dropdown_data {
+        display: flex;
+        flex-direction: row;
+    }
+}

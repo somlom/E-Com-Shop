@@ -12,19 +12,16 @@ Test on web: https://deploy-site-test.netlify.app/
 To run the app `yarn run dev`
 
 ## Test
-- [ ] cant buy more than 1 item; more than 2 you get error
-- [ ] cant buy anything anymore if you try you get error
-
-## Bugs
-- [ ] shit image quality when they small
 - [x] cant buy more than 1 item; more than 2 you get error
 - [x] cant buy anything anymore if you try you get error
-- [ ] unsyncronized Stripe and local DB
-- [ ] Stripe images
-- [ ] hamburger menu design
+
+## Bugs
+- [x] shit image quality when they small
+- [x] cant buy more than 1 item; more than 2 you get error
+- [x] cant buy anything anymore if you try you get error
+- [x] unsyncronized Stripe and local DB
+- [x] Stripe images
 - [ ] not all translation keys found (on register page mostly)
-- [ ] when you click on "bezahlen" in cart the module doesnt go away 
-- [ ] buy now button doesnt work
 
 ## To-Do
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved
@@ -39,7 +36,7 @@ To run the app `yarn run dev`
 - [x] Implement local DB
 - [x] AGB
 - [x] Paying process
-- [ ] reset page
+- [x] reset page
 
 ### Design
 - [x] Navbar
@@ -51,12 +48,10 @@ To run the app `yarn run dev`
 - [x] Order page
 - [x] Product page
 - [x] Footer
-- [ ] Hot deals
-- [ ] Search page
-- [ ] Admin page
+- [x] Admin page
 
 ### Product page
-- [ ] Reviews
+- [x] Reviews
 - [x] photos
 - [x] details
 
@@ -64,25 +59,19 @@ To run the app `yarn run dev`
 - [x] Order box
 - [x] Infos
 - [x] payment
-- [ ] receipt
+- [x] receipt
 
 ### user profile
-- [ ] Sending data
-- [ ] Payment methods
 - [ ] Personal data
-- [ ] Merkzettel
-- [ ] Zahlungen
-- [ ] Bestellung
-- [ ] Rechnung
+- [x] Bestellung
   
 ### Backend
-- [ ] Slug
-- [ ] Admin-Page security (2FA)
+- [x] Admin-Page 
 
 ### Frontend
 - [ ] Slug
-- [ ] Admin-Page security
-- [ ] Design
+- [x] Admin-Page
+- [x] Design
 
 ### Cart
 - [x] Data will be added as a global state in redux, sent to server and the id in response from server will be saved

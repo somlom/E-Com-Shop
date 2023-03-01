@@ -1,92 +1,64 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
 
-import { Products } from "../db/schemas";
-import { upload_photos } from "../lib/photo";
-import { Stripe_Api } from "../lib/stripe";
+import { Products } from "../db/products";
 
 
-const products = Router();
+export const products = Router();
 
 products.get("/", asyncHandler(get_products));
 products.get("/:id", asyncHandler(get_product_by_id))
-products.post("/cart", asyncHandler(get_cart_items))
-products.post("/add", upload_photos, asyncHandler(add_product))
 
-export async function get_cart_items(req, res) {
+products.post("/cart", asyncHandler(get_cart_items))
+products.post("/check_cart", asyncHandler(check_cart))
+
+async function get_cart_items(req, res) {
 
     const { data } = req.body;
 
-    const value = await Products.find({ _id: { $in: await data.map(a => a._id) } })
+    const value = await Products.find({ _id: { $in: data.map(a => { return a._id }).filter(a => a) } })
 
-    if (value) {
-        const in_cart = []
+    const in_cart = []
 
-        data.map((item) => {
-
-            const found = value.find(x => x.id === item._id)
-            if (found) {
-                found.quantity = parseInt(item.quantity)
-                in_cart.push(found)
-            }
-
-        })
-
-        return res.json(in_cart)
-
-    } else {
-        return res.json([])
-    }
+    data.map((item) => {
+        const found = value.find(x => x.id === item._id)
+        if (found) {
+            found.quantity = parseInt(item.quantity)
+            return in_cart.push(found)
+        }
+    })
+    return res.json(in_cart)
 }
 
-export async function get_product_by_id(req, res) {
+async function check_cart(req, res) {
+
+    const { data } = req.body;
+
+    let quantity = 0;
+
+    const value = await Products.find({ _id: { $in: await data.map((a) => a._id) } })
+
+    // create find files function
+
+    const updated_arr = data.filter(obj => value.find(x => x.id === obj._id))
+
+    updated_arr.map((obj) => quantity += parseInt(obj.quantity))
+    return res.json({ cart: Array.from(updated_arr), quantity: quantity })
+}
+
+async function get_product_by_id(req, res) {
 
     const { id } = req.params;
 
-    try {
-        return res.json(await Products.findById(id))
-    } catch (error) {
-        return res.json(null)
+    const product = await Products.findById(id)
+
+    if (product) {
+        return res.json(product)
+    } else {
+        return res.status(404);
     }
 }
 
-export async function get_products(req, res) {
+async function get_products(req, res) {
     return res.json(await Products.find())
 }
-
-export async function add_product(req, res) {
-
-    const { name, text, price, quantity } = req.body;
-
-    const filename = req.files.map((item) => item.filename)
-
-    try {
-        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity })
-        if (product) {
-            const stripe = new Stripe_Api();
-            stripe.create_product(product, filename);
-        }
-        return res.json(product)
-    } catch (error) {
-        res.status(400)
-        throw new Error(error)
-    }
-}
-
-export async function edit_product(req, res) {
-
-    const item = await Products.findOne({ _id: req.body._id })
-    if (item) {
-        try {
-            const products = await Products.findByIdAndUpdate(req.body._id, req.body)
-            return res.json(products)
-        } catch (error) {
-            res.status(400)
-            throw new Error(error)
-        }
-    } else {
-        throw new Error("error")
-    }
-}
-
-export default products;

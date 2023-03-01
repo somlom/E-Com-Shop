@@ -8,3 +8,9 @@ coverage
 .env
 stats.json
 yarn-error.log
+.vscode
+.yarnclean
+lodash.js
+migrate-mongo-config.js
+.dccache
+sample.*

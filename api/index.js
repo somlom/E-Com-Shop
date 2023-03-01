@@ -1,43 +1,50 @@
-#! /usr/bin/env node
-
 import express from "express";
 import cors from 'cors';
-import { SafeString } from 'handlebars'
-require('dotenv').config()
+import { crossOriginResourcePolicy } from 'helmet';
+import { config } from "dotenv"
 
 import { connect } from "./db/init"
-import products from './controllers/products';
-import files from './controllers/files';
+import { products } from './controllers/products';
 import { error_handler } from "./middlewares/error_handler";
-import auth from "./controllers/auth";
-import payment from "./controllers/payment";
-import Mailer from "./lib/mailer";
-import TOTP from "./lib/totp";
-import { generatePath } from "react-router-dom";
+import { auth } from "./controllers/auth";
+import { payment } from "./controllers/payment";
+import { reviews } from "./controllers/reviews";
+import { admin } from "./controllers/admin";
+import { upload_photos } from "./lib/files/photo";
+import { auth_middleware } from "./middlewares/auth_handler";
+import { user_router } from "./controllers/user";
 
 
-export const app = express()
+// SETUP
+
+config()
+
+if (process.env.NODE_ENV === "development") {
+  process.env.API_PORT = 4000;
+  process.env.API_URL = "http://localhost:4000";
+  process.env.PUBLIC_URL = "http://localhost:3000";
+}
+
 connect();
 
-app.use(cors());
-app.use(express.json())
-app.use('/img', express.static('api/public/img'))
+const app = express().disable('x-powered-by')
+  .use(crossOriginResourcePolicy({ policy: "cross-origin" }))
+  // .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
+  .use(cors())
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
 
-app.use(express.urlencoded({ extended: false }))
+// ROUTES
+app
+  .use('/img', express.static('api/public/img'))
+  .use("/products", products)
+  .use("/reviews", reviews)
+  .use("/auth", auth)
+  .use("/payment", auth_middleware, payment)
+  .use("/admin", upload_photos, admin)
+  .use("/user", auth_middleware, user_router)
+  .use(error_handler)
 
-app.use("/products", products)
-app.use("/auth", auth)
-app.use("/payment", payment)
-app.use("/download", files)
-
-
-const auther = new TOTP();
-auther.generateQRCode("supersnus1331@gmail.com")
-// mailer.send_email("supersnus1331@gmail.com", "Admin access", "admin", { code: new SafeString(qr_code) })
-
-
-app.use(error_handler)
-
-app.listen(process.env.NODE_ENV === "development" ? process.env.API_PORT = 4000 : process.env.API_PORT, () => {
+app.listen(process.env.API_PORT, () => {
   console.log(`app is listening to port ${process.env.API_PORT}`)
 })

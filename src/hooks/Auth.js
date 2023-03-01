@@ -1,11 +1,13 @@
-import React from "react"
+import { useEffect } from "react"
+import { useTranslation } from "react-i18next";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 
-import { Spinner } from '../components/other/Spinner/Spinner';
+import { Spinner } from '../Components/Other/Spinner/Spinner';
 import { useGetData } from "./Data";
 
 
-export const ProtectedRoute = () => {
+const ProtectedRoute = () => {
+    const [t] = useTranslation();
     const location = useLocation()
     const navigate = useNavigate();
 
@@ -13,9 +15,9 @@ export const ProtectedRoute = () => {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (data.isError) {
-            navigate("/login", { state: { next: location.pathname, message: "You are have to be logged in to proceed" } })
+            navigate("/login", { state: { next: location.pathname+location.search, message: t("login_to_proceed") } })
         }
     }, [data])
 
@@ -30,3 +32,32 @@ export const ProtectedRoute = () => {
 
     }
 };
+
+export const AdminRoute = () => {
+    const navigate = useNavigate();
+
+    const data = useGetData("/auth/admin", {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+    })
+
+    useEffect(() => {
+        if (data.isError) {
+            navigate("/404")
+        }
+    }, [data])
+
+
+    if (data.isSuccess === true) {
+
+        return <Outlet />;
+
+    } else {
+
+        return <Spinner />
+
+    }
+};
+
+export default ProtectedRoute;
+
+// axios.post(`${process.env.API_URL}/auth/admin`, { token: totp }, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })

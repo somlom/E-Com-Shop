@@ -1,0 +1,26 @@
+div.card {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #e8f5ff;
+    margin: 10px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.data.row {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card_data {
+    justify-content: space-between;
+    width: fit-content;
+}
+
+.card_amount {
+    white-space: nowrap;
+    width: min-content;
+    justify-content: center;
+    align-items: flex-end;
+}

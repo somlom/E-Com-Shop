@@ -1,0 +1,50 @@
+.form_content {
+    align-items: center;
+}
+
+.form.column {
+    width: 100%
+}
+
+div.responsible_form .form.column{
+    width: 80%;
+    max-width: 900px;
+}
+
+.form_title {
+    margin: 5px;
+}
+
+.form_buttons {
+    width: fit-content;
+    align-self: center;
+}
+
+.form_buttons button {
+    margin: 10px;
+}
+
+.form p, .form input, .form textarea {
+    width: 100%;
+    margin: 1vw 0;
+}
+
+.form p{
+    padding: 24px 40px;
+    text-align: center;
+}
+
+.form input,
+.form textarea {
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+    align-self: center;
+}
+
+.form input:focus,
+.form textarea:focus {
+    border: 1px solid  rgb(2, 158, 255);
+}

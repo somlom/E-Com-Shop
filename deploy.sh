@@ -1,7 +1,13 @@
-echo "Building app.."
-npm run build
+echo "Backuping files..."
+cp -r build/public/img api/public/img_old
 
-echo "Deploying files over SSH"
-scp -r build/* pi@192.168.178.54:/var/www/192.168.178.54/
+echo "Installing deps..."
+yarn
+
+echo "Copying from backup"
+cp -r api/public/img_old/img build/public
+
+echo "Compiling..."
+rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files 
 
 echo "Done!"
