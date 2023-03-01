@@ -11,4 +11,3 @@ echo "Compiling..."
 rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files 
 
 echo "Done!"
-# yarn && babel api --ignore node_modules,test --out-dir build --copy-files

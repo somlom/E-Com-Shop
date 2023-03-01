@@ -8,7 +8,8 @@
     "api_dev": "npx nodemon --exec babel-node api/index.js",
     "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config webpack.dev.js\"",
     "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config webpack.prod.js",
-    "start": "concurrently \"node build/index.js\" \"http-server ./build\""
+    "start": "concurrently \"node build/index.js\" \"http-server ./build\"",
+    "start:container": "rimraf build && babel . --ignore node_modules,test --out-dir build --copy-files && ls && node build/index.js"
   },
   "author": "supersnus <supersnus1331@gmail.com>",
   "license": "ISC",
