@@ -31,3 +31,7 @@ div.nav_title * {
     margin: 0px;
     color: black;
 }
+
+.nav_column .column {
+    display: flex;
+}
