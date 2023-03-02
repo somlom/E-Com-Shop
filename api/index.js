@@ -25,15 +25,18 @@ if (process.env.NODE_ENV === "development") {
   process.env.PUBLIC_URL = "http://localhost:3000";
 }
 
+const corsOptions = {
+  origin: process.env.PUBLIC_URL
+};
+
 connect();
 
 const app = express().disable('x-powered-by')
   .use(crossOriginResourcePolicy({ policy: "cross-origin" }))
   // .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
-  .use(cors())
+  .use(cors(corsOptions))
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-
 // ROUTES
 app
   .use('/img', express.static('api/public/img'))
