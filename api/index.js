@@ -1,7 +1,7 @@
 import express from "express";
-import cors from 'cors';
 import { crossOriginResourcePolicy } from 'helmet';
 import { config } from "dotenv"
+import cors from "cors"
 
 import { connect } from "./db/init"
 import { products } from './controllers/products';
@@ -17,7 +17,7 @@ import { user_router } from "./controllers/user";
 
 // SETUP
 
-config()
+config({ path: "../.env" })
 
 if (process.env.NODE_ENV === "development") {
   process.env.API_PORT = 4000;
@@ -31,14 +31,14 @@ const corsOptions = {
 
 connect();
 
-const app = express().disable('x-powered-by')
+const app = express()
+  .disable('x-powered-by')
   .use(crossOriginResourcePolicy({ policy: "cross-origin" }))
-  // .use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }))
-  .use(cors(corsOptions))
   .use(express.json())
+  .use(cors())
   .use(express.urlencoded({ extended: false }))
-// ROUTES
-app
+  // ROUTES
+
   .use('/img', express.static('api/public/img'))
   .use("/products", products)
   .use("/reviews", reviews)

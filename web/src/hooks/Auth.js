@@ -59,5 +59,3 @@ export const AdminRoute = () => {
 };
 
 export default ProtectedRoute;
-
-// axios.post(`${process.env.API_URL}/auth/admin`, { token: totp }, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })

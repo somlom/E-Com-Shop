@@ -1,15 +1,33 @@
 version: '3.9'
+
 services:
-  web1:
+
+  api1:
     restart: on-failure
-    build: .
+    build: ./api
     ports:
       - '4000:4000'
     env_file:
       - .env
+
+  web1:
+    restart: on-failure
+    build: ./web
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+
   nginx:
     build: ./nginx
     ports:
-    - '80:80'
+      - '80:80'
+    volumes:
+      - ./web/build:/home
     depends_on:
-    - web1
+      - api1
+      - web1
+
+volumes:
+  db:
+    driver: local
