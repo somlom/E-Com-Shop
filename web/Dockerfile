@@ -3,9 +3,10 @@ FROM node:alpine
 COPY . /web
 WORKDIR /web
 
+ENV API_URL "/api"
+
 RUN yarn install
 RUN yarn add serve
 RUN yarn build
-COPY build /home
+
 CMD ["yarn", "start"]
-# CMD ["yarn", "run", "dev"]

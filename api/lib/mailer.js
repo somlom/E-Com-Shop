@@ -20,10 +20,10 @@ export default class Mailer {
         this.handlebarOptions = {
             viewEngine: {
                 extName: '.handlebars',
-                partialsDir: path.resolve('./api/public/emails'),
-                defaultLayout: 'api/public/emails/main',
+                partialsDir: path.resolve('public/emails'),
+                defaultLayout: 'public/emails/main',
             },
-            viewPath: path.resolve('./api/public/emails'),
+            viewPath: path.resolve('public/emails'),
         };
 
         this.transporter = nodemailer.createTransport(this.connection)

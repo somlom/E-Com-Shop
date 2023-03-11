@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { DefinePlugin } = require("webpack");
-require('dotenv').config()
+require('dotenv').config({ path: '../.env' }); 
 
 
 module.exports = {
@@ -69,12 +69,7 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(),
         new DefinePlugin({
-            process: {
-                env: {
-                    PUBLIC_URL: JSON.stringify(process.env.PUBLIC_URL),
-                    API_URL: JSON.stringify(process.env.API_URL)
-                }
-            }
+            "process.env": JSON.stringify(process.env)
         }),
         new HtmlWebpackPlugin({
             title: 'interEcom',

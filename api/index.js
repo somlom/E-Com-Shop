@@ -3,7 +3,7 @@ import { crossOriginResourcePolicy } from 'helmet';
 import { config } from "dotenv"
 import cors from "cors"
 
-import { connect } from "./db/init"
+import { connect } from "./db/init.js"
 import { products } from './controllers/products';
 import { error_handler } from "./middlewares/error_handler";
 import { auth } from "./controllers/auth";
@@ -19,15 +19,12 @@ import { user_router } from "./controllers/user";
 
 config({ path: "../.env" })
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV !== "production") {
   process.env.API_PORT = 4000;
-  process.env.API_URL = "http://localhost:4000";
+  process.env.API_URL = "http://localhost:4000/api";
   process.env.PUBLIC_URL = "http://localhost:3000";
+  process.env.NODE_ENV = "development"
 }
-
-const corsOptions = {
-  origin: process.env.PUBLIC_URL
-};
 
 connect();
 
@@ -39,13 +36,13 @@ const app = express()
   .use(express.urlencoded({ extended: false }))
   // ROUTES
 
-  .use('/img', express.static('api/public/img'))
-  .use("/products", products)
-  .use("/reviews", reviews)
-  .use("/auth", auth)
-  .use("/payment", auth_middleware, payment)
-  .use("/admin", upload_photos, admin)
-  .use("/user", auth_middleware, user_router)
+  .use('/api/img', express.static('./public/img'))
+  .use("/api/products", products)
+  .use("/api/reviews", reviews)
+  .use("/api/auth", auth)
+  .use("/api/payment", auth_middleware, payment)
+  .use("/api/admin", upload_photos, admin)
+  .use("/api/user", auth_middleware, user_router)
   .use(error_handler)
 
 app.listen(process.env.API_PORT, () => {

@@ -5,7 +5,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest api.test.js --coverage",
     "dev": "webpack serve --open --config webpack.dev.js",
-    "build": "npx webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "start": "serve -s build -l 3000"
   },
   "license": "MIT",

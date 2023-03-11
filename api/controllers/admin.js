@@ -40,15 +40,16 @@ async function edit_product(req, res) {
 
     const item = await Products.findById(id)
 
+    console.log("stack")
 
     if (item) {
-
+        console.log("stack")
         try {
 
             const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
 
             const files_to_delete = await find_files_on_server(difference)
-
+console.log("files_to_delete")
             if (files_to_delete.same) {
                 delete_photos(files_to_delete)
             }
