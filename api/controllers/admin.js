@@ -14,7 +14,7 @@ admin.post("/edit", asyncHandler(edit_product))
 async function add_product(req, res) {
 
     const { name, text, price, quantity, technical_data, product_text } = req.body;
-
+    console.log("stack")
     try {
         const filename = req.files.map((item) => item.filename)
 
@@ -34,6 +34,7 @@ async function add_product(req, res) {
 }
 
 async function edit_product(req, res) {
+    console.log("stack")
     const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
     const filename = req.files.map((item) => item.filename)

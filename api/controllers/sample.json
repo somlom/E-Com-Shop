@@ -11,7 +11,7 @@
             "status": null
         },
         "billing_address_collection": null,
-        "cancel_url": "http://localhost:3000/order_status?success=false",
+        "cancel_url": "/order_status?success=false",
         "client_reference_id": "63ea912bd7549ca4aa788155",
         "consent": null,
         "consent_collection": null,
@@ -95,7 +95,7 @@
         "status": "complete",
         "submit_type": null,
         "subscription": null,
-        "success_url": "http://localhost:3000/order_status?order=63ea912bd7549ca4aa788155&success=true",
+        "success_url": "/order_status?order=63ea912bd7549ca4aa788155&success=true",
         "total_details": {
             "amount_discount": 0,
             "amount_shipping": 0,

@@ -5,7 +5,7 @@ const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'api/public/img');
+        cb(null, "../../public/img");
 
     },
     filename: function (req, file, cb) {
