@@ -41,7 +41,7 @@ const app = express()
   .use("/api/reviews", reviews)
   .use("/api/auth", auth)
   .use("/api/payment", auth_middleware, payment)
-  .use("/api/admin", upload_photos, admin)
+  .use("/api/admin", admin)
   .use("/api/user", auth_middleware, user_router)
   .use(error_handler)
 

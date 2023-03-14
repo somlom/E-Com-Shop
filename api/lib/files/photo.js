@@ -1,12 +1,14 @@
 import Multer, { diskStorage } from "multer"
+import path from "path";
 import { promisify } from "util";
+
 
 const allowedOutputFormats = ['image/jpg', 'image/png', "image/jpeg"];
 
 const storage = diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "../../public/img");
-
+        console.log(path.join("api","build","public","img"))
+        cb(null, path.join("api","build","public","img"));
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '-' + file.originalname);
