@@ -15,7 +15,6 @@ admin.post("/edit", upload_photos, asyncHandler(edit_product))
 async function add_product(req, res) {
 
     const { name, text, price, quantity, technical_data, product_text } = req.body;
-    console.log("stack")
     try {
         const filename = req.files.map((item) => item.filename)
 
@@ -35,25 +34,21 @@ async function add_product(req, res) {
 }
 
 async function edit_product(req, res) {
-    console.log("stack")
     const { text, name, price, quantity, id, technical_data, remaining_photos } = req.body;
 
     const filename = req.files.map((item) => item.filename)
 
     const item = await Products.findById(id)
 
-    console.log("stack")
-
     if (item) {
-        console.log("stack")
         try {
 
             const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
-
-            const files_to_delete = await find_files_on_server(difference)
-            console.log("files_to_delete")
-            if (files_to_delete.same) {
-                delete_photos(files_to_delete)
+            if(difference){
+                const files_to_delete = await find_files_on_server(difference)
+                if (files_to_delete.same) {
+                    delete_photos(files_to_delete)
+                }
             }
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]

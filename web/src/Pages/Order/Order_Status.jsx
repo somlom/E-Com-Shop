@@ -15,6 +15,7 @@ import OrderCount from '../../Components/Order/OrderCount'
 import { Pay } from '../../Components/Other/Buttons/Pay/Pay'
 import { Card } from '../../Components/Layout/Card/Card'
 import OrderData from '../../Components/Order/OrderData'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 
 export const Order_Status = () => {
@@ -23,18 +24,28 @@ export const Order_Status = () => {
   const order = params.get("order")
   const success = params.get("success")
 
-  if (success === "true") {
+  if (success && order) {
     const res = useGetData(`/payment/close_order/${order}`, { authorization: "Bearer " + localStorage.getItem("user") })
-
     if (res.isLoading) {
+
       return <Spinner />
+
     } else if (res.isError) {
+
       <h1>Sorry, error</h1>
-    } else if (res.isSuccess && res.data) {
-      return <Order_Success data={res.data} />
+    } else if (res.isSuccess) {
+
+      if (success === "true") {
+
+        return <Order_Success data={res.data} />
+
+      } else {
+
+        return <Order_Failed data={res.data} />
+
+      }
+
     }
-  } else {
-    return <Order_Failed />
   }
 }
 
@@ -65,18 +76,12 @@ const Order_Success = ({ data }) => {
 const Order_Failed = ({ data }) => {
 
   const [t] = useTranslation()
-  const cart = useSelector(cartArray);
-  const [get_cart, cart_data] = usePostCartMutation();
-
-  useEffect(() => {
-    get_cart(cart)
-  }, [cart])
 
   const pay_order = () => {
-    axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } }).then(
+    const req = axios.get(`${process.env.API_URL}/payment/pay`, { headers: { Authorization: `Bearer ${localStorage.getItem("user")}` } })
+    req.then(
       (resp) => window.location.replace(resp.data.data),
-
-      () => toast.error(t("smth_went_wrong"))
+      () => <Navigate to="/login" state={{ next: location.pathname + location.search, message: t("login_to_proceed") }} />
     )
   }
 
@@ -87,18 +92,18 @@ const Order_Failed = ({ data }) => {
         <span>{t("failed_order")}</span>
       </Row>
       <Column className={"order_status_body"}>
-        {cart_data.isSuccess ? (
-          <Suspense fallback={<Spinner />}>
-            <Card>
-              <OrderData data={data} counter={false} remove_btn={false} />
-            </Card>
-            <Card>
-              <OrderCount data={cart_data.data}>
-                <Pay onClick={pay_order}>{t("try_to_pay_again")}</Pay>
-              </OrderCount>
-            </Card>
-          </Suspense>
-        ) : <Spinner />}
+
+        <Suspense fallback={<Spinner />}>
+          <Card>
+            <OrderData data={data} counter={false} remove_btn={false} />
+          </Card>
+          <Card>
+            <OrderCount data={data}>
+              <Pay onClick={pay_order}>{t("try_to_pay_again")}</Pay>
+            </OrderCount>
+          </Card>
+        </Suspense>
+
       </Column>
     </Column>
   )

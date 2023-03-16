@@ -2,14 +2,12 @@ import { unlink, existsSync } from 'fs';
 import { readdir } from 'fs/promises';
 
 
-const path_to_file = "../public/img/"
+const path_to_file = "public/img/"
 
 export const delete_photos = async (files = []) => {
     if (files.length > 0) {
         files.forEach(img => {
             const file_exists = existsSync(path_to_file + img)
-
-            console.log(file_exists)
             if (file_exists === true) {
                 console.log("removed " + path_to_file + img)
                 unlink(path_to_file + img, (err) => {
@@ -23,8 +21,6 @@ export const delete_photos = async (files = []) => {
 export const find_files_on_server = async (files) => {
 
     const found_files = await readdir(path_to_file);
-
-    console.log(found_files)
 
     const difference = files.filter(data => found_files?.includes(data, 0))
 

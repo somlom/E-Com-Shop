@@ -20,8 +20,8 @@ services:
     build: ./nginx
     ports:
       - '80:80'
-    volumes:
-      - ./web/build:/home
+    # volumes:
+    #   - web1/build:/home:ro
     depends_on:
       - api1
       - web1

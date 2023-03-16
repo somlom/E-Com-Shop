@@ -10,7 +10,6 @@ import { auth } from "./controllers/auth";
 import { payment } from "./controllers/payment";
 import { reviews } from "./controllers/reviews";
 import { admin } from "./controllers/admin";
-import { upload_photos } from "./lib/files/photo";
 import { auth_middleware } from "./middlewares/auth_handler";
 import { user_router } from "./controllers/user";
 
