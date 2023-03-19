@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import axios from 'axios';
-import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 import "./Login.css"
 import { Form, Email, Password } from '../../Components/Other/Form/Form';
-import { Button } from '../../Components/Other/Buttons/Standart';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
 import { GoogleLogin } from '@react-oauth/google';
+import { Pay } from '../../Components/Other/Buttons/Pay/Pay';
 
 
 const Login = () => {
@@ -61,20 +60,30 @@ const Login = () => {
             <Form title={t("login")} onChange={add_to_state} onSubmit={send_to_backend}>
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
+                <Link to="/request_reset">{t("forgot_password")}</Link>
                 <Column>
-                    <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} />
-                    <Row className='form_buttons'>
-                        <Button.Primary type='submit'>
-                            <FaUserPlus size={15} />{t("login")}
-                        </Button.Primary>
-
+                    <Column className='form_buttons'>
+                        {/* <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} /> */}
+                    {/* </Row> */}
+                    {/* <Row className='line'>
+                        <span></span>
+                        <p>{t("or")}</p>
+                        <span></span>
+                    </Row> */}
+                    {/* <Row className='form_buttons'> */}
+                        <Pay onClick={send_to_backend}>
+                            {t("login")}
+                        </Pay>
                         <Link to="/register">
+                            {t("register")}
+                        </Link>
+
+                        {/* <Link to="/register">
                             <Button.Success type='button'>
                                 <FaUserPlus size={15} />{t("dont_have_an_account")}
                             </Button.Success>
-                        </Link>
-                    </Row>
-                    <Link to="/request_reset">{t("forgot_password")}</Link>
+                        </Link> */}
+                    </Column>
                 </Column>
             </Form>
         </div>

@@ -19,8 +19,11 @@
     padding: 5px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     align-self: center;
+}
+
+.cart_button {
+    align-items: center;
 }
 
 .nav_column button.button_opacity * {

@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios';
-import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 import "./Login.css"
 import { Form, Text, Email, Password } from '../../Components/Other/Form/Form';
-import { Button } from '../../Components/Other/Buttons/Standart';
-import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Column } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Pay } from '../../Components/Other/Buttons/Pay/Pay';
 
 
 const Register = () => {
@@ -52,24 +51,23 @@ const Register = () => {
     return (
         <div className="responsible_form">
 
-            <Form title={t("register")} onSubmit={(e) => send_to_backend(e)} >
+            <Form title={t("register")}>
                 <Text placeholder={t("name")} id='name' onChange={add_to_state} />
                 <Text placeholder={t("surname")} id='surname' onChange={add_to_state} />
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Password placeholder={t("password")} id='password' onChange={add_to_state} />
                 <Password placeholder={t("password_again")} id='password2' onChange={add_to_state} />
-                <Row className='form_buttons'>
-                    <Button.Success type='submit'>
-                        <FaUserPlus size={15} />{t("register")}
-                    </Button.Success>
+                <span>{t("agb_text")}</span>
+                <Column className='form_buttons'>
+                    <Pay onClick={send_to_backend}>
+                        {t("register")}
+                    </Pay>
                     <Link to="/login">
-                        <Button.Primary type='button'>
-                            <FaUserPlus size={15} />{t("already_registered")}
-                        </Button.Primary>
+                        {t("already_registered")}
                     </Link>
-                </Row>
+                </Column>
             </Form>
-            <span>{t("agb_text")}</span>
+
         </div>
     )
 }

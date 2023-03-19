@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import axios from 'axios';
-import { FaUserPlus } from "react-icons/fa"
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 
 import "./Login.css"
 import { Form, Email } from '../../Components/Other/Form/Form';
-import { Button } from '../../Components/Other/Buttons/Standart';
 import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Pay } from '../../Components/Other/Buttons/Pay/Pay';
 
 
 const Request_Reset = () => {
@@ -43,9 +42,9 @@ const Request_Reset = () => {
             <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Row className='form_buttons'>
-                    <Button.Primary type='submit'>
-                        <FaUserPlus />{t("reset")}
-                    </Button.Primary>
+                    <Pay onClick={send_to_backend}>
+                        {t("reset")}
+                    </Pay>
                 </Row>
             </Form>
         </div>

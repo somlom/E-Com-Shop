@@ -49,9 +49,18 @@ export const Navigation = () => {
         </Link>
       </div>
 
-      <div className='nav_column' id="cart">
-        <Button.Primary type={"button"} onClick={() => handle_modal(true)}><MdOutlineShoppingCart />{count}</Button.Primary>
+      {/* <div className='nav_column'> */}
+      <div className="nav_column">
+        <Link className="link column" onClick={() => handle_modal(true)}>
+          <NavElement>
+            <Row className={"cart_button"}>
+              <MdOutlineShoppingCart size={23} />
+              <span>{count}</span>
+            </Row>
+          </NavElement>
+        </Link>
       </div>
+      {/* </div> */}
       {modal_state &&
         <Modal handle_modal={handle_modal} modal_state={modal_state} title={<span>{t("total")} {count} {t("items")}</span>}>
           <Cart handle_close={handle_modal} />

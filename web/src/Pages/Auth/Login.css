@@ -5,3 +5,22 @@ div.responsible_form {
     align-items: center;
     flex-direction: column;
 }
+/* 
+div.line {
+    display: flex;
+    border-collapse: collapse;
+}
+
+div.line span {
+    flex: 1 1;
+    border-bottom: 2px solid #a5a1a1;
+    margin: auto;
+    padding: 2px;
+}
+
+div.line p {
+    margin: 0;
+    padding: 0;
+    color: #8f8989;
+    width: 0%;
+} */

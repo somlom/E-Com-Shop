@@ -8,6 +8,7 @@ import "./Login.css"
 import { Form, Password } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Pay } from '../../Components/Other/Buttons/Pay/Pay';
 
 
 const Reset = () => {
@@ -43,13 +44,13 @@ const Reset = () => {
 
     return (
         <div className="responsible_form">
-            <Form title={t("reset")} onChange={add_to_state} onSubmit={send_to_backend} >
+            <Form title={t("reset")} onChange={add_to_state}>
                 <Password placeholder="password" id='password' onChange={add_to_state} />
                 <Password placeholder="password2" id='password2' onChange={add_to_state} />
                 <Row className='form_buttons'>
-                    <Button.Primary type='submit'>
-                        <FaUserPlus />{t("reset")}
-                    </Button.Primary>
+                    <Pay onClick={send_to_backend}>
+                        {t("reset")}
+                    </Pay>
                 </Row>
             </Form>
         </div>
