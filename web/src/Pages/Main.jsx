@@ -1,6 +1,9 @@
 import { Suspense, lazy } from 'react'
 import { useTranslation } from 'react-i18next';
+
 import { Spinner } from '../Components/Other/Spinner/Spinner';
+import "./Main.css"
+
 
 const Products = lazy(() => import("./Products/Products"));
 

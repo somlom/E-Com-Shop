@@ -15,6 +15,7 @@ import { Order_Guest } from './Order/Order_Guest';
 // ACCOUNT
 import { MyOrders } from './Account/MyOrders/MyOrders';
 import { Personal_Data } from './Account/Personal_Data/Personal_Data';
+import Try from './Try';
 
 const ProtectedRoute = lazy(() => import('../hooks/Auth'));
 
@@ -45,7 +46,7 @@ export function App() {
         <Route exact element={<Layout />}>
 
           <Route index path="/" element={<Main />} />
-
+          {/* <Route path="try" element={<Try />} /> */}
           <Route path="products" element={<Products />} />
           <Route path="products/:id" element={<Product />} />
 

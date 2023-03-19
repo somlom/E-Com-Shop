@@ -5,14 +5,22 @@ services:
   api1:
     restart: on-failure
     build: ./api
+    environment:
+      - PUBLIC_URL=/
+      - API_URL=/api
+      - NODE_ENV=production
     ports:
       - '4000:4000'
     env_file:
       - .env
 
-  web1:
+  web:
     restart: on-failure
     build: ./web
+    environment:
+      - PUBLIC_URL=/
+      - API_URL=/api
+      - NODE_ENV=production
     ports:
       - '3000:3000'
 
@@ -20,12 +28,6 @@ services:
     build: ./nginx
     ports:
       - '80:80'
-    # volumes:
-    #   - web1/build:/home:ro
     depends_on:
       - api1
-      - web1
-
-volumes:
-  db:
-    driver: local
+      - web

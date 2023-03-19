@@ -1,7 +1,7 @@
 # site
 Here will be docs
 
-Test on web: https://deploy-site-test.netlify.app/
+Test on web: http://159.89.108.59/
 
 ## Start an application
 ### Install
@@ -62,7 +62,7 @@ To run the app `yarn run dev`
 - [x] receipt
 
 ### user profile
-- [ ] Personal data
+- [x] Personal data
 - [x] Bestellung
   
 ### Backend

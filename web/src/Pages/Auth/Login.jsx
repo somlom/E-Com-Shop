@@ -9,6 +9,7 @@ import "./Login.css"
 import { Form, Email, Password } from '../../Components/Other/Form/Form';
 import { Button } from '../../Components/Other/Buttons/Standart';
 import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { GoogleLogin } from '@react-oauth/google';
 
 
 const Login = () => {
@@ -61,9 +62,8 @@ const Login = () => {
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
                 <Column>
-                    <Link to="/request_reset">{t("forgot_password")}</Link>
+                    <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} />
                     <Row className='form_buttons'>
-
                         <Button.Primary type='submit'>
                             <FaUserPlus size={15} />{t("login")}
                         </Button.Primary>
@@ -73,8 +73,8 @@ const Login = () => {
                                 <FaUserPlus size={15} />{t("dont_have_an_account")}
                             </Button.Success>
                         </Link>
-
                     </Row>
+                    <Link to="/request_reset">{t("forgot_password")}</Link>
                 </Column>
             </Form>
         </div>
