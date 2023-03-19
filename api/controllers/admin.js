@@ -4,17 +4,17 @@ import asyncHandler from "express-async-handler";
 import { Products } from "../db/products";
 import { delete_photos, find_files_on_server } from "../lib/files/files";
 import { create_product, update_product } from "../lib/stripe";
+import { upload_photos } from "../lib/files/photo";
 
 
 export const admin = Router();
 
-admin.post("/add", asyncHandler(add_product))
-admin.post("/edit", asyncHandler(edit_product))
+admin.post("/add", upload_photos, asyncHandler(add_product))
+admin.post("/edit", upload_photos, asyncHandler(edit_product))
 
 async function add_product(req, res) {
 
     const { name, text, price, quantity, technical_data, product_text } = req.body;
-
     try {
         const filename = req.files.map((item) => item.filename)
 
@@ -40,17 +40,15 @@ async function edit_product(req, res) {
 
     const item = await Products.findById(id)
 
-
     if (item) {
-
         try {
 
             const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
-
-            const files_to_delete = await find_files_on_server(difference)
-
-            if (files_to_delete.same) {
-                delete_photos(files_to_delete)
+            if(difference){
+                const files_to_delete = await find_files_on_server(difference)
+                if (files_to_delete.same) {
+                    delete_photos(files_to_delete)
+                }
             }
 
             const files_to_update = [...filename, ...(item.photos.filter(data => remaining_photos?.includes(data)))]

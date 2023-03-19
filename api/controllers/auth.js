@@ -114,7 +114,6 @@ async function resetUser(req, res) {
     const { password, password2 } = req.body;
 
     const user_email = await verify_token(token)
-
     if (user_email.status) {
 
         const user = await Users.findOne({ email: user_email.data.payload })
@@ -132,11 +131,11 @@ async function resetUser(req, res) {
             return res.json(get_token(update_user._id));
 
         } else {
-            return res.status(400).json({ key: "smth_went_wrong" })
+            return res.status(400).json({ key: "smth_went_wrong1" })
             // "Sorry, something went wrong"
         }
     } else {
-        return res.status(400).json({ key: "smth_went_wrong" })
+        return res.status(400).json({ key: "smth_went_wrong2" })
     }
 }
 

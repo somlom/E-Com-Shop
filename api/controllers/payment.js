@@ -89,7 +89,7 @@ async function pay_order(req, res) {
     const session = await create_stripe_session(order, order.id, order.user.email)
 
     await order.updateOne({ stripe_order_id: session.id })
-
+    
     if (session.status === true) {
         return res.json(session);
     } else {
@@ -110,10 +110,9 @@ async function close_order(req, res) {
     );
 
 
-    if (session.status === "complete") {
+    if (session.status === "open") {
 
-
-        if (order.payed === false && order.open === true) {
+        if (session.status === "complete" && order.payed === false && order.open === true) {
 
             await order.updateOne({ open: false, payed: true })
             const products = [];

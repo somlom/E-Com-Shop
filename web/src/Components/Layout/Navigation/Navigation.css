@@ -1,0 +1,40 @@
+.nav {
+    justify-content: space-evenly;
+    border: none;
+    align-items: center;
+    background: #e8f5ff;
+}
+
+.nav_column {
+    display: flex;
+    min-width: 98px;
+    min-height: 64px;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.nav_column * {
+    height: min-content;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    align-self: center;
+}
+
+.cart_button {
+    align-items: center;
+}
+
+.nav_column button.button_opacity * {
+    padding: 0;
+}
+
+div.nav_title * {
+    margin: 0px;
+    color: black;
+}
+
+.nav_column .column {
+    display: flex;
+}

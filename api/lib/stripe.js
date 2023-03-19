@@ -52,8 +52,8 @@ export const create_stripe_session = async (order = {}, id = "", email = "") => 
                 shipping_address_collection: { allowed_countries: ['DE'] },
                 line_items: search.ids,
                 mode: 'payment',
-                success_url: `${process.env.PUBLIC_URL}/order_status?order=${id}&success=true`,
-                cancel_url: `${process.env.PUBLIC_URL}/order_status?success=false`,
+                success_url: `${process.env.PUBLIC_URL}/order_status?success=true&order=${id}`,
+                cancel_url: `${process.env.PUBLIC_URL}/order_status?success=false&order=${id}`,
                 customer_email: email
             }
 
@@ -87,7 +87,7 @@ export const create_product = async (id = "", name = "", price = 0, filename = [
                 unit_amount_decimal: Math.round(parseInt(price) * 100),
             },
             shippable: true,
-            url: process.env.PUBLIC_URL + "/products/" + id,
+            url: process.env.API_URL + "/products/" + id,
             images: photos
         }, {
             apiKey: process.env.STRIPE_SECRET
