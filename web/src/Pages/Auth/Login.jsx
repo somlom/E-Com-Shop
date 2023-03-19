@@ -61,9 +61,8 @@ const Login = () => {
                 <Email placeholder="E-mail" id='email' onChange={add_to_state} />
                 <Password placeholder={t("password")} autoComplete='current-password' id='password' onChange={add_to_state} />
                 <Link to="/request_reset">{t("forgot_password")}</Link>
-                <Column>
-                    <Column className='form_buttons'>
-                        {/* <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} /> */}
+                <Column className='form_buttons'>
+                    {/* <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} /> */}
                     {/* </Row> */}
                     {/* <Row className='line'>
                         <span></span>
@@ -71,19 +70,12 @@ const Login = () => {
                         <span></span>
                     </Row> */}
                     {/* <Row className='form_buttons'> */}
-                        <Pay onClick={send_to_backend}>
-                            {t("login")}
-                        </Pay>
-                        <Link to="/register">
-                            {t("register")}
-                        </Link>
-
-                        {/* <Link to="/register">
-                            <Button.Success type='button'>
-                                <FaUserPlus size={15} />{t("dont_have_an_account")}
-                            </Button.Success>
-                        </Link> */}
-                    </Column>
+                    <Pay onClick={send_to_backend}>
+                        {t("login")}
+                    </Pay>
+                    <Link to="/register">
+                        {t("register")}
+                    </Link>
                 </Column>
             </Form>
         </div>

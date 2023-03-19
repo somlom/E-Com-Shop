@@ -3,8 +3,6 @@ div.error_title {
     padding: 10px;
     background-color: #e8f5ff;
     border-radius: 5px;
-    display: flex;
-    flex-direction: row;
     align-items: center;
 }
 

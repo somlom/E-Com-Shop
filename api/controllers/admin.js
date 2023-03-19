@@ -18,7 +18,15 @@ async function add_product(req, res) {
     try {
         const filename = req.files.map((item) => item.filename)
 
-        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data, product_text: JSON.parse(product_text) })
+        const ssss = JSON.parse(product_text)
+
+
+        const product_text_upd = []
+        filename.forEach((obj, i) => {
+            product_text_upd.push({pic: obj, text: (ssss)[i].text})
+        })
+
+        const product = await Products.create({ text: text, name: name, price: price, photos: filename, quantity: quantity, technical_data: technical_data, product_text: product_text_upd })
         await create_product(product.id, name, price, filename)
 
         return res.json()
@@ -44,7 +52,7 @@ async function edit_product(req, res) {
         try {
 
             const difference = item.photos.filter(data => !remaining_photos?.includes(data, 0))
-            if(difference){
+            if (difference) {
                 const files_to_delete = await find_files_on_server(difference)
                 if (files_to_delete.same) {
                     delete_photos(files_to_delete)

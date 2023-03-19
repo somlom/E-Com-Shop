@@ -142,10 +142,16 @@ async function resetUser(req, res) {
 async function adminLogin(req, res) {
 
     const user = await Users.findById(req.user)
-    if (user.email === process.env.ADMIN_EMAIL) {
-        return res.status(200).json()
+    if (user) {
+        if (user.email === process.env.ADMIN_EMAIL) {
+            return res.status(200).json()
+        } else {
+            res.status(400)
+            throw new Error()
+        }
     } else {
-        return res.status(400).json()
+        res.status(401)
+        throw new Error()
     }
 
 }

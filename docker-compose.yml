@@ -6,8 +6,8 @@ services:
     restart: on-failure
     build: ./api
     environment:
-      - PUBLIC_URL=/
-      - API_URL=/api
+      - PUBLIC_URL=http://159.89.108.59 
+      - API_URL=http://159.89.108.59/api
       - NODE_ENV=production
     ports:
       - '4000:4000'
@@ -18,8 +18,8 @@ services:
     restart: on-failure
     build: ./web
     environment:
-      - PUBLIC_URL=/
-      - API_URL=/api
+      - PUBLIC_URL=http://159.89.108.59 
+      - API_URL=http://159.89.108.59/api
       - NODE_ENV=production
     ports:
       - '3000:3000'
