@@ -1,29 +1,29 @@
 {
-  "name": "site",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test_api_with_coverage": "node --experimental-vm-modules node_modules/.bin/jest api.test.js --coverage",
-    "api_dev": "npx nodemon --exec babel-node api/index.js",
-    "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config web/webpack.dev.js\"",
-    "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config web/webpack.prod.js",
-    "start": "concurrently \"node build/index.js\" \"http-server ./build\"",
-    "start:container": "rimraf build && babel . --ignore node_modules,test --out-dir build --copy-files && ls && node build/index.js"
-  },
-  "author": "supersnus <supersnus1331@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/node": "^7.20.7",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^9.1.2",
-    "concurrently": "^7.5.0",
-    "nodemon": "^2.0.20",
-    "rimraf": "^4.0.5",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
-  },
-  "repository": "https://github.com/supersnus/site.git"
+    "name": "site",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test_api_with_coverage": "node --experimental-vm-modules node_modules/.bin/jest api.test.js --coverage",
+        "api_dev": "npx nodemon --exec babel-node api/index.js",
+        "dev": "concurrently \"npx nodemon --exec babel-node api/index.js\" \"webpack serve --open --config web/webpack.dev.js\"",
+        "build": "rimraf build && babel api --ignore node_modules,test --out-dir build --copy-files && webpack --config web/webpack.prod.js",
+        "start": "concurrently \"node build/index.js\" \"http-server ./build\"",
+        "start:container": "rimraf build && babel . --ignore node_modules,test --out-dir build --copy-files && ls && node build/index.js"
+    },
+    "author": "supersnus <supersnus1331@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.21.0",
+        "@babel/node": "^7.20.7",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-loader": "^9.1.2",
+        "concurrently": "^7.5.0",
+        "nodemon": "^2.0.20",
+        "rimraf": "^4.0.5",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
+        "webpack-dev-server": "^4.11.1"
+    },
+    "repository": "https://github.com/supersnus/site.git"
 }

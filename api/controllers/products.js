@@ -1,27 +1,33 @@
-import { Router } from "express";
-import asyncHandler from "express-async-handler";
+import { Router } from 'express'
+import asyncHandler from 'express-async-handler'
 
-import { Products } from "../db/products";
+import { Products } from '../db/products'
 
+export const products = Router()
 
-export const products = Router();
+products.get('/', asyncHandler(get_products))
+products.get('/:id', asyncHandler(get_product_by_id))
 
-products.get("/", asyncHandler(get_products));
-products.get("/:id", asyncHandler(get_product_by_id))
-
-products.post("/cart", asyncHandler(get_cart_items))
-products.post("/check_cart", asyncHandler(check_cart))
+products.post('/cart', asyncHandler(get_cart_items))
+products.post('/check_cart', asyncHandler(check_cart))
 
 async function get_cart_items(req, res) {
+    const { data } = req.body
 
-    const { data } = req.body;
-
-    const value = await Products.find({ _id: { $in: data.map(a => { return a._id }).filter(a => a) } })
+    const value = await Products.find({
+        _id: {
+            $in: data
+                .map((a) => {
+                    return a._id
+                })
+                .filter((a) => a),
+        },
+    })
 
     const in_cart = []
 
     data.map((item) => {
-        const found = value.find(x => x.id === item._id)
+        const found = value.find((x) => x.id === item._id)
         if (found) {
             found.quantity = parseInt(item.quantity)
             return in_cart.push(found)
@@ -31,31 +37,33 @@ async function get_cart_items(req, res) {
 }
 
 async function check_cart(req, res) {
+    const { data } = req.body
 
-    const { data } = req.body;
+    let quantity = 0
 
-    let quantity = 0;
-
-    const value = await Products.find({ _id: { $in: await data.map((a) => a._id) } })
+    const value = await Products.find({
+        _id: { $in: await data.forEach((a) => a._id) },
+    })
 
     // create find files function
 
-    const updated_arr = data.filter(obj => value.find(x => x.id === obj._id))
+    const updated_arr = data.filter((obj) =>
+        value.find((x) => x.id === obj._id)
+    )
 
-    updated_arr.map((obj) => quantity += parseInt(obj.quantity))
+    updated_arr.map((obj) => (quantity += parseInt(obj.quantity)))
     return res.json({ cart: Array.from(updated_arr), quantity: quantity })
 }
 
 async function get_product_by_id(req, res) {
-
-    const { id } = req.params;
+    const { id } = req.params
 
     const product = await Products.findById(id)
 
     if (product) {
         return res.json(product)
     } else {
-        return res.status(404);
+        return res.status(404)
     }
 }
 
