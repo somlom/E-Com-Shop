@@ -53,7 +53,7 @@ const Admin_Edit = () => {
         formData.append("quantity", value.quantity)
         formData.append("technical_data", value.technical_data)
 
-        const response = axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data" } })
+        const response = axios.post(process.env.API_URL + "/admin/edit", formData, { headers: { "Content-Type": "multipart/form-data", "Authorization": "Bearer "+localStorage.getItem("user") } })
         toast.promise(response, {
             loading: "loading",
             success: "added",

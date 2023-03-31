@@ -2,6 +2,8 @@ import express from 'express'
 import { crossOriginResourcePolicy } from 'helmet'
 import { config } from 'dotenv'
 import cors from 'cors'
+import swaggerJsdoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 
 import { connect } from './db/init.js'
 import { products } from './controllers/products'
@@ -16,6 +18,35 @@ import expressAsyncHandler from 'express-async-handler'
 import { Users } from './db/users.js'
 
 // SETUP
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API Docs with Swagger',
+            version: '0.1.0',
+            description:
+                'E-COM (Shops, Sites, Commerce & etc.) CRUD API application made',
+            license: {
+                name: 'MIT',
+                url: 'https://spdx.org/licenses/MIT.html',
+            },
+            contact: {
+                name: 'Plenty',
+                url: 'https://logrocket.com',
+                email: 'info@email.com',
+            },
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000',
+            },
+            {
+                url: 'http://http://159.89.108.59',
+            },
+        ],
+    },
+    apis: ['./controllers/*.js'],
+}
 
 config({ path: '../.env' })
 
@@ -27,6 +58,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 connect()
+const specs = swaggerJsdoc(options)
 
 const app = express()
     .disable('x-powered-by')
@@ -50,7 +82,6 @@ const app = express()
                 res.status(401)
                 throw new Error({ message: 'Wrong token' })
             } else {
-                req.user = decoded.data.payload
                 next()
             }
         }),
@@ -58,6 +89,7 @@ const app = express()
     )
     .use('/api/user', auth_middleware, user_router)
     .use(error_handler)
+    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.listen(process.env.API_PORT, () => {
     console.log(`app is listening to port ${process.env.API_PORT}`)

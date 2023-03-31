@@ -1,3 +1,37 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Admin:
+ *       type: object
+ *       required:
+ *         - title
+ *         - author
+ *         - finished
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The auto-generated id of the book
+ *         title:
+ *           type: string
+ *           description: The title of your book
+ *         author:
+ *           type: string
+ *           description: The book author
+ *         finished:
+ *           type: boolean
+ *           description: Whether you have finished reading the book
+ *         createdAt:
+ *           type: string
+ *           format: date
+ *           description: The date the book was added
+ *       example:
+ *         id: d5fE_asz
+ *         title: The New Turing Omnibus
+ *         author: Alexander K. Dewdney
+ *         finished: false
+ *         createdAt: 2020-03-10T04:05:06.157Z
+ */
 import { Router } from 'express'
 import asyncHandler from 'express-async-handler'
 
@@ -62,8 +96,8 @@ async function edit_product(req, res) {
 
     if (item) {
         try {
-            const difference = item.photos.filter(
-                (data) => !remaining_photos?.includes(data, 0)
+            const difference = item.photos.filter((data) =>
+                (!remaining_photos || [])?.includes(data, 0)
             )
             if (difference) {
                 const files_to_delete = await find_files_on_server(difference)
@@ -72,12 +106,15 @@ async function edit_product(req, res) {
                 }
             }
 
-            const files_to_update = [
-                ...filename,
-                ...item.photos.filter((data) =>
-                    remaining_photos?.includes(data)
-                ),
-            ]
+            const files_to_update =
+                typeof remaining_photos === Array && remaining_photos.length > 0
+                    ? [
+                          ...filename,
+                          ...item.photos.filter((data) =>
+                              (remaining_photos || [])?.includes(data)
+                          ),
+                      ]
+                    : [...filename]
 
             await item
                 .updateOne({

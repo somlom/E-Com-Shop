@@ -68,6 +68,7 @@ export const create_stripe_session = async (
                 success_url: `${process.env.PUBLIC_URL}/order_status?success=true&order=${id}`,
                 cancel_url: `${process.env.PUBLIC_URL}/order_status?success=false&order=${id}`,
                 customer_email: email,
+                automatic_tax: { enabled: true },
             }
 
             if (order.id) {
@@ -110,11 +111,16 @@ export const create_product = async (
                 name: name,
                 default_price_data: {
                     currency: 'EUR',
-                    unit_amount_decimal: price,
+                    // unit_amount: parseFloat(price),
+                    unit_amount_decimal: (parseFloat(price) * 100).toFixed(2),
                 },
                 shippable: true,
                 url: process.env.API_URL + '/products/' + id,
                 images: photos,
+                type: "good",
+                // tax_behavior: "inclusive",
+                // tax_code: 'txcd_10000000',
+                // automatic_tax: { enabled: true },
             },
             {
                 apiKey: process.env.STRIPE_SECRET,
@@ -136,9 +142,10 @@ export const create_new_price = async (
         const new_price = await stripe.prices.create(
             {
                 product: product_id,
-                unit_amount: Math.round(parseInt(price) * 100),
+                unit_amount_decimal: (parseFloat(price) * 100).toFixed(2),
                 currency: 'eur',
                 active: active,
+                tax_behavior: 'inclusive',
             },
             {
                 apiKey: process.env.STRIPE_SECRET,

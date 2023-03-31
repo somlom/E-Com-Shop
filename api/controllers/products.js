@@ -1,3 +1,30 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Products
+ *   description: The books managing API
+ * /books:
+ *   post:
+ *     summary: Create a new book
+ *     tags: [Products]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Book'
+ *     responses:
+ *       200:
+ *         description: The created book.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Book'
+ *       500:
+ *         description: Some server error
+ *
+ */
+
 import { Router } from 'express'
 import asyncHandler from 'express-async-handler'
 
@@ -14,26 +41,30 @@ products.post('/check_cart', asyncHandler(check_cart))
 async function get_cart_items(req, res) {
     const { data } = req.body
 
-    const value = await Products.find({
-        _id: {
-            $in: data
-                .map((a) => {
-                    return a._id
-                })
-                .filter((a) => a),
-        },
-    })
+    if (typeof data === Array) {
+        const value = await Products.find({
+            _id: {
+                $in: data
+                    .map((a) => {
+                        return a._id
+                    })
+                    .filter((a) => a),
+            },
+        })
 
-    const in_cart = []
+        const in_cart = []
 
-    data.map((item) => {
-        const found = value.find((x) => x.id === item._id)
-        if (found) {
-            found.quantity = parseInt(item.quantity)
-            return in_cart.push(found)
-        }
-    })
-    return res.json(in_cart)
+        data.map((item) => {
+            const found = value.find((x) => x.id === item._id)
+            if (found) {
+                found.quantity = parseInt(item.quantity)
+                return in_cart.push(found)
+            }
+        })
+        return res.json(in_cart)
+    } else {
+        return res.json([])
+    }
 }
 
 async function check_cart(req, res) {
@@ -41,18 +72,28 @@ async function check_cart(req, res) {
 
     let quantity = 0
 
-    const value = await Products.find({
-        _id: { $in: await data.forEach((a) => a._id) },
-    })
+    if (typeof data === Array) {
+        const value = await Products.find({
+            _id: {
+                $in: data
+                    .map((a) => {
+                        return a._id
+                    })
+                    .filter((a) => a),
+            },
+        })
 
-    // create find files function
+        // create find files function
 
-    const updated_arr = data.filter((obj) =>
-        value.find((x) => x.id === obj._id)
-    )
+        const updated_arr = data.filter((obj) =>
+            value.find((x) => x.id === obj._id)
+        )
 
-    updated_arr.map((obj) => (quantity += parseInt(obj.quantity)))
-    return res.json({ cart: Array.from(updated_arr), quantity: quantity })
+        updated_arr.forEach((obj) => (quantity += parseInt(obj.quantity)))
+        return res.json({ cart: Array.from(updated_arr), quantity: quantity })
+    } else {
+        return res.json({ cart: [], quantity: 0 })
+    }
 }
 
 async function get_product_by_id(req, res) {
