@@ -17,7 +17,7 @@ const OrderData = ({
         <Row className="order_item" key={obj._id}>
             <img
                 className="order_image"
-                src={process.env.API_URL + '/img/' + obj.photos[0]}
+                src={process.env.API_URL + '/img/' + obj.photos}
             ></img>
             <h3 id="title">{obj.name}</h3>
             <Row>

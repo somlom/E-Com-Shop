@@ -21,10 +21,11 @@ export async function set_order(req, res) {
         const order = await Orders.findOne({ user: req.user, open: true })
         if (order) {
             if (cart === order.products) {
+                res.status(304)
                 return res.json(order)
             } else {
                 await order.updateOne({ products: cart })
-                return res.json()
+                return res.json(order)
             }
         } else {
             const order = await Orders.create({
@@ -115,7 +116,6 @@ export async function close_order(req, res) {
             session.status === 'complete'
         ) {
             await order.updateOne({ open: false, payed: true })
-            // await order.save()
 
             const mailer = new Mailer()
 
@@ -135,7 +135,6 @@ export async function close_order(req, res) {
                 }
             )
         }
-        console.log(products)
         return res.json(products)
     } else {
         return res.status(404).json()

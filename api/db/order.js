@@ -78,16 +78,14 @@ orders_schema.post(
             let count = 0
 
             order.products.forEach((obj) => {
-                const found = populated.find((ttt) => ttt.id === obj.id)
-                count += obj.quantity * found.price
+                populated.forEach((found) => {
+                    count += obj.quantity * found.price
+                })
             })
 
             await order.updateOne({ amount: count })
-
-            next()
-        } else {
-            next()
         }
+        next()
     }
 )
 

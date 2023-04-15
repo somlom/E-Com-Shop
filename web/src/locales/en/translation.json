@@ -62,5 +62,6 @@
     "registered":"Sorry, but this e-mail address is already registered",
     "invalid_credentials":"Invalid credentials",
     "passwords_are_not_same":"Passwords are not same",
-    "smth_went_wrong":"Sorry, something went wrong"
+    "smth_went_wrong":"Sorry, something went wrong",
+    "succesfuly_added":"Successfuly added!"
 }

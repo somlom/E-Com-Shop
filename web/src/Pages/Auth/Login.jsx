@@ -74,14 +74,6 @@ const Login = () => {
                 />
                 <Link to="/request_reset">{t('forgot_password')}</Link>
                 <Column className="form_buttons">
-                    {/* <GoogleLogin onSuccess={(response) => { console.log(response) }} onError={(response) => { console.log(response) }} /> */}
-                    {/* </Row> */}
-                    {/* <Row className='line'>
-                        <span></span>
-                        <p>{t("or")}</p>
-                        <span></span>
-                    </Row> */}
-                    {/* <Row className='form_buttons'> */}
                     <Pay onClick={send_to_backend}>{t('login')}</Pay>
                     <Link to="/register">{t('register')}</Link>
                 </Column>

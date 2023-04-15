@@ -62,7 +62,7 @@ const Cart_Element = ({ data }) => {
       {data.map(data_val => (
         <Column key={data_val._id}>
           <Row className='product_row'>
-            <img src={process.env.API_URL + "/img/" + data_val.photos[0]} alt="aa"></img>
+            <img src={process.env.API_URL + "/img/" + data_val.photos} alt="aa"></img>
 
             <Column className='product_column'>
               <h3>{data_val.name}</h3>
