@@ -1,39 +1,4 @@
-/**
- * @swagger
- * components:
- *   schemas:
- *     Payment:
- *       type: object
- *       required:
- *         - title
- *         - author
- *         - finished
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the book
- *         title:
- *           type: string
- *           description: The title of your book
- *         author:
- *           type: string
- *           description: The book author
- *         finished:
- *           type: boolean
- *           description: Whether you have finished reading the book
- *         createdAt:
- *           type: string
- *           format: date
- *           description: The date the book was added
- *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
- *         finished: false
- *         createdAt: 2020-03-10T04:05:06.157Z
- */
-import { Router } from 'express'
-import asyncHandler from 'express-async-handler'
+
 import Stripe from 'stripe'
 
 import { Orders } from '../db/order'
@@ -41,25 +6,15 @@ import { Users } from '../db/users'
 import Mailer from '../lib/mailer'
 import { create_stripe_session } from '../lib/stripe'
 
-export const payment = Router()
 
-payment.post('/set_order', asyncHandler(set_order))
-
-payment.get('/get_orders', asyncHandler(get_orders))
-
-payment.get('/pay', asyncHandler(pay_order))
-payment.post('/pay_for_item', asyncHandler(pay_for_item))
-
-payment.get('/close_order/:order_id', asyncHandler(close_order))
-
-async function get_orders(req, res) {
+export async function get_orders(req, res) {
     const order = await Orders.find({ user: req.user, payed: true })
         .populate('products._id')
         .sort({ updatedAt: 'descending' })
     return res.json(order)
 }
 
-async function set_order(req, res) {
+export async function set_order(req, res) {
     const { cart } = req.body
 
     if (cart) {
@@ -84,7 +39,7 @@ async function set_order(req, res) {
     }
 }
 
-async function pay_for_item(req, res) {
+export async function pay_for_item(req, res) {
     const product = req.body
     product._id = product.id
 
@@ -114,7 +69,7 @@ async function pay_for_item(req, res) {
     }
 }
 
-async function pay_order(req, res) {
+export async function pay_order(req, res) {
     const order = await Orders.findOne({ user: req.user, open: true }).populate(
         'user'
     )
@@ -134,7 +89,7 @@ async function pay_order(req, res) {
     }
 }
 
-async function close_order(req, res) {
+export async function close_order(req, res) {
     const stripe = new Stripe(process.env.STRIPE_SECRET)
 
     const { order_id } = req.params

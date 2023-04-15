@@ -9,40 +9,29 @@
  *         - author
  *         - finished
  *       properties:
- *         id:
+ *         email:
  *           type: string
- *           description: The auto-generated id of the book
- *         title:
+ *           description: E-mail of user
+ *         name:
  *           type: string
- *           description: The title of your book
- *         author:
+ *           description: Name of user
+ *         surname:
  *           type: string
- *           description: The book author
- *         finished:
- *           type: boolean
- *           description: Whether you have finished reading the book
+ *           description: Surname of user
  *         createdAt:
  *           type: string
  *           format: date
- *           description: The date the book was added
+ *           description: The date the user was registered
  *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
- *         finished: false
- *         createdAt: 2020-03-10T04:05:06.157Z
+ *           email: feini@at.aa
+ *           name: Luigi
+ *           surname: Andreas
+ *           createdAt: 2023-02-02T17:28:10.780Z
  */
-
-import { Router } from 'express'
-import asyncHandler from 'express-async-handler'
 
 import { Users } from '../db/users'
 
-export const user_router = Router()
-
-user_router.get('/', asyncHandler(getUser))
-
-async function getUser(req, res) {
+export async function getUser(req, res) {
     const user = await Users.findById(req.user)
 
     if (user) {

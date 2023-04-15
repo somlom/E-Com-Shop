@@ -1,60 +1,12 @@
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     Auth:
- *       type: object
- *       required:
- *         - title
- *         - author
- *         - finished
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the book
- *         title:
- *           type: string
- *           description: The title of your book
- *         author:
- *           type: string
- *           description: The book author
- *         finished:
- *           type: boolean
- *           description: Whether you have finished reading the book
- *         createdAt:
- *           type: string
- *           format: date
- *           description: The date the book was added
- *       example:
- *         id: d5fE_asz
- *         title: The New Turing Omnibus
- *         author: Alexander K. Dewdney
- *         finished: false
- *         createdAt: 2020-03-10T04:05:06.157Z
- */
 import bcrypt from 'bcryptjs'
-import { Router } from 'express'
-import asyncHandler from 'express-async-handler'
 
 import { Users } from '../db/users'
 import { get_token, verify_token } from '../lib/JWT'
 import Mailer from '../lib/mailer'
-import { auth_middleware } from '../middlewares/auth_handler'
 
-export const auth = Router()
 
-auth.post('/login', asyncHandler(loginUser))
-auth.post('/register', asyncHandler(registerUser))
-
-auth.post('/request_reset', asyncHandler(requestResetUser))
-auth.post('/reset/:token', asyncHandler(resetUser))
-
-auth.get('/check_token', asyncHandler(check_token))
-
-auth.get('/admin', auth_middleware, asyncHandler(adminLogin))
-
-async function loginUser(req, res) {
+export async function loginUser(req, res) {
     const { email, password } = req.body
 
     // https://stripe.com/docs/api/payment_intents/object
@@ -78,7 +30,7 @@ async function loginUser(req, res) {
     }
 }
 
-async function registerUser(req, res) {
+export async function registerUser(req, res) {
     const { name, surname, email, password, password2 } = req.body
 
     if (name && surname && email && password && password2) {
@@ -108,7 +60,7 @@ async function registerUser(req, res) {
     }
 }
 
-async function check_token(req, res) {
+export async function check_token(req, res) {
     if (req.headers.authorization) {
         const token = req.headers.authorization.split(' ')[1]
         const response = await verify_token(token)
@@ -128,7 +80,7 @@ async function check_token(req, res) {
     }
 }
 
-async function requestResetUser(req, res) {
+export async function requestResetUser(req, res) {
     const { email } = req.body
     const user = await Users.findOne({ email: email })
 
@@ -144,7 +96,7 @@ async function requestResetUser(req, res) {
     }
 }
 
-async function resetUser(req, res) {
+export async function resetUser(req, res) {
     const { token } = req.params
     const { password, password2 } = req.body
 
@@ -173,7 +125,7 @@ async function resetUser(req, res) {
     }
 }
 
-async function adminLogin(req, res) {
+export async function adminLogin(req, res) {
     const user = await Users.findById(req.user)
     if (user) {
         if (user.email === process.env.ADMIN_EMAIL) {

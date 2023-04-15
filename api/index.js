@@ -6,14 +6,14 @@ import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 
 import { connect } from './db/init.js'
-import { products } from './controllers/products'
+import { products } from './routes/products.routes.js'
 import { error_handler } from './middlewares/error_handler'
-import { auth } from './controllers/auth'
-import { payment } from './controllers/payment'
-import { reviews } from './controllers/reviews'
-import { admin } from './controllers/admin'
+import { auth } from './routes/auth.routes.js'
+import { payment } from './routes/payment.routes.js'
+import { reviews } from './routes/reviews.routes.js'
+import { admin } from './routes/admin.routes.js'
 import { auth_middleware } from './middlewares/auth_handler'
-import { user_router } from './controllers/user'
+import { user_router } from './routes/user.routes.js'
 import expressAsyncHandler from 'express-async-handler'
 import { Users } from './db/users.js'
 
@@ -38,14 +38,14 @@ const options = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: 'http://localhost:4000/api',
             },
             {
-                url: 'http://http://159.89.108.59',
+                url: 'http://159.89.108.59',
             },
         ],
     },
-    apis: ['./controllers/*.js'],
+    apis: ['./controllers/*.js', './routes/*.js'],
 }
 
 config({ path: '../.env' })
@@ -89,7 +89,7 @@ const app = express()
     )
     .use('/api/user', auth_middleware, user_router)
     .use(error_handler)
-    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
+    .use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }))
 
 app.listen(process.env.API_PORT, () => {
     console.log(`app is listening to port ${process.env.API_PORT}`)

@@ -37,7 +37,7 @@ export const Add_Review = () => {
     formData.append("rating", star_index)
     formData.append("text", input.text)
 
-    const api_response = axios.post(process.env.API_URL + "/reviews/add_review/" + id, formData, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })
+    const api_response = axios.post(process.env.API_URL + "/reviews/" + id, formData, { headers: { Authorization: "Bearer " + localStorage.getItem("user") } })
 
     toast.promise(api_response, {
       loading: t("loading"),

@@ -1,44 +1,7 @@
-/**
- * @swagger
- * tags:
- *   name: Products
- *   description: The books managing API
- * /books:
- *   post:
- *     summary: Create a new book
- *     tags: [Products]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Book'
- *     responses:
- *       200:
- *         description: The created book.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Book'
- *       500:
- *         description: Some server error
- *
- */
-
-import { Router } from 'express'
-import asyncHandler from 'express-async-handler'
 
 import { Products } from '../db/products'
 
-export const products = Router()
-
-products.get('/', asyncHandler(get_products))
-products.get('/:id', asyncHandler(get_product_by_id))
-
-products.post('/cart', asyncHandler(get_cart_items))
-products.post('/check_cart', asyncHandler(check_cart))
-
-async function get_cart_items(req, res) {
+export async function get_cart_items(req, res) {
     const { data } = req.body
 
     if (typeof data === Array) {
@@ -67,7 +30,7 @@ async function get_cart_items(req, res) {
     }
 }
 
-async function check_cart(req, res) {
+export async function check_cart(req, res) {
     const { data } = req.body
 
     let quantity = 0
@@ -96,7 +59,7 @@ async function check_cart(req, res) {
     }
 }
 
-async function get_product_by_id(req, res) {
+export async function get_product_by_id(req, res) {
     const { id } = req.params
 
     const product = await Products.findById(id)
@@ -108,6 +71,6 @@ async function get_product_by_id(req, res) {
     }
 }
 
-async function get_products(req, res) {
+export async function get_products(req, res) {
     return res.json(await Products.find())
 }
