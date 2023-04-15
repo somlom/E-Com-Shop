@@ -4,8 +4,8 @@ import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
 
 import "./Footer.css"
-import { Text } from '../../Other/Form/Form';
-import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
+import { Text } from '../../../Components/Other/Form/Form';
+import { Column, Row } from '../../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 
 const Footer = () => {

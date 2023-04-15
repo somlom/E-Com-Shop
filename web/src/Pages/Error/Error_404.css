@@ -6,7 +6,7 @@ div.error_title {
     align-items: center;
 }
 
-div.error_title *{
+div.error_title * {
     margin: 5px;
 }
 

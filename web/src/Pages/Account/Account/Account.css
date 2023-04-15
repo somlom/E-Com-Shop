@@ -36,7 +36,6 @@ div.account_content.column {
 }
 
 @media screen and (max-width: 767px) {
-
     .dropdown {
         width: 100%;
         margin: 0;

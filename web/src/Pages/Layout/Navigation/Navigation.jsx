@@ -10,9 +10,9 @@ import { Modal } from '../Modal/Modal'
 import { cartArray } from '../../../features/cart_slice';
 import { Cart } from '../Cart/Cart';
 import { usePostCountMutation } from '../../../features/cart_api';
-import { Button } from '../../Other/Buttons/Standart';
-import { NavElement } from '../../Other/Buttons/With_Icon/NavElement';
-import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
+import { Button } from '../../../Components/Other/Buttons/Standart';
+import { NavElement } from '../../../Components/Other/Buttons/With_Icon/NavElement';
+import { Column, Row } from '../../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 
 export const Navigation = () => {

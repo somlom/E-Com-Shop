@@ -1,54 +1,74 @@
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-import { Spinner } from "../Components/Other/Spinner/Spinner"
+import { Spinner } from '../Components/Other/Spinner/Spinner'
 
-
-export const usePostData = (url = "", data = "", headers = "") => {
-
-    const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
+export const usePostData = (url = '', data = '', headers = '') => {
+    const [value, setValue] = useState({
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+        data: null,
+    })
 
     useEffect(() => {
+        const resp = axios.post(
+            process.env.API_URL + url,
+            data,
+            headers.length === 0 ? '' : { headers: headers }
+        )
 
-            const resp = axios.post(process.env.API_URL + url, data, headers.length === 0 ? "" : { headers: headers })
-
-            resp.then((response) => (
+        resp.then(
+            (response) =>
                 setValue((prev) => ({
                     ...prev,
                     data: response.data || null,
                     isLoading: false,
                     isSuccess: response.status === 200 ? true : false,
                     isError: response.status !== 200 ? true : false,
+                })),
+            () =>
+                setValue((prev) => ({
+                    ...prev,
+                    isLoading: false,
+                    isError: true,
                 }))
-            ), (() => (
-                setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-            )))
-
+        )
     }, [url])
 
     return value
 }
 
-export const useGetData = (url = "", headers = "", full_url = "") => {
-
-    const [value, setValue] = useState({ isLoading: true, isSuccess: false, isError: false, data: null })
+export const useGetData = (url = '', headers = '', full_url = '') => {
+    const [value, setValue] = useState({
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+        data: null,
+    })
 
     useEffect(() => {
-
-            axios.get(full_url === "" ? process.env.API_URL + url : full_url, headers.length === 0 ? "" : { headers: headers })
-                .then(
-                    (response) => (
-                        setValue((prev) => ({
-                            ...prev,
-                            data: response.data || null,
-                            isLoading: false,
-                            isSuccess: response.status === 200 ? true : false,
-                            isError: response.status !== 200 ? true : false,
-                        }))
-                    ), (
-                    () => (
-                        setValue((prev) => ({ ...prev, isLoading: false, isError: true }))
-                    )))
+        axios
+            .get(
+                full_url === '' ? process.env.API_URL + url : full_url,
+                headers.length === 0 ? '' : { headers: headers }
+            )
+            .then(
+                (response) =>
+                    setValue((prev) => ({
+                        ...prev,
+                        data: response.data || null,
+                        isLoading: false,
+                        isSuccess: response.status === 200 ? true : false,
+                        isError: response.status !== 200 ? true : false,
+                    })),
+                () =>
+                    setValue((prev) => ({
+                        ...prev,
+                        isLoading: false,
+                        isError: true,
+                    }))
+            )
     }, [url])
 
     return value
@@ -57,8 +77,12 @@ export const useGetData = (url = "", headers = "", full_url = "") => {
 //  {data}
 // </useGetData>
 
-export const GetTextTranslation = ({ src_lang = "", dest_lang = "", text }) => {
-    const { isLoading, isSuccess, isError, data } = useGetData("", "", "https://libretranslate.de/languages")
+export const GetTextTranslation = ({ src_lang = '', dest_lang = '', text }) => {
+    const { isLoading, isSuccess, isError, data } = useGetData(
+        '',
+        '',
+        'https://libretranslate.de/languages'
+    )
 
     if (src_lang === dest_lang) {
         return text
@@ -68,7 +92,7 @@ export const GetTextTranslation = ({ src_lang = "", dest_lang = "", text }) => {
         } else if (isError || data.length === 0) {
             return text
         } else if (isSuccess) {
-            return "data"
+            return 'data'
         }
     }
 }

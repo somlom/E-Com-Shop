@@ -7,8 +7,8 @@ import { FaUser } from "react-icons/fa"
 import "./Cart.css"
 import { cartArray } from '../../../features/cart_slice';
 import { usePostCartMutation } from '../../../features/cart_api';
-import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
-import { Pay } from '../../Other/Buttons/Pay/Pay';
+import { Column, Row } from '../../../Components/Other/Structure/Flex-Box/Flex-Box';
+import { Pay } from '../../../Components/Other/Buttons/Pay/Pay';
 
 
 export function Cart({ handle_close }) {

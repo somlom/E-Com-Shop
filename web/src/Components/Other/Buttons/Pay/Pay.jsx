@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 
-import "./Pay.css"
-
+import './Pay.css'
 
 export const Pay = (props) => {
     return (
-        <Link className="pay_button opacity" {...props}>{props.children}</Link>
+        <Link className="pay_button opacity" {...props}>
+            {props.children}
+        </Link>
     )
 }

@@ -1,6 +1,6 @@
 import "./Modal.css"
 import { close_on_esc } from '../../../hooks/close_on_esc';
-import { Column, Row } from '../../Other/Structure/Flex-Box/Flex-Box';
+import { Column, Row } from '../../../Components/Other/Structure/Flex-Box/Flex-Box';
 
 
 export const Modal = ({ children, handle_modal, title = "" }) => {
