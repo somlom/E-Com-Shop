@@ -77,7 +77,9 @@ export function App() {
                     />
                     <Route path="support" element={<Support />} />
 
-                    <Route element={<AdminRoute />}>
+                    <Route path="/*" element={<Error_404 />} />
+                </Route>
+                <Route element={<AdminRoute />}>
                         <Route path="admin" element={<Admin />} />
                         <Route
                             path="/products/:id/admin"
@@ -85,9 +87,6 @@ export function App() {
                         />
                         <Route path="admin/add" element={<Admin_Add />} />
                     </Route>
-
-                    <Route path="/*" element={<Error_404 />} />
-                </Route>
             </Routes>
         </Suspense>
     )
