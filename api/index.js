@@ -60,7 +60,7 @@ if (process.env.NODE_ENV !== 'production') {
 connect()
 const specs = swaggerJsdoc(options)
 
-const app = express()
+export const app = express()
     .disable('x-powered-by')
     .use(crossOriginResourcePolicy({ policy: 'cross-origin' }))
     .use(express.json())
@@ -69,7 +69,7 @@ const app = express()
     // ROUTES
 
     .use('/api/img', express.static('./public/img'))
-    .use('/api/products', products)
+    .use('/api', products)
     .use('/api/reviews', reviews)
     .use('/api/auth', auth)
     .use('/api/payment', auth_middleware, payment)

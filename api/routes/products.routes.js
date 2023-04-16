@@ -46,7 +46,8 @@ import {
 export const products = Router()
 
 products.get('/', asyncHandler(get_products))
-products.get('/:id', asyncHandler(get_product_by_id))
+products.get('/products', asyncHandler(get_products))
+products.get('/products/:id', asyncHandler(get_product_by_id))
 
-products.post('/cart', asyncHandler(get_cart_items))
-products.post('/check_cart', asyncHandler(check_cart))
+products.post('/products/cart', asyncHandler(get_cart_items))
+products.post('/products/check_cart', asyncHandler(check_cart))

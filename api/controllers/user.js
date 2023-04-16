@@ -4,10 +4,6 @@
  *   schemas:
  *     User:
  *       type: object
- *       required:
- *         - title
- *         - author
- *         - finished
  *       properties:
  *         email:
  *           type: string

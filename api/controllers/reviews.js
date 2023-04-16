@@ -1,13 +1,21 @@
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *    BasicAuth:
+ *      type: http
+ *      scheme: basic
+ *    BearerAuth:
+ *      type: http
+ *      scheme: bearer
  *   schemas:
  *     Get_Reviews:
  *       type: object
  *       required:
  *         - title
- *         - Rating
+ *         - rating
  *         - text
+ *         - photos
  *       properties:
  *         _id:
  *           type: string

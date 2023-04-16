@@ -16,15 +16,17 @@
  *         description: The product id
  *     responses:
  *       200:
- *         description: The book response by id
+ *         description: The reviews response by id
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Get_Reviews'
  *       404:
- *         description: The book was not found
+ *         description: The reviews were not found
  *   post:
- *    summary: Update the book by the id
+ *    summary: Create review for the product
+ *    security:
+ *      - BearerAuth: []
  *    tags: [Reviews]
  *    parameters:
  *      - in: path
@@ -32,27 +34,67 @@
  *        schema:
  *          type: string
  *        required: true
- *        description: The book id
+ *        description: The product id
  *    requestBody:
  *      required: true
  *      content:
  *        application/json:
  *          schema:
- *            $ref: '#/components/schemas/Get_Reviews'
+ *             properties:
+ *               photos:
+ *                 type: array
+ *                 items:
+ *                    type: string
+ *                 description: Photo names of review
+ *               title:
+ *                 type: string
+ *                 description: Title of review
+ *               rating:
+ *                 type: integer
+ *                 description: Title of review
+ *               text:
+ *                 type: string
+ *                 description: Text of review
  *    responses:
  *      200:
- *        description: The book was updated
+ *        description: The review was updated
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Get_Reviews'
- *      404:
- *        description: The book was not found
+ *             properties:
+ *               _id:
+ *                 type: string
+ *                 description: ID of review
+ *               photos:
+ *                 type: array
+ *                 items:
+ *                    type: string
+ *                 description: Photo names of review
+ *               title:
+ *                 type: string
+ *                 description: Title of review
+ *               rating:
+ *                 type: integer
+ *                 description: Title of review
+ *               text:
+ *                 type: string
+ *                 description: Text of review
+ *               product:
+ *                 type: string
+ *                 description: ID of product review referenced is
+ *               createdAt:
+ *                 type: string
+ *                 format: date
+ *                 description: The date the user was registered
+ *               updatedAt:
+ *                 type: string
+ *                 format: date
+ *                 description: The date the user was registered
+ *      401:
+ *        description: Unauthorized
  *      500:
  *        description: Some error happened
  */
-
-
 
 import { Router } from 'express'
 import asyncHandler from 'express-async-handler'
@@ -63,10 +105,5 @@ import { add_review, get_reviews } from '../controllers/reviews'
 
 export const reviews = Router()
 
-reviews.post(
-    '/:id',
-    auth_middleware,
-    upload_photos,
-    asyncHandler(add_review)
-)
+reviews.post('/:id', auth_middleware, upload_photos, asyncHandler(add_review))
 reviews.get('/:id', asyncHandler(get_reviews))
