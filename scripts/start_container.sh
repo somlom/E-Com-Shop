@@ -3,6 +3,6 @@ docker system prune -f
 echo Done!
 
 echo Starting container
-docker-compose build 
+docker buildx bake
 docker-compose up -d
 docker ps

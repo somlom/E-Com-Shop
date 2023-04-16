@@ -32,7 +32,7 @@
         "react-redux": "^8.0.5",
         "react-router-dom": "^6.6.2",
         "redux-persist": "^6.0.0",
-        "webpack": "^5.76.2"
+        "webpack": "^5.79.0"
     },
     "devDependencies": {
         "@babel/node": "^7.0.0",
