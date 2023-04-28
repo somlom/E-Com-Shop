@@ -1,11 +1,9 @@
-
 import Stripe from 'stripe'
 
 import { Orders } from '../db/order'
 import { Users } from '../db/users'
 import Mailer from '../lib/mailer'
 import { create_stripe_session } from '../lib/stripe'
-
 
 export async function get_orders(req, res) {
     const order = await Orders.find({ user: req.user, payed: true })
@@ -60,13 +58,13 @@ export async function pay_for_item(req, res) {
 
                 return res.status(200).json(session)
             } else {
-                return res.status(400).json({ key: 'smth_went_wrong' })
+                return res.status(400).json('smth_went_wrong')
             }
         } else {
-            return res.status(400).json({ key: 'login_to_proceed' })
+            return res.status(400).json('login_to_proceed')
         }
     } else {
-        return res.status(400).json({ key: 'smth_went_wrong' })
+        return res.status(400).json('smth_went_wrong')
     }
 }
 

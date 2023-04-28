@@ -87,7 +87,7 @@ export async function add_review(req, res) {
 
         return res.json(new_review)
     } else {
-        res.status(400).json({ key: 'not_all_fields' })
+        res.status(400).json('not_all_fields')
     }
 }
 

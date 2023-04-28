@@ -1,19 +1,17 @@
-
 import { Products } from '../db/products'
 import { delete_photos, find_files_on_server } from '../lib/files/files'
 import { create_product, update_product } from '../lib/stripe'
 
 export async function add_product(req, res) {
-    const { name, text, price, quantity, technical_data, product_text } =
-        req.body
+    const { name, text, price, quantity, technical_data } = req.body
+    const product_text = JSON.parse(req.body.product_text)
+
     try {
         const filename = req.files.map((item) => item.filename)
 
-        const ssss = JSON.parse(product_text)
-
         const product_text_upd = []
         filename.forEach((obj, i) => {
-            product_text_upd.push({ pic: obj, text: ssss[i].text })
+            product_text_upd.push({ pic: obj, text: product_text[i].text })
         })
 
         const product = await Products.create({

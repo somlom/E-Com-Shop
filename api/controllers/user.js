@@ -30,14 +30,10 @@ import { Users } from '../db/users'
 export async function getUser(req, res) {
     const user = await Users.findById(req.user)
 
-    if (user) {
-        return res.json({
-            email: user.email,
-            name: user.name,
-            surname: user.surname,
-            createdAt: user.createdAt,
-        })
-    } else {
-        return res.status(404)
-    }
+    return res.json({
+        email: user.email,
+        name: user.name,
+        surname: user.surname,
+        createdAt: user.createdAt,
+    })
 }

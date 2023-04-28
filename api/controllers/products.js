@@ -4,7 +4,7 @@ import { Products } from '../db/products'
 export async function get_cart_items(req, res) {
     const { data } = req.body
 
-    if (data && data[0] !== undefined) {
+    if (data[0] !== undefined && Array.isArray(data)) {
         try {
             const value = await Products.find({
                 _id: {
@@ -42,7 +42,7 @@ export async function get_cart_items(req, res) {
 export async function check_cart(req, res) {
     const { data } = req.body
 
-    if (data && data[0] !== undefined) {
+    if (data[0] !== undefined && Array.isArray(data)) {
         const value = await Products.find({
             _id: {
                 $in: data
@@ -76,11 +76,10 @@ export async function get_product_by_id(req, res) {
         const product = await Products.findById(id)
 
         if (product) {
-            console.log(product)
             return res.json(product)
         }
     }
-    return res.status(404).json({})
+    return res.status(404).json()
 }
 
 export async function get_products(req, res) {

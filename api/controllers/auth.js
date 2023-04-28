@@ -1,10 +1,8 @@
-
 import bcrypt from 'bcryptjs'
 
 import { Users } from '../db/users'
 import { get_token, verify_token } from '../lib/JWT'
 import Mailer from '../lib/mailer'
-
 
 export async function loginUser(req, res) {
     const { email, password } = req.body
@@ -20,13 +18,13 @@ export async function loginUser(req, res) {
             if (hash === true) {
                 return res.json(get_token(user._id))
             } else {
-                return res.status(401).json({ key: 'invalid_credentials' })
+                return res.status(401).json('invalid_credentials')
             }
         } else {
-            return res.status(401).json({ key: 'invalid_credentials' })
+            return res.status(401).json('invalid_credentials')
         }
     } else {
-        return res.status(401).json({ key: 'empty_fields' })
+        return res.status(401).json('empty_fields')
     }
 }
 
@@ -37,14 +35,14 @@ export async function registerUser(req, res) {
         const user = await Users.findOne({ email })
 
         if (user) {
-            return res.status(401).json({ key: 'registered' })
+            return res.status(401).json('registered')
             // .json("Sorry, but this e-mail address is already registered")
         }
         const salt = await bcrypt.genSalt(5)
         const hash = await bcrypt.hash(password, salt)
         const are_same = await bcrypt.compare(password2, hash)
         if (!are_same) {
-            return res.status(401).json({ key: 'invalid_credentials' })
+            return res.status(401).json('invalid_credentials')
             // .json("Invalid credentials")
         }
         const new_user = await Users.create({
@@ -55,7 +53,7 @@ export async function registerUser(req, res) {
         })
         return res.json(get_token(new_user._id))
     } else {
-        return res.status(401).json({ key: 'empty_fields' })
+        return res.status(401).json('empty_fields')
         // .json("Please, fill all fields")
     }
 }
@@ -109,7 +107,7 @@ export async function resetUser(req, res) {
             const hash = await bcrypt.hash(password, salt)
             const are_same = await bcrypt.compare(password2, hash)
             if (!are_same) {
-                return res.status(401).json({ key: 'passwords_are_not_same' })
+                return res.status(401).json('passwords_are_not_same')
                 // "Passwords are not same"
             }
             const update_user = await Users.findByIdAndUpdate(user._id, {
@@ -117,14 +115,15 @@ export async function resetUser(req, res) {
             })
             return res.json(get_token(update_user._id))
         } else {
-            return res.status(400).json({ key: 'smth_went_wrong1' })
+            return res.status(400).json('smth_went_wrong1')
             // "Sorry, something went wrong"
         }
     } else {
-        return res.status(400).json({ key: 'smth_went_wrong2' })
+        return res.status(400).json('smth_went_wrong2')
     }
 }
 
+// KEY removed
 export async function adminLogin(req, res) {
     const user = await Users.findById(req.user)
     if (user) {

@@ -1,14 +1,8 @@
 const axios = require('axios')
-
 const { app } = require('../index')
 const { createServer } = require('http-server')
 
-let server
-
-beforeAll((done) => {
-    server = createServer(app)
-    return done()
-})
+const server = createServer(app)
 
 afterAll((done) => {
     server.close()
@@ -127,6 +121,7 @@ describe('Retrive Cart', () => {
         expect(res.data).toStrictEqual([])
     })
 })
+
 describe('Check cart', () => {
     test('Check cart', async () => {
         const res = await axios.post(url + 'products/check_cart', {
@@ -144,5 +139,78 @@ describe('Check cart', () => {
         expect(res.status).toBe(200)
         expect(res.data.cart).toStrictEqual([])
         expect(res.data.quantity).toStrictEqual(0)
+    })
+})
+
+let token
+describe('Auth', () => {
+    test('Should log in', async () => {
+        const res = await axios.post(url + 'auth/login', {
+            email: 'supersnus1331@gmail.com',
+            password: 'qqq',
+        })
+
+        expect(res).toBeTruthy()
+        expect(res.status).toBe(200)
+        token = res.data
+    })
+    test('Should not log in(wrong creds)', async () => {
+        await axios
+            .post(url + 'auth/login', {
+                email: 'supersnus1331@gmail.com',
+                password: '11',
+            })
+            .catch((err) => {
+                expect(err).toBeTruthy()
+                expect(err.response.status).toBe(401)
+                expect(err.response.data).toBe("invalid_credentials")
+            })
+    })
+})
+
+describe('account', () => {
+    test('get', async () => {
+        const res = await axios.get(url + 'user', {
+            headers: { Authorization: 'Bearer ' + token },
+        })
+
+        expect(res).toBeTruthy()
+        expect(res.status).toBe(200)
+    })
+})
+
+describe('Reviews', () => {
+    test('Get reviews', async () => {
+        axios.get(url + 'reviews/63f535d176df1c158b437d87').then((res) => {
+            expect(res).toBeTruthy()
+            expect(res.status).toBe(200)
+        })
+    })
+    test('Add review with wrong token', () => {
+        const promise = axios.post(url + 'reviews/63f535d176df1c158b437d87', {
+            title: 'test',
+            rating: 1,
+            text: 'aaa',
+        })
+        promise.catch((err) => {
+            expect(err).toBeTruthy()
+            expect(err.response.status).toBe(401)
+            expect(err.response.data.message).toBe('No token')
+        })
+    })
+    test('Add review unlogged', () => {
+        const promise = axios.post(
+            url + 'reviews/63f535d176df1c158b437d87',
+            {
+                title: 'test',
+                rating: 1,
+                text: 'aaa',
+            },
+            { headers: { Authorization: 'Bearer ' + token } }
+        )
+        promise.catch((err) => {
+            expect(err).toBeTruthy()
+            expect(err.response.status).toBe(400)
+        })
     })
 })
