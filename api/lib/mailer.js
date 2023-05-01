@@ -1,6 +1,7 @@
 import hbs from 'nodemailer-express-handlebars';
 import nodemailer from 'nodemailer';
 import path from 'path';
+import website_config from "../config.json"
 
 export default class Mailer {
   constructor() {
@@ -29,13 +30,20 @@ export default class Mailer {
     this.transporter.use('compile', hbs(this.handlebarOptions));
   }
 
-  send_email(to = '', subject = '', template = '', context = {}) {
+  send_email(
+    to = '',
+    subject = '',
+    template = '',
+    context = {},
+    attachments = [] //{ filename: "", path: "" }
+  ) {
     const options = {
-      from: `"interEcom" <${this.connection.auth.user}>`,
+      from: `${website_config.website_name} <${this.connection.auth.user}>`,
       to: to,
       subject: subject,
       template: template,
       context: context,
+      attachments: attachments,
     };
 
     this.transporter.sendMail(options, (err, info) => {

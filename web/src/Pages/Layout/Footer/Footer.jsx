@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 import { IoIosLocate } from 'react-icons/io';
+import website_config from "../../../../config.json"
 
 import "./Footer.css"
 import { Text } from '../../../Components/Other/Form/Form';
@@ -18,17 +19,17 @@ const Footer = () => {
 
         <div>
           <AiOutlinePhone size={20} />
-          <span>21321983213821</span>
+          <span>{website_config.number}</span>
         </div>
 
         <div>
           <AiOutlineMail size={20} />
-          <span>interecom.ohg@gmail.com</span>
+          <span>{website_config.website_email}</span>
         </div>
 
         <div>
           <IoIosLocate size={20} />
-          <span>71337 Casabbb</span>
+          <span>{website_config.address}</span>
         </div>
 
       </Row>

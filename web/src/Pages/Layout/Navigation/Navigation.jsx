@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import website_config from "../../../../config.json"
 
 import './Navigation.css'
 import { Modal } from '../Modal/Modal'
@@ -43,8 +44,8 @@ export const Navigation = () => {
             <div className="nav_column">
                 <Link to="/">
                     <Column>
-                        <h1>E</h1>
-                        <span>interEcom</span>
+                        <h1>{website_config.website_logo}</h1>
+                        <span>{website_config.website_name}</span>
                     </Column>
                 </Link>
             </div>

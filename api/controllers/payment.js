@@ -5,6 +5,7 @@ import {Users} from '../db/users';
 import Mailer from '../lib/mailer';
 import {create_stripe_session} from '../lib/stripe';
 
+
 export async function get_orders(req, res) {
   const order = await Orders.find({user: req.user, payed: true})
     .populate('products._id')
@@ -117,7 +118,7 @@ export async function close_order(req, res) {
         session.customer_email,
         'Ihre Bestellung ist in der Verarbeitung',
         'order',
-        {name: session.shipping_details.name}
+        {name: session.shipping_details.name}, [{filename:"document.pdf", path:"public/png2pdf.pdf"}]
       );
       mailer.send_email(process.env.ADMIN_EMAIL, 'NEW ORDER', 'order_alert', {
         customer_details: session.customer_details,
