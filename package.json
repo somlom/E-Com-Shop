@@ -1,15 +1,22 @@
 {
-    "name": "site",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "build": "node scripts/builder.js",
-        "copy_and_deploy": "bash ./scripts/copy_and_deploy.sh",
-        "start:container": "bash ./scripts/start_container.sh",
-        "deploy": "bash ./scripts/deploy.sh"
-    },
-    "author": "supersnus <supersnus1331@gmail.com>",
-    "license": "ISC",
-    "repository": "https://github.com/supersnus/site.git"
+  "name": "site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/builder.js",
+    "copy_and_deploy": "bash ./scripts/copy_and_deploy.sh",
+    "start:container": "bash ./scripts/start_container.sh",
+    "deploy": "bash ./scripts/deploy.sh"
+  },
+  "author": "supersnus <supersnus1331@gmail.com>",
+  "license": "ISC",
+  "repository": "https://github.com/supersnus/site.git",
+  "dependencies": {
+    "eslint": "^8.39.0",
+    "gts": "^3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2"
+  }
 }

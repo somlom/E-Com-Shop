@@ -68,35 +68,35 @@
  *             __v: 0
  */
 
-import { Reviews } from '../db/reviews'
+import {Reviews} from '../db/reviews';
 
 export async function add_review(req, res) {
-    const { id } = req.params
-    const { title, rating, text } = req.body
+  const {id} = req.params;
+  const {title, rating, text} = req.body;
 
-    if (title && rating && text && req.files) {
-        const filename = req.files.map((item) => item.filename)
+  if (title && rating && text && req.files) {
+    const filename = req.files.map(item => item.filename);
 
-        const new_review = await Reviews.create({
-            title: title,
-            rating: rating,
-            text: text,
-            photos: filename,
-            product: id,
-        })
+    const new_review = await Reviews.create({
+      title: title,
+      rating: rating,
+      text: text,
+      photos: filename,
+      product: id,
+    });
 
-        return res.json(new_review)
-    } else {
-        res.status(400).json('not_all_fields')
-    }
+    return res.json(new_review);
+  } else {
+    res.status(400).json('not_all_fields');
+  }
 }
 
 export async function get_reviews(req, res) {
-    const { id } = req.params
+  const {id} = req.params;
 
-    const reviews = await Reviews.find({ product: id }).sort({
-        createdAt: 'descending',
-    })
+  const reviews = await Reviews.find({product: id}).sort({
+    createdAt: 'descending',
+  });
 
-    return res.json(reviews)
+  return res.json(reviews);
 }

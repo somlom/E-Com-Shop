@@ -25,15 +25,15 @@
  *           createdAt: 2023-02-02T17:28:10.780Z
  */
 
-import { Users } from '../db/users'
+import {Users} from '../db/users';
 
 export async function getUser(req, res) {
-    const user = await Users.findById(req.user)
+  const user = await Users.findById(req.user);
 
-    return res.json({
-        email: user.email,
-        name: user.name,
-        surname: user.surname,
-        createdAt: user.createdAt,
-    })
+  return res.json({
+    email: user.email,
+    name: user.name,
+    surname: user.surname,
+    createdAt: user.createdAt,
+  });
 }

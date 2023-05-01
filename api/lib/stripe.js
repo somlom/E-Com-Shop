@@ -50,11 +50,11 @@ export const create_stripe_session = async (
                 }
             )
 
-            search.ids = []
+            const line = []
             search.products.map((item) => {
                 const element = products.data.find((obj) => obj.id === item.id)
                 if (element) {
-                    return search.ids.push({
+                    return line.push({
                         quantity: item.quantity,
                         price: element.default_price,
                     })
@@ -63,7 +63,7 @@ export const create_stripe_session = async (
 
             const session_object = {
                 shipping_address_collection: { allowed_countries: ['DE'] },
-                line_items: search.ids,
+                line_items: line,
                 mode: 'payment',
                 success_url: `${process.env.PUBLIC_URL}/order_status?success=true&order=${id}`,
                 cancel_url: `${process.env.PUBLIC_URL}/order_status?success=false&order=${id}`,
@@ -110,16 +110,17 @@ export const create_product = async (
                 id: id,
                 name: name,
                 default_price_data: {
+                    tax_behavior: 'inclusive',
                     currency: 'EUR',
                     // unit_amount: parseFloat(price),
-                    unit_amount_decimal: (parseFloat(price) * 100).toFixed(2),
+                    unit_amount: parseFloat(price) * 100,
                 },
                 shippable: true,
                 url: process.env.API_URL + '/products/' + id,
                 images: photos,
-                type: "good",
+                // type: "good",
                 // tax_behavior: "inclusive",
-                // tax_code: 'txcd_10000000',
+                tax_code: 'txcd_99999999',
                 // automatic_tax: { enabled: true },
             },
             {

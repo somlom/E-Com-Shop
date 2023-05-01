@@ -39,8 +39,8 @@ const Footer = () => {
           <a href={require("../../../static/files/AGB.pdf")} className="link">
             {t("agb")}
           </a>
-          <a href={require("../../../static/files/IMPRESSUM.pdf")} className="link">
-            {t("impressum")}
+          <a href={require("../../../static/files/DATENSCHUTZ.pdf")} className="link">
+            {t("datenschutz")}
           </a>
           <Link to="/customer_rights" className="link">
             {t("customer_rights")}

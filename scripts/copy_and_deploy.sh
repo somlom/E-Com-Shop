@@ -6,7 +6,7 @@ cd ..
 rm -rf node_modules build
  
 cd /home/dmitrii
-scp -r -i digital_ocean Dokumente/code/site root@159.89.108.59:/home
+scp -r -i digital_ocean Dokumente/code/site root@142.93.223.35:/home
 
 cd ~/Dokumente/code/site/api
 yarn install

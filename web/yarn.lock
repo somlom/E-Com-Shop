@@ -1066,11 +1066,6 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@react-oauth/google@^0.9.0":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.9.1.tgz#0a1589dc7afec33f261638744666b460cf01c00a"
-  integrity sha512-SbTTvt6wiCxHxQbuzlQJZBbXI1aLxPNkAZcukB1S+wEs2vCj5rG9QbZ26nP521n82n1SrpbxaVKYXMt+7GVHhw==
-
 "@reduxjs/toolkit@^1.9.0":
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.3.tgz#27e1a33072b5a312e4f7fa19247fec160bbb2df9"

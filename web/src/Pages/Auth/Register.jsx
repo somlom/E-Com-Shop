@@ -75,7 +75,7 @@ const Register = () => {
                     id="password2"
                     onChange={add_to_state}
                 />
-                <span>{t('agb_text')}</span>
+                <Link to={"/public/AGB"}>{t('agb_text')}</Link>
                 <Column className="form_buttons">
                     <Pay onClick={send_to_backend}>{t('register')}</Pay>
                     <Link to="/login">{t('already_registered')}</Link>

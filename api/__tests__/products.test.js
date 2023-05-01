@@ -181,6 +181,7 @@ describe('account', () => {
 
 describe('Reviews', () => {
     test('Get reviews', async () => {
+        // file deepcode ignore PromiseNotCaughtNode/test: <please specify a reason of ignoring this>
         axios.get(url + 'reviews/63f535d176df1c158b437d87').then((res) => {
             expect(res).toBeTruthy()
             expect(res.status).toBe(200)

@@ -14,12 +14,12 @@ const OrderData = ({
     const dispatch = useDispatch()
 
     return data.map((obj) => (
-        <Row className="order_item" key={obj._id}>
+        <Row className='order_item' key={obj._id}>
             <img
-                className="order_image"
+                className='order_image'
                 src={process.env.API_URL + '/img/' + obj.photos}
             ></img>
-            <h3 id="title">{obj.name}</h3>
+            <h3 id='title'>{obj.name}</h3>
             <Row>
                 {counter && (
                     <select
@@ -45,7 +45,7 @@ const OrderData = ({
                         <option value={10}>10</option>
                     </select>
                 )}
-                <h3 className="close_menu">
+                <h3 className='close_menu'>
                     {obj.price * obj.quantity} &euro;
                 </h3>
                 {remove_btn && (
@@ -60,7 +60,7 @@ const OrderData = ({
                     </Row>
                 )}
             </Row>
-            <Row className="open_menu">
+            <Row className='open_menu'>
                 <h3>
                     {Math.round(obj.price * obj.quantity * 100) / 100} &euro;
                 </h3>
