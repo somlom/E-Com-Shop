@@ -3,8 +3,8 @@ FROM node:alpine
 COPY . /api
 WORKDIR /api
 
-ENV PUBLIC_URL "http://204.48.22.191"
-ENV API_URL "http://204.48.22.191/api"
+ENV PUBLIC_URL ""
+ENV API_URL ""
 ENV NODE_ENV "production"
 
 RUN yarn install 
