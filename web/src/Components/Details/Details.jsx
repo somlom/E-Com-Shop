@@ -1,15 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
-import { Card } from '../Layout/Card/Card';
-
+import { Card } from '../Other/Card/Card'
 
 const Details = ({ data }) => {
-
-    const [t] = useTranslation();
+    const [t] = useTranslation()
 
     return (
         <Card>
-            <h2>{t("details")}</h2>
+            <h2>{t('details')}</h2>
             <p>{data}</p>
         </Card>
     )

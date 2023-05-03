@@ -17,7 +17,11 @@ div.column form.__form.column div.__admin_gallery.row div.__admin_lower_layer {
     align-items: center;
 }
 
-div.column form.__form.column div.__admin_gallery.row div.__admin_lower_layer img {
+div.column
+    form.__form.column
+    div.__admin_gallery.row
+    div.__admin_lower_layer
+    img {
     width: 250px;
 }
 
@@ -26,13 +30,13 @@ div.column form.__form.column input#name {
     min-width: 200px;
 }
 
-div.__admin_gallery.row img{
+div.__admin_gallery.row img {
     width: 200px;
     margin: 10px;
     border: 1px solid gray;
     border-radius: 10px;
 }
 
-div.__admin_gallery{
+div.__admin_gallery {
     flex-wrap: wrap;
 }

@@ -1,33 +1,32 @@
 version: '3.9'
 
 services:
+    api1:
+        restart: on-failure
+        build: ./api
+        environment:
+            - PUBLIC_URL=http://204.48.22.191
+            - API_URL=http://204.48.22.191/api
+            - NODE_ENV=production
+        ports:
+            - '4000:4000'
+        env_file:
+            - .env
 
-  api1:
-    restart: on-failure
-    build: ./api
-    environment:
-      - PUBLIC_URL=/
-      - API_URL=/api
-      - NODE_ENV=production
-    ports:
-      - '4000:4000'
-    env_file:
-      - .env
+    web:
+        restart: on-failure
+        build: ./web
+        environment:
+            - PUBLIC_URL=http://204.48.22.191
+            - API_URL=http://204.48.22.191/api
+            - NODE_ENV=production
+        ports:
+            - '3000:3000'
 
-  web:
-    restart: on-failure
-    build: ./web
-    environment:
-      - PUBLIC_URL=/
-      - API_URL=/api
-      - NODE_ENV=production
-    ports:
-      - '3000:3000'
-
-  nginx:
-    build: ./nginx
-    ports:
-      - '80:80'
-    depends_on:
-      - api1
-      - web
+    nginx:
+        build: ./nginx
+        ports:
+            - '80:80'
+        depends_on:
+            - api1
+            - web

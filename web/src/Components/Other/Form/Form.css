@@ -5,10 +5,10 @@
 }
 
 .form.column {
-    width: 100%
+    width: 100%;
 }
 
-div.responsible_form .form.column{
+div.responsible_form .form.column {
     max-width: 900px;
     width: 50vw;
     min-width: 300px;
@@ -18,24 +18,26 @@ div.responsible_form .form.column{
     margin: 5px;
 }
 
- .form_buttons {
+.form_buttons {
     /* width: fit-content; */
     /* width: 100%; */
     align-items: center;
 }
 
 .form_buttons * {
-    width: 50vw;
+    width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
-} 
+}
 
-.form p, .form input, .form textarea {
+.form p,
+.form input,
+.form textarea {
     width: 100%;
     margin: 1vw 0;
 }
 
-.form p{
+.form p {
     padding: 24px 40px;
     text-align: center;
 }
@@ -52,5 +54,5 @@ div.responsible_form .form.column{
 
 .form input:focus,
 .form textarea:focus {
-    border: 1px solid  rgb(2, 158, 255);
+    border: 1px solid rgb(2, 158, 255);
 }

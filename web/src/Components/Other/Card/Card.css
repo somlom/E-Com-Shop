@@ -1,0 +1,12 @@
+.card_layout {
+    background-color: #e8f5ff;
+    border: none;
+    border-radius: 18px;
+    padding: 15px;
+    margin: 10px;
+    height: min-content;
+}
+
+.card_layout img {
+    width: 150px;
+}

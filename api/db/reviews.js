@@ -1,34 +1,35 @@
-import { Schema, Types, model } from 'mongoose';
+import {Schema, Types, model} from 'mongoose';
 
-
-const reviews_schema = new Schema({
+const reviews_schema = new Schema(
+  {
     title: {
-        type: String,
-        required: [true, "Please add your TITLE"],
+      type: String,
+      required: [true, 'Please add your TITLE'],
     },
     rating: {
-        type: Number,
-        required: [true, "Please add your STARS"],
+      type: Number,
+      required: [true, 'Please add your STARS'],
     },
     text: {
-        type: String,
-        required: [true, "Please add TEXT"],
+      type: String,
+      required: [true, 'Please add TEXT'],
     },
     product: {
-        type: Types.ObjectId,
-        ref: 'Products',
+      type: Types.ObjectId,
+      ref: 'Products',
     },
     user: {
-        type: Types.ObjectId,
-        ref: 'Users',
+      type: Types.ObjectId,
+      ref: 'Users',
     },
     photos: {
-        type: [String],
-        required: [true, "Please add PHOTO"]
+      type: [String],
+      required: [true, 'Please add PHOTO'],
     },
-
-}, {
-    timestamps: true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
 export const Reviews = model('Reviews', reviews_schema);

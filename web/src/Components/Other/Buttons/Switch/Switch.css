@@ -26,9 +26,10 @@
     transition: background-color 500ms ease;
 }
 .switch:after {
-    transition: right 500ms ease, background-color 500ms ease, box-shadow 500ms ease;
+    transition: right 500ms ease, background-color 500ms ease,
+        box-shadow 500ms ease;
 }
 
-.switch_column{
+.switch_column {
     width: 100%;
 }
