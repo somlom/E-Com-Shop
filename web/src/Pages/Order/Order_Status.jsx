@@ -77,7 +77,7 @@ const Order_Failed = ({data, order}) => {
         });
 
         if (req.status === 401) {
-            return <Navigate to={'pay_for_item/' + order} />;
+            return <Navigate to={'pay_for_item/' + order[0]._id} />;
         } else {
             return (
                 <Navigate

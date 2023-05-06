@@ -6,7 +6,7 @@ services:
     build: ./api
     environment:
       - PUBLIC_URL=https://interecom.de
-      - API_URL=http://204.48.22.191/api
+      - API_URL=https://interecom.de/api
       - NODE_ENV=production
     ports:
       - '4000:4000'
@@ -20,7 +20,7 @@ services:
     build: ./web
     environment:
       - PUBLIC_URL=https://interecom.de
-      - API_URL=http://204.48.22.191/api
+      - API_URL=https://interecom.de/api
       - NODE_ENV=production
     ports:
       - '3000:3000'
