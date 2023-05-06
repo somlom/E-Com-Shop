@@ -7,7 +7,7 @@ import {Spinner} from '../../Components/Other/Spinner/Spinner';
 export const Order_Guest = () => {
     const {id} = useParams();
 
-    useEffect( () => {
+    useEffect(() => {
         // return () => {
 
         // .then(
@@ -29,10 +29,7 @@ export const Order_Guest = () => {
                 return <Navigate to={'/'} />;
             }
         };
-
-        return () => {
-            get_data();
-        };
+        get_data();
     }, [id]);
 
     return <Spinner />;
