@@ -29,7 +29,7 @@ export const Order_Status = () => {
             if (success === 'true') {
                 return <Order_Success data={res.data} />;
             } else {
-                return <Order_Failed data={res.data} />;
+                return <Order_Failed data={res.data} order={order} />;
             }
         }
     }
@@ -64,18 +64,22 @@ const Order_Success = ({data}) => {
     );
 };
 
-const Order_Failed = ({data}) => {
+const Order_Failed = ({data, order}) => {
     const [t] = useTranslation();
 
-    const pay_order = () => {
-        const req = axios.get(`${process.env.API_URL}/payment/pay`, {
+    const pay_order = async () => {
+        const token = localStorage.getItem('user');
+
+        const req = await axios.get(`${process.env.API_URL}/payment/pay`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem('user')}`,
+                Authorization: `Bearer ${token}`,
             },
         });
-        req.then(
-            resp => window.location.replace(resp.data.data),
-            () => (
+
+        if (req.status !== 200) {
+            return <Navigate to={'pay_for_item/' + order} />;
+        } else {
+            return (
                 <Navigate
                     to="/login"
                     state={{
@@ -83,8 +87,21 @@ const Order_Failed = ({data}) => {
                         message: t('login_to_proceed'),
                     }}
                 />
-            )
-        );
+            );
+        }
+
+        // req.then(
+        //     resp => window.location.replace(resp.data.data),
+        //     () => (
+        //         <Navigate
+        //             to="/login"
+        //             state={{
+        //                 next: location.pathname + location.search,
+        //                 message: t('login_to_proceed'),
+        //             }}
+        //         />
+        //     )
+        // );
     };
 
     return (
