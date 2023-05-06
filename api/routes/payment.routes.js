@@ -33,8 +33,8 @@
  *         createdAt: 2020-03-10T04:05:06.157Z
  */
 
-import { Router } from 'express'
-import asyncHandler from 'express-async-handler'
+import {Router} from 'express';
+import asyncHandler from 'express-async-handler';
 
 import {
     set_order,
@@ -42,15 +42,16 @@ import {
     pay_for_item,
     pay_order,
     close_order,
-} from '../controllers/payment'
+} from '../controllers/payment';
+import {auth_middleware} from '../middlewares/auth_handler';
 
-export const payment = Router()
+export const payment = Router();
 
-payment.post('/set_order', asyncHandler(set_order))
+payment.post('/set_order', auth_middleware, asyncHandler(set_order));
 
-payment.get('/get_orders', asyncHandler(get_orders))
+payment.get('/get_orders', auth_middleware, asyncHandler(get_orders));
 
-payment.get('/pay', asyncHandler(pay_order))
-payment.post('/pay_for_item', asyncHandler(pay_for_item))
+payment.get('/pay', auth_middleware, asyncHandler(pay_order));
+payment.post('/pay_for_item', asyncHandler(pay_for_item));
 
-payment.get('/close_order/:order_id', asyncHandler(close_order))
+payment.get('/close_order/:order_id', asyncHandler(close_order));

@@ -72,7 +72,7 @@ export const app = express()
   .use('/api', products)
   .use('/api/reviews', reviews)
   .use('/api/auth', auth)
-  .use('/api/payment', auth_middleware, payment)
+  .use('/api/payment', payment)
   .use(
     '/api/admin',
     auth_middleware,

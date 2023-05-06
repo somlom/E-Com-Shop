@@ -28,12 +28,12 @@
 import {Users} from '../db/users';
 
 export async function getUser(req, res) {
-  const user = await Users.findById(req.user);
+    const user = await Users.findById(req.user);
 
-  return res.json({
-    email: user.email,
-    name: user.name,
-    surname: user.surname,
-    createdAt: user.createdAt,
-  });
+    return res.json({
+        email: user.email,
+        name: user.name,
+        surname: user.surname,
+        createdAt: user.createdAt,
+    });
 }

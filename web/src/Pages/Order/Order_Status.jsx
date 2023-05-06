@@ -1,44 +1,42 @@
-import { Suspense } from 'react'
-import { useTranslation } from 'react-i18next'
-import axios from 'axios'
-import { MdDone, MdClose } from 'react-icons/md'
+import {Suspense} from 'react';
+import {useTranslation} from 'react-i18next';
+import axios from 'axios';
+import {MdDone, MdClose} from 'react-icons/md';
 
-import './Order.css'
-import { Column, Row } from '../../Components/Other/Structure/Flex-Box/Flex-Box'
-import { useGetData } from '../../hooks/Data'
-import { Card } from '../../Components/Other/Card/Card'
-import { Spinner } from '../../Components/Other/Spinner/Spinner'
-import OrderCount from '../../Components/Order/OrderCount'
-import { Pay } from '../../Components/Other/Buttons/Pay/Pay'
+import './Order.css';
+import {Column, Row} from '../../Components/Other/Structure/Flex-Box/Flex-Box';
+import {useGetData} from '../../hooks/Data';
+import {Card} from '../../Components/Other/Card/Card';
+import {Spinner} from '../../Components/Other/Spinner/Spinner';
+import OrderCount from '../../Components/Order/OrderCount';
+import {Pay} from '../../Components/Other/Buttons/Pay/Pay';
 
-import OrderData from '../../Components/Order/OrderData'
-import { Navigate } from 'react-router-dom'
+import OrderData from '../../Components/Order/OrderData';
+import {Navigate} from 'react-router-dom';
 
 export const Order_Status = () => {
-    const params = new URLSearchParams(window.location.search)
-    const order = params.get('order')
-    const success = params.get('success')
+    const params = new URLSearchParams(window.location.search);
+    const order = params.get('order');
+    const success = params.get('success');
 
     if (success && order) {
-        const res = useGetData(`/payment/close_order/${order}`, {
-            authorization: 'Bearer ' + localStorage.getItem('user'),
-        })
+        const res = useGetData(`/payment/close_order/${order}`);
         if (res.isLoading) {
-            return <Spinner />
+            return <Spinner />;
         } else if (res.isError) {
-            ;<h1>Sorry, error</h1>
+            <h1>Sorry, error</h1>;
         } else if (res.isSuccess) {
             if (success === 'true') {
-                return <Order_Success data={res.data} />
+                return <Order_Success data={res.data} />;
             } else {
-                return <Order_Failed data={res.data} />
+                return <Order_Failed data={res.data} />;
             }
         }
     }
-}
+};
 
-const Order_Success = ({ data }) => {
-    const [t] = useTranslation()
+const Order_Success = ({data}) => {
+    const [t] = useTranslation();
 
     return (
         <Column className={'order_status'}>
@@ -63,20 +61,20 @@ const Order_Success = ({ data }) => {
                 </Suspense>
             </Column>
         </Column>
-    )
-}
+    );
+};
 
-const Order_Failed = ({ data }) => {
-    const [t] = useTranslation()
+const Order_Failed = ({data}) => {
+    const [t] = useTranslation();
 
     const pay_order = () => {
         const req = axios.get(`${process.env.API_URL}/payment/pay`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('user')}`,
             },
-        })
+        });
         req.then(
-            (resp) => window.location.replace(resp.data.data),
+            resp => window.location.replace(resp.data.data),
             () => (
                 <Navigate
                     to="/login"
@@ -86,8 +84,8 @@ const Order_Failed = ({ data }) => {
                     }}
                 />
             )
-        )
-    }
+        );
+    };
 
     return (
         <Column className={'order_status'}>
@@ -116,5 +114,5 @@ const Order_Failed = ({ data }) => {
                 </Suspense>
             </Column>
         </Column>
-    )
-}
+    );
+};
