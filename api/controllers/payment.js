@@ -5,7 +5,6 @@ import {Users} from '../db/users';
 import Mailer from '../lib/mailer';
 import {create_stripe_session} from '../lib/stripe';
 
-
 export async function get_orders(req, res) {
   const order = await Orders.find({user: req.user, payed: true})
     .populate('products._id')
@@ -43,22 +42,17 @@ export async function pay_for_item(req, res) {
   const product = req.body;
   product._id = product.id;
 
-  const order = await Orders.create({user: req.user, products: [product]});
+  const order = await Orders.create({products: [product]});
 
   if (order) {
-    const user = await Users.findById(req.user);
-    if (user) {
-      const session = await create_stripe_session(order, order.id, user.email);
+    const session = await create_stripe_session(order, order.id);
 
-      if (session.status === true) {
-        await order.updateOne({stripe_order_id: session.id});
+    if (session.status === true) {
+      await order.updateOne({stripe_order_id: session.id});
 
-        return res.status(200).json(session);
-      } else {
-        return res.status(400).json('smth_went_wrong');
-      }
+      return res.status(200).json(session);
     } else {
-      return res.status(400).json('login_to_proceed');
+      return res.status(400).json('smth_went_wrong');
     }
   } else {
     return res.status(400).json('smth_went_wrong');
@@ -115,14 +109,15 @@ export async function close_order(req, res) {
       const mailer = new Mailer();
 
       mailer.send_email(
-        session.customer_email,
-        'Ihre Bestellung ist in der Verarbeitung',
+        session.customer_details.email,
+        'Ihre Bestellung',
         'order',
-        {name: session.shipping_details.name}, [{filename:"document.pdf", path:"public/png2pdf.pdf"}]
+        {name: session.customer_details.name},
+        [{filename: 'document.pdf', path: 'public/png2pdf.pdf'}]
       );
       mailer.send_email(process.env.ADMIN_EMAIL, 'NEW ORDER', 'order_alert', {
         customer_details: session.customer_details,
-        address: session.customer_details.address,
+        // address: session.customer_details.address,
       });
     }
     return res.json(products);
